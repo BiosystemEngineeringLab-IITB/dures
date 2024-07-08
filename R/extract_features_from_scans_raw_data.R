@@ -1,3 +1,16 @@
+#' extract_features_from_scans_raw_data
+#'
+#' Helper function for extract_raw_spectra. Need not be run separately. For every feature, reads the MS2 spectra, groups fragments within a given tolerance, extracts the resulting sprectrum to a text file. Based on user input, it will retain only the top x% TIC spectra.
+#'
+#' @param sps_j: a list of concatenated MS2 spectra for a given feature
+#' @param name: name of feature (ID)
+#' @param f_path: path to the a folder with the same name as the feature ID is created inside the folder titled MS2_scans_before_denoising
+#' @param cutoff: top x% TIC cutoff
+#' @param tol: mass tolerance for grouping
+#' @return A list containing the top x% TIC and number of scans before and after TIC filtering
+#' @examples
+#' # Example usage of the function
+#' extract_features_from_scans_raw_data(sps_j, 1098, f_path, 0.8, 0.05)
 extract_features_from_scans_raw_data <- function(sps_j,name,f_path,cutoff,tol){
   mz=c(); inten=c(); name1=c(); scan =c(); tic=c(); nfg=c(); scan_info = c()
   for(i in 1:length(sps_j[[1]])){

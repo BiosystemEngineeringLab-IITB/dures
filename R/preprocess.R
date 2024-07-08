@@ -1,3 +1,15 @@
+#' preprocess
+#'
+#' Reads mzml files from the predefined folder path and extracts spectra within the given mz and RT range.
+#'
+#' @param folder_path folder containing the required input directory (mzml) and Stats file in .txt format.
+#' @param tol_mz mass tolerance
+#' @param tol_rt RT tolerance
+#' @return A list containing the MS2 spectra extracted from the mzml files using the predefined tolerances and the updated stats file with MS2 features only
+#' @examples
+#' # Example usage of the function
+#' preprocess(folder_path, 10, 0.1)
+#' @export
 preprocess <- function(folder_path, tol_mz = 5, tol_rt = 0.1667) {
   cat("*******************Sanity check for input files***********************\n")
   output_list = read_files(folder_path = folder_path, tol_mz, tol_rt)

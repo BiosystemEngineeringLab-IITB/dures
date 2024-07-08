@@ -1,3 +1,14 @@
+#' read_files
+#'
+#' Helper function for preprocess(). Need not be run separately. Runs several checks to see if Stats file has required columns or if user-defined Stats file has been provided
+#'
+#' @param folder_path: same folder path used in preprocess(). The extracted fragment-grouped spectra in .txt format will be stored here
+#' @param tol_mz: mass tolerance (default: 0.05 Da)
+#' @param tol_rt; Rt tolerance (default: 0.1667 minutes)
+#' @return a list containing all MS2 spectra for every sample, an edited stats file for subsequent steps and names of samples analyzed
+#' @examples
+#' # Example usage of the function
+#' read_files(folder_path, 0.05, 0.1667)
 read_files <- function(folder_path, tol_mz, tol_rt){
   #tolerance in minutes and mz_tolerance in ppm
   if(length(grep("Stats.txt", list.files(folder_path))) > 0){

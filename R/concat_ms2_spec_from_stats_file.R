@@ -1,4 +1,14 @@
-#' @export
+#' concat_ms2_spec_from_stats_file
+#'
+#' Helper function for concatenate_spectra(). Need not be called separately. Gets auto-invoked once we call concatenate_spectra()
+#'
+#' @param j: jth feature from the stats file
+#' @param stats_file: edited stats file with RT_min and RT_max prefixes added to every sample
+#' @param fl: list of sample names
+#' @return a list with all spectra concatenated for a particular feature
+#' @examples
+#' # Example usage of the function (need not be called separately)
+#' concat_ms2_spec_from_stats_file(1,stats_file,fl)
 
 concat_ms2_spec_from_stats_file <- function(j, stats_file, fl){
 

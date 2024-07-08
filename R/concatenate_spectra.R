@@ -1,4 +1,14 @@
-concatenate_spectra <- function(output_list) {
+#' concatenate_spectra
+#'
+#' Reads a list generated from the preprocess() and extracts MS2 spectra within the given mz and RT range. Also returns a list of features for which MS2 spectra couldn't be extracted
+#'
+#' @param output_list_from_preprocess_function: contain list generated from the preprocess()
+#' @return A list containing the MS2 spectra extracted from the mzml files using the predefined tolerances and a vector of features for which MS2 spectra couldn't be extracted
+#' @examples
+#' # Example usage of the function
+#' concatenate_spectra(output_list_from_preprocess_function)
+concatenate_spectra <- function(output_list_from_preprocess_function) {
+  output_list = output_list_from_preprocess_function
   stats_file <- output_list[[2]]
   id_no_ms2 <- c()
 
