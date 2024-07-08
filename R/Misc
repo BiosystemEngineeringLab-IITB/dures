@@ -1,0 +1,18 @@
+#set config
+usethis::use_git_config(user.name = "YourName", user.email = "your@mail.com")
+
+#Go to github page to generate token
+usethis::create_github_token()
+
+#paste your PAT into pop-up that follows...
+credentials::set_github_pat()
+
+#now remotes::install_github() will work
+remotes::install_github("username/privaterepo")
+
+
+#run in a separate system
+
+.rs.restartR()
+remove.packages("dures", lib="~/R/x86_64-pc-linux-gnu-library/4.3")
+devtools::install_github("banerjeeshayantan/dures", ref = "main", force = TRUE)
