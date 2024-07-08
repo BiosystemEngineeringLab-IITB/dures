@@ -1,3 +1,5 @@
+#' @export
+
 concat_ms2_spec_from_stats_file <- function(j, stats_file, fl){
 
   #this function extracts all scans within a given RT range
