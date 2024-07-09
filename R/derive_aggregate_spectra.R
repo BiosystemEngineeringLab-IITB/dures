@@ -10,7 +10,7 @@
 #' @export
 derive_aggregate_spectra <- function(sps, mz_tol=0.05){
   df=data.frame();
-  c=0
+  c=0;
   for(i in 1:length(sps)){
     #print(i)
     sps_2=sps[i]
@@ -34,7 +34,7 @@ derive_aggregate_spectra <- function(sps, mz_tol=0.05){
     }
     #add a way to know which spectra (RT range) each row is coming from.
     p$rtime=as.character(round(sps_mod$rtime,1))[i]
-    p$fileid=fileID
+    p$fileid=sps_mod$spectrumId[i]
     df=rbind(df,p)
   }
 
@@ -132,7 +132,7 @@ derive_aggregate_spectra <- function(sps, mz_tol=0.05){
   spd <- DataFrame(
     msLevel = c(2L),
     polarity = c(1L),
-    name = paste(fileID, range(sps$rtime)[1], range(sps$rtime)[2], sep="-"))
+    name = paste("IDA_1", range(sps$rtime)[1], range(sps$rtime)[2], sep="-"))
 
   spd$mz <- list(
     c(agg_df_freq$Mean_MZ))
