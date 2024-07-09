@@ -8,9 +8,9 @@
 #' @param top_percent_tic: this parameter will tell the user that only top x% TIC spectra will be extracted and stored in the folder in .txt format. Default value is 0.8 (or 80%)
 #' @return a list containing all top x% TIC scans in spectra format, a dataframe showing the number of spectra remaining before and after applying the top x% cutoff, and a vector containing features with no fragments
 #' @examples
-#' @export
 #' # Example usage of the function
 #' extract_raw_spectra(folder_path, l, 0.05, 0.7)
+#' @export
 extract_raw_spectra <- function(folder_path, list_of_spectra_files, intrascan_grouping_tolerance = 0.05, top_percent_tic = 0.8) {
   stats_ms2 <- list_of_spectra_files$stats_file_ms2_only; spec_null = c()
   spectra_ms2 <- list_of_spectra_files$spectra_ms2_only
