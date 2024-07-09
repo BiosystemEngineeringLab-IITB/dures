@@ -42,7 +42,7 @@ extract_raw_spectra <- function(folder_path, list_of_spectra_files, intrascan_gr
 
       # Process the scans without changing the working directory
       l_1 <- extract_features_from_scans_raw_data(sps_j, name, f_path, top_percent_tic, intrascan_grouping_tolerance)
-      sps_top80_tic_2[[i]] <<- l_1[[1]]  # Use `<<-` to assign to sps_top80_tic_2
+      sps_top80_tic_2[[name]] <<- l_1[[1]]# Use `<<-` to assign to sps_top80_tic_2
       df[i, ] <<- c(name, l_1[[2]], l_1[[3]])  # Use `<<-` to assign to df
 
       # Update progress bar
@@ -59,7 +59,8 @@ extract_raw_spectra <- function(folder_path, list_of_spectra_files, intrascan_gr
 
   # Close the progress bar
   close(pb)
-
+  names(sps_top80_tic_2) =
+  assign("sps_top_tic_2",sps_top80_tic_2, envir = .dures_env)
   # Return results as a list
   names(sps_top80_tic_2) <- df[,1]
   return(list(sps_top_tic_2 = sps_top80_tic_2, df = df, num_feats_no_spectra  = spec_null))
