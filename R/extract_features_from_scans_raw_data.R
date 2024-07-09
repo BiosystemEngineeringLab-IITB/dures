@@ -11,6 +11,8 @@
 #' @examples
 #' # Example usage of the function
 #' extract_features_from_scans_raw_data(sps_j, 1098, f_path, 0.8, 0.05)
+#' @export
+
 extract_features_from_scans_raw_data <- function(sps_j,name,f_path,cutoff,tol){
   mz=c(); inten=c(); name1=c(); scan =c(); tic=c(); nfg=c(); scan_info = c()
   for(i in 1:length(sps_j[[1]])){

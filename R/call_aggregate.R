@@ -8,6 +8,7 @@
 #' @examples
 #' # Example usage of the function
 #' call_aggregate(sps_top_tic, 0.05)
+#' @export
 call_aggregate <- function(spectra_list, mz_tol, folder_path){
   df = data.frame()
   print(paste("Creating aggregate spectra for ", length(spectra_list), " features. This is an expensive operation. Please wait..", sep=""))

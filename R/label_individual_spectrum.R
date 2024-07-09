@@ -8,6 +8,7 @@
 #' @examples
 #' # Example usage of the function
 #' label_individual_spectrum(l2, folder_path, 0.05)
+#' @export
 
 label_individual_spectrum <- function(aggregate_list, folder_path, mz_tol){
   df_sps_mean_agg_df = aggregate_list; freq_df = list()

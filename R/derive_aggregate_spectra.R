@@ -7,7 +7,7 @@
 #' @examples
 #' # Example usage of the function
 #' derive_aggregate_spectra(sps, 0.05)
-
+#' @export
 derive_aggregate_spectra <- function(sps, mz_tol=0.05){
   df=data.frame();
   c=0

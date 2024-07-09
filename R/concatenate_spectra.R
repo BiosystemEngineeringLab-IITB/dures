@@ -7,6 +7,8 @@
 #' @examples
 #' # Example usage of the function
 #' concatenate_spectra(output_list_from_preprocess_function)
+#' @export
+
 concatenate_spectra <- function(output_list_from_preprocess_function) {
   output_list = output_list_from_preprocess_function
   stats_file <- output_list[[2]]
@@ -20,7 +22,7 @@ concatenate_spectra <- function(output_list_from_preprocess_function) {
     print(paste("Iteration", i))
 
     # Concatenate spectra
-    l <- dures::concat_ms2_spec_from_stats_file(i, stats_file, output_list[[3]])
+    l <- concat_ms2_spec_from_stats_file(i, stats_file, output_list[[3]])
 
     if (is.null(l)) {
       id_no_ms2 <<- c(id_no_ms2, stats_file$ID[i])

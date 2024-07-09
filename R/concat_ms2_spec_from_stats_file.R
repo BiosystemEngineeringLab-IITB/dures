@@ -9,6 +9,7 @@
 #' @examples
 #' # Example usage of the function (need not be called separately)
 #' concat_ms2_spec_from_stats_file(1,stats_file,fl)
+#' @export
 
 concat_ms2_spec_from_stats_file <- function(j, stats_file, fl){
 

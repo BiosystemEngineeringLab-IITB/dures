@@ -9,6 +9,7 @@
 #' @examples
 #' # Example usage of the function
 #' tune_parameters(agg_df, threshold, "scan_1.txt", path)
+#' @export
 tune_parameters <- function(agg_df, threshold, name, path){
   colnames(agg_df)[2:4] = c("Mean_MZ", "Mean_Intensity", "Frequency")
   agg_df_cutoff = subset(agg_df, agg_df$Frequency >= threshold)
