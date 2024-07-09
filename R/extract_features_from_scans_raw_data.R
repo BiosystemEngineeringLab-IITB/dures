@@ -15,8 +15,8 @@
 
 extract_features_from_scans_raw_data <- function(sps_j,name,f_path,cutoff,tol){
   mz=c(); inten=c(); name1=c(); scan =c(); tic=c(); nfg=c(); scan_info = c()
-  for(i in 1:length(sps_j[[1]])){
-    sps_i = sps_j[[1]][i]
+  for(i in 1:length(sps_j)){
+    sps_i = sps_j[i]
     fls <- unique(Spectra::dataOrigin(sps_i))
     #n = paste(strsplit(strsplit(unique(dataOrigin(sps_i)), "/")[[1]][8], " ")[[1]], collapse = "_")
     sps_peaks = Spectra::peaksData(sps_i)[[1]]
@@ -41,14 +41,14 @@ extract_features_from_scans_raw_data <- function(sps_j,name,f_path,cutoff,tol){
     write.table(sps_peaks_intrascan_grouped, file, col.names = T, row.names = F, sep="\t", quote = F )
   }
   tic_20_df = data.frame(Scan = scan_info, TIC = tic)
-  ranked = round(length(sps_j[[1]])*cutoff)
+  ranked = round(length(sps_j)*cutoff)
   tic_20_df = tic_20_df[order(tic_20_df$TIC, decreasing = T),]
   #print("Number of scans before TIC cutoff applied")
   n_scans_before = dim(tic_20_df)[1]
   tic_20_df = tic_20_df[c(1:ranked), ]
   #print("Number of scans after TIC cutoff applied")
   n_scans_after = dim(tic_20_df)[1]
-  sps_new = sps_j[[1]][which(sps_j[[1]]$spectrumId %in% tic_20_df$Scan)]
+  sps_new = sps_j[which(sps_j$spectrumId %in% tic_20_df$Scan)]
   #print("Number of scans left for aggregating")
   #print(length(sps_new))
   full_paths <- file.path(f_path, setdiff(list.files(f_path), paste(sps_new$spectrumId,".txt",sep="")))

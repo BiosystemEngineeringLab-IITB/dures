@@ -139,7 +139,7 @@ derive_aggregate_spectra <- function(sps, mz_tol=0.05){
 
   spd$intensity <- list(c(agg_df_freq$Mean_Intensity))
   #spd$Frequency = agg_df_freq$Frequency
-  sps_mean <- Spectra(spd)
+  sps_mean <- Spectra::Spectra(spd)
   sps_mean$Frequency <- list(c(agg_df_freq$Frequency))
 
 
