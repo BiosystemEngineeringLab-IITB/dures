@@ -55,7 +55,8 @@ generate_denoised_spectra <- function(aggregate_list, folder_path, custom_thresh
 
     spd$mz<- mz
     spd$intensity <- inten
-    sps <- Spectra(spd)
+    sps <- Spectra::Spectra(spd)
+    sps$spectrumId = names(freq_df[[j]])
 
     fl = paste(path, names(freq_df)[j],".mzML",sep="")
     export(sps, MsBackendMzR(), file = fl)
