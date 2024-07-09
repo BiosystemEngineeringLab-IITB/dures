@@ -16,7 +16,7 @@ tune_parameters(agg_df, threshold, name, path)
 \item{path:}{folder path to store the denoised spectra in .txt and .mzML format}
 }
 \value{
-directly prints the spectra to the file in .txt and .mzML format
+directly prints the spectra to the file in .txt format and returns the spectrum-wise mz and intensity
 }
 \description{
 Helper function for generate_denoise_spectra(). Need not be called separately
