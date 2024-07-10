@@ -1,6 +1,7 @@
 pandoc: 2.19.2
 pkgdown: 2.0.9
 pkgdown_sha: ~
-articles: {}
-last_built: 2024-07-10T12:24Z
+articles:
+  dures-vignette: dures-vignette.html
+last_built: 2024-07-10T16:00Z
 

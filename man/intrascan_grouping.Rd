@@ -2,8 +2,7 @@
 % Please edit documentation in R/intrascan_grouping.R
 \name{intrascan_grouping}
 \alias{intrascan_grouping}
-\title{intrascan_grouping
-A function that accepts a spectrum as input and returns a spectrum with fragments grouped within a given mass tolerance}
+\title{intrascan_grouping}
 \usage{
 intrascan_grouping(scan, tol)
 }
@@ -16,6 +15,5 @@ intrascan_grouping(scan, tol)
 A data frame with the same columns but mass fragments grouped.
 }
 \description{
-intrascan_grouping
 A function that accepts a spectrum as input and returns a spectrum with fragments grouped within a given mass tolerance
 }
