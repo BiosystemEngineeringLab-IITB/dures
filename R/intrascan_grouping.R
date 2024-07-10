@@ -1,7 +1,8 @@
-#' Example function using the pipe operator
+#' A function that accepts a spectrum as input and returns a spectrum with fragments grouped within a given mass tolerance
 #'
-#' @param data A data frame.
-#' @return A data frame with the first 10 rows.
+#' @param data A data frame of a spectrum containing two columns (fragments, intensity).
+#' @param tol A tolerance value in daltons
+#' @return A data frame with the same columns but mass fragments grouped.
 #' @importFrom magrittr %>%
 #' @importFrom dplyr %>% mutate
 
