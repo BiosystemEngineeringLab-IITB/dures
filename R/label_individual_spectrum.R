@@ -1,6 +1,7 @@
 #' label_individual_spectrum
 #'
 #' Using the frequencies determined from the call_aggregate(), label individual spectrum
+#' @importFrom utils read.delim
 #' @param aggregate_list: list of aggregate spectra objects for all features (output from the call_aggregate())
 #' @param folder_path: same path as the one used in preprocess()
 #' @param mz_tol: mass tolerance (in Da) required when grouping fragments across multiple spectra for a given feature

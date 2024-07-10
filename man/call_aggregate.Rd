@@ -21,5 +21,10 @@ Helper code to run derive_aggregate_spectra
 }
 \examples{
 # Example usage of the function
-call_aggregate(sps_top_tic, 0.05)
+folder_path = "~/metabolomics/test_2/"
+sp <- preprocess(folder_path, 5, 0.01)
+l <- sp[[1]]
+sp1 <- extract_raw_spectra(folder_path, l, 0.05, 0.8)
+spectra_list <- sp1[[1]]
+call_aggregate(spectra_list, 0.05, folder_path)
 }

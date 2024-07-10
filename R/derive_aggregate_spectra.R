@@ -1,6 +1,8 @@
 #' derive_aggregate_spectra
 #'
 #' Create aggregate spectra by grouping fragments across multiple spectra for a given feature using a predefined tolerance and calculate the frequencies of fragments
+#' @importFrom stats aggregate
+#' @importFrom S4Vectors DataFrame
 #' @param sps: A spectra object containing top x% TIC spectra concatenated for a given feature.
 #' @param mz_tol: mass tolerance (in Da) required when grouping fragments across multiple spectra for a given feature
 #' @return a list containing the aggregate spectra as a Spectra object and a dataframe of the aggregate spectra with its mean MZ, Intensity and frequency and the number of fragments before and after inter- and intra-spectra grouping

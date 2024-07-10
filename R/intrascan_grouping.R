@@ -7,11 +7,12 @@
 
 #' @export
 intrascan_grouping <- function(scan, tol) {
-  if (length(scan$fragments) == 0) {
+  colnames(scan) = c("fragments", "intensity")
+  if (length(scan[,1]) == 0) {
     return(NULL)
   } else {
-    scan <- scan[order(scan$fragments, decreasing = TRUE), ]
-    scan$unique_id <- paste("frag", scan$fragments, sep = "_")
+    scan <- scan[order(scan[,1], decreasing = TRUE), ]
+    scan$unique_id <- paste("frag", scan[,1], sep = "_")
 
     scan <- scan %>%
       dplyr::arrange(fragments) %>%

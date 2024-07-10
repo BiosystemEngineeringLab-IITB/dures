@@ -3,6 +3,7 @@
 #' Helper function for preprocess(). Need not be run separately. Runs several checks to see if Stats file has required columns or if user-defined Stats file has been provided
 #'
 #' @param folder_path: same folder path used in preprocess(). The extracted fragment-grouped spectra in .txt format will be stored here
+#' @importFrom utils read.delim
 #' @param tol_mz: mass tolerance (default: 0.05 Da)
 #' @param tol_rt; Rt tolerance (default: 0.1667 minutes)
 #' @return a list containing all MS2 spectra for every sample, an edited stats file for subsequent steps and names of samples analyzed

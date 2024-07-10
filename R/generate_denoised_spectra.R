@@ -2,6 +2,9 @@
 #'
 #' Takes in a list of individual spectrum with fragments labeled with frequencies, denoises it using fixed cutoff and writes the resulting spectrum into a file
 #' @param aggregate_list: output from label_individual_spectrum()
+#' @importFrom S4Vectors DataFrame
+#' @importFrom Spectra export
+#' @importFrom Spectra MsBackendMzR
 #' @param folder_path: same path as the one used in preprocess()
 #' @param ion_mode: ionization mode = "pos" or "neg" (default = "pos")
 #' @param custom_threshold: must be between 0 and 1 (default = NULL). If the user wants to apply a threshold different from ours (0.12 (95%CI- 0.08-0.15)) they can do so using this parameter. The threshold when multiplied by the number of replicate spectra (for a given feature) will tell us that only fragments with frequencies above this value will be considered as signal fragments and retained in the spectrum
