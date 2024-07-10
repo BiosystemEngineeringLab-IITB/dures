@@ -1,5 +1,5 @@
+#' intrascan_grouping
 #' A function that accepts a spectrum as input and returns a spectrum with fragments grouped within a given mass tolerance
-#'
 #' @param data A data frame of a spectrum containing two columns (fragments, intensity).
 #' @param tol A tolerance value in daltons
 #' @return A data frame with the same columns but mass fragments grouped.
