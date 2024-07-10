@@ -1,4 +1,4 @@
-#' derive_aggregate_spectra
+#' call_aggregate
 #'
 #' Helper code to run derive_aggregate_spectra
 #' @param spectra_list: list of spectra objects for all features, each containing top x% TIC spectra concatenated

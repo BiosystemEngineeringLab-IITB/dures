@@ -2,7 +2,7 @@
 % Please edit documentation in R/call_aggregate.R
 \name{call_aggregate}
 \alias{call_aggregate}
-\title{derive_aggregate_spectra}
+\title{call_aggregate}
 \usage{
 call_aggregate(spectra_list, mz_tol, folder_path)
 }
