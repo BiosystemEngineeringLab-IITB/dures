@@ -2,16 +2,18 @@
 % Please edit documentation in R/intrascan_grouping.R
 \name{intrascan_grouping}
 \alias{intrascan_grouping}
-\title{Example function using the pipe operator}
+\title{A function that accepts a spectrum as input and returns a spectrum with fragments grouped within a given mass tolerance}
 \usage{
 intrascan_grouping(scan, tol)
 }
 \arguments{
-\item{data}{A data frame.}
+\item{tol}{A tolerance value in daltons}
+
+\item{data}{A data frame of a spectrum containing two columns (fragments, intensity).}
 }
 \value{
-A data frame with the first 10 rows.
+A data frame with the same columns but mass fragments grouped.
 }
 \description{
-Example function using the pipe operator
+A function that accepts a spectrum as input and returns a spectrum with fragments grouped within a given mass tolerance
 }
