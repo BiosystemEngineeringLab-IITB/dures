@@ -21,7 +21,7 @@ Helper code to run derive_aggregate_spectra
 }
 \examples{
 # Example usage of the function
-folder_path = "~/metabolomics/test_2/"
+folder_path = "/home/shayantan/Desktop/test_package_dures/test_2/"
 sp <- preprocess(folder_path, 5, 0.01)
 l <- sp[[1]]
 sp1 <- extract_raw_spectra(folder_path, l, 0.05, 0.8)
