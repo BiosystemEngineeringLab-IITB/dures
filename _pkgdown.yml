@@ -1,0 +1,24 @@
+authors:
+  - name: "John Doe"
+    role: "aut, cre"
+    email: "john.doe@example.com"
+    url: "https://john-doe-website.com"
+
+pkgdown:
+  title: "My Package"
+  description: "A short description of my package."
+
+navbar:
+  title: "My Package"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Reference"
+      href: reference/index.html
+    - text: "Articles"
+      href: articles/index.html
+    - text: "News"
+      href: news/index.html
+  right:
+    - icon: fa-github
+      href: https://github.com/banerjeeshayantan/dures
