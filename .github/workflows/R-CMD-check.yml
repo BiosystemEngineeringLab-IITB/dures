@@ -40,7 +40,6 @@ jobs:
         with:
           bioc-version: devel
           bioc-mirror: https://ftp.gwdg.de/pub/misc/bioconductor
-
       - name: Install dependencies
         run: |
           install.packages("remotes")
