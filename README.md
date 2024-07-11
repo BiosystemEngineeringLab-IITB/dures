@@ -1,4 +1,4 @@
-# DuReS
+# Denoising Using Replicate Spectra (DuReS)
 
 ## Introduction
 
