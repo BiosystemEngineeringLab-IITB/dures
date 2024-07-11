@@ -21,6 +21,9 @@ devtools::install_github("banerjeeshayantan/dures")
 ## Documentation
 Detailed documentation of the package is available [here](https://banerjeeshayantan.github.io/dures/)
 
+## Package Workflow
+![Workflow Diagram](images/dures_workflow.png)
+
 ## Citation
 Please cite the following paper if you use our package
 
