@@ -1,7 +1,7 @@
 # My Package
 
-![Build Status](https://github.com/yourusername/yourpackagename/actions/workflows/R-CMD-check.yaml/badge.svg)
-![CRAN Status](https://www.r-pkg.org/badges/version/yourpackagename)
+![Build Status](https://github.com/banerjeeshayantan/dures/actions/workflows/R-CMD-check.yaml/badge.svg)
+<!--![CRAN Status](https://www.r-pkg.org/badges/version/dures). --> 
 
 ## Introduction
 
