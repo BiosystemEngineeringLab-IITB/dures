@@ -35,9 +35,11 @@ jobs:
           install.packages(c("remotes", "rcmdcheck"))
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
-      - name: Install BiocManager
-        run: |
-          install.packages('BiocManager')
+      - name: Setup R and Bioconductor
+        uses: grimbough/bioc-actions/setup-bioc@v1
+        with:
+          bioc-version: devel
+          bioc-mirror: https://ftp.gwdg.de/pub/misc/bioconductor
 
       - name: Install dependencies
         run: |
