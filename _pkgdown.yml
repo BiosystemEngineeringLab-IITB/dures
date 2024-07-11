@@ -1,15 +1,15 @@
 authors:
-  - name: "John Doe"
+  - name: "Shayantan Banerjee"
     role: "aut, cre"
-    email: "john.doe@example.com"
+    email: "banerjeeshayantan@gmail.com"
     url: "https://john-doe-website.com"
 
 pkgdown:
-  title: "My Package"
-  description: "A short description of my package."
+  title: "dures"
+  description: "Denoising tandem mass spectrometry data through replicate spectra analysis"
 
 navbar:
-  title: "My Package"
+  title: "dures"
   left:
     - text: "Home"
       href: index.html
