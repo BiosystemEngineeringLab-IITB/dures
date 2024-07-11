@@ -10,7 +10,7 @@ pkgdown:
   description: "Denoising tandem mass spectrometry data through replicate spectra analysis"
 
 navbar:
-  title: "dures"
+  title: "DuReS"
   left:
     - text: "Home"
       href: index.html
