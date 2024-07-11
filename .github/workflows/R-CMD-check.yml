@@ -36,7 +36,7 @@ jobs:
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
       - name: Setup R and Bioconductor
-        uses: grimbough/bioc-actions/setup-bioc@v2
+        uses: grimbough/bioc-actions/setup-bioc@v1
         with:
           bioc-version: devel
           bioc-mirror: https://ftp.gwdg.de/pub/misc/bioconductor
