@@ -45,7 +45,7 @@ jobs:
         run: |
           install.packages("remotes")
           remotes::install_cran("rcmdcheck")
-          BiocManager::install(c("S4Vectors", "Spectra""))
+          BiocManager::install(c("S4Vectors", "Spectra"))
         - name: Build, Install, Check
           uses: grimbough/bioc-actions/build-install-check@v1
       - name: Check
