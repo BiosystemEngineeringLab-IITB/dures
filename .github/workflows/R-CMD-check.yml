@@ -35,6 +35,15 @@ jobs:
           install.packages(c("remotes", "rcmdcheck"))
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
+      - name: Install BiocManager
+        run: |
+          install.packages('BiocManager')
+
+      - name: Install dependencies
+        run: |
+          install.packages('remotes')
+          remotes::install_cran('rcmdcheck')
+          BiocManager::install(c('S4Vectors', 'Spectra'))
       - name: Check
         run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
         shell: Rscript {0}
