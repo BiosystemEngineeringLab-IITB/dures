@@ -39,13 +39,13 @@ jobs:
         uses: grimbough/bioc-actions/setup-bioc@v1
         with:
           bioc-version: devel
+          bioc-mirror: https://ftp.gwdg.de/pub/misc/bioconductor
+
       - name: Install dependencies
         run: |
-          install.packages("remotes")
-          remotes::install_cran("rcmdcheck")
-          BiocManager::install(c("S4Vectors", "Spectra"))
-        - name: Build, Install, Check
-          uses: grimbough/bioc-actions/build-install-check@v1
+          install.packages('remotes')
+          remotes::install_cran('rcmdcheck')
+          BiocManager::install(c('S4Vectors', 'Spectra'))
       - name: Check
         run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
         shell: Rscript {0}
