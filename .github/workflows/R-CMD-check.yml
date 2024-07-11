@@ -40,9 +40,6 @@ jobs:
         with:
           bioc-version: devel
           bioc-mirror: https://ftp.gwdg.de/pub/misc/bioconductor
-      - name: Build, Install, Check
-        uses: grimbough/bioc-actions/build-install-check@v2
-
       - name: Install dependencies
         run: |
           install.packages('remotes')
