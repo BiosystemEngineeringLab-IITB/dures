@@ -2,7 +2,7 @@ authors:
   - name: "Shayantan Banerjee"
     role: "aut, cre"
     email: "banerjeeshayantan@gmail.com"
-    url: "https://john-doe-website.com"
+
 
 pkgdown:
   title: "dures"
