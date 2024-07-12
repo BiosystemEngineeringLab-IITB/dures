@@ -24,11 +24,11 @@ Detailed documentation of the package is available [here](https://banerjeeshayan
 ## Quick Start
 ```r
 folder_path = "~/metabolomics/test_1/" #folder path containing mzml/ and Stats.txt in required format
-l = preprocess(folder_path = folder_path, ppm = 5, tol_rt = 0.1) #reads mzml files, prepares Stats file, extracts spectra and concatenates spectra
-l1 = extract_raw_spectra(folder_path = folder_path, l, 0.05, 0.8) #extract top x% (where x = 0.8) TIC spectra, groups fragments within a given tolerance (0.05 Da)
-l2 = call_aggregate(l1$sps_top_tic_2, 0.05, folder_path) #aggregates multiple spectra for a given feature by grouping fragments within a given tolerance and also generates frequency of those fragments
-l3 = label_individual_spectrum(l2, folder_path, 0.05) #using the fragment frequencies of the aggregate learnt from teh previous step, it labels the individual spectrum for a given feature
-l4 = generate_denoised_spectra(l3, folder_path, ion_mode = "pos") #using a cutoff denoises individual spectrum for every feature and stores it as an mzML file in folder_path
+l1 = preprocess(folder_path = folder_path, ppm = 5, tol_rt = 0.1) #reads mzml files, prepares Stats file, extracts spectra and concatenates spectra
+l2 = extract_raw_spectra(folder_path = folder_path, l1, 0.05, 0.8) #extract top x% (where x = 0.8) TIC spectra, groups fragments within a given tolerance (0.05 Da)
+l3 = call_aggregate(l2$sps_top_tic_2, 0.05, folder_path) #aggregates multiple spectra for a given feature by grouping fragments within a given tolerance and also generates frequency of those fragments
+l4 = label_individual_spectrum(l3, folder_path, 0.05) #using the fragment frequencies of the aggregate learnt from teh previous step, it labels the individual spectrum for a given feature
+l5 = generate_denoised_spectra(l4, folder_path, ion_mode = "pos") #using a cutoff denoises individual spectrum for every feature and stores it as an mzML file in folder_path
 ```
 
 ## Package Workflow
