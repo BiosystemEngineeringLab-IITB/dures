@@ -8,7 +8,7 @@ This package provides a set of easy-to-implement functions to denoise tandem mas
 
 First, you need to install two dependencies from Bioconductor: S4Vectors and Spectra
 ```r
-# install.packages("BiocManager")
+install.packages("BiocManager")
 BiocManager::install(c("Spectra", "S4Vectors"))
 ```
 After this you can proceed with the installation of the development version of the package DuReS as follows:
@@ -32,7 +32,7 @@ l5 = generate_denoised_spectra(l4, folder_path, ion_mode = "pos") #using a cutof
 ```
 
 ## Package Workflow
-![Workflow Diagram](images/dures_workflow.png)
+![Workflow Diagram](https://github.com/banerjeeshayantan/dures/blob/master/images/dures_workflow.png)
 
 ## Citation
 Please cite the following paper if you use our package
