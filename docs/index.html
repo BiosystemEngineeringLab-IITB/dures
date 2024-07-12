@@ -67,7 +67,55 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-What the package does (one paragraph).
+<div class="section level1">
+<div class="page-header"><h1 id="denoising-using-replicate-spectra-dures">Denoising Using Replicate Spectra (DuReS)<a class="anchor" aria-label="anchor" href="#denoising-using-replicate-spectra-dures"></a>
+</h1></div>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p>This package provides a set of easy-to-implement functions to denoise tandem mass spectrometry data. It requires a set of mzML files and a txt file containing feature information (from peak picking) such as the mz and RT as input and outputs a set of mzML files with the same number of features.</p>
+</div>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>First, you need to install two dependencies from Bioconductor: S4Vectors and Spectra</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("BiocManager")</span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Spectra"</span>, <span class="st">"S4Vectors"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>After this you can proceed with the installation of the development version of the package DuReS as follows:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"banerjeeshayantan/dures"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
+</h2>
+<p>Detailed documentation of the package is available <a href="https://banerjeeshayantan.github.io/dures/" class="external-link">here</a></p>
+</div>
+<div class="section level2">
+<h2 id="quick-start">Quick Start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
+</h2>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">folder_path</span> <span class="op">=</span> <span class="st">"~/metabolomics/test_1/"</span> <span class="co">#folder path containing mzml/ and Stats.txt in required format</span></span>
+<span><span class="va">l1</span> <span class="op">=</span> <span class="fu"><a href="reference/preprocess.html">preprocess</a></span><span class="op">(</span>folder_path <span class="op">=</span> <span class="va">folder_path</span>, ppm <span class="op">=</span> <span class="fl">5</span>, tol_rt <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="co">#reads mzml files, prepares Stats file, extracts spectra and concatenates spectra</span></span>
+<span><span class="va">l2</span> <span class="op">=</span> <span class="fu"><a href="reference/extract_raw_spectra.html">extract_raw_spectra</a></span><span class="op">(</span>folder_path <span class="op">=</span> <span class="va">folder_path</span>, <span class="va">l1</span>, <span class="fl">0.05</span>, <span class="fl">0.8</span><span class="op">)</span> <span class="co">#extract top x% (where x = 0.8) TIC spectra, groups fragments within a given tolerance (0.05 Da)</span></span>
+<span><span class="va">l3</span> <span class="op">=</span> <span class="fu"><a href="reference/call_aggregate.html">call_aggregate</a></span><span class="op">(</span><span class="va">l2</span><span class="op">$</span><span class="va">sps_top_tic_2</span>, <span class="fl">0.05</span>, <span class="va">folder_path</span><span class="op">)</span> <span class="co">#aggregates multiple spectra for a given feature by grouping fragments within a given tolerance and also generates frequency of those fragments</span></span>
+<span><span class="va">l4</span> <span class="op">=</span> <span class="fu"><a href="reference/label_individual_spectrum.html">label_individual_spectrum</a></span><span class="op">(</span><span class="va">l3</span>, <span class="va">folder_path</span>, <span class="fl">0.05</span><span class="op">)</span> <span class="co">#using the fragment frequencies of the aggregate learnt from teh previous step, it labels the individual spectrum for a given feature</span></span>
+<span><span class="va">l5</span> <span class="op">=</span> <span class="fu"><a href="reference/generate_denoised_spectra.html">generate_denoised_spectra</a></span><span class="op">(</span><span class="va">l4</span>, <span class="va">folder_path</span>, ion_mode <span class="op">=</span> <span class="st">"pos"</span><span class="op">)</span> <span class="co">#using a cutoff denoises individual spectrum for every feature and stores it as an mzML file in folder_path</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="package-workflow">Package Workflow<a class="anchor" aria-label="anchor" href="#package-workflow"></a>
+</h2>
+<div class="figure">
+<img src="images/dures_workflow.png" alt=""><p class="caption">Workflow Diagram</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>Please cite the following paper if you use our package</p>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
