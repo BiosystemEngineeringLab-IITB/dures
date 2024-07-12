@@ -32,7 +32,7 @@ l5 = generate_denoised_spectra(l4, folder_path, ion_mode = "pos") #using a cutof
 ```
 
 ## Package Workflow
-![Workflow Diagram](docs/images/dures_workflow.png)
+![Workflow Diagram](https://github.com/banerjeeshayantan/test_read_the_docs_tut/blob/main/dures_workflow.png)
 
 ## Citation
 Please cite the following paper if you use our package
