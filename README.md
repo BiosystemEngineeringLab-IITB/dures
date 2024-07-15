@@ -36,7 +36,7 @@ l3 = call_aggregate(l2$sps_top_tic_2, 0.05, folder_path)
 #This step labels the individual spectrum with frequencies learnt from Step 3
 l4 = label_individual_spectrum(l3, folder_path, 0.05)
 
-This step removed fragments with frequencies below the given threshold (denoising step)
+#This step removed fragments with frequencies below the given threshold (denoising step)
 l5 = generate_denoised_spectra(l4, folder_path, ion_mode = "pos") 
 ```
 
