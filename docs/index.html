@@ -95,21 +95,22 @@
 <div class="section level2">
 <h2 id="quick-start">Quick Start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This step reads in the mzML files, prepares the stats.txt file in a format that extracts MS2 spectra and returns a list</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>folder_path <span class="ot">=</span> <span class="st">"~/metabolomics/test_1/"</span> <span class="co">#folder path containing mzml/ and Stats.txt in required format</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>l1 <span class="ot">=</span> <span class="fu">preprocess</span>(<span class="at">folder_path =</span> folder_path, <span class="at">ppm =</span> <span class="dv">5</span>, <span class="at">tol_rt =</span> <span class="fl">0.1</span>) <span class="co">#reads mzml files, prepares Stats file, extracts spectra and concatenates spectra</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#This step extracts the top 80% TIC spectra and groups fragments within a given mass tolerance</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>l2 <span class="ot">=</span> <span class="fu">extract_raw_spectra</span>(<span class="at">folder_path =</span> folder_path, l1, <span class="fl">0.05</span>, <span class="fl">0.8</span>) <span class="co">#extract top x% (where x = 0.8) TIC spectra, groups fragments within a given tolerance (0.05 Da)</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#This step aggregates the top 80% TIC spectra from step2 and calculates the fragment frequencies</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>l3 <span class="ot">=</span> <span class="fu">call_aggregate</span>(l2<span class="sc">$</span>sps_top_tic_2, <span class="fl">0.05</span>, folder_path) </span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#This step labels the individual spectrum with frequencies learnt from Step 3</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>l4 <span class="ot">=</span> <span class="fu">label_individual_spectrum</span>(l3, folder_path, <span class="fl">0.05</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>This step removed fragments with frequencies below the given <span class="fu">threshold</span> (denoising step)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>l5 <span class="ot">=</span> <span class="fu">generate_denoised_spectra</span>(l4, folder_path, <span class="at">ion_mode =</span> <span class="st">"pos"</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#This step reads in the mzML files, prepares the stats.txt file in a format that extracts MS2 spectra and returns a list</span></span>
+<span><span class="va">folder_path</span> <span class="op">=</span> <span class="st">"~/metabolomics/test_1/"</span> <span class="co">#folder path containing mzml/ and Stats.txt in required format</span></span>
+<span><span class="va">l1</span> <span class="op">=</span> <span class="fu"><a href="reference/preprocess.html">preprocess</a></span><span class="op">(</span>folder_path <span class="op">=</span> <span class="va">folder_path</span>, ppm <span class="op">=</span> <span class="fl">5</span>, tol_rt <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="co">#reads mzml files, prepares Stats file, extracts spectra and concatenates spectra</span></span>
+<span></span>
+<span><span class="co">#This step extracts the top 80% TIC spectra and groups fragments within a given mass tolerance</span></span>
+<span><span class="va">l2</span> <span class="op">=</span> <span class="fu"><a href="reference/extract_raw_spectra.html">extract_raw_spectra</a></span><span class="op">(</span>folder_path <span class="op">=</span> <span class="va">folder_path</span>, <span class="va">l1</span>, <span class="fl">0.05</span>, <span class="fl">0.8</span><span class="op">)</span> <span class="co">#extract top x% (where x = 0.8) TIC spectra, groups fragments within a given tolerance (0.05 Da)</span></span>
+<span></span>
+<span><span class="co">#This step aggregates the top 80% TIC spectra from step2 and calculates the fragment frequencies</span></span>
+<span><span class="va">l3</span> <span class="op">=</span> <span class="fu"><a href="reference/call_aggregate.html">call_aggregate</a></span><span class="op">(</span><span class="va">l2</span><span class="op">$</span><span class="va">sps_top_tic_2</span>, <span class="fl">0.05</span>, <span class="va">folder_path</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="co">#This step labels the individual spectrum with frequencies learnt from Step 3</span></span>
+<span><span class="va">l4</span> <span class="op">=</span> <span class="fu"><a href="reference/label_individual_spectrum.html">label_individual_spectrum</a></span><span class="op">(</span><span class="va">l3</span>, <span class="va">folder_path</span>, <span class="fl">0.05</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#This step removed fragments with frequencies below the given threshold (denoising step)</span></span>
+<span><span class="va">l5</span> <span class="op">=</span> <span class="fu"><a href="reference/generate_denoised_spectra.html">generate_denoised_spectra</a></span><span class="op">(</span><span class="va">l4</span>, <span class="va">folder_path</span>, ion_mode <span class="op">=</span> <span class="st">"pos"</span><span class="op">)</span> </span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="package-workflow">Package Workflow<a class="anchor" aria-label="anchor" href="#package-workflow"></a>
