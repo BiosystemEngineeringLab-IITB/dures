@@ -12,7 +12,7 @@
 #' @export
 
 label_individual_spectrum <- function(aggregate_list, folder_path, mz_tol){
-  df_sps_mean_agg_df = aggregate_list; freq_df = list()
+  df_sps_mean_agg_df = aggregate_list; freq_df = list(); l = c()
   for(i in 1:length(aggregate_list)){
     metabolite = names(aggregate_list)[i]
     path = paste(folder_path, "MS2_scans_before_denoising/",metabolite,sep="")
