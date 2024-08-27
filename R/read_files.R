@@ -52,7 +52,7 @@ read_files <- function(folder_path, tol_mz, tol_rt){
     RT_tolerance[, c(1:length(fls))] = fil$RT - tol_rt
     RT_tolerance[, c((length(fls)+1) : dim(RT_tolerance)[2])] = fil$RT + tol_rt
 
-    colnames(RT_tolerance) = c(paste("RT_min", unlist(lapply(fls, function(x) strsplit(x,".mzML")[[1]][1])), sep="_"), paste("RT_min", unlist(lapply(fls, function(x) strsplit(x,".mzML")[[1]][1])), sep="_"))
+    colnames(RT_tolerance) = c(paste("RT_min", unlist(lapply(fls, function(x) strsplit(x,".mzML")[[1]][1])), sep="_"), paste("RT_max", unlist(lapply(fls, function(x) strsplit(x,".mzML")[[1]][1])), sep="_"))
   }
   #converting RT start and end to seconds
   RT_tolerance = RT_tolerance * 60
