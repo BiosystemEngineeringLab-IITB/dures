@@ -12,7 +12,8 @@
 #' read_files(folder_path, 0.05, 0.1667)
 read_files <- function(folder_path, tol_mz, tol_rt){
   #tolerance in minutes and mz_tolerance in ppm
-  if(length(grep("Stats.txt", list.files(folder_path))) > 0){
+  if(length(grep("Stats.txt", list.files(folder_path))) > 0)
+    {
     cat("\u2713 Stats file found!\n")
     fil = read.delim(paste(folder_path, list.files(folder_path)[grep("Stats.txt", list.files(folder_path))], sep=""), check.names = FALSE, comment.char = "#")
     # Assuming your dataframe is named df
@@ -124,7 +125,9 @@ read_files <- function(folder_path, tol_mz, tol_rt){
     names(spectral_files) = fls
   }
 
-
+  for(l in 1:length(spectral_files_filtered)){
+    spectral_files_filtered[[l]]$spectrumId = paste(names(spectral_files_filtered)[l],"_scan_", 1:length(spectral_files_filtered[[l]]),sep="")
+  }
   cat("\u2713 Spectra has been extracted from the mzml files")
   if(dir.exists(paste(folder_path, "R_objects/",sep="")) == FALSE){
     dir.create(paste(folder_path, "R_objects/",sep=""))
