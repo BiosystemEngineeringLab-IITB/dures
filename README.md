@@ -1,4 +1,4 @@
-# <ins>D</ins>enoising Using Replicate Spectra (DuReS)
+# <ins>D</ins>enoising <ins>u</ins>sing <ins>Re</ins>plicate <ins>S</ins>pectra (DuReS)
 
 ## Introduction
 
