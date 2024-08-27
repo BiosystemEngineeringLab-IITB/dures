@@ -25,7 +25,7 @@ extract_raw_spectra <- function(folder_path, list_of_spectra_files, intrascan_gr
   # Initialize lists to store results
   sps_top80_tic_2 <- vector("list", length(sps_aggregate_all_mets))
   df <- data.frame(matrix(ncol = 3, nrow = length(sps_aggregate_all_mets)))
-  colnames(df) <- c("Feature_ID", "Num_spectra_before_intrascan_grouping", "Num_spectra_before_intrascan_grouping")
+  colnames(df) <- c("Feature_ID", "Num_spectra_before_top_x%TIC", "Num_spectra_after_top_x%TIC")
 
   # Create a progress bar
   pb <- txtProgressBar(min = 0, max = length(sps_aggregate_all_mets), style = 3)
