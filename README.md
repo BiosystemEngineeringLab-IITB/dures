@@ -25,7 +25,7 @@ Detailed documentation of the package is available [here](https://banerjeeshayan
 ```r
 #This step reads in the mzML files, prepares the stats.txt file in a format that extracts MS2 spectra and returns a list
 folder_path = "~/metabolomics/test_1/" #folder path containing mzml/ and Stats.txt in required format
-l1 = preprocess(folder_path = folder_path, ppm = 5, tol_rt = 0.1) #reads mzml files, prepares Stats file, extracts spectra and concatenates spectra
+l1 = preprocess(folder_path = folder_path, tol_mz = 5, tol_rt = 0.1) #reads mzml files, prepares Stats file, extracts spectra and concatenates spectra
 
 #This step extracts the top 80% TIC spectra and groups fragments within a given mass tolerance
 l2 = extract_raw_spectra(folder_path = folder_path, l1, 0.05, 0.8) #extract top x% (where x = 0.8) TIC spectra, groups fragments within a given tolerance (0.05 Da)
