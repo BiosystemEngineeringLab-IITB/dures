@@ -125,21 +125,24 @@ read_files <- function(folder_path, tol_mz, tol_rt){
     names(spectral_files) = fls
   }
 
-  for(l in 1:length(spectral_files_filtered)){
-    spectral_files_filtered[[l]]$spectrumId = paste(names(spectral_files_filtered)[l],"_scan_", 1:length(spectral_files_filtered[[l]]),sep="")
-  }
   cat("\u2713 Spectra has been extracted from the mzml files")
   if(dir.exists(paste(folder_path, "R_objects/",sep="")) == FALSE){
     dir.create(paste(folder_path, "R_objects/",sep=""))
   }
 
   if(f == 0){
+    for(l in 1:length(spectral_files)){
+      spectral_files[[l]]$spectrumId = paste(names(spectral_files)[l],"_scan_", 1:length(spectral_files[[l]]),sep="")
+    }
     #spectral_files_f <<- spectral_files
     assign("spectral_files_f", spectral_files, envir = .dures_env)
     saveRDS(spectral_files, paste(folder_path, "R_objects/", "spectral_files.rds",sep=""))
     return(list(spectral_files = spectral_files, stats_file_analyzed = fil_rt, file_names = fls))
   }
   else{
+    for(l in 1:length(spectral_files_filtered)){
+      spectral_files_filtered[[l]]$spectrumId = paste(names(spectral_files_filtered)[l],"_scan_", 1:length(spectral_files_filtered[[l]]),sep="")
+    }
     assign("spectral_files_f", spectral_files_filtered, envir = .dures_env)
     #spectral_files_f <<- spectral_files_filtered
     saveRDS(spectral_files_filtered, paste(folder_path, "R_objects/", "spectral_files.rds",sep=""))

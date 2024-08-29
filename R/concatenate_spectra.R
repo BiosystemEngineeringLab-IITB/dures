@@ -32,7 +32,7 @@ concatenate_spectra <- function(output_list_from_preprocess_function) {
 
     # l is a list containing individual scans and combined (union) of all scans
     aggregate <- l$Aggregate
-    aggregate$spectrumId <- paste("scan", seq_along(aggregate), sep = "_")
+    #aggregate$spectrumId <- paste("scan", seq_along(aggregate), sep = "_")
 
     gc()
 
@@ -40,6 +40,10 @@ concatenate_spectra <- function(output_list_from_preprocess_function) {
   })
 
   names(sps_aggregate_all_mets) = stats_file$ID
+
+  # for(l in 1:length(sps_aggregate_all_mets)){
+  #     sps_aggregate_all_mets[[l]]$aggregate$spectrumId = paste(names(sps_aggregate_all_mets)[l],"_scan_", 1:length(sps_aggregate_all_mets[[l]]$aggregate),sep="")
+  #   }
 
   return(list(sps_aggregate_all_mets = sps_aggregate_all_mets, ids_with_no_ms2 = id_no_ms2))
 }
