@@ -109,9 +109,13 @@ derive_aggregate_spectra <- function(sps, mz_tol=0.05){
 
   for(i in 1:nrow(agg_df_freq)){
     y=a[which(a$group == agg_df_freq$MZ_group[i]),]
-    mat=strsplit(y$Fragment_ID, "_")
-    mat=matrix(unlist(mat),ncol=4,byrow=T) #expects input in the format create_consensus_table(sps, "IDA_1") not "IDA-1"
-    agg_df_freq$Frequency[i] = length(unique(mat[,3]))
+    scan_id = unlist(lapply(y$Fragment_ID, function(x) strsplit(strsplit(x, "_scan_")[[1]][2],"_")[[1]][1]))
+    sample_id = unlist(lapply(y$Fragment_ID, function(x) strsplit(x, "_scan_")[[1]][1]))
+    scan_sample_id = paste(sample_id, "_scan_", scan_id, sep="")
+    #mat=strsplit(y$Fragment_ID, "_scan_")
+    #mat=matrix(unlist(mat),ncol=4,byrow=T) #expects input in the format create_consensus_table(sps, "IDA_1") not "IDA-1"
+    #agg_df_freq$Frequency[i] = length(unique(mat[,3]))
+    agg_df_freq$Frequency[i] = length(unique(scan_sample_id))
 
   }
   agg_df_freq$Frequency = agg_df_freq$Frequency / length(sps)

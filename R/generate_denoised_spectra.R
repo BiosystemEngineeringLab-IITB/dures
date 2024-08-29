@@ -19,6 +19,43 @@ generate_denoised_spectra <- function(aggregate_list, folder_path, custom_thresh
   }
   sps_top_tic_2 <- get_sps_top_tic_2()
   freq_df = aggregate_list
+
+
+  for(j in 1:length(freq_df)){
+    #for every feature calculate the optimal threshold
+    idx = which(names(sps_top_tic_2) %in% names(freq_df)[j])
+    #print(length(sps_top_tic_2[[idx]]))
+    if(length(sps_top_tic_2[[idx]]) <= 25){
+      threshold = (3/length(sps_top_tic_2[[idx]]))
+    } else if(length(sps_top_tic_2[[idx]]) >= 416){
+      threshold = (50/length(sps_top_tic_2[[idx]]))
+    } else if(length(custom_threshold)!=0) {
+      threshold = custom_threshold
+    }else{
+      threshold = 0.12
+    }
+    file_names = names(freq_df[[j]]);sps_tic_20_all_freq = list(); mz = list(); inten = list()
+    for(k in 1:length(freq_df[[j]])){
+      f = freq_df[[j]][[k]]
+      colnames(f)[2:4] = c("Mean_MZ", "Mean_Intensity", "Frequency")
+      f_cutoff = subset(f, f$Frequency >= threshold)
+      f_cutoff = f_cutoff[order(f_cutoff$Mean_MZ, decreasing = F),]
+      print(f_cutoff)
+    }
+
+
+
+
+    #for feature number j, I have m scans belonging to n samples
+    name_samples = unlist(lapply(names(freq_df[[j]]), function(x) strsplit(x,"_scan")[[1]][1]))
+    name_scans = unlist(lapply(names(freq_df[[j]]), function(x) strsplit(x,"_scan_")[[1]][2]))
+
+
+
+  }
+
+  #try to create the one folder with just the MS2 spectra inside original samples in mzml format.
+  #for now no need to incorporate the MS1 spectra. Just the MS2 spectra and that too only for those samples which have MS2 in them
   for(j in 1:length(freq_df)){
     if (!dir.exists(file.path(paste(folder_path,names(freq_df)[j],"/",sep="")))) {
       dir.create(file.path(paste(folder_path,"Denoised_spectra/",names(freq_df)[j],"/",sep="")))
