@@ -17,6 +17,7 @@ generate_denoised_spectra <- function(aggregate_list, folder_path, custom_thresh
   if (!dir.exists(file.path(folder_path, "Denoised_spectra"))) {
     dir.create(file.path(folder_path, "Denoised_spectra/"))
   }
+  path = file.path(folder_path, "Denoised_spectra/")
   sps_top_tic_2 <- get_sps_top_tic_2(); nm_s = list()
   freq_df = aggregate_list
 
