@@ -42,9 +42,13 @@ generate_denoised_spectra <- function(aggregate_list, folder_path, custom_thresh
       #name_exp= paste(path, name, sep="")
       #sps_df = data.frame(fragments = f_cutoff$Mean_MZ, intensity = f_cutoff$Mean_Intensity)
       #print(f_cutoff)
-      mz[[paste(as.character(k), "_", names(freq_df)[j],"_",name_samples[k],sep="")]] = f_cutoff$Mean_MZ
-      inten[[paste(as.character(k), "_", names(freq_df)[j],"_",name_samples[k],sep="")]] = f_cutoff$Mean_Intensity
-    }
+      #mz[[paste(as.character(k), "_", names(freq_df)[j],"_",name_samples[k],sep="")]] = f_cutoff$Mean_MZ
+      #inten[[paste(as.character(k), "_", names(freq_df)[j],"_",name_samples[k],sep="")]] = f_cutoff$Mean_Intensity
+      mz[[paste(names(freq_df)[j],"_",name_samples[k],"_scan_", name_scans[k], sep="")]] = f_cutoff$Mean_MZ
+      inten[[paste(names(freq_df)[j],"_",name_samples[k],"_scan_", name_scans[k], sep="")]] = f_cutoff$Mean_Intensity
+
+
+      }
   }
 
   for(w in 1:length(unique(unlist(nm_s)))){

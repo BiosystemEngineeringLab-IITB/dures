@@ -90,8 +90,14 @@ read_files <- function(folder_path, tol_mz, tol_rt){
 
   # Loop over the files
   for (i in seq_along(fls)) {
+    print(i)
     sps <- Spectra::Spectra(file.path(path_to_mzml_folder, fls[i]), source = Spectra::MsBackendMzR())
-    spectral_files[[i]] <- Spectra::filterMsLevel(sps, msLevel = 2)  # Filtering only MS2 level spectra
+    sps = Spectra::filterMsLevel(sps, msLevel = 2)
+    if(length(sps) != 0){
+      #sps$spectrumId = paste("scan_",seq(1,length(sps)), sep="")
+      spectral_files[[i]] <- sps # Filtering only MS2 level spectra
+    }
+
 
     if (length(spectral_files[[i]]) == 0) {
       flag[flag_count] <- fls[i]
