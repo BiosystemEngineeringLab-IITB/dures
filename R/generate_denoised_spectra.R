@@ -22,8 +22,14 @@ generate_denoised_spectra <- function(aggregate_list, folder_path, custom_thresh
   freq_df = aggregate_list
 
   mz = list(); inten = list()
+
   for(j in 1:length(freq_df)){
-    if(length(custom_threshold)!=0) {
+    idx = which(names(sps_top_tic_2) %in% names(freq_df)[j])
+    if(length(sps_top_tic_2[[idx]]) <= 25){
+      threshold = (3/length(sps_top_tic_2[[idx]]))
+    } else if(length(sps_top_tic_2[[idx]]) >= 416){
+      threshold = (50/length(sps_top_tic_2[[idx]]))
+    } else if(length(custom_threshold)!=0) {
       threshold = custom_threshold
     }else{
       threshold = 0.12
