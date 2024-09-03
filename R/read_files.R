@@ -1,32 +1,32 @@
 #' read_files
 #'
-#' Helper function for preprocess(). Need not be run separately. Runs several checks to see if Stats file has required columns or if user-defined Stats file has been provided
+#' Helper function for preprocess(). Need not be run separately. Runs several checks to see if features file has required columns or if user-defined features file has been provided
 #'
 #' @param folder_path: same folder path used in preprocess(). The extracted fragment-grouped spectra in .txt format will be stored here
 #' @importFrom utils read.delim
 #' @param tol_mz: mass tolerance (default: 0.05 Da)
 #' @param tol_rt; Rt tolerance (default: 0.1667 minutes)
-#' @return a list containing all MS2 spectra for every sample, an edited stats file for subsequent steps and names of samples analyzed
+#' @return a list containing all MS2 spectra for every sample, an edited feature list file for subsequent steps and names of samples analyzed
 #' @examples
 #' # Example usage of the function
 #' read_files(folder_path, 0.05, 0.1667)
 read_files <- function(folder_path, tol_mz, tol_rt){
   #tolerance in minutes and mz_tolerance in ppm
-  if(length(grep("Stats.txt", list.files(folder_path))) > 0)
+  if(length(grep("feature_list.txt", list.files(folder_path))) > 0)
     {
-    cat("\u2713 Stats file found!\n")
-    fil = read.delim(paste(folder_path, list.files(folder_path)[grep("Stats.txt", list.files(folder_path))], sep=""), check.names = FALSE, comment.char = "#")
+    cat("\u2713 Feature list file found!\n")
+    fil = read.delim(paste(folder_path, list.files(folder_path)[grep("feature_list.txt", list.files(folder_path))], sep=""), check.names = FALSE, comment.char = "#")
     # Assuming your dataframe is named df
     required_columns <- c("ID", "mz", "RT")
 
     # Check if the dataframe has exactly the required columns
     if (all(required_columns %in% colnames(fil)) && length(colnames(fil)) == length(required_columns)) {
-      cat("\u2713 Stats file has the correct columns\n")
+      cat("\u2713 Feature list file has the correct columns\n")
     } else {
-      stop("Error: Stats file does not have the exact required columns.")
+      stop("Error: Feature list file does not have the exact required columns.")
     }
   }else{
-    stop("Stats file not found!")
+    stop("Feature list file not found!")
   }
 
   fil$ID = as.character(fil$ID)
