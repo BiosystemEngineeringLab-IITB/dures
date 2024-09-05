@@ -23,7 +23,7 @@ preprocess <- function(folder_path, tol_mz = 5, tol_rt = 0.1667) {
   #output_list[[3]] = contain names of mzml files used to generate output_list[[1]]
   sps_aggregate = concatenate_spectra(output_list)
   no_ms2_id = sps_aggregate$ids_with_no_ms2
-  print(paste("MS2 spectra couldn't be extracted from a total of ", length(no_ms2_id), " features out of ",length(sps_aggregate$sps_aggregate_all_mets), " features. They are as follows:",sep=""))
+  print(paste("MS2 spectra couldn't be extracted from a total of", length(no_ms2_id), " features out of ",length(sps_aggregate$sps_aggregate_all_mets), " features. They are as follows:",sep=""))
   cat(no_ms2_id, sep=",")
   stats_file = output_list[[2]]
   stats_file_ms2_triggered = stats_file[-c(which(stats_file$ID %in% no_ms2_id)), ]
