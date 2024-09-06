@@ -1,7 +1,7 @@
 #' tune_parameters
 #'
 #' Helper function for generate_denoise_spectra(). Need not be called separately
-#' @param agg_df: spectrum dataframe with columns Fragment_ID, MZ, Intensity and Freq
+#' @param agg_df: spectrum dataframe withcolumns Fragment_ID, MZ, Intensity and Freq
 #' @param threshold: see function description for generate_denoised_spectra
 #' @param name: names of the spectra such as "scan_1.txt" "scan_2.txt" and so on
 #' @param path: folder path to store the denoised spectra in .txt and .mzML format
