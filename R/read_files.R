@@ -5,7 +5,7 @@
 #' @param folder_path: same folder path used in preprocess(). The extracted fragment-grouped spectra in .txt format will be stored here
 #' @importFrom utils read.delim
 #' @param tol_mz: mass tolerance (default: 0.05 Da)
-#' @param tol_rt; Rt tolerance (default: 0.1667 minutes)
+#' @param tol_rt: Rt tolerance (default: 0.1667 minutes)
 #' @return a list containing all MS2 spectra for every sample, an edited feature list file for subsequent steps and names of samples analyzed
 #' @examples
 #' # Example usage of the function
@@ -87,11 +87,11 @@ read_files <- function(folder_path, tol_mz, tol_rt){
 
   # Initialize the progress bar
   pb <- utils::txtProgressBar(min = 0, max = length(fls), style = 3)
-
+  backend <- Spectra::MsBackendMzR()
   # Loop over the files
   for (i in seq_along(fls)) {
     print(i)
-    sps <- Spectra::Spectra(file.path(path_to_mzml_folder, fls[i]), source = Spectra::MsBackendMzR())
+    sps <- Spectra::Spectra(file.path(path_to_mzml_folder, fls[i]), source = backend)
     sps = Spectra::filterMsLevel(sps, msLevel = 2)
     if(length(sps) != 0){
       #sps$spectrumId = paste("scan_",seq(1,length(sps)), sep="")
