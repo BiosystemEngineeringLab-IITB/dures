@@ -37,9 +37,9 @@ read_files <- function(folder_path, tol_mz, tol_rt){
     stop("mzml folder not found. pls check if you have named your folder mzml_files/")
   }
 
-  if(file.exists(paste(folder_path, "Sample-and_feature-wise-RT-tolerance.txt",sep=""))){
+  if(file.exists(paste(folder_path, "Sample-and-feature-wise-RT-tolerance.txt",sep=""))){
     cat("\u2713 RT tolerance file exists! Using custom tolerance\n")
-    RT_tolerance = read.delim(paste(folder_path, "Sample-and_feature-wise-RT-tolerance.txt",sep=""),check.names = FALSE)
+    RT_tolerance = read.delim(paste(folder_path, "Sample-and-feature-wise-RT-tolerance.txt",sep=""),check.names = FALSE)
     if(dim(RT_tolerance)[2] == 2*length(fls)){
       cat("\u2713 Input file is in correct format\n")
     }
