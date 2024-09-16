@@ -6,6 +6,7 @@ authors:
     url: "https://BiosystemEngineeringLab-IITB.github.io/dures"
 
 
+
 pkgdown:
   title: "dures"
   description: "Denoising tandem mass spectrometry data through replicate spectra analysis"
@@ -15,9 +16,9 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Reference"
+    - text: "Function Description"
       href: reference/index.html
-    - text: "Articles"
+    - text: "Vignette"
       href: articles/index.html
     - text: "News"
       href: news/index.html
