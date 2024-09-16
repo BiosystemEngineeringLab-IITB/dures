@@ -4,7 +4,7 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Shayantan", "Banerjee", , "banerjeeshayantan@gmail.com", role = c("aut", "cre"))
 Description: Denoising tandem mass spectrometry data.
-License: `use_mit_license()`
+License: MIT + file LICENSE
 Imports:
   dplyr,
   pbapply,
