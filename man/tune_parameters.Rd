@@ -7,7 +7,7 @@
 tune_parameters(agg_df, threshold, name, path)
 }
 \arguments{
-\item{agg_df:}{spectrum dataframe with columns Fragment_ID, MZ, Intensity and Freq}
+\item{agg_df:}{spectrum dataframe with columns Fragment_ID, MZ, Intensity & Freq}
 
 \item{threshold:}{see function description for generate_denoised_spectra}
 

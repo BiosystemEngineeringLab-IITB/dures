@@ -14,10 +14,11 @@ read_files(folder_path, tol_mz, tol_rt)
 \item{tol_rt;}{Rt tolerance (default: 0.1667 minutes)}
 }
 \value{
-a list containing all MS2 spectra for every sample, an edited stats file for subsequent steps and names of samples analyzed
+a list containing all MS2 spectra for every sample, an edited feature list file for subsequent steps and names of samples analyzed
 }
 \description{
-Helper function for preprocess(). Need not be run separately. Runs several checks to see if Stats file has required columns or if user-defined Stats file has been provided
+Helper function for preprocess(). Need not be run separately. Runs several checks to see if features file has required columns or if user-defined features file has been provided
+Two options are available for inputting feature list from the user. First, the file titled feature_list.txt must be present in the folder_path with the columns "ID", "mz" and "RT". Second, if an additional file titled Sample-and_feature-wise-RT-tolerance.txt is present, it should contain the same number of rows and double the number of columns (RT_min_ and RT_max_ for every sample) as feature_list.txt.
 }
 \examples{
 # Example usage of the function

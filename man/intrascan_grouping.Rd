@@ -9,7 +9,7 @@ intrascan_grouping(scan, tol)
 \arguments{
 \item{tol}{A tolerance value in daltons}
 
-\item{data}{A data frame of a spectrum containing two columns (fragments, intensity).}
+\item{data}{A data frame of a spectrum containing two columns (fragments and intensity).}
 }
 \value{
 A data frame with the same columns but mass fragments grouped.

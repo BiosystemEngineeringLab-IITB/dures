@@ -7,14 +7,14 @@
 preprocess(folder_path, tol_mz = 5, tol_rt = 0.1667)
 }
 \arguments{
-\item{folder_path}{folder containing the required input directory (mzml) and Stats file in .txt format.}
+\item{folder_path}{folder containing the required input directory (mzml) and feature list file in .txt format.}
 
 \item{tol_mz}{mass tolerance}
 
 \item{tol_rt}{RT tolerance}
 }
 \value{
-A list containing the MS2 spectra extracted from the mzml files using the predefined tolerances and the updated stats file with MS2 features only
+A list containing the MS2 spectra extracted from the mzml files using the predefined tolerances and the updated feature list file with MS2 features only
 }
 \description{
 Reads mzml files from the predefined folder path and extracts spectra within the given mz and RT range.
