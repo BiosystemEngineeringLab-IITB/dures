@@ -15,7 +15,7 @@ After this you can proceed with the installation of the development version of t
 
 ```r
 install.packages("devtools")
-devtools::install_github("banerjeeshayantan/dures")
+devtools::install_github("BiosystemEngineeringLab-IITB/dures")
 ```
 
 ## Documentation
