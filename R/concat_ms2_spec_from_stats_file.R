@@ -21,7 +21,7 @@ concat_ms2_spec_from_stats_file <- function(j, stats_file, fl){
   fl = unlist(lapply(fl, function(x) strsplit(x, ".mzML")[[1]][1]))
   for (i in 1:length(fl)) {
     # Create the prefix pattern
-    pattern <- paste0("RT_(min|max)_", fl[i])
+    pattern <- paste0("RT_(min|max)_", fl[i], "\\b")
 
     # Find column names that match the pattern
     matching_columns <- grep(pattern, names(stats_file), value = TRUE)

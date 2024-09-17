@@ -81,17 +81,43 @@ Banerjee</h4>
 
     
     
-<p>Vignettes are long form documentation commonly included in packages.
-Because they are part of the distribution of the package, they need to
-be as compact as possible. The <code>html_vignette</code> output type
-provides a custom style sheet (and tweaks some options) to ensure that
-the resulting html is as small as possible. The
-<code>html_vignette</code> format:</p>
+<p>The <strong>Denoising Using Replicate Spectra (DuReS)</strong>
+package requires the following input parameters:</p>
 <ul>
-<li>Never uses retina figures</li>
-<li>Has a smaller default figure size</li>
-<li>Uses a custom CSS stylesheet instead of the default Twitter
-Bootstrap style</li>
+<li>A folder path to store all the data and analysis results.</li>
+<li>A folder named <code>mzml_files/</code> within the above folder
+path, containing files in the mzML format.</li>
+<li>A features file containing a list of MS/MS features derived from
+standard untargeted metabolomics analysis software. This file must
+satisfy one of the following requirements:
+<ul>
+<li>
+<strong>Option 1</strong>: A single file named
+<code>feature_list.txt</code> with columns “ID”, “mz”, and “RT”. In this
+case, a fixed but customizable RT and mz tolerance will be used to
+extract the MS/MS spectra.</li>
+<li>
+<strong>Option 2</strong>: Both:
+<ul>
+<li>A <code>feature_list.txt</code> file in the format described above,
+and</li>
+<li>A RT tolerance file named
+<code>Sample-and_feature-wise-RT-tolerance.txt</code> containing custom
+RT tolerances for each sample. For example:
+<ul>
+<li>If there are two samples (<code>sample_1</code> and
+<code>sample_2</code>), the
+<code>Sample-and_feature-wise-RT-tolerance.txt</code> file should have
+the same number of rows as <code>feature_list.txt</code>.</li>
+<li>The column names should be formatted as
+<code>RT_min_sample_1</code>, <code>RT_min_sample_2</code>,
+<code>RT_max_sample_1</code>, and <code>RT_max_sample_2</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <div class="section level2">
 <h2 id="vignette-info">Vignette Info<a class="anchor" aria-label="anchor" href="#vignette-info"></a>

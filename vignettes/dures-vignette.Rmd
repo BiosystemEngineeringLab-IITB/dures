@@ -16,11 +16,18 @@ knitr::opts_chunk$set(
 )
 ```
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+The **Denoising Using Replicate Spectra (DuReS)** package requires the following input parameters:
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+- A folder path to store all the data and analysis results.
+- A folder named `mzml_files/` within the above folder path, containing files in the mzML format.
+- A features file containing a list of MS/MS features derived from standard untargeted metabolomics analysis software. This file must satisfy one of the following requirements:
+  - **Option 1**: A single file named `feature_list.txt` with columns “ID”, “mz”, and “RT”. In this case, a fixed but customizable RT and mz tolerance will be used to extract the MS/MS spectra.
+  - **Option 2**: Both:
+    - A `feature_list.txt` file in the format described above, and
+    - A RT tolerance file named `Sample-and_feature-wise-RT-tolerance.txt` containing custom RT tolerances for each sample. For example:
+      - If there are two samples (`sample_1` and `sample_2`), the `Sample-and_feature-wise-RT-tolerance.txt` file should have the same number of rows as `feature_list.txt`.
+      - The column names should be formatted as `RT_min_sample_1`, `RT_min_sample_2`, `RT_max_sample_1`, and `RT_max_sample_2`.
+
 
 ## Vignette Info
 

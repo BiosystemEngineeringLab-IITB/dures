@@ -1,7 +1,7 @@
 #' read_files
 #'
 #' Helper function for preprocess(). Need not be run separately. Runs several checks to see if features file has required columns or if user-defined features file has been provided
-#' Two options are available for inputting feature list from the user. First, the file titled feature_list.txt must be present in the folder_path with the columns "ID", "mz" and "RT". Second, if an additional file titled Sample-and_feature-wise-RT-tolerance.txt is present, it should contain the same number of rows and double the number of columns (RT_min_ and RT_max_ for every sample) as feature_list.txt.
+#' Two options are available for inputting feature list from the user. First, the file titled feature_list.txt must be present in the folder_path with the columns "ID", "mz" and "RT". Second, if an additional file titled Sample-and-feature-wise-RT-tolerance.txt is present, it should contain the same number of rows and double the number of columns (RT_min_ and RT_max_ for every sample) as feature_list.txt.
 #' @param folder_path: same folder path used in preprocess(). The extracted fragment-grouped spectra in .txt format will be stored here
 #' @importFrom utils read.delim
 #' @param tol_mz: mass tolerance (default: 0.05 Da)
