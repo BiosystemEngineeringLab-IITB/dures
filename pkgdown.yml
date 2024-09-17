@@ -10,7 +10,9 @@ authors:
 pkgdown:
   title: "dures"
   description: "Denoising tandem mass spectrometry data through replicate spectra analysis"
-
+reference:
+  - title: "Function Description"  # Customize the title here
+    contents:
 navbar:
   title: "DuReS"
   left:
@@ -25,3 +27,4 @@ navbar:
   right:
     - icon: fa-github
       href: https://github.com/BiosystemEngineeringLab-IITB/dures
+
