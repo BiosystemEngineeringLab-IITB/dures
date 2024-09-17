@@ -16,7 +16,7 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Function Description"
+    - text: "Function"
       href: reference/index.html
     - text: "Vignette"
       href: articles/index.html
