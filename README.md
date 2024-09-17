@@ -19,7 +19,7 @@ devtools::install_github("BiosystemEngineeringLab-IITB/dures")
 ```
 
 ## Documentation
-Detailed documentation of the package is available [here](https://biosystemengineeringlab-iitb.github.io/dures/)
+Detailed description of all the functions included within the package is available [here](https://biosystemengineeringlab-iitb.github.io/dures/reference/index.html)
 
 ## Quick Start
 ```r
