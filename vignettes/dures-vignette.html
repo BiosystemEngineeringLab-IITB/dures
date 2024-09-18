@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Shayantan Banerjee" />
+
+<meta name="date" content="2024-09-18" />
+
+<title>Demonstration of the package dures</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Demonstration of the package dures</h1>
+<h4 class="author">Shayantan Banerjee</h4>
+<h4 class="date">2024-09-18</h4>
+
+
+
+<p>The <strong>Denoising Using Replicate Spectra (DuReS)</strong>
+package requires the following input parameters:</p>
+<ul>
+<li>A folder path to store all the data and analysis results.</li>
+<li>A folder named <code>mzml_files/</code> within the above folder
+path, containing files in the mzML format.</li>
+<li>A features file containing a list of MS/MS features derived from
+standard untargeted metabolomics analysis software. This file must
+satisfy one of the following requirements:
+<ul>
+<li><strong>Option 1</strong>: A single file named
+<code>feature_list.txt</code> with columns “ID”, “mz”, and “RT”. In this
+case, a fixed but customizable RT and mz tolerance will be used to
+extract the MS/MS spectra.</li>
+<li><strong>Option 2</strong>: Both:
+<ul>
+<li>A <code>feature_list.txt</code> file in the format described above,
+and</li>
+<li>A RT tolerance file named
+<code>Sample-and_feature-wise-RT-tolerance.txt</code> containing custom
+RT tolerances for each sample. For example:
+<ul>
+<li>If there are two samples (<code>sample_1</code> and
+<code>sample_2</code>), the
+<code>Sample-and_feature-wise-RT-tolerance.txt</code> file should have
+the same number of rows as <code>feature_list.txt</code>.</li>
+<li>The column names should be formatted as
+<code>RT_min_sample_1</code>, <code>RT_min_sample_2</code>,
+<code>RT_max_sample_1</code>, and <code>RT_max_sample_2</code>.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<div id="test-datasets" class="section level2">
+<h2>Test Datasets</h2>
+<p>All the test datasets used in this vignette are hosted at <a href="https://zenodo.org/records/13778168">https://zenodo.org/records/13778168</a>.
+Users need to download the file and unzip the folder contents on their
+local system.</p>
+<ul>
+<li><p>The <code>test_1</code> folder contains a folder named
+<code>mzml_files/</code> and two files:
+<code>Sample-and-feature-wise-RT-tolerance.txt</code> and
+<code>feature_list.txt</code>. The <code>feature_list.txt</code> file
+has three columns: “ID”, “mz”, and “RT”. The additional file
+<code>Sample-and-feature-wise-RT-tolerance.txt</code> contains the
+sample-wise RT tolerances for all features. The number of rows in both
+files is the same, while the
+<code>Sample-and-feature-wise-RT-tolerance.txt</code> file has twice as
+many columns as <code>feature_list.txt</code>, with <code>RT_min_</code>
+and <code>RT_max_</code> appended to every sample name.</p></li>
+<li><p>The <code>test_2</code> and <code>test_3</code> folders each
+contain a folder named <code>mzml_files/</code> and a file named
+<code>feature_list.txt</code>.</p></li>
+</ul>
+</div>
+<div id="install-the-package-and-dependencies" class="section level2">
+<h2>Install the package and dependencies</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Dependencies</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="fu">c</span>(<span class="st">&quot;Spectra&quot;</span>, <span class="st">&quot;S4Vectors&quot;</span>, <span class="st">&quot;mzR&quot;</span>), <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#&gt; &#39;getOption(&quot;repos&quot;)&#39; replaces Bioconductor standard repositories, see</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co">#&gt; &#39;help(&quot;repositories&quot;, package = &quot;BiocManager&quot;)&#39; for details.</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co">#&gt; Replacement repositories:</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co">#&gt;     CRAN: https://cloud.r-project.org/</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co">#&gt; Bioconductor version 3.19 (BiocManager 1.30.25), R 4.4.1 (2024-06-14)</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co">#&gt; Warning: package(s) not installed when version(s) same as or greater than current; use</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co">#&gt;   `force = TRUE` to re-install: &#39;Spectra&#39; &#39;S4Vectors&#39; &#39;mzR&#39;</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co">#&gt; Installation paths not writeable, unable to update packages</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="co">#&gt;   path: /usr/lib/R/library</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="co">#&gt;   packages:</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co">#&gt;     boot, codetools, foreign, lattice, MASS, Matrix, nlme, spatial</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="co">#&gt; Old packages: &#39;bslib&#39;, &#39;colorspace&#39;, &#39;cpp11&#39;, &#39;curl&#39;, &#39;digest&#39;, &#39;evaluate&#39;,</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="co">#&gt;   &#39;gert&#39;, &#39;httr2&#39;, &#39;IRanges&#39;, &#39;MsCoreUtils&#39;, &#39;ncdf4&#39;, &#39;openssl&#39;, &#39;pkgdown&#39;,</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="co">#&gt;   &#39;ps&#39;, &#39;ragg&#39;, &#39;Rcpp&#39;, &#39;shiny&#39;, &#39;tinytex&#39;, &#39;usethis&#39;, &#39;waldo&#39;, &#39;withr&#39;,</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="co">#&gt;   &#39;xfun&#39;, &#39;yaml&#39;</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;devtools&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>}</span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a><span class="co">#&gt; Loading required package: usethis</span></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="fu">library</span>(Spectra)</span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a><span class="co">#&gt; Loading required package: S4Vectors</span></span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a><span class="co">#&gt; Loading required package: stats4</span></span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a><span class="co">#&gt; Loading required package: BiocGenerics</span></span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;BiocGenerics&#39;</span></span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:stats&#39;:</span></span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a><span class="co">#&gt;     IQR, mad, sd, var, xtabs</span></span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a><span class="co">#&gt;     anyDuplicated, aperm, append, as.data.frame, basename, cbind,</span></span>
+<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a><span class="co">#&gt;     colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,</span></span>
+<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a><span class="co">#&gt;     get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,</span></span>
+<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a><span class="co">#&gt;     match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,</span></span>
+<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a><span class="co">#&gt;     Position, rank, rbind, Reduce, rownames, sapply, setdiff, table,</span></span>
+<span id="cb1-41"><a href="#cb1-41" tabindex="-1"></a><span class="co">#&gt;     tapply, union, unique, unsplit, which.max, which.min</span></span>
+<span id="cb1-42"><a href="#cb1-42" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-43"><a href="#cb1-43" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;S4Vectors&#39;</span></span>
+<span id="cb1-44"><a href="#cb1-44" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:utils&#39;:</span></span>
+<span id="cb1-45"><a href="#cb1-45" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-46"><a href="#cb1-46" tabindex="-1"></a><span class="co">#&gt;     findMatches</span></span>
+<span id="cb1-47"><a href="#cb1-47" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></span>
+<span id="cb1-48"><a href="#cb1-48" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-49"><a href="#cb1-49" tabindex="-1"></a><span class="co">#&gt;     expand.grid, I, unname</span></span>
+<span id="cb1-50"><a href="#cb1-50" tabindex="-1"></a><span class="co">#&gt; Loading required package: BiocParallel</span></span>
+<span id="cb1-51"><a href="#cb1-51" tabindex="-1"></a><span class="co">#&gt; Loading required package: ProtGenerics</span></span>
+<span id="cb1-52"><a href="#cb1-52" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-53"><a href="#cb1-53" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;ProtGenerics&#39;</span></span>
+<span id="cb1-54"><a href="#cb1-54" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:stats&#39;:</span></span>
+<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-56"><a href="#cb1-56" tabindex="-1"></a><span class="co">#&gt;     smooth</span></span>
+<span id="cb1-57"><a href="#cb1-57" tabindex="-1"></a><span class="fu">library</span>(S4Vectors)</span>
+<span id="cb1-58"><a href="#cb1-58" tabindex="-1"></a><span class="fu">library</span>(mzR)</span>
+<span id="cb1-59"><a href="#cb1-59" tabindex="-1"></a><span class="co">#&gt; Loading required package: Rcpp</span></span>
+<span id="cb1-60"><a href="#cb1-60" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;BiosystemEngineeringLab-IITB/dures&quot;</span>)</span>
+<span id="cb1-62"><a href="#cb1-62" tabindex="-1"></a><span class="co">#&gt; Skipping install of &#39;dures&#39; from a github remote, the SHA1 (ba7c1d2d) has not changed since last install.</span></span>
+<span id="cb1-63"><a href="#cb1-63" tabindex="-1"></a><span class="co">#&gt;   Use `force = TRUE` to force installation</span></span>
+<span id="cb1-64"><a href="#cb1-64" tabindex="-1"></a><span class="fu">library</span>(dures)</span></code></pre></div>
+</div>
+<div id="first-test-example" class="section level2">
+<h2>First Test Example</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Define the path to the test_1 folder (replace with the actual path on your system)</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>folder_path <span class="ot">&lt;-</span> <span class="st">&quot;~/Desktop/test_package_dures/test_1/&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co"># Check if the directory exists</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(folder_path)) {</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">&quot;The directory &#39;test_1&#39; does not exist. Please modify the path to the actual location of the &#39;test_1&#39; folder.&quot;</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>}</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>l1 <span class="ot">=</span> <span class="fu">preprocess</span>(<span class="at">folder_path =</span> folder_path, <span class="at">tol_mz =</span> <span class="dv">5</span>, <span class="at">tol_rt =</span> <span class="fl">0.1</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt; *******************Sanity check for input files***********************</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt; ✓ Feature list file found!</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; ✓ Feature list file has the correct columns</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt; ✓ mzml folder exists</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt; ✓ RT tolerance file exists! Using custom tolerance</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt; ✓ Input file is in correct format</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt; Reading mzml files</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |                                                                      |   0%[1] 1</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |                                                                      |   1%[1] 2</span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=                                                                     |   1%[1] 3</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=                                                                     |   2%[1] 4</span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==                                                                    |   3%[1] 5</span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co">#&gt; [1] 6</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===                                                                   |   4%[1] 7</span></span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===                                                                   |   5%[1] 8</span></span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |====                                                                  |   6%[1] 9</span></span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=====                                                                 |   7%[1] 11</span></span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=====                                                                 |   8%[1] 12</span></span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |======                                                                |   8%[1] 13</span></span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |======                                                                |   9%[1] 14</span></span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=======                                                               |  10%[1] 15</span></span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a><span class="co">#&gt; [1] 16</span></span>
+<span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |========                                                              |  11%[1] 17</span></span>
+<span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |========                                                              |  12%[1] 18</span></span>
+<span id="cb2-33"><a href="#cb2-33" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=========                                                             |  12%[1] 19</span></span>
+<span id="cb2-34"><a href="#cb2-34" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=========                                                             |  13%[1] 20</span></span>
+<span id="cb2-35"><a href="#cb2-35" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==========                                                            |  14%[1] 21</span></span>
+<span id="cb2-36"><a href="#cb2-36" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==========                                                            |  15%[1] 22</span></span>
+<span id="cb2-37"><a href="#cb2-37" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===========                                                           |  15%[1] 23</span></span>
+<span id="cb2-38"><a href="#cb2-38" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===========                                                           |  16%[1] 24</span></span>
+<span id="cb2-39"><a href="#cb2-39" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |============                                                          |  17%[1] 25</span></span>
+<span id="cb2-40"><a href="#cb2-40" tabindex="-1"></a><span class="co">#&gt; [1] 26</span></span>
+<span id="cb2-41"><a href="#cb2-41" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=============                                                         |  18%[1] 27</span></span>
+<span id="cb2-42"><a href="#cb2-42" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=============                                                         |  19%[1] 28</span></span>
+<span id="cb2-43"><a href="#cb2-43" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==============                                                        |  19%[1] 29</span></span>
+<span id="cb2-44"><a href="#cb2-44" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==============                                                        |  20%[1] 30</span></span>
+<span id="cb2-45"><a href="#cb2-45" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===============                                                       |  21%[1] 31</span></span>
+<span id="cb2-46"><a href="#cb2-46" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===============                                                       |  22%[1] 32</span></span>
+<span id="cb2-47"><a href="#cb2-47" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |================                                                      |  22%[1] 33</span></span>
+<span id="cb2-48"><a href="#cb2-48" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |================                                                      |  23%[1] 34</span></span>
+<span id="cb2-49"><a href="#cb2-49" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=================                                                     |  24%[1] 35</span></span>
+<span id="cb2-50"><a href="#cb2-50" tabindex="-1"></a><span class="co">#&gt; [1] 36</span></span>
+<span id="cb2-51"><a href="#cb2-51" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==================                                                    |  25%[1] 37</span></span>
+<span id="cb2-52"><a href="#cb2-52" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==================                                                    |  26%[1] 38</span></span>
+<span id="cb2-53"><a href="#cb2-53" tabindex="-1"></a><span class="co">#&gt; [1] 39</span></span>
+<span id="cb2-54"><a href="#cb2-54" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===================                                                   |  27%[1] 40</span></span>
+<span id="cb2-55"><a href="#cb2-55" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===================                                                   |  28%[1] 41</span></span>
+<span id="cb2-56"><a href="#cb2-56" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |====================                                                  |  28%[1] 42</span></span>
+<span id="cb2-57"><a href="#cb2-57" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |====================                                                  |  29%[1] 43</span></span>
+<span id="cb2-58"><a href="#cb2-58" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=====================                                                 |  30%[1] 44</span></span>
+<span id="cb2-59"><a href="#cb2-59" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=====================                                                 |  31%[1] 45</span></span>
+<span id="cb2-60"><a href="#cb2-60" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |======================                                                |  31%[1] 46</span></span>
+<span id="cb2-61"><a href="#cb2-61" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |======================                                                |  32%[1] 47</span></span>
+<span id="cb2-62"><a href="#cb2-62" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=======================                                               |  33%[1] 48</span></span>
+<span id="cb2-63"><a href="#cb2-63" tabindex="-1"></a><span class="co">#&gt; [1] 49</span></span>
+<span id="cb2-64"><a href="#cb2-64" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |========================                                              |  34%[1] 50</span></span>
+<span id="cb2-65"><a href="#cb2-65" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |========================                                              |  35%[1] 51</span></span>
+<span id="cb2-66"><a href="#cb2-66" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=========================                                             |  35%[1] 52</span></span>
+<span id="cb2-67"><a href="#cb2-67" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=========================                                             |  36%[1] 53</span></span>
+<span id="cb2-68"><a href="#cb2-68" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==========================                                            |  37%[1] 54</span></span>
+<span id="cb2-69"><a href="#cb2-69" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==========================                                            |  38%[1] 55</span></span>
+<span id="cb2-70"><a href="#cb2-70" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===========================                                           |  38%[1] 56</span></span>
+<span id="cb2-71"><a href="#cb2-71" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===========================                                           |  39%[1] 57</span></span>
+<span id="cb2-72"><a href="#cb2-72" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |============================                                          |  40%[1] 58</span></span>
+<span id="cb2-73"><a href="#cb2-73" tabindex="-1"></a><span class="co">#&gt; [1] 59</span></span>
+<span id="cb2-74"><a href="#cb2-74" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=============================                                         |  41%[1] 60</span></span>
+<span id="cb2-75"><a href="#cb2-75" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=============================                                         |  42%[1] 61</span></span>
+<span id="cb2-76"><a href="#cb2-76" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==============================                                        |  42%[1] 62</span></span>
+<span id="cb2-77"><a href="#cb2-77" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==============================                                        |  43%[1] 63</span></span>
+<span id="cb2-78"><a href="#cb2-78" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===============================                                       |  44%[1] 64</span></span>
+<span id="cb2-79"><a href="#cb2-79" tabindex="-1"></a><span class="co">#&gt; [1] 65</span></span>
+<span id="cb2-80"><a href="#cb2-80" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |================================                                      |  45%[1] 66</span></span>
+<span id="cb2-81"><a href="#cb2-81" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |================================                                      |  46%[1] 67</span></span>
+<span id="cb2-82"><a href="#cb2-82" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=================================                                     |  47%[1] 68</span></span>
+<span id="cb2-83"><a href="#cb2-83" tabindex="-1"></a><span class="co">#&gt; [1] 69</span></span>
+<span id="cb2-84"><a href="#cb2-84" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==================================                                    |  48%[1] 70</span></span>
+<span id="cb2-85"><a href="#cb2-85" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==================================                                    |  49%[1] 71</span></span>
+<span id="cb2-86"><a href="#cb2-86" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===================================                                   |  49%[1] 72</span></span>
+<span id="cb2-87"><a href="#cb2-87" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===================================                                   |  50%[1] 73</span></span>
+<span id="cb2-88"><a href="#cb2-88" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===================================                                   |  51%[1] 74</span></span>
+<span id="cb2-89"><a href="#cb2-89" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |====================================                                  |  51%[1] 75</span></span>
+<span id="cb2-90"><a href="#cb2-90" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |====================================                                  |  52%[1] 76</span></span>
+<span id="cb2-91"><a href="#cb2-91" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=====================================                                 |  53%[1] 77</span></span>
+<span id="cb2-92"><a href="#cb2-92" tabindex="-1"></a><span class="co">#&gt; [1] 78</span></span>
+<span id="cb2-93"><a href="#cb2-93" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |======================================                                |  54%[1] 79</span></span>
+<span id="cb2-94"><a href="#cb2-94" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |======================================                                |  55%[1] 80</span></span>
+<span id="cb2-95"><a href="#cb2-95" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=======================================                               |  56%[1] 81</span></span>
+<span id="cb2-96"><a href="#cb2-96" tabindex="-1"></a><span class="co">#&gt; [1] 82</span></span>
+<span id="cb2-97"><a href="#cb2-97" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |========================================                              |  57%[1] 83</span></span>
+<span id="cb2-98"><a href="#cb2-98" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |========================================                              |  58%[1] 84</span></span>
+<span id="cb2-99"><a href="#cb2-99" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=========================================                             |  58%[1] 85</span></span>
+<span id="cb2-100"><a href="#cb2-100" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=========================================                             |  59%[1] 86</span></span>
+<span id="cb2-101"><a href="#cb2-101" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==========================================                            |  60%[1] 87</span></span>
+<span id="cb2-102"><a href="#cb2-102" tabindex="-1"></a><span class="co">#&gt; [1] 88</span></span>
+<span id="cb2-103"><a href="#cb2-103" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===========================================                           |  61%[1] 89</span></span>
+<span id="cb2-104"><a href="#cb2-104" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===========================================                           |  62%[1] 90</span></span>
+<span id="cb2-105"><a href="#cb2-105" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |============================================                          |  62%[1] 91</span></span>
+<span id="cb2-106"><a href="#cb2-106" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |============================================                          |  63%[1] 92</span></span>
+<span id="cb2-107"><a href="#cb2-107" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=============================================                         |  64%[1] 93</span></span>
+<span id="cb2-108"><a href="#cb2-108" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=============================================                         |  65%[1] 94</span></span>
+<span id="cb2-109"><a href="#cb2-109" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==============================================                        |  65%[1] 95</span></span>
+<span id="cb2-110"><a href="#cb2-110" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==============================================                        |  66%[1] 96</span></span>
+<span id="cb2-111"><a href="#cb2-111" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===============================================                       |  67%[1] 97</span></span>
+<span id="cb2-112"><a href="#cb2-112" tabindex="-1"></a><span class="co">#&gt; [1] 98</span></span>
+<span id="cb2-113"><a href="#cb2-113" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |================================================                      |  68%[1] 99</span></span>
+<span id="cb2-114"><a href="#cb2-114" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |================================================                      |  69%[1] 100</span></span>
+<span id="cb2-115"><a href="#cb2-115" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=================================================                     |  69%[1] 101</span></span>
+<span id="cb2-116"><a href="#cb2-116" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=================================================                     |  70%[1] 102</span></span>
+<span id="cb2-117"><a href="#cb2-117" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==================================================                    |  71%[1] 103</span></span>
+<span id="cb2-118"><a href="#cb2-118" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==================================================                    |  72%[1] 104</span></span>
+<span id="cb2-119"><a href="#cb2-119" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===================================================                   |  72%[1] 105</span></span>
+<span id="cb2-120"><a href="#cb2-120" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===================================================                   |  73%[1] 106</span></span>
+<span id="cb2-121"><a href="#cb2-121" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |====================================================                  |  74%[1] 107</span></span>
+<span id="cb2-122"><a href="#cb2-122" tabindex="-1"></a><span class="co">#&gt; [1] 108</span></span>
+<span id="cb2-123"><a href="#cb2-123" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |====================================================                  |  75%[1] 109</span></span>
+<span id="cb2-124"><a href="#cb2-124" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=====================================================                 |  76%[1] 110</span></span>
+<span id="cb2-125"><a href="#cb2-125" tabindex="-1"></a><span class="co">#&gt; [1] 111</span></span>
+<span id="cb2-126"><a href="#cb2-126" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |======================================================                |  77%[1] 112</span></span>
+<span id="cb2-127"><a href="#cb2-127" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |======================================================                |  78%[1] 113</span></span>
+<span id="cb2-128"><a href="#cb2-128" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=======================================================               |  78%[1] 114</span></span>
+<span id="cb2-129"><a href="#cb2-129" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=======================================================               |  79%[1] 115</span></span>
+<span id="cb2-130"><a href="#cb2-130" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |========================================================              |  80%[1] 116</span></span>
+<span id="cb2-131"><a href="#cb2-131" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |========================================================              |  81%[1] 117</span></span>
+<span id="cb2-132"><a href="#cb2-132" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=========================================================             |  81%[1] 118</span></span>
+<span id="cb2-133"><a href="#cb2-133" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=========================================================             |  82%[1] 119</span></span>
+<span id="cb2-134"><a href="#cb2-134" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==========================================================            |  83%[1] 120</span></span>
+<span id="cb2-135"><a href="#cb2-135" tabindex="-1"></a><span class="co">#&gt; [1] 121</span></span>
+<span id="cb2-136"><a href="#cb2-136" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===========================================================           |  84%[1] 122</span></span>
+<span id="cb2-137"><a href="#cb2-137" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===========================================================           |  85%[1] 123</span></span>
+<span id="cb2-138"><a href="#cb2-138" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |============================================================          |  85%[1] 124</span></span>
+<span id="cb2-139"><a href="#cb2-139" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |============================================================          |  86%[1] 125</span></span>
+<span id="cb2-140"><a href="#cb2-140" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=============================================================         |  87%[1] 126</span></span>
+<span id="cb2-141"><a href="#cb2-141" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=============================================================         |  88%[1] 127</span></span>
+<span id="cb2-142"><a href="#cb2-142" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==============================================================        |  88%[1] 128</span></span>
+<span id="cb2-143"><a href="#cb2-143" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==============================================================        |  89%[1] 129</span></span>
+<span id="cb2-144"><a href="#cb2-144" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===============================================================       |  90%[1] 130</span></span>
+<span id="cb2-145"><a href="#cb2-145" tabindex="-1"></a><span class="co">#&gt; [1] 131</span></span>
+<span id="cb2-146"><a href="#cb2-146" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |================================================================      |  91%[1] 132</span></span>
+<span id="cb2-147"><a href="#cb2-147" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |================================================================      |  92%[1] 133</span></span>
+<span id="cb2-148"><a href="#cb2-148" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=================================================================     |  92%[1] 134</span></span>
+<span id="cb2-149"><a href="#cb2-149" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=================================================================     |  93%[1] 135</span></span>
+<span id="cb2-150"><a href="#cb2-150" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==================================================================    |  94%[1] 136</span></span>
+<span id="cb2-151"><a href="#cb2-151" tabindex="-1"></a><span class="co">#&gt; [1] 137</span></span>
+<span id="cb2-152"><a href="#cb2-152" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===================================================================   |  95%[1] 138</span></span>
+<span id="cb2-153"><a href="#cb2-153" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===================================================================   |  96%[1] 139</span></span>
+<span id="cb2-154"><a href="#cb2-154" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |====================================================================  |  97%[1] 140</span></span>
+<span id="cb2-155"><a href="#cb2-155" tabindex="-1"></a><span class="co">#&gt; [1] 141</span></span>
+<span id="cb2-156"><a href="#cb2-156" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===================================================================== |  98%[1] 142</span></span>
+<span id="cb2-157"><a href="#cb2-157" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |===================================================================== |  99%[1] 143</span></span>
+<span id="cb2-158"><a href="#cb2-158" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |======================================================================|  99%[1] 144</span></span>
+<span id="cb2-159"><a href="#cb2-159" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |======================================================================| 100%✓ Spectra has been extracted from the mzml files[1] &quot;Iteration 1&quot;</span></span>
+<span id="cb2-160"><a href="#cb2-160" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 3573 for the given mz and RT range&quot;</span></span>
+<span id="cb2-161"><a href="#cb2-161" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 2&quot;</span></span>
+<span id="cb2-162"><a href="#cb2-162" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 8433 for the given mz and RT range&quot;</span></span>
+<span id="cb2-163"><a href="#cb2-163" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 3&quot;</span></span>
+<span id="cb2-164"><a href="#cb2-164" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 7591 for the given mz and RT range&quot;</span></span>
+<span id="cb2-165"><a href="#cb2-165" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 4&quot;</span></span>
+<span id="cb2-166"><a href="#cb2-166" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 7791 for the given mz and RT range&quot;</span></span>
+<span id="cb2-167"><a href="#cb2-167" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 5&quot;</span></span>
+<span id="cb2-168"><a href="#cb2-168" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 5791 for the given mz and RT range&quot;</span></span>
+<span id="cb2-169"><a href="#cb2-169" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 6&quot;</span></span>
+<span id="cb2-170"><a href="#cb2-170" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 7&quot;</span></span>
+<span id="cb2-171"><a href="#cb2-171" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 3366 for the given mz and RT range&quot;</span></span>
+<span id="cb2-172"><a href="#cb2-172" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 8&quot;</span></span>
+<span id="cb2-173"><a href="#cb2-173" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 2686 for the given mz and RT range&quot;</span></span>
+<span id="cb2-174"><a href="#cb2-174" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 9&quot;</span></span>
+<span id="cb2-175"><a href="#cb2-175" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 10&quot;</span></span>
+<span id="cb2-176"><a href="#cb2-176" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 2589 for the given mz and RT range&quot;</span></span>
+<span id="cb2-177"><a href="#cb2-177" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 11&quot;</span></span>
+<span id="cb2-178"><a href="#cb2-178" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 8985 for the given mz and RT range&quot;</span></span>
+<span id="cb2-179"><a href="#cb2-179" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 12&quot;</span></span>
+<span id="cb2-180"><a href="#cb2-180" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 13&quot;</span></span>
+<span id="cb2-181"><a href="#cb2-181" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 4897 for the given mz and RT range&quot;</span></span>
+<span id="cb2-182"><a href="#cb2-182" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 14&quot;</span></span>
+<span id="cb2-183"><a href="#cb2-183" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 15&quot;</span></span>
+<span id="cb2-184"><a href="#cb2-184" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 6044 for the given mz and RT range&quot;</span></span>
+<span id="cb2-185"><a href="#cb2-185" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 16&quot;</span></span>
+<span id="cb2-186"><a href="#cb2-186" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 5333 for the given mz and RT range&quot;</span></span>
+<span id="cb2-187"><a href="#cb2-187" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 17&quot;</span></span>
+<span id="cb2-188"><a href="#cb2-188" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 18&quot;</span></span>
+<span id="cb2-189"><a href="#cb2-189" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 7452 for the given mz and RT range&quot;</span></span>
+<span id="cb2-190"><a href="#cb2-190" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 19&quot;</span></span>
+<span id="cb2-191"><a href="#cb2-191" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 8134 for the given mz and RT range&quot;</span></span>
+<span id="cb2-192"><a href="#cb2-192" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 20&quot;</span></span>
+<span id="cb2-193"><a href="#cb2-193" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 5539 for the given mz and RT range&quot;</span></span>
+<span id="cb2-194"><a href="#cb2-194" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 21&quot;</span></span>
+<span id="cb2-195"><a href="#cb2-195" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 4848 for the given mz and RT range&quot;</span></span>
+<span id="cb2-196"><a href="#cb2-196" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 22&quot;</span></span>
+<span id="cb2-197"><a href="#cb2-197" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 23&quot;</span></span>
+<span id="cb2-198"><a href="#cb2-198" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 5938 for the given mz and RT range&quot;</span></span>
+<span id="cb2-199"><a href="#cb2-199" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 24&quot;</span></span>
+<span id="cb2-200"><a href="#cb2-200" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 390 for the given mz and RT range&quot;</span></span>
+<span id="cb2-201"><a href="#cb2-201" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 25&quot;</span></span>
+<span id="cb2-202"><a href="#cb2-202" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 6713 for the given mz and RT range&quot;</span></span>
+<span id="cb2-203"><a href="#cb2-203" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 26&quot;</span></span>
+<span id="cb2-204"><a href="#cb2-204" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 7836 for the given mz and RT range&quot;</span></span>
+<span id="cb2-205"><a href="#cb2-205" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 27&quot;</span></span>
+<span id="cb2-206"><a href="#cb2-206" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 8643 for the given mz and RT range&quot;</span></span>
+<span id="cb2-207"><a href="#cb2-207" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 28&quot;</span></span>
+<span id="cb2-208"><a href="#cb2-208" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 8270 for the given mz and RT range&quot;</span></span>
+<span id="cb2-209"><a href="#cb2-209" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 29&quot;</span></span>
+<span id="cb2-210"><a href="#cb2-210" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 30&quot;</span></span>
+<span id="cb2-211"><a href="#cb2-211" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 31&quot;</span></span>
+<span id="cb2-212"><a href="#cb2-212" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 4318 for the given mz and RT range&quot;</span></span>
+<span id="cb2-213"><a href="#cb2-213" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 32&quot;</span></span>
+<span id="cb2-214"><a href="#cb2-214" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 8992 for the given mz and RT range&quot;</span></span>
+<span id="cb2-215"><a href="#cb2-215" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 33&quot;</span></span>
+<span id="cb2-216"><a href="#cb2-216" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 34&quot;</span></span>
+<span id="cb2-217"><a href="#cb2-217" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 35&quot;</span></span>
+<span id="cb2-218"><a href="#cb2-218" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 36&quot;</span></span>
+<span id="cb2-219"><a href="#cb2-219" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 7629 for the given mz and RT range&quot;</span></span>
+<span id="cb2-220"><a href="#cb2-220" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 37&quot;</span></span>
+<span id="cb2-221"><a href="#cb2-221" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 38&quot;</span></span>
+<span id="cb2-222"><a href="#cb2-222" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 7098 for the given mz and RT range&quot;</span></span>
+<span id="cb2-223"><a href="#cb2-223" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 39&quot;</span></span>
+<span id="cb2-224"><a href="#cb2-224" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 4060 for the given mz and RT range&quot;</span></span>
+<span id="cb2-225"><a href="#cb2-225" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 40&quot;</span></span>
+<span id="cb2-226"><a href="#cb2-226" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 41&quot;</span></span>
+<span id="cb2-227"><a href="#cb2-227" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 1069 for the given mz and RT range&quot;</span></span>
+<span id="cb2-228"><a href="#cb2-228" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 42&quot;</span></span>
+<span id="cb2-229"><a href="#cb2-229" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 2144 for the given mz and RT range&quot;</span></span>
+<span id="cb2-230"><a href="#cb2-230" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 43&quot;</span></span>
+<span id="cb2-231"><a href="#cb2-231" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 44&quot;</span></span>
+<span id="cb2-232"><a href="#cb2-232" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 7427 for the given mz and RT range&quot;</span></span>
+<span id="cb2-233"><a href="#cb2-233" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 45&quot;</span></span>
+<span id="cb2-234"><a href="#cb2-234" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 46&quot;</span></span>
+<span id="cb2-235"><a href="#cb2-235" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 719 for the given mz and RT range&quot;</span></span>
+<span id="cb2-236"><a href="#cb2-236" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 47&quot;</span></span>
+<span id="cb2-237"><a href="#cb2-237" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 6001 for the given mz and RT range&quot;</span></span>
+<span id="cb2-238"><a href="#cb2-238" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 48&quot;</span></span>
+<span id="cb2-239"><a href="#cb2-239" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 49&quot;</span></span>
+<span id="cb2-240"><a href="#cb2-240" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Iteration 50&quot;</span></span>
+<span id="cb2-241"><a href="#cb2-241" tabindex="-1"></a><span class="co">#&gt; [1] &quot;No MS2 spectra could be extracted for feature 654 for the given mz and RT range&quot;</span></span>
+<span id="cb2-242"><a href="#cb2-242" tabindex="-1"></a><span class="co">#&gt; [1] &quot;MS2 spectra couldn&#39;t be extracted from a total of33 features out of 50 features. They are as follows:&quot;</span></span>
+<span id="cb2-243"><a href="#cb2-243" tabindex="-1"></a><span class="co">#&gt; 3573,8433,7591,7791,5791,3366,2686,2589,8985,4897,6044,5333,7452,8134,5539,4848,5938,390,6713,7836,8643,8270,4318,8992,7629,7098,4060,1069,2144,7427,719,6001,654</span></span></code></pre></div>
+</div>
+<div id="figures" class="section level2">
+<h2>Figures</h2>
+<p>The figure sizes have been customised so that you can easily put two
+images side-by-side.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">10</span><span class="sc">:</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><img src="data:image/png;base64,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" /></p>
+<p>You can enable figure captions by <code>fig_caption: yes</code> in
+YAML:</p>
+<pre><code>output:
+  rmarkdown::html_vignette:
+    fig_caption: yes</code></pre>
+<p>Then you can use the chunk option
+<code>fig.cap = &quot;Your figure caption.&quot;</code> in
+<strong>knitr</strong>.</p>
+</div>
+<div id="more-examples" class="section level2">
+<h2>More Examples</h2>
+<p>You can write math expressions, e.g. <span class="math inline">\(Y =
+X\beta + \epsilon\)</span>, footnotes<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, and tables, e.g. using
+<code>knitr::kable()</code>.</p>
+<table style="width:100%;">
+<colgroup>
+<col width="25%" />
+<col width="7%" />
+<col width="5%" />
+<col width="8%" />
+<col width="5%" />
+<col width="7%" />
+<col width="8%" />
+<col width="8%" />
+<col width="4%" />
+<col width="4%" />
+<col width="7%" />
+<col width="7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">mpg</th>
+<th align="right">cyl</th>
+<th align="right">disp</th>
+<th align="right">hp</th>
+<th align="right">drat</th>
+<th align="right">wt</th>
+<th align="right">qsec</th>
+<th align="right">vs</th>
+<th align="right">am</th>
+<th align="right">gear</th>
+<th align="right">carb</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Mazda RX4</td>
+<td align="right">21.0</td>
+<td align="right">6</td>
+<td align="right">160.0</td>
+<td align="right">110</td>
+<td align="right">3.90</td>
+<td align="right">2.620</td>
+<td align="right">16.46</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Mazda RX4 Wag</td>
+<td align="right">21.0</td>
+<td align="right">6</td>
+<td align="right">160.0</td>
+<td align="right">110</td>
+<td align="right">3.90</td>
+<td align="right">2.875</td>
+<td align="right">17.02</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Datsun 710</td>
+<td align="right">22.8</td>
+<td align="right">4</td>
+<td align="right">108.0</td>
+<td align="right">93</td>
+<td align="right">3.85</td>
+<td align="right">2.320</td>
+<td align="right">18.61</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Hornet 4 Drive</td>
+<td align="right">21.4</td>
+<td align="right">6</td>
+<td align="right">258.0</td>
+<td align="right">110</td>
+<td align="right">3.08</td>
+<td align="right">3.215</td>
+<td align="right">19.44</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Hornet Sportabout</td>
+<td align="right">18.7</td>
+<td align="right">8</td>
+<td align="right">360.0</td>
+<td align="right">175</td>
+<td align="right">3.15</td>
+<td align="right">3.440</td>
+<td align="right">17.02</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Valiant</td>
+<td align="right">18.1</td>
+<td align="right">6</td>
+<td align="right">225.0</td>
+<td align="right">105</td>
+<td align="right">2.76</td>
+<td align="right">3.460</td>
+<td align="right">20.22</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Duster 360</td>
+<td align="right">14.3</td>
+<td align="right">8</td>
+<td align="right">360.0</td>
+<td align="right">245</td>
+<td align="right">3.21</td>
+<td align="right">3.570</td>
+<td align="right">15.84</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Merc 240D</td>
+<td align="right">24.4</td>
+<td align="right">4</td>
+<td align="right">146.7</td>
+<td align="right">62</td>
+<td align="right">3.69</td>
+<td align="right">3.190</td>
+<td align="right">20.00</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Merc 230</td>
+<td align="right">22.8</td>
+<td align="right">4</td>
+<td align="right">140.8</td>
+<td align="right">95</td>
+<td align="right">3.92</td>
+<td align="right">3.150</td>
+<td align="right">22.90</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Merc 280</td>
+<td align="right">19.2</td>
+<td align="right">6</td>
+<td align="right">167.6</td>
+<td align="right">123</td>
+<td align="right">3.92</td>
+<td align="right">3.440</td>
+<td align="right">18.30</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">4</td>
+</tr>
+</tbody>
+</table>
+<p>Also a quote using <code>&gt;</code>:</p>
+<blockquote>
+<p>“He who gives up [code] safety for [code] speed deserves neither.”
+(<a href="https://twitter.com/hadleywickham/status/504368538874703872">via</a>)</p>
+</blockquote>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>A footnote here.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

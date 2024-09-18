@@ -4,12 +4,16 @@ author: "Shayantan Banerjee"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Demonstration of the package dures}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}
+options(repos = c(CRAN = "https://cloud.r-project.org/"))
+
+# Suppress title check if necessary
+options(rmarkdown.html_vignette.check_title = FALSE)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -31,16 +35,41 @@ The **Denoising Using Replicate Spectra (DuReS)** package requires the following
 
 ## Test Datasets
 
-All the test datasets used in this vignette is hosted at https://zenodo.org/records/13778168. The user needs to download the file and unzip the contents of the folder on their local system. 
-- `test_1` folder contains an folder named `mzml_files\`, and two files titled `Sample-and-feature-wise-RT-tolerance.txt` and `feature_list.txt`. There are three columns in the `feature_list.txt` file, "ID", "mz" and "RT". The additional file `Sample-and-feature-wise-RT-tolerance.txt` contain the sample-wise RT tolerances for all features. The number of rows of both files are the same while the `Sample-and-feature-wise-RT-tolerance.txt` file has twice as many columns as `feature_list.txt`, with `RT_min_` and `RT_max` is appended to every sample name.
+All the test datasets used in this vignette are hosted at [https://zenodo.org/records/13778168](https://zenodo.org/records/13778168). Users need to download the file and unzip the folder contents on their local system.
 
-## Styles
+- The `test_1` folder contains a folder named `mzml_files/` and two files: `Sample-and-feature-wise-RT-tolerance.txt` and `feature_list.txt`. The `feature_list.txt` file has three columns: "ID", "mz", and "RT". The additional file `Sample-and-feature-wise-RT-tolerance.txt` contains the sample-wise RT tolerances for all features. The number of rows in both files is the same, while the `Sample-and-feature-wise-RT-tolerance.txt` file has twice as many columns as `feature_list.txt`, with `RT_min_` and `RT_max_` appended to every sample name.
+  
+- The `test_2` and `test_3` folders each contain a folder named `mzml_files/` and a file named `feature_list.txt`.
 
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
+## Install the package and dependencies
+```{r initial-setup}
+# Dependencies
+install.packages("BiocManager", quiet = TRUE)
+BiocManager::install(c("Spectra", "S4Vectors", "mzR"), quiet = TRUE)
 
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
+if (!requireNamespace("devtools", quietly = TRUE)) {
+  install.packages("devtools", quiet = TRUE)
+}
+library(devtools)
+library(Spectra)
+library(S4Vectors)
+library(mzR)
+
+devtools::install_github("BiosystemEngineeringLab-IITB/dures")
+library(dures)
+```
+
+## First Test Example
+
+```{r}
+# Define the path to the test_1 folder (replace with the actual path on your system)
+folder_path <- "~/Desktop/test_package_dures/test_1/"
+# Check if the directory exists
+if (!dir.exists(folder_path)) {
+  stop("The directory 'test_1' does not exist. Please modify the path to the actual location of the 'test_1' folder.")
+}
+l1 = preprocess(folder_path = folder_path, tol_mz = 5, tol_rt = 0.1)
+```
 
 ## Figures
 

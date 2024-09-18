@@ -90,7 +90,7 @@ read_files <- function(folder_path, tol_mz, tol_rt){
   backend <- Spectra::MsBackendMzR()
   # Loop over the files
   for (i in seq_along(fls)) {
-    print(i)
+    #print(i)
     sps <- Spectra::Spectra(file.path(path_to_mzml_folder, fls[i]), source = backend)
     sps = Spectra::filterMsLevel(sps, msLevel = 2)
     if(length(sps) != 0){

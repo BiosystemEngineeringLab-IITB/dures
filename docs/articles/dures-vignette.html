@@ -72,7 +72,7 @@
                         <h4 data-toc-skip class="author">Shayantan
 Banerjee</h4>
             
-            <h4 data-toc-skip class="date">2024-09-17</h4>
+            <h4 data-toc-skip class="date">2024-09-18</h4>
       
       
       <div class="hidden name"><code>dures-vignette.Rmd</code></div>
@@ -120,33 +120,355 @@ the same number of rows as <code>feature_list.txt</code>.</li>
 </li>
 </ul>
 <div class="section level2">
-<h2 id="vignette-info">Vignette Info<a class="anchor" aria-label="anchor" href="#vignette-info"></a>
+<h2 id="test-datasets">Test Datasets<a class="anchor" aria-label="anchor" href="#test-datasets"></a>
 </h2>
-<p>Note the various macros within the <code>vignette</code> section of
-the metadata block above. These are required in order to instruct R how
-to build the vignette. Note that you should change the
-<code>title</code> field and the <code>\VignetteIndexEntry</code> to
-match the title of your vignette.</p>
+<p>All the test datasets used in this vignette are hosted at <a href="https://zenodo.org/records/13778168" class="external-link">https://zenodo.org/records/13778168</a>.
+Users need to download the file and unzip the folder contents on their
+local system.</p>
+<ul>
+<li><p>The <code>test_1</code> folder contains a folder named
+<code>mzml_files/</code> and two files:
+<code>Sample-and-feature-wise-RT-tolerance.txt</code> and
+<code>feature_list.txt</code>. The <code>feature_list.txt</code> file
+has three columns: “ID”, “mz”, and “RT”. The additional file
+<code>Sample-and-feature-wise-RT-tolerance.txt</code> contains the
+sample-wise RT tolerances for all features. The number of rows in both
+files is the same, while the
+<code>Sample-and-feature-wise-RT-tolerance.txt</code> file has twice as
+many columns as <code>feature_list.txt</code>, with <code>RT_min_</code>
+and <code>RT_max_</code> appended to every sample name.</p></li>
+<li><p>The <code>test_2</code> and <code>test_3</code> folders each
+contain a folder named <code>mzml_files/</code> and a file named
+<code>feature_list.txt</code>.</p></li>
+</ul>
 </div>
 <div class="section level2">
-<h2 id="styles">Styles<a class="anchor" aria-label="anchor" href="#styles"></a>
+<h2 id="install-the-package-and-dependencies">Install the package and dependencies<a class="anchor" aria-label="anchor" href="#install-the-package-and-dependencies"></a>
 </h2>
-<p>The <code>html_vignette</code> template includes a basic CSS theme.
-To override this theme you can specify your own CSS in the document
-metadata as follows:</p>
-<pre><code><span><span class="va">output</span><span class="op">:</span> </span>
-<span>  <span class="fu">rmarkdown</span><span class="fu">::</span><span class="va"><a href="https://pkgs.rstudio.com/rmarkdown/reference/html_vignette.html" class="external-link">html_vignette</a></span><span class="op">:</span></span>
-<span>    <span class="va">css</span><span class="op">:</span> <span class="va">mystyles.css</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; 'getOption("repos")' replaces Bioconductor standard repositories, see</span></span>
+<span><span class="co">#&gt; 'help("repositories", package = "BiocManager")' for details.</span></span>
+<span><span class="co">#&gt; Replacement repositories:</span></span>
+<span><span class="co">#&gt;     CRAN: https://cloud.r-project.org/</span></span>
+<span><span class="co">#&gt; Bioconductor version 3.19 (BiocManager 1.30.25), R 4.4.1 (2024-06-14)</span></span>
+<span><span class="co">#&gt; Warning: package(s) not installed when version(s) same as or greater than current; use</span></span>
+<span><span class="co">#&gt;   `force = TRUE` to re-install: 'Spectra' 'S4Vectors' 'mzR'</span></span>
+<span><span class="co">#&gt; Installation paths not writeable, unable to update packages</span></span>
+<span><span class="co">#&gt;   path: /usr/lib/R/library</span></span>
+<span><span class="co">#&gt;   packages:</span></span>
+<span><span class="co">#&gt;     boot, codetools, foreign, lattice, MASS, Matrix, nlme, spatial</span></span>
+<span><span class="co">#&gt; Old packages: 'bslib', 'colorspace', 'cpp11', 'curl', 'digest', 'evaluate',</span></span>
+<span><span class="co">#&gt;   'gert', 'httr2', 'IRanges', 'MsCoreUtils', 'ncdf4', 'openssl', 'pkgdown',</span></span>
+<span><span class="co">#&gt;   'ps', 'ragg', 'Rcpp', 'shiny', 'tinytex', 'usethis', 'waldo', 'withr',</span></span>
+<span><span class="co">#&gt;   'xfun', 'yaml'</span></span>
+<span><span class="co">#&gt; Loading required package: usethis</span></span>
+<span><span class="co">#&gt; Loading required package: S4Vectors</span></span>
+<span><span class="co">#&gt; Loading required package: stats4</span></span>
+<span><span class="co">#&gt; Loading required package: BiocGenerics</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'BiocGenerics'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     IQR, mad, sd, var, xtabs</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     anyDuplicated, aperm, append, as.data.frame, basename, cbind,</span></span>
+<span><span class="co">#&gt;     colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,</span></span>
+<span><span class="co">#&gt;     get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,</span></span>
+<span><span class="co">#&gt;     match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,</span></span>
+<span><span class="co">#&gt;     Position, rank, rbind, Reduce, rownames, sapply, setdiff, table,</span></span>
+<span><span class="co">#&gt;     tapply, union, unique, unsplit, which.max, which.min</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'S4Vectors'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:utils':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     findMatches</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     expand.grid, I, unname</span></span>
+<span><span class="co">#&gt; Loading required package: BiocParallel</span></span>
+<span><span class="co">#&gt; Loading required package: ProtGenerics</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'ProtGenerics'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     smooth</span></span>
+<span><span class="co">#&gt; Loading required package: Rcpp</span></span>
+<span><span class="co">#&gt; Downloading GitHub repo BiosystemEngineeringLab-IITB/dures@HEAD</span></span>
+<span><span class="co">#&gt; withr (3.0.0 -&gt; 3.0.1) [CRAN]</span></span>
+<span><span class="co">#&gt; Skipping 2 packages not available: Spectra, S4Vectors</span></span>
+<span><span class="co">#&gt; Installing 1 packages: withr</span></span>
+<span><span class="co">#&gt; Installing package into '/tmp/RtmpNuNyuS/temp_libpath26a04977d13aac'</span></span>
+<span><span class="co">#&gt; (as 'lib' is unspecified)</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="color: #00BBBB;">R CMD build</span> <span style="color: #00BBBB;">─────────────────────────────────────────────────────────────────</span></span></span>
+<span><span class="co">#&gt; * checking for file ‘/tmp/RtmpvwH4bw/remotes26b33a7d65776/BiosystemEngineeringLab-IITB-dures-ba7c1d2/DESCRIPTION’ ... OK</span></span>
+<span><span class="co">#&gt; * preparing ‘dures’:</span></span>
+<span><span class="co">#&gt; * checking DESCRIPTION meta-information ... OK</span></span>
+<span><span class="co">#&gt; * excluding invalid files</span></span>
+<span><span class="co">#&gt; Subdirectory 'R' contains invalid file names:</span></span>
+<span><span class="co">#&gt;   ‘Misc’</span></span>
+<span><span class="co">#&gt; * checking for LF line-endings in source and make files and shell scripts</span></span>
+<span><span class="co">#&gt; * checking for empty or unneeded directories</span></span>
+<span><span class="co">#&gt; * building ‘dures_0.0.0.1.tar.gz’</span></span>
+<span><span class="co">#&gt; Installing package into '/tmp/RtmpNuNyuS/temp_libpath26a04977d13aac'</span></span>
+<span><span class="co">#&gt; (as 'lib' is unspecified)</span></span></code></pre>
+</div>
+<div class="section level2">
+<h2 id="first-test-example">First Test Example<a class="anchor" aria-label="anchor" href="#first-test-example"></a>
+</h2>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Define the path to the test_1 folder (replace with the actual path on your system)</span></span>
+<span><span class="va">folder_path</span> <span class="op">&lt;-</span> <span class="st">"~/Desktop/test_package_dures/test_1/"</span></span>
+<span><span class="co"># Check if the directory exists</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.exists</a></span><span class="op">(</span><span class="va">folder_path</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop</a></span><span class="op">(</span><span class="st">"The directory 'test_1' does not exist. Please modify the path to the actual location of the 'test_1' folder."</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">l1</span> <span class="op">=</span> <span class="fu"><a href="../reference/preprocess.html">preprocess</a></span><span class="op">(</span>folder_path <span class="op">=</span> <span class="va">folder_path</span>, tol_mz <span class="op">=</span> <span class="fl">5</span>, tol_rt <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; *******************Sanity check for input files***********************</span></span>
+<span><span class="co">#&gt; ✓ Feature list file found!</span></span>
+<span><span class="co">#&gt; ✓ Feature list file has the correct columns</span></span>
+<span><span class="co">#&gt; ✓ mzml folder exists</span></span>
+<span><span class="co">#&gt; ✓ RT tolerance file exists! Using custom tolerance</span></span>
+<span><span class="co">#&gt; ✓ Input file is in correct format</span></span>
+<span><span class="co">#&gt; Reading mzml files</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%[1] 1</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   1%[1] 2</span></span>
+<span><span class="co">#&gt;   |                                                                              |=                                                                     |   1%[1] 3</span></span>
+<span><span class="co">#&gt;   |                                                                              |=                                                                     |   2%[1] 4</span></span>
+<span><span class="co">#&gt;   |                                                                              |==                                                                    |   3%[1] 5</span></span>
+<span><span class="co">#&gt; [1] 6</span></span>
+<span><span class="co">#&gt;   |                                                                              |===                                                                   |   4%[1] 7</span></span>
+<span><span class="co">#&gt;   |                                                                              |===                                                                   |   5%[1] 8</span></span>
+<span><span class="co">#&gt;   |                                                                              |====                                                                  |   6%[1] 9</span></span>
+<span><span class="co">#&gt; [1] 10</span></span>
+<span><span class="co">#&gt;   |                                                                              |=====                                                                 |   7%[1] 11</span></span>
+<span><span class="co">#&gt;   |                                                                              |=====                                                                 |   8%[1] 12</span></span>
+<span><span class="co">#&gt;   |                                                                              |======                                                                |   8%[1] 13</span></span>
+<span><span class="co">#&gt;   |                                                                              |======                                                                |   9%[1] 14</span></span>
+<span><span class="co">#&gt;   |                                                                              |=======                                                               |  10%[1] 15</span></span>
+<span><span class="co">#&gt; [1] 16</span></span>
+<span><span class="co">#&gt;   |                                                                              |========                                                              |  11%[1] 17</span></span>
+<span><span class="co">#&gt;   |                                                                              |========                                                              |  12%[1] 18</span></span>
+<span><span class="co">#&gt;   |                                                                              |=========                                                             |  12%[1] 19</span></span>
+<span><span class="co">#&gt;   |                                                                              |=========                                                             |  13%[1] 20</span></span>
+<span><span class="co">#&gt;   |                                                                              |==========                                                            |  14%[1] 21</span></span>
+<span><span class="co">#&gt;   |                                                                              |==========                                                            |  15%[1] 22</span></span>
+<span><span class="co">#&gt;   |                                                                              |===========                                                           |  15%[1] 23</span></span>
+<span><span class="co">#&gt;   |                                                                              |===========                                                           |  16%[1] 24</span></span>
+<span><span class="co">#&gt;   |                                                                              |============                                                          |  17%[1] 25</span></span>
+<span><span class="co">#&gt; [1] 26</span></span>
+<span><span class="co">#&gt;   |                                                                              |=============                                                         |  18%[1] 27</span></span>
+<span><span class="co">#&gt;   |                                                                              |=============                                                         |  19%[1] 28</span></span>
+<span><span class="co">#&gt;   |                                                                              |==============                                                        |  19%[1] 29</span></span>
+<span><span class="co">#&gt;   |                                                                              |==============                                                        |  20%[1] 30</span></span>
+<span><span class="co">#&gt;   |                                                                              |===============                                                       |  21%[1] 31</span></span>
+<span><span class="co">#&gt;   |                                                                              |===============                                                       |  22%[1] 32</span></span>
+<span><span class="co">#&gt;   |                                                                              |================                                                      |  22%[1] 33</span></span>
+<span><span class="co">#&gt;   |                                                                              |================                                                      |  23%[1] 34</span></span>
+<span><span class="co">#&gt;   |                                                                              |=================                                                     |  24%[1] 35</span></span>
+<span><span class="co">#&gt; [1] 36</span></span>
+<span><span class="co">#&gt;   |                                                                              |==================                                                    |  25%[1] 37</span></span>
+<span><span class="co">#&gt;   |                                                                              |==================                                                    |  26%[1] 38</span></span>
+<span><span class="co">#&gt; [1] 39</span></span>
+<span><span class="co">#&gt;   |                                                                              |===================                                                   |  27%[1] 40</span></span>
+<span><span class="co">#&gt;   |                                                                              |===================                                                   |  28%[1] 41</span></span>
+<span><span class="co">#&gt;   |                                                                              |====================                                                  |  28%[1] 42</span></span>
+<span><span class="co">#&gt;   |                                                                              |====================                                                  |  29%[1] 43</span></span>
+<span><span class="co">#&gt;   |                                                                              |=====================                                                 |  30%[1] 44</span></span>
+<span><span class="co">#&gt;   |                                                                              |=====================                                                 |  31%[1] 45</span></span>
+<span><span class="co">#&gt;   |                                                                              |======================                                                |  31%[1] 46</span></span>
+<span><span class="co">#&gt;   |                                                                              |======================                                                |  32%[1] 47</span></span>
+<span><span class="co">#&gt;   |                                                                              |=======================                                               |  33%[1] 48</span></span>
+<span><span class="co">#&gt; [1] 49</span></span>
+<span><span class="co">#&gt;   |                                                                              |========================                                              |  34%[1] 50</span></span>
+<span><span class="co">#&gt;   |                                                                              |========================                                              |  35%[1] 51</span></span>
+<span><span class="co">#&gt;   |                                                                              |=========================                                             |  35%[1] 52</span></span>
+<span><span class="co">#&gt;   |                                                                              |=========================                                             |  36%[1] 53</span></span>
+<span><span class="co">#&gt;   |                                                                              |==========================                                            |  37%[1] 54</span></span>
+<span><span class="co">#&gt;   |                                                                              |==========================                                            |  38%[1] 55</span></span>
+<span><span class="co">#&gt;   |                                                                              |===========================                                           |  38%[1] 56</span></span>
+<span><span class="co">#&gt;   |                                                                              |===========================                                           |  39%[1] 57</span></span>
+<span><span class="co">#&gt;   |                                                                              |============================                                          |  40%[1] 58</span></span>
+<span><span class="co">#&gt; [1] 59</span></span>
+<span><span class="co">#&gt;   |                                                                              |=============================                                         |  41%[1] 60</span></span>
+<span><span class="co">#&gt;   |                                                                              |=============================                                         |  42%[1] 61</span></span>
+<span><span class="co">#&gt;   |                                                                              |==============================                                        |  42%[1] 62</span></span>
+<span><span class="co">#&gt;   |                                                                              |==============================                                        |  43%[1] 63</span></span>
+<span><span class="co">#&gt;   |                                                                              |===============================                                       |  44%[1] 64</span></span>
+<span><span class="co">#&gt; [1] 65</span></span>
+<span><span class="co">#&gt;   |                                                                              |================================                                      |  45%[1] 66</span></span>
+<span><span class="co">#&gt;   |                                                                              |================================                                      |  46%[1] 67</span></span>
+<span><span class="co">#&gt;   |                                                                              |=================================                                     |  47%[1] 68</span></span>
+<span><span class="co">#&gt; [1] 69</span></span>
+<span><span class="co">#&gt;   |                                                                              |==================================                                    |  48%[1] 70</span></span>
+<span><span class="co">#&gt;   |                                                                              |==================================                                    |  49%[1] 71</span></span>
+<span><span class="co">#&gt;   |                                                                              |===================================                                   |  49%[1] 72</span></span>
+<span><span class="co">#&gt;   |                                                                              |===================================                                   |  50%[1] 73</span></span>
+<span><span class="co">#&gt;   |                                                                              |===================================                                   |  51%[1] 74</span></span>
+<span><span class="co">#&gt;   |                                                                              |====================================                                  |  51%[1] 75</span></span>
+<span><span class="co">#&gt;   |                                                                              |====================================                                  |  52%[1] 76</span></span>
+<span><span class="co">#&gt;   |                                                                              |=====================================                                 |  53%[1] 77</span></span>
+<span><span class="co">#&gt; [1] 78</span></span>
+<span><span class="co">#&gt;   |                                                                              |======================================                                |  54%[1] 79</span></span>
+<span><span class="co">#&gt;   |                                                                              |======================================                                |  55%[1] 80</span></span>
+<span><span class="co">#&gt;   |                                                                              |=======================================                               |  56%[1] 81</span></span>
+<span><span class="co">#&gt; [1] 82</span></span>
+<span><span class="co">#&gt;   |                                                                              |========================================                              |  57%[1] 83</span></span>
+<span><span class="co">#&gt;   |                                                                              |========================================                              |  58%[1] 84</span></span>
+<span><span class="co">#&gt;   |                                                                              |=========================================                             |  58%[1] 85</span></span>
+<span><span class="co">#&gt;   |                                                                              |=========================================                             |  59%[1] 86</span></span>
+<span><span class="co">#&gt;   |                                                                              |==========================================                            |  60%[1] 87</span></span>
+<span><span class="co">#&gt; [1] 88</span></span>
+<span><span class="co">#&gt;   |                                                                              |===========================================                           |  61%[1] 89</span></span>
+<span><span class="co">#&gt;   |                                                                              |===========================================                           |  62%[1] 90</span></span>
+<span><span class="co">#&gt;   |                                                                              |============================================                          |  62%[1] 91</span></span>
+<span><span class="co">#&gt;   |                                                                              |============================================                          |  63%[1] 92</span></span>
+<span><span class="co">#&gt;   |                                                                              |=============================================                         |  64%[1] 93</span></span>
+<span><span class="co">#&gt;   |                                                                              |=============================================                         |  65%[1] 94</span></span>
+<span><span class="co">#&gt;   |                                                                              |==============================================                        |  65%[1] 95</span></span>
+<span><span class="co">#&gt;   |                                                                              |==============================================                        |  66%[1] 96</span></span>
+<span><span class="co">#&gt;   |                                                                              |===============================================                       |  67%[1] 97</span></span>
+<span><span class="co">#&gt; [1] 98</span></span>
+<span><span class="co">#&gt;   |                                                                              |================================================                      |  68%[1] 99</span></span>
+<span><span class="co">#&gt;   |                                                                              |================================================                      |  69%[1] 100</span></span>
+<span><span class="co">#&gt;   |                                                                              |=================================================                     |  69%[1] 101</span></span>
+<span><span class="co">#&gt;   |                                                                              |=================================================                     |  70%[1] 102</span></span>
+<span><span class="co">#&gt;   |                                                                              |==================================================                    |  71%[1] 103</span></span>
+<span><span class="co">#&gt;   |                                                                              |==================================================                    |  72%[1] 104</span></span>
+<span><span class="co">#&gt;   |                                                                              |===================================================                   |  72%[1] 105</span></span>
+<span><span class="co">#&gt;   |                                                                              |===================================================                   |  73%[1] 106</span></span>
+<span><span class="co">#&gt;   |                                                                              |====================================================                  |  74%[1] 107</span></span>
+<span><span class="co">#&gt; [1] 108</span></span>
+<span><span class="co">#&gt;   |                                                                              |====================================================                  |  75%[1] 109</span></span>
+<span><span class="co">#&gt;   |                                                                              |=====================================================                 |  76%[1] 110</span></span>
+<span><span class="co">#&gt; [1] 111</span></span>
+<span><span class="co">#&gt;   |                                                                              |======================================================                |  77%[1] 112</span></span>
+<span><span class="co">#&gt;   |                                                                              |======================================================                |  78%[1] 113</span></span>
+<span><span class="co">#&gt;   |                                                                              |=======================================================               |  78%[1] 114</span></span>
+<span><span class="co">#&gt;   |                                                                              |=======================================================               |  79%[1] 115</span></span>
+<span><span class="co">#&gt;   |                                                                              |========================================================              |  80%[1] 116</span></span>
+<span><span class="co">#&gt;   |                                                                              |========================================================              |  81%[1] 117</span></span>
+<span><span class="co">#&gt;   |                                                                              |=========================================================             |  81%[1] 118</span></span>
+<span><span class="co">#&gt;   |                                                                              |=========================================================             |  82%[1] 119</span></span>
+<span><span class="co">#&gt;   |                                                                              |==========================================================            |  83%[1] 120</span></span>
+<span><span class="co">#&gt; [1] 121</span></span>
+<span><span class="co">#&gt;   |                                                                              |===========================================================           |  84%[1] 122</span></span>
+<span><span class="co">#&gt;   |                                                                              |===========================================================           |  85%[1] 123</span></span>
+<span><span class="co">#&gt;   |                                                                              |============================================================          |  85%[1] 124</span></span>
+<span><span class="co">#&gt;   |                                                                              |============================================================          |  86%[1] 125</span></span>
+<span><span class="co">#&gt;   |                                                                              |=============================================================         |  87%[1] 126</span></span>
+<span><span class="co">#&gt;   |                                                                              |=============================================================         |  88%[1] 127</span></span>
+<span><span class="co">#&gt;   |                                                                              |==============================================================        |  88%[1] 128</span></span>
+<span><span class="co">#&gt;   |                                                                              |==============================================================        |  89%[1] 129</span></span>
+<span><span class="co">#&gt;   |                                                                              |===============================================================       |  90%[1] 130</span></span>
+<span><span class="co">#&gt; [1] 131</span></span>
+<span><span class="co">#&gt;   |                                                                              |================================================================      |  91%[1] 132</span></span>
+<span><span class="co">#&gt;   |                                                                              |================================================================      |  92%[1] 133</span></span>
+<span><span class="co">#&gt;   |                                                                              |=================================================================     |  92%[1] 134</span></span>
+<span><span class="co">#&gt;   |                                                                              |=================================================================     |  93%[1] 135</span></span>
+<span><span class="co">#&gt;   |                                                                              |==================================================================    |  94%[1] 136</span></span>
+<span><span class="co">#&gt; [1] 137</span></span>
+<span><span class="co">#&gt;   |                                                                              |===================================================================   |  95%[1] 138</span></span>
+<span><span class="co">#&gt;   |                                                                              |===================================================================   |  96%[1] 139</span></span>
+<span><span class="co">#&gt;   |                                                                              |====================================================================  |  97%[1] 140</span></span>
+<span><span class="co">#&gt; [1] 141</span></span>
+<span><span class="co">#&gt;   |                                                                              |===================================================================== |  98%[1] 142</span></span>
+<span><span class="co">#&gt;   |                                                                              |===================================================================== |  99%[1] 143</span></span>
+<span><span class="co">#&gt;   |                                                                              |======================================================================|  99%[1] 144</span></span>
+<span><span class="co">#&gt;   |                                                                              |======================================================================| 100%✓ Spectra has been extracted from the mzml files[1] "Iteration 1"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 3573 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 2"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 8433 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 3"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 7591 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 4"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 7791 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 5"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 5791 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 6"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 7"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 3366 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 8"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 2686 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 9"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 10"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 2589 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 11"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 8985 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 12"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 13"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 4897 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 14"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 15"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 6044 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 16"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 5333 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 17"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 18"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 7452 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 19"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 8134 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 20"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 5539 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 21"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 4848 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 22"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 23"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 5938 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 24"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 390 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 25"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 6713 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 26"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 7836 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 27"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 8643 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 28"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 8270 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 29"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 30"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 31"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 4318 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 32"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 8992 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 33"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 34"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 35"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 36"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 7629 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 37"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 38"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 7098 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 39"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 4060 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 40"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 41"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 1069 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 42"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 2144 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 43"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 44"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 7427 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 45"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 46"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 719 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 47"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 6001 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 48"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 49"</span></span>
+<span><span class="co">#&gt; [1] "Iteration 50"</span></span>
+<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 654 for the given mz and RT range"</span></span>
+<span><span class="co">#&gt; [1] "MS2 spectra couldn't be extracted from a total of33 features out of 50 features. They are as follows:"</span></span>
+<span><span class="co">#&gt; 3573,8433,7591,7791,5791,3366,2686,2589,8985,4897,6044,5333,7452,8134,5539,4848,5938,390,6713,7836,8643,8270,4318,8992,7629,7098,4060,1069,2144,7427,719,6001,654</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="figures">Figures<a class="anchor" aria-label="anchor" href="#figures"></a>
 </h2>
 <p>The figure sizes have been customised so that you can easily put two
 images side-by-side.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fl">10</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="dures-vignette_files/figure-html/unnamed-chunk-1-1.png" width="700"><img src="dures-vignette_files/figure-html/unnamed-chunk-1-2.png" width="700"></p>
+<p><img src="dures-vignette_files/figure-html/unnamed-chunk-2-1.png" width="700"><img src="dures-vignette_files/figure-html/unnamed-chunk-2-2.png" width="700"></p>
 <p>You can enable figure captions by <code>fig_caption: yes</code> in
 YAML:</p>
 <pre><code><span><span class="va">output</span><span class="op">:</span></span>
