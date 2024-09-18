@@ -32,7 +32,7 @@ The **Denoising Using Replicate Spectra (DuReS)** package requires the following
 ## Test Datasets
 
 All the test datasets used in this vignette is hosted at https://zenodo.org/records/13778168. The user needs to download the file and unzip the contents of the folder on their local system. 
-- `test_1` folder contains 
+- `test_1` folder contains an folder named `mzml_files\`, and two files titled `Sample-and-feature-wise-RT-tolerance.txt` and `feature_list.txt`. There are three columns in the `feature_list.txt` file, "ID", "mz" and "RT". The additional file `Sample-and-feature-wise-RT-tolerance.txt` contain the sample-wise RT tolerances for all features. The number of rows of both files are the same while the `Sample-and-feature-wise-RT-tolerance.txt` file has twice as many columns as `feature_list.txt`, with `RT_min_` and `RT_max` is appended to every sample name.
 
 ## Styles
 
