@@ -19,7 +19,7 @@ devtools::install_github("BiosystemEngineeringLab-IITB/dures")
 ```
 
 ## Documentation
-Detailed description of all the functions included within the package is available [here](https://biosystemengineeringlab-iitb.github.io/dures/reference/index.html). A vignette outlining how to run DuReS using several test datasets is available [here](https://biosystemengineeringlab-iitb.github.io/dures/articles/dures-vignette.html)
+Detailed description of all the functions included within the package is available [here](https://biosystemengineeringlab-iitb.github.io/dures/reference/index.html). A vignette outlining how to run DuReS using several test datasets is available [here](https://biosystemengineeringlab-iitb.github.io/dures/articles/dures-vignette.html).
 
 ## Test Datasets
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13778168.svg)](https://doi.org/10.5281/zenodo.13778168)
