@@ -29,9 +29,10 @@ The **Denoising Using Replicate Spectra (DuReS)** package requires the following
       - The column names should be formatted as `RT_min_sample_1`, `RT_min_sample_2`, `RT_max_sample_1`, and `RT_max_sample_2`.
 
 
-## Vignette Info
+## Test Datasets
 
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
+All the test datasets used in this vignette is hosted at https://zenodo.org/records/13778168. The user needs to download the file and unzip the contents of the folder on their local system. 
+- `test_1` folder contains 
 
 ## Styles
 
