@@ -131,7 +131,7 @@ read_files <- function(folder_path, tol_mz, tol_rt){
     names(spectral_files) = fls
   }
 
-  cat("\u2713 Spectra has been extracted from the mzml files")
+  cat("\n \u2713 Spectra has been extracted from the mzml files\n")
   if(dir.exists(paste(folder_path, "R_objects/",sep="")) == FALSE){
     dir.create(paste(folder_path, "R_objects/",sep=""))
   }

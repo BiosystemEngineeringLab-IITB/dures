@@ -16,17 +16,17 @@ concatenate_spectra <- function(output_list_from_preprocess_function) {
 
   # Initialize the list to store results
   sps_aggregate_all_mets <- vector("list", dim(stats_file)[1])
-
+  cat("Concatenating and checking if MS2 data is available for a given feature\n")
   # Use pbapply's pblapply for parallel processing with progress bar
   sps_aggregate_all_mets <- pbapply::pblapply(seq_len(dim(stats_file)[1]), function(i) {
-    print(paste("Iteration", i))
+    #print(paste("Iteration", i))
 
     # Concatenate spectra
     l <- concat_ms2_spec_from_stats_file(i, stats_file, output_list[[3]])
 
     if (is.null(l)) {
       id_no_ms2 <<- c(id_no_ms2, stats_file$ID[i])
-      print(paste("No MS2 spectra could be extracted for feature ", stats_file$ID[i], " for the given mz and RT range", sep = ""))
+      #print(paste("No MS2 spectra could be extracted for feature ", stats_file$ID[i], " for the given mz and RT range", sep = ""))
       return(NULL)
     }
 

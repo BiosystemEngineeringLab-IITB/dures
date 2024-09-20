@@ -41,8 +41,9 @@ All the test datasets used in this vignette are hosted at [https://zenodo.org/re
   
 - The `test_2` and `test_3` folders each contain a folder named `mzml_files/` and a file named `feature_list.txt`.
 
-## Install the package and dependencies
-```{r initial-setup}
+
+## Install the dependencies
+```{r initial-setup, eval=FALSE}
 # Dependencies
 install.packages("BiocManager", quiet = TRUE)
 BiocManager::install(c("Spectra", "S4Vectors", "mzR"), quiet = TRUE)
@@ -50,18 +51,17 @@ BiocManager::install(c("Spectra", "S4Vectors", "mzR"), quiet = TRUE)
 if (!requireNamespace("devtools", quietly = TRUE)) {
   install.packages("devtools", quiet = TRUE)
 }
-library(devtools)
-library(Spectra)
-library(S4Vectors)
-library(mzR)
+```
 
+## Install the package
+```{r initial-setup-contd, eval=TRUE}
 devtools::install_github("BiosystemEngineeringLab-IITB/dures")
 library(dures)
 ```
 
 ## First Test Example
 
-```{r}
+```{r, execute first step of the workflow}
 # Define the path to the test_1 folder (replace with the actual path on your system)
 folder_path <- "~/Desktop/test_package_dures/test_1/"
 # Check if the directory exists
@@ -71,32 +71,3 @@ if (!dir.exists(folder_path)) {
 l1 = preprocess(folder_path = folder_path, tol_mz = 5, tol_rt = 0.1)
 ```
 
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
-```
-
-You can enable figure captions by `fig_caption: yes` in YAML:
-
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
-```
-
-Also a quote using `>`:
-
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
