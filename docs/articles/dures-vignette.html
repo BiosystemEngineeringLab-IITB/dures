@@ -72,7 +72,7 @@
                         <h4 data-toc-skip class="author">Shayantan
 Banerjee</h4>
             
-            <h4 data-toc-skip class="date">2024-09-18</h4>
+            <h4 data-toc-skip class="date">2024-09-21</h4>
       
       
       <div class="hidden name"><code>dures-vignette.Rmd</code></div>
@@ -143,74 +143,27 @@ contain a folder named <code>mzml_files/</code> and a file named
 </ul>
 </div>
 <div class="section level2">
-<h2 id="install-the-package-and-dependencies">Install the package and dependencies<a class="anchor" aria-label="anchor" href="#install-the-package-and-dependencies"></a>
+<h2 id="install-the-dependencies">Install the dependencies<a class="anchor" aria-label="anchor" href="#install-the-dependencies"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Dependencies</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Spectra"</span>, <span class="st">"S4Vectors"</span>, <span class="st">"mzR"</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'getOption("repos")' replaces Bioconductor standard repositories, see</span></span>
-<span><span class="co">#&gt; 'help("repositories", package = "BiocManager")' for details.</span></span>
-<span><span class="co">#&gt; Replacement repositories:</span></span>
-<span><span class="co">#&gt;     CRAN: https://cloud.r-project.org/</span></span>
-<span><span class="co">#&gt; Bioconductor version 3.19 (BiocManager 1.30.25), R 4.4.1 (2024-06-14)</span></span>
-<span><span class="co">#&gt; Warning: package(s) not installed when version(s) same as or greater than current; use</span></span>
-<span><span class="co">#&gt;   `force = TRUE` to re-install: 'Spectra' 'S4Vectors' 'mzR'</span></span>
-<span><span class="co">#&gt; Installation paths not writeable, unable to update packages</span></span>
-<span><span class="co">#&gt;   path: /usr/lib/R/library</span></span>
-<span><span class="co">#&gt;   packages:</span></span>
-<span><span class="co">#&gt;     boot, codetools, foreign, lattice, MASS, Matrix, nlme, spatial</span></span>
-<span><span class="co">#&gt; Old packages: 'bslib', 'colorspace', 'cpp11', 'curl', 'digest', 'evaluate',</span></span>
-<span><span class="co">#&gt;   'gert', 'httr2', 'IRanges', 'MsCoreUtils', 'ncdf4', 'openssl', 'pkgdown',</span></span>
-<span><span class="co">#&gt;   'ps', 'ragg', 'Rcpp', 'shiny', 'tinytex', 'usethis', 'waldo', 'xfun', 'yaml'</span></span>
 <span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"devtools"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: usethis</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/RforMassSpectrometry/Spectra" class="external-link">Spectra</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: S4Vectors</span></span>
-<span><span class="co">#&gt; Loading required package: stats4</span></span>
-<span><span class="co">#&gt; Loading required package: BiocGenerics</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'BiocGenerics'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     IQR, mad, sd, var, xtabs</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     anyDuplicated, aperm, append, as.data.frame, basename, cbind,</span></span>
-<span><span class="co">#&gt;     colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,</span></span>
-<span><span class="co">#&gt;     get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,</span></span>
-<span><span class="co">#&gt;     match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,</span></span>
-<span><span class="co">#&gt;     Position, rank, rbind, Reduce, rownames, sapply, setdiff, table,</span></span>
-<span><span class="co">#&gt;     tapply, union, unique, unsplit, which.max, which.min</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'S4Vectors'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:utils':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     findMatches</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     expand.grid, I, unname</span></span>
-<span><span class="co">#&gt; Loading required package: BiocParallel</span></span>
-<span><span class="co">#&gt; Loading required package: ProtGenerics</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'ProtGenerics'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:stats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     smooth</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bioconductor.org/packages/S4Vectors" class="external-link">S4Vectors</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/sneumann/mzR/" class="external-link">mzR</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: Rcpp</span></span>
-<span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"BiosystemEngineeringLab-IITB/dures"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="install-the-package">Install the package<a class="anchor" aria-label="anchor" href="#install-the-package"></a>
+</h2>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"BiosystemEngineeringLab-IITB/dures"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Using GitHub PAT from the git credential store.</span></span>
 <span><span class="co">#&gt; Downloading GitHub repo BiosystemEngineeringLab-IITB/dures@HEAD</span></span>
 <span><span class="co">#&gt; Skipping 2 packages not available: Spectra, S4Vectors</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="color: #00BBBB;">R CMD build</span> <span style="color: #00BBBB;">─────────────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co">#&gt; * checking for file ‘/tmp/Rtmp8Nq8BF/remotes26c71f5cc50f3d/BiosystemEngineeringLab-IITB-dures-191bbb6/DESCRIPTION’ ... OK</span></span>
+<span><span class="co">#&gt; * checking for file ‘/tmp/RtmpHBmiWq/remotes2a03d535ac76a2/BiosystemEngineeringLab-IITB-dures-b235775/DESCRIPTION’ ... OK</span></span>
 <span><span class="co">#&gt; * preparing ‘dures’:</span></span>
 <span><span class="co">#&gt; * checking DESCRIPTION meta-information ... OK</span></span>
 <span><span class="co">#&gt; * excluding invalid files</span></span>
@@ -219,14 +172,14 @@ contain a folder named <code>mzml_files/</code> and a file named
 <span><span class="co">#&gt; * checking for LF line-endings in source and make files and shell scripts</span></span>
 <span><span class="co">#&gt; * checking for empty or unneeded directories</span></span>
 <span><span class="co">#&gt; * building ‘dures_0.0.0.1.tar.gz’</span></span>
-<span><span class="co">#&gt; Installing package into '/tmp/RtmpNuNyuS/temp_libpath26a0494a540373'</span></span>
+<span><span class="co">#&gt; Installing package into '/tmp/RtmpNuNyuS/temp_libpath26a04972f878e9'</span></span>
 <span><span class="co">#&gt; (as 'lib' is unspecified)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">dures</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="first-test-example">First Test Example<a class="anchor" aria-label="anchor" href="#first-test-example"></a>
 </h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Define the path to the test_1 folder (replace with the actual path on your system)</span></span>
 <span><span class="va">folder_path</span> <span class="op">&lt;-</span> <span class="st">"~/Desktop/test_package_dures/test_1/"</span></span>
 <span><span class="co"># Check if the directory exists</span></span>
@@ -241,299 +194,10 @@ contain a folder named <code>mzml_files/</code> and a file named
 <span><span class="co">#&gt; ✓ RT tolerance file exists! Using custom tolerance</span></span>
 <span><span class="co">#&gt; ✓ Input file is in correct format</span></span>
 <span><span class="co">#&gt; Reading mzml files</span></span>
-<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |                                                                      |   1%  |                                                                              |=                                                                     |   1%  |                                                                              |=                                                                     |   2%  |                                                                              |==                                                                    |   3%  |                                                                              |===                                                                   |   4%  |                                                                              |===                                                                   |   5%  |                                                                              |====                                                                  |   6%  |                                                                              |=====                                                                 |   7%  |                                                                              |=====                                                                 |   8%  |                                                                              |======                                                                |   8%  |                                                                              |======                                                                |   9%  |                                                                              |=======                                                               |  10%  |                                                                              |========                                                              |  11%  |                                                                              |========                                                              |  12%  |                                                                              |=========                                                             |  12%  |                                                                              |=========                                                             |  13%  |                                                                              |==========                                                            |  14%  |                                                                              |==========                                                            |  15%  |                                                                              |===========                                                           |  15%  |                                                                              |===========                                                           |  16%  |                                                                              |============                                                          |  17%  |                                                                              |=============                                                         |  18%  |                                                                              |=============                                                         |  19%  |                                                                              |==============                                                        |  19%  |                                                                              |==============                                                        |  20%  |                                                                              |===============                                                       |  21%  |                                                                              |===============                                                       |  22%  |                                                                              |================                                                      |  22%  |                                                                              |================                                                      |  23%  |                                                                              |=================                                                     |  24%  |                                                                              |==================                                                    |  25%  |                                                                              |==================                                                    |  26%  |                                                                              |===================                                                   |  27%  |                                                                              |===================                                                   |  28%  |                                                                              |====================                                                  |  28%  |                                                                              |====================                                                  |  29%  |                                                                              |=====================                                                 |  30%  |                                                                              |=====================                                                 |  31%  |                                                                              |======================                                                |  31%  |                                                                              |======================                                                |  32%  |                                                                              |=======================                                               |  33%  |                                                                              |========================                                              |  34%  |                                                                              |========================                                              |  35%  |                                                                              |=========================                                             |  35%  |                                                                              |=========================                                             |  36%  |                                                                              |==========================                                            |  37%  |                                                                              |==========================                                            |  38%  |                                                                              |===========================                                           |  38%  |                                                                              |===========================                                           |  39%  |                                                                              |============================                                          |  40%  |                                                                              |=============================                                         |  41%  |                                                                              |=============================                                         |  42%  |                                                                              |==============================                                        |  42%  |                                                                              |==============================                                        |  43%  |                                                                              |===============================                                       |  44%  |                                                                              |================================                                      |  45%  |                                                                              |================================                                      |  46%  |                                                                              |=================================                                     |  47%  |                                                                              |==================================                                    |  48%  |                                                                              |==================================                                    |  49%  |                                                                              |===================================                                   |  49%  |                                                                              |===================================                                   |  50%  |                                                                              |===================================                                   |  51%  |                                                                              |====================================                                  |  51%  |                                                                              |====================================                                  |  52%  |                                                                              |=====================================                                 |  53%  |                                                                              |======================================                                |  54%  |                                                                              |======================================                                |  55%  |                                                                              |=======================================                               |  56%  |                                                                              |========================================                              |  57%  |                                                                              |========================================                              |  58%  |                                                                              |=========================================                             |  58%  |                                                                              |=========================================                             |  59%  |                                                                              |==========================================                            |  60%  |                                                                              |===========================================                           |  61%  |                                                                              |===========================================                           |  62%  |                                                                              |============================================                          |  62%  |                                                                              |============================================                          |  63%  |                                                                              |=============================================                         |  64%  |                                                                              |=============================================                         |  65%  |                                                                              |==============================================                        |  65%  |                                                                              |==============================================                        |  66%  |                                                                              |===============================================                       |  67%  |                                                                              |================================================                      |  68%  |                                                                              |================================================                      |  69%  |                                                                              |=================================================                     |  69%  |                                                                              |=================================================                     |  70%  |                                                                              |==================================================                    |  71%  |                                                                              |==================================================                    |  72%  |                                                                              |===================================================                   |  72%  |                                                                              |===================================================                   |  73%  |                                                                              |====================================================                  |  74%  |                                                                              |====================================================                  |  75%  |                                                                              |=====================================================                 |  76%  |                                                                              |======================================================                |  77%  |                                                                              |======================================================                |  78%  |                                                                              |=======================================================               |  78%  |                                                                              |=======================================================               |  79%  |                                                                              |========================================================              |  80%  |                                                                              |========================================================              |  81%  |                                                                              |=========================================================             |  81%  |                                                                              |=========================================================             |  82%  |                                                                              |==========================================================            |  83%  |                                                                              |===========================================================           |  84%  |                                                                              |===========================================================           |  85%  |                                                                              |============================================================          |  85%  |                                                                              |============================================================          |  86%  |                                                                              |=============================================================         |  87%  |                                                                              |=============================================================         |  88%  |                                                                              |==============================================================        |  88%  |                                                                              |==============================================================        |  89%  |                                                                              |===============================================================       |  90%  |                                                                              |================================================================      |  91%  |                                                                              |================================================================      |  92%  |                                                                              |=================================================================     |  92%  |                                                                              |=================================================================     |  93%  |                                                                              |==================================================================    |  94%  |                                                                              |===================================================================   |  95%  |                                                                              |===================================================================   |  96%  |                                                                              |====================================================================  |  97%  |                                                                              |===================================================================== |  98%  |                                                                              |===================================================================== |  99%  |                                                                              |======================================================================|  99%  |                                                                              |======================================================================| 100%✓ Spectra has been extracted from the mzml files[1] "Iteration 1"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 3573 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 2"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 8433 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 3"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 7591 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 4"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 7791 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 5"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 5791 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 6"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 7"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 3366 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 8"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 2686 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 9"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 10"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 2589 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 11"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 8985 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 12"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 13"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 4897 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 14"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 15"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 6044 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 16"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 5333 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 17"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 18"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 7452 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 19"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 8134 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 20"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 5539 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 21"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 4848 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 22"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 23"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 5938 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 24"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 390 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 25"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 6713 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 26"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 7836 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 27"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 8643 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 28"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 8270 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 29"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 30"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 31"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 4318 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 32"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 8992 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 33"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 34"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 35"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 36"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 7629 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 37"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 38"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 7098 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 39"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 4060 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 40"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 41"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 1069 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 42"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 2144 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 43"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 44"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 7427 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 45"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 46"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 719 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 47"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 6001 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 48"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 49"</span></span>
-<span><span class="co">#&gt; [1] "Iteration 50"</span></span>
-<span><span class="co">#&gt; [1] "No MS2 spectra could be extracted for feature 654 for the given mz and RT range"</span></span>
-<span><span class="co">#&gt; [1] "MS2 spectra couldn't be extracted from a total of33 features out of 50 features. They are as follows:"</span></span>
-<span><span class="co">#&gt; 3573,8433,7591,7791,5791,3366,2686,2589,8985,4897,6044,5333,7452,8134,5539,4848,5938,390,6713,7836,8643,8270,4318,8992,7629,7098,4060,1069,2144,7427,719,6001,654</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="figures">Figures<a class="anchor" aria-label="anchor" href="#figures"></a>
-</h2>
-<p>The figure sizes have been customised so that you can easily put two
-images side-by-side.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fl">10</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="dures-vignette_files/figure-html/unnamed-chunk-2-1.png" width="700"><img src="dures-vignette_files/figure-html/unnamed-chunk-2-2.png" width="700"></p>
-<p>You can enable figure captions by <code>fig_caption: yes</code> in
-YAML:</p>
-<pre><code><span><span class="va">output</span><span class="op">:</span></span>
-<span>  <span class="fu">rmarkdown</span><span class="fu">::</span><span class="va"><a href="https://pkgs.rstudio.com/rmarkdown/reference/html_vignette.html" class="external-link">html_vignette</a></span><span class="op">:</span></span>
-<span>    <span class="va">fig_caption</span><span class="op">:</span> <span class="va">yes</span></span></code></pre>
-<p>Then you can use the chunk option
-<code>fig.cap = "Your figure caption."</code> in
-<strong>knitr</strong>.</p>
-</div>
-<div class="section level2">
-<h2 id="more-examples">More Examples<a class="anchor" aria-label="anchor" href="#more-examples"></a>
-</h2>
-<p>You can write math expressions, e.g. <span class="math inline">\(Y =
-X\beta + \epsilon\)</span>, footnotes<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, and tables, e.g. using
-<code><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">knitr::kable()</a></code>.</p>
-<table style="width:100%;" class="table">
-<colgroup>
-<col width="25%">
-<col width="7%">
-<col width="5%">
-<col width="8%">
-<col width="5%">
-<col width="7%">
-<col width="8%">
-<col width="8%">
-<col width="4%">
-<col width="4%">
-<col width="7%">
-<col width="7%">
-</colgroup>
-<thead><tr class="header">
-<th align="left"></th>
-<th align="right">mpg</th>
-<th align="right">cyl</th>
-<th align="right">disp</th>
-<th align="right">hp</th>
-<th align="right">drat</th>
-<th align="right">wt</th>
-<th align="right">qsec</th>
-<th align="right">vs</th>
-<th align="right">am</th>
-<th align="right">gear</th>
-<th align="right">carb</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">Mazda RX4</td>
-<td align="right">21.0</td>
-<td align="right">6</td>
-<td align="right">160.0</td>
-<td align="right">110</td>
-<td align="right">3.90</td>
-<td align="right">2.620</td>
-<td align="right">16.46</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="left">Mazda RX4 Wag</td>
-<td align="right">21.0</td>
-<td align="right">6</td>
-<td align="right">160.0</td>
-<td align="right">110</td>
-<td align="right">3.90</td>
-<td align="right">2.875</td>
-<td align="right">17.02</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">4</td>
-</tr>
-<tr class="odd">
-<td align="left">Datsun 710</td>
-<td align="right">22.8</td>
-<td align="right">4</td>
-<td align="right">108.0</td>
-<td align="right">93</td>
-<td align="right">3.85</td>
-<td align="right">2.320</td>
-<td align="right">18.61</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Hornet 4 Drive</td>
-<td align="right">21.4</td>
-<td align="right">6</td>
-<td align="right">258.0</td>
-<td align="right">110</td>
-<td align="right">3.08</td>
-<td align="right">3.215</td>
-<td align="right">19.44</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Hornet Sportabout</td>
-<td align="right">18.7</td>
-<td align="right">8</td>
-<td align="right">360.0</td>
-<td align="right">175</td>
-<td align="right">3.15</td>
-<td align="right">3.440</td>
-<td align="right">17.02</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="left">Valiant</td>
-<td align="right">18.1</td>
-<td align="right">6</td>
-<td align="right">225.0</td>
-<td align="right">105</td>
-<td align="right">2.76</td>
-<td align="right">3.460</td>
-<td align="right">20.22</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Duster 360</td>
-<td align="right">14.3</td>
-<td align="right">8</td>
-<td align="right">360.0</td>
-<td align="right">245</td>
-<td align="right">3.21</td>
-<td align="right">3.570</td>
-<td align="right">15.84</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="left">Merc 240D</td>
-<td align="right">24.4</td>
-<td align="right">4</td>
-<td align="right">146.7</td>
-<td align="right">62</td>
-<td align="right">3.69</td>
-<td align="right">3.190</td>
-<td align="right">20.00</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="left">Merc 230</td>
-<td align="right">22.8</td>
-<td align="right">4</td>
-<td align="right">140.8</td>
-<td align="right">95</td>
-<td align="right">3.92</td>
-<td align="right">3.150</td>
-<td align="right">22.90</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="left">Merc 280</td>
-<td align="right">19.2</td>
-<td align="right">6</td>
-<td align="right">167.6</td>
-<td align="right">123</td>
-<td align="right">3.92</td>
-<td align="right">3.440</td>
-<td align="right">18.30</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">4</td>
-</tr>
-</tbody>
-</table>
-<p>Also a quote using <code>&gt;</code>:</p>
-<blockquote>
-<p>“He who gives up [code] safety for [code] speed deserves neither.”
-(<a href="https://twitter.com/hadleywickham/status/504368538874703872" class="external-link">via</a>)</p>
-</blockquote>
-</div>
-<div class="footnotes footnotes-end-of-document">
-<hr>
-<ol>
-<li id="fn1"><p>A footnote here.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-</ol>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |                                                                      |   1%  |                                                                              |=                                                                     |   1%  |                                                                              |=                                                                     |   2%  |                                                                              |==                                                                    |   3%  |                                                                              |===                                                                   |   4%  |                                                                              |===                                                                   |   5%  |                                                                              |====                                                                  |   6%  |                                                                              |=====                                                                 |   7%  |                                                                              |=====                                                                 |   8%  |                                                                              |======                                                                |   8%  |                                                                              |======                                                                |   9%  |                                                                              |=======                                                               |  10%  |                                                                              |========                                                              |  11%  |                                                                              |========                                                              |  12%  |                                                                              |=========                                                             |  12%  |                                                                              |=========                                                             |  13%  |                                                                              |==========                                                            |  14%  |                                                                              |==========                                                            |  15%  |                                                                              |===========                                                           |  15%  |                                                                              |===========                                                           |  16%  |                                                                              |============                                                          |  17%  |                                                                              |=============                                                         |  18%  |                                                                              |=============                                                         |  19%  |                                                                              |==============                                                        |  19%  |                                                                              |==============                                                        |  20%  |                                                                              |===============                                                       |  21%  |                                                                              |===============                                                       |  22%  |                                                                              |================                                                      |  22%  |                                                                              |================                                                      |  23%  |                                                                              |=================                                                     |  24%  |                                                                              |==================                                                    |  25%  |                                                                              |==================                                                    |  26%  |                                                                              |===================                                                   |  27%  |                                                                              |===================                                                   |  28%  |                                                                              |====================                                                  |  28%  |                                                                              |====================                                                  |  29%  |                                                                              |=====================                                                 |  30%  |                                                                              |=====================                                                 |  31%  |                                                                              |======================                                                |  31%  |                                                                              |======================                                                |  32%  |                                                                              |=======================                                               |  33%  |                                                                              |========================                                              |  34%  |                                                                              |========================                                              |  35%  |                                                                              |=========================                                             |  35%  |                                                                              |=========================                                             |  36%  |                                                                              |==========================                                            |  37%  |                                                                              |==========================                                            |  38%  |                                                                              |===========================                                           |  38%  |                                                                              |===========================                                           |  39%  |                                                                              |============================                                          |  40%  |                                                                              |=============================                                         |  41%  |                                                                              |=============================                                         |  42%  |                                                                              |==============================                                        |  42%  |                                                                              |==============================                                        |  43%  |                                                                              |===============================                                       |  44%  |                                                                              |================================                                      |  45%  |                                                                              |================================                                      |  46%  |                                                                              |=================================                                     |  47%  |                                                                              |==================================                                    |  48%  |                                                                              |==================================                                    |  49%  |                                                                              |===================================                                   |  49%  |                                                                              |===================================                                   |  50%  |                                                                              |===================================                                   |  51%  |                                                                              |====================================                                  |  51%  |                                                                              |====================================                                  |  52%  |                                                                              |=====================================                                 |  53%  |                                                                              |======================================                                |  54%  |                                                                              |======================================                                |  55%  |                                                                              |=======================================                               |  56%  |                                                                              |========================================                              |  57%  |                                                                              |========================================                              |  58%  |                                                                              |=========================================                             |  58%  |                                                                              |=========================================                             |  59%  |                                                                              |==========================================                            |  60%  |                                                                              |===========================================                           |  61%  |                                                                              |===========================================                           |  62%  |                                                                              |============================================                          |  62%  |                                                                              |============================================                          |  63%  |                                                                              |=============================================                         |  64%  |                                                                              |=============================================                         |  65%  |                                                                              |==============================================                        |  65%  |                                                                              |==============================================                        |  66%  |                                                                              |===============================================                       |  67%  |                                                                              |================================================                      |  68%  |                                                                              |================================================                      |  69%  |                                                                              |=================================================                     |  69%  |                                                                              |=================================================                     |  70%  |                                                                              |==================================================                    |  71%  |                                                                              |==================================================                    |  72%  |                                                                              |===================================================                   |  72%  |                                                                              |===================================================                   |  73%  |                                                                              |====================================================                  |  74%  |                                                                              |====================================================                  |  75%  |                                                                              |=====================================================                 |  76%  |                                                                              |======================================================                |  77%  |                                                                              |======================================================                |  78%  |                                                                              |=======================================================               |  78%  |                                                                              |=======================================================               |  79%  |                                                                              |========================================================              |  80%  |                                                                              |========================================================              |  81%  |                                                                              |=========================================================             |  81%  |                                                                              |=========================================================             |  82%  |                                                                              |==========================================================            |  83%  |                                                                              |===========================================================           |  84%  |                                                                              |===========================================================           |  85%  |                                                                              |============================================================          |  85%  |                                                                              |============================================================          |  86%  |                                                                              |=============================================================         |  87%  |                                                                              |=============================================================         |  88%  |                                                                              |==============================================================        |  88%  |                                                                              |==============================================================        |  89%  |                                                                              |===============================================================       |  90%  |                                                                              |================================================================      |  91%  |                                                                              |================================================================      |  92%  |                                                                              |=================================================================     |  92%  |                                                                              |=================================================================     |  93%  |                                                                              |==================================================================    |  94%  |                                                                              |===================================================================   |  95%  |                                                                              |===================================================================   |  96%  |                                                                              |====================================================================  |  97%  |                                                                              |===================================================================== |  98%  |                                                                              |===================================================================== |  99%  |                                                                              |======================================================================|  99%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="co">#&gt;  ✓ Spectra has been extracted from the mzml files</span></span>
+<span><span class="co">#&gt; Concatenating and checking if MS2 data is available for a given feature</span></span>
+<span><span class="co">#&gt; MS2 spectra couldn't be extracted from a total of 33 features out of 50 features. They are as follows:3573,8433,7591,7791,5791,3366,2686,2589,8985,4897,6044,5333,7452,8134,5539,4848,5938,390,6713,7836,8643,8270,4318,8992,7629,7098,4060,1069,2144,7427,719,6001,654</span></span></code></pre></div>
 </div>
   </div>
 
