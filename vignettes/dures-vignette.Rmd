@@ -57,10 +57,12 @@ if (!requireNamespace("devtools", quietly = TRUE)) {
 ```{r initial-setup-contd, eval=TRUE}
 devtools::install_github("BiosystemEngineeringLab-IITB/dures")
 library(dures)
+library(Spectra)
+library(mzR)
 ```
 
 ## First Test Example
-
+This test dataset can be downloaded from the data deposited at [Zenodo](https://zenodo.org/records/13778168) (folder name: test_1/). The first step of the workflow focuses on reading mzML files, extracting MS/MS spectra within the specified mz and RT tolerance and concatenating all the replicate spectra for a given feature. 
 ```{r, execute first step of the workflow}
 # Define the path to the test_1 folder (replace with the actual path on your system)
 folder_path <- "~/Desktop/test_package_dures/test_1/"
@@ -70,4 +72,21 @@ if (!dir.exists(folder_path)) {
 }
 l1 = preprocess(folder_path = folder_path, tol_mz = 5, tol_rt = 0.1)
 ```
+l1 is a list containing two elements: `stats_file_ms2_only` containing a dataframe with the MS/MS feature information (ID, mz, RT, mz_up, mz_down and RT_tolerances for every samkples) and `spectra_ms2_only` containing an Spectra object with the replicate spectra concatenated for every feature. Let us look at the concatenated spectra for the first feature.
 
+```{r first element}
+names(l1$spectra_ms2_only)[1] #name of the first feature
+l1$spectra_ms2_only[[1]]
+```
+From the output we can see that the first MS2 feature `1982` has 83 MS/MS spectra from different samples listed in `file(s)` section of the output. We can quickly take a look at the peak information of the first two out of the 83 raw MS/MS spectra using the `peaksData()` command. Please make sure the Spectra package in loaded in your workspace.
+
+```{r peaksdata}
+peaksData(l1$spectra_ms2_only[[1]]$aggregate)[[1]] #first replicate spectrum
+peaksData(l1$spectra_ms2_only[[2]]$aggregate)[[1]] #second replicate spectrum
+```
+It is also worth noting that we keep track of the individual spectrum in terms of the sample it is derived from. This is demonstrated as follows:
+
+```{r spectrm identity}
+l1$spectra_ms2_only[[1]]$aggregate$spectrumId[1:10] #will be a vector of length 83
+```
+For demonstration purposes, we will consider the first spectrum of the list named `20092020_CovidMild_P291_P_2.mzML_scan_1504`. This spectrum is derived from the sample `20092020_CovidMild_P291_P_2.mzML`. As we have seen in the previous code block, this spectrum has 19 fragments. Similarly, the second spectrum titled `20092020_CovidMild_P291_P_2.mzML_scan_1541` has 46 fragments. We will see in the end how many fragments remain in these two spectra after we apply fixed frequency cutoff to demonstrate the effect of denoising. 
