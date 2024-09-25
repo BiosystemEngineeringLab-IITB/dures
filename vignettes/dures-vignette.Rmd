@@ -1,6 +1,6 @@
 ---
 title: "Demonstration of the package dures"
-author: "Shayantan Banerjee"
+author: "Shayantan Banerje\e"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
