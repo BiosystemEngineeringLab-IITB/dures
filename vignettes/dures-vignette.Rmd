@@ -72,7 +72,7 @@ if (!dir.exists(folder_path)) {
 }
 l1 = preprocess(folder_path = folder_path, tol_mz = 5, tol_rt = 0.1)
 ```
-l1 is a list containing two elements: `stats_file_ms2_only` containing a dataframe with the MS/MS feature information (ID, mz, RT, mz_up, mz_down and RT_tolerances for every samkples) and `spectra_ms2_only` containing an Spectra object with the replicate spectra concatenated for every feature. Let us look at the concatenated spectra for the first feature.
+`l1` is a list containing two elements: `stats_file_ms2_only` containing a dataframe with the MS/MS feature information (`ID, mz, RT, mz_up, mz_down and RT_tolerances` for every samples) and `spectra_ms2_only` containing an Spectra object with the replicate spectra concatenated for every feature. Let us look at the concatenated spectra for the first feature.
 
 ```{r first element}
 names(l1$spectra_ms2_only)[1] #name of the first feature
@@ -84,9 +84,16 @@ From the output we can see that the first MS2 feature `1982` has 83 MS/MS spectr
 peaksData(l1$spectra_ms2_only[[1]]$aggregate)[[1]] #first replicate spectrum
 peaksData(l1$spectra_ms2_only[[2]]$aggregate)[[1]] #second replicate spectrum
 ```
-It is also worth noting that we keep track of the individual spectrum in terms of the sample it is derived from. This is demonstrated as follows:
+It is also worth noting that we keep track of the individual spectrum in terms of the sample it is derived from. This is demonstrated as follows through the identities of the first 10 replicate spectra:
 
-```{r spectrm identity}
+```{r spectrum identity}
 l1$spectra_ms2_only[[1]]$aggregate$spectrumId[1:10] #will be a vector of length 83
 ```
-For demonstration purposes, we will consider the first spectrum of the list named `20092020_CovidMild_P291_P_2.mzML_scan_1504`. This spectrum is derived from the sample `20092020_CovidMild_P291_P_2.mzML`. As we have seen in the previous code block, this spectrum has 19 fragments. Similarly, the second spectrum titled `20092020_CovidMild_P291_P_2.mzML_scan_1541` has 46 fragments. We will see in the end how many fragments remain in these two spectra after we apply fixed frequency cutoff to demonstrate the effect of denoising. 
+For demonstration purposes, we will consider the first spectrum of the list named `20092020_CovidMild_P291_P_2.mzML_scan_1504`. This spectrum is derived from the sample `20092020_CovidMild_P291_P_2.mzML`. As we have seen in the previous code block, this spectrum has 19 fragments. Similarly, the second spectrum titled `20092020_CovidMild_P291_P_2.mzML_scan_1541` has 46 fragments. We will see in the end how many fragments remain in these two spectra after we apply fixed frequency cutoff to demonstrate the effect of denoising.  
+
+In the second step, we will use `l1` as input and extract the top x% TIC spectra and groups fragments within a specified mass tolerance. The user can change the top x% TIC value and the mass tolerance (default is 0.8 or 80% and 0.05 Da)
+
+```{r second step}
+l2 = extract_raw_spectra(folder_path = folder_path, l1, 0.05, 0.8)
+```
+

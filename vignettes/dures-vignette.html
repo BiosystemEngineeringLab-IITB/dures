@@ -12,7 +12,7 @@
 
 <meta name="author" content="Shayantan Banerje" />
 
-<meta name="date" content="2024-09-25" />
+<meta name="date" content="2024-09-26" />
 
 <title>Demonstration of the package dures</title>
 
@@ -340,7 +340,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Demonstration of the package dures</h1>
 <h4 class="author">Shayantan Banerje</h4>
-<h4 class="date">2024-09-25</h4>
+<h4 class="date">2024-09-26</h4>
 
 
 
@@ -413,7 +413,7 @@ contain a folder named <code>mzml_files/</code> and a file named
 <h2>Install the package</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;BiosystemEngineeringLab-IITB/dures&quot;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co">#&gt; Using GitHub PAT from the git credential store.</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co">#&gt; Skipping install of &#39;dures&#39; from a github remote, the SHA1 (d180c799) has not changed since last install.</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co">#&gt; Skipping install of &#39;dures&#39; from a github remote, the SHA1 (311248d5) has not changed since last install.</span></span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co">#&gt;   Use `force = TRUE` to force installation</span></span>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">library</span>(dures)</span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fu">library</span>(Spectra)</span>
@@ -475,12 +475,13 @@ concatenating all the replicate spectra for a given feature.</p>
 <span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co">#&gt;  ✓ Spectra has been extracted from the mzml files</span></span>
 <span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="co">#&gt; Concatenating and checking if MS2 data is available for a given feature</span></span>
 <span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="co">#&gt; MS2 spectra couldn&#39;t be extracted from a total of 33 features out of 50 features. They are as follows:3573,8433,7591,7791,5791,3366,2686,2589,8985,4897,6044,5333,7452,8134,5539,4848,5938,390,6713,7836,8643,8270,4318,8992,7629,7098,4060,1069,2144,7427,719,6001,654</span></span></code></pre></div>
-<p>l1 is a list containing two elements:
+<p><code>l1</code> is a list containing two elements:
 <code>stats_file_ms2_only</code> containing a dataframe with the MS/MS
-feature information (ID, mz, RT, mz_up, mz_down and RT_tolerances for
-every samkples) and <code>spectra_ms2_only</code> containing an Spectra
-object with the replicate spectra concatenated for every feature. Let us
-look at the concatenated spectra for the first feature.</p>
+feature information
+(<code>ID, mz, RT, mz_up, mz_down and RT_tolerances</code> for every
+samples) and <code>spectra_ms2_only</code> containing an Spectra object
+with the replicate spectra concatenated for every feature. Let us look
+at the concatenated spectra for the first feature.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">names</span>(l1<span class="sc">$</span>spectra_ms2_only)[<span class="dv">1</span>] <span class="co">#name of the first feature</span></span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;1982&quot;</span></span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>l1<span class="sc">$</span>spectra_ms2_only[[<span class="dv">1</span>]]</span>
@@ -507,9 +508,9 @@ look at the concatenated spectra for the first feature.</p>
 <span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="co">#&gt; 20092020_CovidMild_P294_P_2.mzML</span></span>
 <span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a><span class="co">#&gt;  ... 21 more files</span></span>
 <span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="co">#&gt; Processing:</span></span>
-<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a><span class="co">#&gt;  Filter: select MS level(s) 2 [Wed Sep 25 17:46:37 2024]</span></span>
-<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="co">#&gt;  Filter: select retention time [540..552.6] on MS level(s) 2 [Wed Sep 25 17:47:15 2024]</span></span>
-<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [304.151146511561, 304.154188038233] [Wed Sep 25 17:47:15 2024]</span></span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a><span class="co">#&gt;  Filter: select MS level(s) 2 [Thu Sep 26 14:03:43 2024]</span></span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="co">#&gt;  Filter: select retention time [540..552.6] on MS level(s) 2 [Thu Sep 26 14:04:23 2024]</span></span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [304.151146511561, 304.154188038233] [Thu Sep 26 14:04:23 2024]</span></span>
 <span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="co">#&gt;  ...59 more processings. Use &#39;processingLog&#39; to list all.</span></span></code></pre></div>
 <p>From the output we can see that the first MS2 feature
 <code>1982</code> has 83 MS/MS spectra from different samples listed in
@@ -588,7 +589,7 @@ package in loaded in your workspace.</p>
 <span id="cb5-69"><a href="#cb5-69" tabindex="-1"></a><span class="co">#&gt; [46,] 373.07739   3257.491</span></span></code></pre></div>
 <p>It is also worth noting that we keep track of the individual spectrum
 in terms of the sample it is derived from. This is demonstrated as
-follows:</p>
+follows through the identities of the first 10 replicate spectra:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>l1<span class="sc">$</span>spectra_ms2_only[[<span class="dv">1</span>]]<span class="sc">$</span>aggregate<span class="sc">$</span>spectrumId[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>] <span class="co">#will be a vector of length 83</span></span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;20092020_CovidMild_P291_P_2.mzML_scan_1504&quot;  </span></span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co">#&gt;  [2] &quot;20092020_CovidMild_P291_P_2.mzML_scan_1541&quot;  </span></span>
@@ -610,6 +611,29 @@ second spectrum titled
 fragments. We will see in the end how many fragments remain in these two
 spectra after we apply fixed frequency cutoff to demonstrate the effect
 of denoising.</p>
+<p>In the second step, we will use <code>l1</code> as input and extract
+the top x% TIC spectra and groups fragments within a specified mass
+tolerance. The user can change the top x% TIC value and the mass
+tolerance (default is 0.8 or 80% and 0.05 Da)</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>l2 <span class="ot">=</span> <span class="fu">extract_raw_spectra</span>(<span class="at">folder_path =</span> folder_path, l1, <span class="fl">0.05</span>, <span class="fl">0.8</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |                                                                      |   0%Processing: 1982 </span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |====                                                                  |   6%Processing: 2395 </span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |========                                                              |  12%Processing: 872 </span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |============                                                          |  18%Processing: 2040 </span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |================                                                      |  24%Processing: 2672 </span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=====================                                                 |  29%Processing: 1926 </span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=========================                                             |  35%Processing: 5664 </span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=============================                                         |  41%Processing: 7942 </span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=================================                                     |  47%Processing: 1549 </span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=====================================                                 |  53%Processing: 2084 </span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=========================================                             |  59%Processing: 1218 </span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=============================================                         |  65%Processing: 1091 </span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |=================================================                     |  71%Processing: 2539 </span></span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |======================================================                |  76%Processing: 7650 </span></span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==========================================================            |  82%Processing: 6371 </span></span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==============================================================        |  88%Processing: 1233 </span></span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |==================================================================    |  94%Processing: 3886 </span></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |======================================================================| 100%</span></span></code></pre></div>
 </div>
 
 
