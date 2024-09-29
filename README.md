@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This package provides a set of easy-to-implement functions to denoise tandem mass spectrometry data. It requires a set of mzML files and a txt file containing feature information (from peak picking), such as the mz and RT as input, and outputs a set of mzML files with the same number of features but containing denoised spectra. 
+This package provides easy-to-implement functions to denoise tandem mass spectrometry data. It requires a set of mzML files and a txt file containing feature information (from standard untargeted metabolomics software), such as the precursor mz and RT as input. It outputs a set of mzML files with the same number of samples but containing denoised MS/MS spectra. 
 
 ## Installation
 
