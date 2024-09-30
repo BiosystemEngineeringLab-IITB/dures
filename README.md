@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This package provides a set of easy-to-implement functions to denoise tandem mass spectrometry data. It requires a set of mzML files and a txt file containing feature information (from peak picking), such as the mz and RT as input, and outputs a set of mzML files with the same number of features but containing denoised spectra. 
+This package provides easy-to-implement functions to denoise tandem mass spectrometry data. It requires a set of mzML files and a txt file containing feature information (from standard untargeted metabolomics software), such as the precursor mz and RT as input. It outputs a set of mzML files with the same number of samples but containing denoised MS/MS spectra. 
 
 ## Installation
 
@@ -48,6 +48,4 @@ l5 = generate_denoised_spectra(l4, folder_path, ion_mode = "pos")
 ![Workflow Diagram](https://raw.githubusercontent.com/banerjeeshayantan/test_read_the_docs_tut/main/dures_workflow.png)
 
 ## Citation
-DuReS: An R package for denoising experimental tandem mass spectrometry-based metabolomics data
-Shayantan Banerjee, Prajval Nakrani, Aviral Singh, Pramod Wangikar
-bioRxiv 2024.09.16.613198; doi: https://doi.org/10.1101/2024.09.16.613198
+Banerjee, Shayantan, Prajval Nakrani, Aviral Singh, and Pramod Wangikar. "DuReS: An R package for denoising experimental tandem mass spectrometry-based metabolomics data." [bioRxiv](https://www.biorxiv.org/content/10.1101/2024.09.16.613198v1) (2024): 2024-09.
