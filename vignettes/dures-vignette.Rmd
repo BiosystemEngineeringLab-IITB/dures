@@ -1,6 +1,6 @@
 ---
 title: "Demonstration of the package dures"
-author: "Shayantan Banerje\e"
+author: "Shayantan Banerjee"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -102,6 +102,15 @@ In the second step, we will use `l1` as input from the previous step and extract
 ```{r second step}
 l2 = extract_raw_spectra(folder_path = folder_path, l1, 0.05, 0.8)
 ```
+The following code checks to ensure that the object `sps_top80_tic_2` is available in the local environment. This is not required while running the package
+```{r check_and_assign, echo=TRUE, error=TRUE}
+# Check if 'sps_top80_tic_2' exists before assigning
+if (!exists("sps_top80_tic_2")) {
+  stop("Object 'sps_top80_tic_2' not found in the environment.")
+} else {
+  assign("sps_top80_tic_2", sps_top80_tic_2, envir = .dures_env)
+}
+```
 For the same number of MS/MS features present in `l1`, the output from the second step `l2` contain three components - the top x% TIC spectra titled `sps_top_tic_2` (in Spectra format), a dataframe `df` containing the number of spectra before and after applying the top x% TIC cutoff and a vector containing features for which no spectra could be extracted. Let us look at the first and third rows of `df` and the number of spectra for the first and third feature after applying the TIC cutoff. The feature IDs are `1982` and `872` respectively. 
 
 ```{r intra}
@@ -109,15 +118,32 @@ l2$df[c(1,3),]
 print(l2$sps_top_tic_2[[1]]) # From 83 before to 66 spectra after after top x% TIC
 print(l2$sps_top_tic_2[[3]]) # From 43 before to 34 spectra remain after top x% TIC
 ```
-We will also take a look at the peak value for the first two spectra belonging to the feature ID `1982`. Due the intra-spectra grouping, we can clearly see a reduction in the number of peaks. But before that, we need to check the identity of the spectra to make sure we are comparing the same spectra before and after step 2 of the analysis.
+We will also take a look at the size for the first and the third spectra belonging to the features ID `1982` and `872` respectively. We performed intra-spectrum grouping, meaning, fragments within a default tolerance of 0.05 Da of one another were merged (mean of m/z and sum of intensities). The resulting spectra are stored in the folder `MS2_scans_before_denoising`. Due the intra-spectra grouping, we can clearly see a reduction in the number of peaks. But before that, we need to check the identity of the spectra to make sure we are comparing the same spectra before and after step 2 of the analysis.
 
 ```{r compare_spectra}
 print(l1$spectra_ms2_only[[1]]$aggregate$spectrumId[1:10]) #spectra identities before step 2
 print(l2$sps_top_tic_2[[1]]$spectrumId[1:10]) #spectra identitied after x% TIC cutoff implementation in step 2
 ```
-It is clear from this output that some spectra has been eliminated owing to low TIC. Example, `20092020_CovidMild_P291_P_2.mzML_scan_1504` didn't exist after application of top 80% TIC cutoff. 
+It is clear from this output that some spectra has been eliminated owing to low TIC. Example, `20092020_CovidMild_P291_P_2.mzML_scan_1504` didn't exist after application of top 80% TIC cutoff.  
+For the first feature, `1982`, we will consider the spectrum titled `20092020_CovidMild_P294_P_2.mzML_scan_1587` - third on the list above. Let's look at the number of fragments before step 2.
 
-```{r peaksdata_after_intra}
-peaksData(l2$sps_top_tic_2[[1]])[[1]] #first replicate spectrum
-peaksData(l2$sps_top_tic_2[[2]])[[1]] #second replicate spectrum
+```{r peaksdata_before_intra}
+peaksData(l2$sps_top_tic_2[[1]][3])[[1]]
+```
+There are $23$ fragments before intra-spectrum grouping. Now, if I look at the same spectrum from the folder `MS2_scans_before_denoising` (subfolder name: $1982$ and text file name: `20092020_CovidMild_P294_P_2.mzML_scan_1587.txt`), there are $22$ fragments. The fragments with mz $304.11557$ and $304.15106$ were combined into one fragment after intra-spectrum grouping.  
+
+```{r after_grouping}
+spectrum_size_after_grouping = read.delim("~/Desktop/test_package_dures/test_1/MS2_scans_before_denoising/1982/20092020_CovidMild_P294_P_2.mzML_scan_1587.txt")
+print(dim(spectrum_size_after_grouping)[1])
+```
+
+Similar observations were made for the metabolite ID `872` using the spectrum `13092020_CovidMild_P282_P_2.mzML_scan_1120`. We will look at the original number of fragments before grouping and then look at the corresponding entry in the folder `MS2_scans_before_denoising`. Before and after grouping, the number of fragments reduced from $98$ to $81$, respectively. 
+
+```{r another example}
+print(head(peaksData(l2$sps_top_tic_2[[3]][1])[[1]]))
+print(dim(peaksData(l2$sps_top_tic_2[[3]][1])[[1]])[1])
+```
+```{r after_grouping_1}
+spectrum_size_after_grouping = read.delim("~/Desktop/test_package_dures/test_1/MS2_scans_before_denoising/872/13092020_CovidMild_P282_P_2.mzML_scan_1120.txt")
+print(dim(spectrum_size_after_grouping)[1])
 ```
