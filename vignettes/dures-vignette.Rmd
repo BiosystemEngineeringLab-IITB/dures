@@ -301,4 +301,87 @@ In the **third step**, a **consensus spectrum** is generated using the **top 80%
 l3 = call_aggregate(l2$sps_top_tic_2, 0.05, folder_path)
 ```
 
+### Examining the Output of `l3`
 
+The output of `l3` contains the following components:
+
+1. **Aggregate Spectra**:  
+   Represented as a **Spectra object**.
+
+2. **Dataframe of Aggregate Spectra**:  
+   This dataframe includes:
+   - **Mean m/z**: The average m/z value of the spectra.
+   - **Mean Intensity**: The average intensity of the spectra.
+   - **Frequency**: The frequency of occurrence for each fragment.
+   - **Number of Fragments**: Before and after **inter- and intra-spectra grouping**.
+
+### Example: Feature `1982`
+
+Let’s consider the first feature with **feature ID `1982`** as an example to examine the output more closely.
+
+```{r inspect-l3}
+print(head(l3[[1]]$Df))
+print(dim(l3[[1]]$Df)[1])
+l3[[1]]$Mean #will return one consensus spectrum
+
+```
+The consensus spectrum built using top 80% TIC spectra for feature `1982` has 498 fragments. Every fragment contain the recurrence frequencies. Let's see some of the top recurrent fragments.
+
+```{r recur}
+l = l3[[1]]$Df
+print(head(l[order(l$Frequency, decreasing = TRUE),],10))
+```
+
+### Step 4: Labelling individual spectra for every feature
+
+### Step 4: Labeling Fragments of Top TIC Spectra
+
+Using the **recurrence frequencies** calculated in **Step 3**, we will now label the fragments of every **top TIC spectra** for a given feature.
+
+The output from this step is:
+
+- A **list** containing all spectra for a given feature.
+- The corresponding **fragment frequencies** for each labeled fragment.
+
+This labeling process provides insights into how often each fragment appears across all spectra, allowing for better analysis of fragment patterns within the **top TIC** data.
+
+
+```{r label_spec}
+l4 = label_individual_spectrum(l3, folder_path, 0.05)
+```
+
+### Inspecting Feature `1982`
+
+We will now inspect the **first feature** (`1982`) and check the corresponding **spectra** and their **fragment frequencies**.
+
+- The **number of spectra per feature** will be the same as in **Step 2**, where we retained only the **top x% TIC spectra**.
+
+- Let's also look at the specific feature named `20092020_CovidMild_P294_P_2.mzML_scan_1587`, as in **Step 2**.
+
+
+```{r check step4}
+print(length(l4[[1]]))
+print(names(l4[[1]][3]))
+print(l4[[1]][3])
+```
+
+### Overview of Fragment Recurrence
+
+We can observe **22 fragments** from the spectrum and their corresponding **frequency of recurrence**.
+
+### Next Steps
+
+In the next step, we will:
+
+1. **Apply a Fixed Frequency Cutoff**:  
+   - Denoise the data by retaining only those fragments that meet the cutoff criteria.
+
+2. **Aggregate All MS/MS Spectra**:  
+   - Combine all the spectra from the different samples.
+
+3. **Export the Results**:  
+   - Print the aggregated MS/MS spectra to a file for further analysis.
+   
+```{r last_step}
+l5 = generate_denoised_spectra(l4, folder_path, ion_mode = "pos") 
+```
