@@ -10,7 +10,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta name="author" content="Shayantan Banerje" />
+<meta name="author" content="Shayantan Banerjee" />
 
 <meta name="date" content="2024-10-01" />
 
@@ -339,7 +339,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 <h1 class="title toc-ignore">Demonstration of the package dures</h1>
-<h4 class="author">Shayantan Banerje</h4>
+<h4 class="author">Shayantan Banerjee</h4>
 <h4 class="date">2024-10-01</h4>
 
 
@@ -413,7 +413,7 @@ contain a folder named <code>mzml_files/</code> and a file named
 <h2>Install the package</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;BiosystemEngineeringLab-IITB/dures&quot;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co">#&gt; Using GitHub PAT from the git credential store.</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co">#&gt; Skipping install of &#39;dures&#39; from a github remote, the SHA1 (3a89d7b6) has not changed since last install.</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co">#&gt; Skipping install of &#39;dures&#39; from a github remote, the SHA1 (262f2a46) has not changed since last install.</span></span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co">#&gt;   Use `force = TRUE` to force installation</span></span>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">library</span>(dures)</span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fu">library</span>(Spectra)</span>
@@ -453,12 +453,26 @@ contain a folder named <code>mzml_files/</code> and a file named
 </div>
 <div id="first-test-example" class="section level2">
 <h2>First Test Example</h2>
-<p>This test dataset can be downloaded from the data deposited at <a href="https://zenodo.org/records/13778168">Zenodo</a> (folder name:
-test_1/). The first step of the workflow focuses on reading mzML files,
-extracting MS/MS spectra within the specified mz and RT tolerance and
-concatenating all the replicate spectra for a given feature. The
-features for which no MS/MS spectra could be extracted given the RT and
-mz tolerance are removed from the list.</p>
+</div>
+<div id="test-dataset" class="section level2">
+<h2>Test Dataset</h2>
+<p>The test dataset can be downloaded from the data deposited at <a href="https://zenodo.org/records/13778168">Zenodo</a> (folder name:
+<code>test_1/</code>).</p>
+<div id="workflow-overview" class="section level3">
+<h3>Workflow Overview</h3>
+<ol style="list-style-type: decimal">
+<li><p><strong>Reading mzML Files</strong><br />
+The first step of the workflow involves reading mzML files and
+extracting MS/MS spectra within the specified <em>m/z</em> and
+<em>RT</em> tolerance.</p></li>
+<li><p><strong>Extracting and Concatenating Spectra</strong><br />
+The extracted spectra are then concatenated for all replicate spectra
+belonging to a given feature.</p></li>
+<li><p><strong>Filtering Features</strong><br />
+Features that do not have any MS/MS spectra extracted, based on the
+specified <em>RT</em> and <em>m/z</em> tolerance, are removed from the
+list.</p></li>
+</ol>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Define the path to the test_1 folder (replace with the actual path on your system)</span></span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>folder_path <span class="ot">&lt;-</span> <span class="st">&quot;~/Desktop/test_package_dures/test_1/&quot;</span></span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co"># Check if the directory exists</span></span>
@@ -477,13 +491,25 @@ mz tolerance are removed from the list.</p>
 <span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co">#&gt;  ✓ Spectra has been extracted from the mzml files</span></span>
 <span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="co">#&gt; Concatenating and checking if MS2 data is available for a given feature</span></span>
 <span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="co">#&gt; MS2 spectra couldn&#39;t be extracted from a total of 33 features out of 50 features. They are as follows:3573,8433,7591,7791,5791,3366,2686,2589,8985,4897,6044,5333,7452,8134,5539,4848,5938,390,6713,7836,8643,8270,4318,8992,7629,7098,4060,1069,2144,7427,719,6001,654</span></span></code></pre></div>
-<p><code>l1</code> is a list containing two elements:
-<code>stats_file_ms2_only</code> containing a dataframe with the MS/MS
-feature information -
-<code>ID, mz, RT, mz_up, mz_down and RT_tolerance</code> (for every
-samples) and <code>spectra_ms2_only</code> containing an Spectra object
-with the replicate spectra concatenated for every feature. Let us look
-at the concatenated spectra for the first feature.</p>
+<p><code>l1</code> is a list containing two elements:</p>
+<ol style="list-style-type: decimal">
+<li><strong><code>stats_file_ms2_only</code></strong>: This element
+contains a dataframe with MS/MS feature information, including:
+<ul>
+<li><strong>ID</strong>: Feature identifier</li>
+<li><strong>mz</strong>: Mass-to-charge ratio</li>
+<li><strong>RT</strong>: Retention time</li>
+<li><strong>mz_up</strong>: Upper mass-to-charge limit</li>
+<li><strong>mz_down</strong>: Lower mass-to-charge limit</li>
+<li><strong>RT_tolerance</strong>: Retention time tolerance for each
+sample</li>
+</ul></li>
+<li><strong><code>spectra_ms2_only</code></strong>: This element
+contains a <code>Spectra</code> object with the replicate spectra
+concatenated for each feature.</li>
+</ol>
+<p>Now, let us examine the concatenated spectra for the <strong>first
+feature</strong>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;name of first feature</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co">#&gt; name of first feature</span></span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">names</span>(l1<span class="sc">$</span>spectra_ms2_only)[<span class="dv">1</span>] <span class="co">#name of the first feature</span></span>
@@ -512,10 +538,10 @@ at the concatenated spectra for the first feature.</p>
 <span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="co">#&gt; 20092020_CovidMild_P294_P_2.mzML</span></span>
 <span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a><span class="co">#&gt;  ... 21 more files</span></span>
 <span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="co">#&gt; Processing:</span></span>
-<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="co">#&gt;  Filter: select MS level(s) 2 [Tue Oct  1 15:52:22 2024]</span></span>
-<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="co">#&gt;  Filter: select retention time [540..552.6] on MS level(s) 2 [Tue Oct  1 15:56:10 2024]</span></span>
-<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [304.151146511561, 304.154188038233] [Tue Oct  1 15:56:10 2024]</span></span>
-<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a><span class="co">#&gt;  ...84 more processings. Use &#39;processingLog&#39; to list all.</span></span></code></pre></div>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="co">#&gt;  Filter: select MS level(s) 2 [Tue Oct  1 16:17:54 2024]</span></span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="co">#&gt;  Filter: select retention time [540..552.6] on MS level(s) 2 [Tue Oct  1 16:25:01 2024]</span></span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [304.151146511561, 304.154188038233] [Tue Oct  1 16:25:01 2024]</span></span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a><span class="co">#&gt;  ...85 more processings. Use &#39;processingLog&#39; to list all.</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;name of third feature</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co">#&gt; name of third feature</span></span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">names</span>(l1<span class="sc">$</span>spectra_ms2_only)[<span class="dv">3</span>] <span class="co">#name of the first feature</span></span>
@@ -544,16 +570,18 @@ at the concatenated spectra for the first feature.</p>
 <span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a><span class="co">#&gt; 15092020_CovidNeg_P264_P_2.mzML</span></span>
 <span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a><span class="co">#&gt;  ... 13 more files</span></span>
 <span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a><span class="co">#&gt; Processing:</span></span>
-<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a><span class="co">#&gt;  Filter: select MS level(s) 2 [Tue Oct  1 15:52:29 2024]</span></span>
-<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a><span class="co">#&gt;  Filter: select retention time [342.6..458.4] on MS level(s) 2 [Tue Oct  1 15:56:11 2024]</span></span>
-<span id="cb5-31"><a href="#cb5-31" tabindex="-1"></a><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [340.166594782258, 340.169996465214] [Tue Oct  1 15:56:11 2024]</span></span>
-<span id="cb5-32"><a href="#cb5-32" tabindex="-1"></a><span class="co">#&gt;  ...85 more processings. Use &#39;processingLog&#39; to list all.</span></span></code></pre></div>
-<p>From the output we can see that the first two MS2 features
-<code>1982</code> and <code>872</code> has 83 and 43 MS/MS spectra from
-different samples listed in <code>file(s)</code> section of the output.
-We can quickly take a look at the peak information of the first two out
-of the 83 raw MS/MS spectra using the <code>peaksData()</code> command.
-Please make sure the Spectra package in loaded in your workspace.</p>
+<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a><span class="co">#&gt;  Filter: select MS level(s) 2 [Tue Oct  1 16:18:45 2024]</span></span>
+<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a><span class="co">#&gt;  Filter: select retention time [342.6..458.4] on MS level(s) 2 [Tue Oct  1 16:25:03 2024]</span></span>
+<span id="cb5-31"><a href="#cb5-31" tabindex="-1"></a><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [340.166594782258, 340.169996465214] [Tue Oct  1 16:25:03 2024]</span></span>
+<span id="cb5-32"><a href="#cb5-32" tabindex="-1"></a><span class="co">#&gt;  ...81 more processings. Use &#39;processingLog&#39; to list all.</span></span></code></pre></div>
+<p>From the output, we can see that the first two MS2 features
+(<code>1982</code> and <code>872</code>) have <strong>83</strong> and
+<strong>43</strong> MS/MS spectra, respectively, from different samples
+listed in the <code>file(s)</code> section of the output.</p>
+<p>We can quickly take a look at the peak information of the first two
+out of the 83 raw MS/MS spectra using the <code>peaksData()</code>
+command. Please ensure that the <strong>Spectra</strong> package is
+loaded in your workspace.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">peaksData</span>(l1<span class="sc">$</span>spectra_ms2_only[[<span class="dv">1</span>]]<span class="sc">$</span>aggregate)[[<span class="dv">1</span>]] <span class="co">#first replicate spectrum</span></span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="co">#&gt;              mz intensity</span></span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co">#&gt;  [1,]  56.62591  1398.994</span></span>
@@ -623,9 +651,13 @@ Please make sure the Spectra package in loaded in your workspace.</p>
 <span id="cb6-67"><a href="#cb6-67" tabindex="-1"></a><span class="co">#&gt; [44,] 370.20615  37703.914</span></span>
 <span id="cb6-68"><a href="#cb6-68" tabindex="-1"></a><span class="co">#&gt; [45,] 371.10062  36392.355</span></span>
 <span id="cb6-69"><a href="#cb6-69" tabindex="-1"></a><span class="co">#&gt; [46,] 373.07739   3257.491</span></span></code></pre></div>
-<p>It is also worth noting that we keep track of the individual spectrum
-in terms of the sample it is derived from. This is demonstrated as
-follows through the identities of the first 10 replicate spectra:</p>
+</div>
+<div id="tracking-individual-spectrum" class="section level3">
+<h3>Tracking Individual Spectrum</h3>
+<p>It is also worth noting that we keep track of each individual
+spectrum with respect to the sample from which it is derived. Below, we
+demonstrate this with the identities of the <strong>first 10 replicate
+spectra</strong>:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>l1<span class="sc">$</span>spectra_ms2_only[[<span class="dv">1</span>]]<span class="sc">$</span>aggregate<span class="sc">$</span>spectrumId[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>] <span class="co">#will be a vector of length 83</span></span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;20092020_CovidMild_P291_P_2.mzML_scan_1504&quot;  </span></span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co">#&gt;  [2] &quot;20092020_CovidMild_P291_P_2.mzML_scan_1541&quot;  </span></span>
@@ -637,21 +669,45 @@ follows through the identities of the first 10 replicate spectra:</p>
 <span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt;  [8] &quot;20092020_CovidSevere_P287_P_2.mzML_scan_1522&quot;</span></span>
 <span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt;  [9] &quot;20092020_CovidSevere_P288_P_2.mzML_scan_1502&quot;</span></span>
 <span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt; [10] &quot;20092020_CovidSevere_P288_P_2.mzML_scan_1536&quot;</span></span></code></pre></div>
-<p>For demonstration purposes, we will consider the first spectrum of
-the list named <code>20092020_CovidMild_P291_P_2.mzML_scan_1504</code>.
-This spectrum is derived from the sample
-<code>20092020_CovidMild_P291_P_2.mzML</code>. As we have seen in the
-previous code block, this spectrum has 19 fragments. Similarly, the
-second spectrum titled
-<code>20092020_CovidMild_P291_P_2.mzML_scan_1541</code> has 46
-fragments. We will see in the end how many fragments remain in these two
-spectra after we apply fixed frequency cutoff to demonstrate the effect
-of denoising.</p>
-<p>In the second step, we will use <code>l1</code> as input from the
-previous step and extract the top x% TIC spectra and groups fragments
-within a specified mass tolerance. The user can change the top x% TIC
-value and the mass tolerance (default is 0.8 or 80% and 0.05 Da). The
-length</p>
+</div>
+<div id="demonstration-of-spectrum-analysis" class="section level3">
+<h3>Demonstration of Spectrum Analysis</h3>
+<p>For demonstration purposes, we will consider the <strong>first
+spectrum</strong> from the list, named:</p>
+<blockquote>
+<p><strong><code>20092020_CovidMild_P291_P_2.mzML_scan_1504</code></strong></p>
+</blockquote>
+<p>This spectrum is derived from the sample:</p>
+<blockquote>
+<p><strong><code>20092020_CovidMild_P291_P_2.mzML</code></strong></p>
+</blockquote>
+<p>As seen in the previous code block, this spectrum contains <strong>19
+fragments</strong>.</p>
+<p>Similarly, the <strong>second spectrum</strong>:</p>
+<blockquote>
+<p><strong><code>20092020_CovidMild_P291_P_2.mzML_scan_1541</code></strong></p>
+</blockquote>
+<p>contains <strong>46 fragments</strong>.</p>
+<p>At the end of this demonstration, we will see how many fragments
+remain in these two spectra after applying a <strong>fixed frequency
+cutoff</strong> to illustrate the effect of
+<strong>denoising</strong>.</p>
+<hr />
+</div>
+<div id="step-2-extracting-top-x-tic-spectra-and-grouping-fragments" class="section level3">
+<h3>Step 2: Extracting Top x% TIC Spectra and Grouping Fragments</h3>
+<p>In the second step, we will use <code>l1</code> from the previous
+step as input to:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Extract the top x% TIC spectra</strong>, and</li>
+<li><strong>Group fragments</strong> within a specified <strong>mass
+tolerance</strong>.</li>
+</ol>
+<p>The user can modify the following parameters: - <strong>Top x% TIC
+value</strong>: Default is <strong>80%</strong> (i.e.,
+<strong>0.8</strong>). - <strong>Mass tolerance</strong>: Default is
+<strong>0.05 Da</strong>.</p>
+<hr />
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>l2 <span class="ot">=</span> <span class="fu">extract_raw_spectra</span>(<span class="at">folder_path =</span> folder_path, l1, <span class="fl">0.05</span>, <span class="fl">0.8</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |                                                                      |   0%Processing: 1982 </span></span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |====                                                                  |   6%Processing: 2395 </span></span>
@@ -681,15 +737,32 @@ is not required while running the package</p>
 <span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  <span class="fu">assign</span>(<span class="st">&quot;sps_top80_tic_2&quot;</span>, sps_top80_tic_2, <span class="at">envir =</span> .dures_env)</span>
 <span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>}</span>
 <span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co">#&gt; Error in eval(expr, envir, enclos): Object &#39;sps_top80_tic_2&#39; not found in the environment.</span></span></code></pre></div>
+</div>
+<div id="step-2-output-overview" class="section level3">
+<h3>Step 2 Output Overview</h3>
 <p>For the same number of MS/MS features present in <code>l1</code>, the
-output from the second step <code>l2</code> contain three components -
-the top x% TIC spectra titled <code>sps_top_tic_2</code> (in Spectra
-format), a dataframe <code>df</code> containing the number of spectra
-before and after applying the top x% TIC cutoff and a vector containing
-features for which no spectra could be extracted. Let us look at the
-first and third rows of <code>df</code> and the number of spectra for
-the first and third feature after applying the TIC cutoff. The feature
-IDs are <code>1982</code> and <code>872</code> respectively.</p>
+output from the second step (<code>l2</code>) contains three
+components:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Top x% TIC Spectra</strong>:<br />
+Stored as <code>sps_top_tic_2</code> in <strong>Spectra</strong>
+format.</p></li>
+<li><p><strong>Dataframe</strong> (<code>df</code>):<br />
+Contains the number of spectra <strong>before</strong> and
+<strong>after</strong> applying the top x% TIC cutoff.</p></li>
+<li><p><strong>Vector of Features without Extracted
+Spectra</strong>:<br />
+Contains the feature IDs for which no spectra could be
+extracted.</p></li>
+</ol>
+</div>
+<div id="exploring-the-data" class="section level3">
+<h3>Exploring the Data</h3>
+<div id="viewing-specific-rows-of-dataframe-df" class="section level4">
+<h4>1. Viewing Specific Rows of Dataframe <code>df</code></h4>
+<p>Let’s look at the <strong>first</strong> and <strong>third
+rows</strong> of <code>df</code>and the number of spectra after applying
+top x% TIC cutoff:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>l2<span class="sc">$</span>df[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>),]</span>
 <span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="co">#&gt;   Feature_ID Num_spectra_before_top_x%TIC Num_spectra_after_top_x%TIC</span></span>
 <span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="co">#&gt; 1       1982                           83                          66</span></span>
@@ -717,10 +790,10 @@ IDs are <code>1982</code> and <code>872</code> respectively.</p>
 <span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a><span class="co">#&gt; 20092020_CovidMild_P294_P_2.mzML</span></span>
 <span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a><span class="co">#&gt;  ... 19 more files</span></span>
 <span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a><span class="co">#&gt; Processing:</span></span>
-<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a><span class="co">#&gt;  Filter: select MS level(s) 2 [Tue Oct  1 15:52:22 2024]</span></span>
-<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a><span class="co">#&gt;  Filter: select retention time [540..552.6] on MS level(s) 2 [Tue Oct  1 15:56:10 2024]</span></span>
-<span id="cb10-30"><a href="#cb10-30" tabindex="-1"></a><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [304.151146511561, 304.154188038233] [Tue Oct  1 15:56:10 2024]</span></span>
-<span id="cb10-31"><a href="#cb10-31" tabindex="-1"></a><span class="co">#&gt;  ...84 more processings. Use &#39;processingLog&#39; to list all.</span></span>
+<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a><span class="co">#&gt;  Filter: select MS level(s) 2 [Tue Oct  1 16:17:54 2024]</span></span>
+<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a><span class="co">#&gt;  Filter: select retention time [540..552.6] on MS level(s) 2 [Tue Oct  1 16:25:01 2024]</span></span>
+<span id="cb10-30"><a href="#cb10-30" tabindex="-1"></a><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [304.151146511561, 304.154188038233] [Tue Oct  1 16:25:01 2024]</span></span>
+<span id="cb10-31"><a href="#cb10-31" tabindex="-1"></a><span class="co">#&gt;  ...85 more processings. Use &#39;processingLog&#39; to list all.</span></span>
 <span id="cb10-32"><a href="#cb10-32" tabindex="-1"></a><span class="fu">print</span>(l2<span class="sc">$</span>sps_top_tic_2[[<span class="dv">3</span>]]) <span class="co"># From 43 before to 34 spectra remain after top x% TIC</span></span>
 <span id="cb10-33"><a href="#cb10-33" tabindex="-1"></a><span class="co">#&gt; MSn data (Spectra) with 34 spectra in a MsBackendMzR backend:</span></span>
 <span id="cb10-34"><a href="#cb10-34" tabindex="-1"></a><span class="co">#&gt;       msLevel     rtime scanIndex</span></span>
@@ -744,20 +817,40 @@ IDs are <code>1982</code> and <code>872</code> respectively.</p>
 <span id="cb10-52"><a href="#cb10-52" tabindex="-1"></a><span class="co">#&gt; 15092020_CovidNeg_P264_P_2.mzML</span></span>
 <span id="cb10-53"><a href="#cb10-53" tabindex="-1"></a><span class="co">#&gt;  ... 12 more files</span></span>
 <span id="cb10-54"><a href="#cb10-54" tabindex="-1"></a><span class="co">#&gt; Processing:</span></span>
-<span id="cb10-55"><a href="#cb10-55" tabindex="-1"></a><span class="co">#&gt;  Filter: select MS level(s) 2 [Tue Oct  1 15:52:29 2024]</span></span>
-<span id="cb10-56"><a href="#cb10-56" tabindex="-1"></a><span class="co">#&gt;  Filter: select retention time [342.6..458.4] on MS level(s) 2 [Tue Oct  1 15:56:11 2024]</span></span>
-<span id="cb10-57"><a href="#cb10-57" tabindex="-1"></a><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [340.166594782258, 340.169996465214] [Tue Oct  1 15:56:11 2024]</span></span>
-<span id="cb10-58"><a href="#cb10-58" tabindex="-1"></a><span class="co">#&gt;  ...85 more processings. Use &#39;processingLog&#39; to list all.</span></span></code></pre></div>
-<p>We will also take a look at the size for the first and the third
-spectra belonging to the features ID <code>1982</code> and
-<code>872</code> respectively. We performed intra-spectrum grouping,
-meaning, fragments within a default tolerance of 0.05 Da of one another
-were merged (mean of m/z and sum of intensities). The resulting spectra
-are stored in the folder <code>MS2_scans_before_denoising</code>. Due
-the intra-spectra grouping, we can clearly see a reduction in the number
-of peaks. But before that, we need to check the identity of the spectra
-to make sure we are comparing the same spectra before and after step 2
-of the analysis.</p>
+<span id="cb10-55"><a href="#cb10-55" tabindex="-1"></a><span class="co">#&gt;  Filter: select MS level(s) 2 [Tue Oct  1 16:18:45 2024]</span></span>
+<span id="cb10-56"><a href="#cb10-56" tabindex="-1"></a><span class="co">#&gt;  Filter: select retention time [342.6..458.4] on MS level(s) 2 [Tue Oct  1 16:25:03 2024]</span></span>
+<span id="cb10-57"><a href="#cb10-57" tabindex="-1"></a><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [340.166594782258, 340.169996465214] [Tue Oct  1 16:25:03 2024]</span></span>
+<span id="cb10-58"><a href="#cb10-58" tabindex="-1"></a><span class="co">#&gt;  ...81 more processings. Use &#39;processingLog&#39; to list all.</span></span></code></pre></div>
+</div>
+</div>
+<div id="exploring-the-spectra-sizes" class="section level3">
+<h3>Exploring the Spectra Sizes</h3>
+<p>We will examine the <strong>size</strong> of the
+<strong>first</strong> and <strong>third spectra</strong> belonging to
+feature IDs <code>1982</code> and <code>872</code>, respectively.</p>
+<div id="intra-spectrum-grouping" class="section level4">
+<h4>Intra-Spectrum Grouping</h4>
+<ul>
+<li><p>We performed <strong>intra-spectrum grouping</strong>, meaning
+that fragments within a default tolerance of <strong>0.05 Da</strong> of
+one another were merged:</p>
+<ul>
+<li><strong>Mean of m/z</strong> values.</li>
+<li><strong>Sum of intensities</strong>.</li>
+</ul></li>
+<li><p>The resulting spectra are stored in the folder
+<code>MS2_scans_before_denoising</code>.</p></li>
+<li><p>Due to intra-spectrum grouping, we can clearly see a
+<strong>reduction in the number of peaks</strong>.</p></li>
+</ul>
+</div>
+</div>
+<div id="ensuring-consistency-before-comparison" class="section level3">
+<h3>Ensuring Consistency Before Comparison</h3>
+<p>Before comparing the spectra <strong>before and after Step 2</strong>
+of the analysis, we need to check their <strong>identity</strong> to
+ensure we are comparing the <strong>same spectra</strong>.</p>
+<hr />
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">print</span>(l1<span class="sc">$</span>spectra_ms2_only[[<span class="dv">1</span>]]<span class="sc">$</span>aggregate<span class="sc">$</span>spectrumId[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]) <span class="co">#spectra identities before step 2</span></span>
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;20092020_CovidMild_P291_P_2.mzML_scan_1504&quot;  </span></span>
 <span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="co">#&gt;  [2] &quot;20092020_CovidMild_P291_P_2.mzML_scan_1541&quot;  </span></span>
@@ -780,14 +873,27 @@ of the analysis.</p>
 <span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a><span class="co">#&gt;  [8] &quot;20092020_QCPool_Set1_P_2.mzML_scan_1495&quot;     </span></span>
 <span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a><span class="co">#&gt;  [9] &quot;20092020_QCPool_Set4_P_2.mzML_scan_1406&quot;     </span></span>
 <span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a><span class="co">#&gt; [10] &quot;20092020_QCPool_Set4_P_2.mzML_scan_1433&quot;</span></span></code></pre></div>
-<p>It is clear from this output that some spectra has been eliminated
-owing to low TIC. Example,
-<code>20092020_CovidMild_P291_P_2.mzML_scan_1504</code> didn’t exist
-after application of top 80% TIC cutoff.<br />
-For the first feature, <code>1982</code>, we will consider the spectrum
-titled <code>20092020_CovidMild_P294_P_2.mzML_scan_1587</code> - third
-on the list above. Let’s look at the number of fragments before step
-2.</p>
+</div>
+<div id="interpretation-of-step-2-output" class="section level3">
+<h3>Interpretation of Step 2 Output</h3>
+<p>It is clear from this output that some spectra have been eliminated
+due to low TIC.</p>
+<ul>
+<li><strong>Example</strong>:<br />
+The spectrum titled
+<code>20092020_CovidMild_P291_P_2.mzML_scan_1504</code> <strong>did not
+exist</strong> after applying the top 80% TIC cutoff.</li>
+</ul>
+<div id="exploring-feature-1982" class="section level4">
+<h4>Exploring Feature 1982</h4>
+<ul>
+<li><p>For the <strong>first feature</strong>, <code>1982</code>, we
+will consider the spectrum titled
+<code>20092020_CovidMild_P294_P_2.mzML_scan_1587</code> (which is the
+<strong>third on the list</strong> above).</p></li>
+<li><p>Let’s look at the <strong>number of fragments before Step
+2</strong>:</p></li>
+</ul>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">peaksData</span>(l2<span class="sc">$</span>sps_top_tic_2[[<span class="dv">1</span>]][<span class="dv">3</span>])[[<span class="dv">1</span>]]</span>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="co">#&gt;              mz  intensity</span></span>
 <span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="co">#&gt;  [1,]  65.33508   1602.947</span></span>
@@ -813,24 +919,52 @@ on the list above. Let’s look at the number of fragments before step
 <span id="cb12-23"><a href="#cb12-23" tabindex="-1"></a><span class="co">#&gt; [21,] 304.11557   3318.275</span></span>
 <span id="cb12-24"><a href="#cb12-24" tabindex="-1"></a><span class="co">#&gt; [22,] 304.15106 137640.250</span></span>
 <span id="cb12-25"><a href="#cb12-25" tabindex="-1"></a><span class="co">#&gt; [23,] 305.15442  24287.016</span></span></code></pre></div>
-<p>There are <span class="math inline">\(23\)</span> fragments before
-intra-spectrum grouping. Now, if I look at the same spectrum from the
-folder <code>MS2_scans_before_denoising</code> (subfolder name: <span class="math inline">\(1982\)</span> and text file name:
-<code>20092020_CovidMild_P294_P_2.mzML_scan_1587.txt</code>), there are
-<span class="math inline">\(22\)</span> fragments. The fragments with mz
-<span class="math inline">\(304.11557\)</span> and <span class="math inline">\(304.15106\)</span> were combined into one fragment
-after intra-spectrum grouping.</p>
+</div>
+</div>
+<div id="intra-spectrum-grouping-overview" class="section level3">
+<h3>Intra-Spectrum Grouping Overview</h3>
+<p>There are <strong>23 fragments</strong> before intra-spectrum
+grouping. Now, if we look at the same spectrum from the folder
+<code>MS2_scans_before_denoising</code>:</p>
+<ul>
+<li><strong>Subfolder Name</strong>: <code>1982</code></li>
+<li><strong>Text File Name</strong>:
+<code>20092020_CovidMild_P294_P_2.mzML_scan_1587.txt</code></li>
+</ul>
+<p>After intra-spectrum grouping, there are <strong>22
+fragments</strong>.</p>
+<p>The fragments with m/z values <strong>304.11557</strong> and
+<strong>304.15106</strong> were combined into a single fragment after
+the intra-spectrum grouping process.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>spectrum_size_after_grouping <span class="ot">=</span> <span class="fu">read.delim</span>(<span class="st">&quot;~/Desktop/test_package_dures/test_1/MS2_scans_before_denoising/1982/20092020_CovidMild_P294_P_2.mzML_scan_1587.txt&quot;</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dim</span>(spectrum_size_after_grouping)[<span class="dv">1</span>])</span>
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="co">#&gt; [1] 22</span></span></code></pre></div>
+</div>
+<div id="metabolite-id-analysis" class="section level3">
+<h3>Metabolite ID Analysis</h3>
 <p>Similar observations were made for the metabolite ID <code>872</code>
-using the spectrum
-<code>13092020_CovidMild_P282_P_2.mzML_scan_1120</code>. We will look at
-the original number of fragments before grouping and then look at the
-corresponding entry in the folder
-<code>MS2_scans_before_denoising</code>. Before and after grouping, the
-number of fragments reduced from <span class="math inline">\(98\)</span>
-to <span class="math inline">\(81\)</span>, respectively.</p>
+using the spectrum file:</p>
+<p><strong><code>13092020_CovidMild_P282_P_2.mzML_scan_1120</code></strong></p>
+<p>The analysis included:</p>
+<ul>
+<li><strong>Original Number of Fragments</strong>:
+<ul>
+<li>Before grouping: <code>98</code> fragments.</li>
+</ul></li>
+<li><strong>Corresponding Entry Location</strong>:
+<ul>
+<li>The original fragments can be found in the folder:
+<code>MS2_scans_before_denoising</code>.</li>
+</ul></li>
+<li><strong>Fragments After Grouping</strong>:
+<ul>
+<li>After grouping, the number of fragments reduced to
+<code>81</code>.</li>
+</ul></li>
+</ul>
+<p>This significant reduction from <strong>98</strong> to
+<strong>81</strong> fragments demonstrates the effectiveness of the
+grouping process.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(<span class="fu">peaksData</span>(l2<span class="sc">$</span>sps_top_tic_2[[<span class="dv">3</span>]][<span class="dv">1</span>])[[<span class="dv">1</span>]]))</span>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="co">#&gt;            mz intensity</span></span>
 <span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="co">#&gt; [1,] 51.92796  1548.977</span></span>
@@ -844,6 +978,26 @@ to <span class="math inline">\(81\)</span>, respectively.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>spectrum_size_after_grouping <span class="ot">=</span> <span class="fu">read.delim</span>(<span class="st">&quot;~/Desktop/test_package_dures/test_1/MS2_scans_before_denoising/872/13092020_CovidMild_P282_P_2.mzML_scan_1120.txt&quot;</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dim</span>(spectrum_size_after_grouping)[<span class="dv">1</span>])</span>
 <span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="co">#&gt; [1] 81</span></span></code></pre></div>
+</div>
+<div id="step-3-consensus-spectrum-generation" class="section level3">
+<h3>Step 3: Consensus Spectrum Generation</h3>
+<p>In the <strong>third step</strong>, a <strong>consensus
+spectrum</strong> is generated using the <strong>top 80% TIC
+spectra</strong>, and the corresponding <strong>fragment
+frequencies</strong> are calculated.</p>
+<ul>
+<li>The <strong>consensus spectrum</strong>, also known as the
+<strong>inter-spectrum aggregate</strong>, is built using the same
+principle as the <strong>intra-spectrum aggregate</strong>.</li>
+<li>The output from this step includes:
+<ol style="list-style-type: decimal">
+<li>A <strong>single spectrum per feature</strong>.</li>
+<li>The <strong>peak frequencies</strong> for each feature.</li>
+</ol></li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>l3 <span class="ot">=</span> <span class="fu">call_aggregate</span>(l2<span class="sc">$</span>sps_top_tic_2, <span class="fl">0.05</span>, folder_path)</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Creating aggregate spectra for 17 features. This is an expensive operation. Please wait..&quot;</span></span></code></pre></div>
+</div>
 </div>
 
 
