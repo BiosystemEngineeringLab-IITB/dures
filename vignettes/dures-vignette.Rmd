@@ -385,3 +385,51 @@ In the next step, we will:
 ```{r last_step}
 l5 = generate_denoised_spectra(l4, folder_path, ion_mode = "pos") 
 ```
+
+### Output Overview
+
+The output consists of **mzML format** files with only **denoised MS/MS features**. The output from `l5` contains:
+
+- mzML files saved in a folder named **`Denoised_spectra`**.
+
+### Checking Specific Spectrum Output
+
+We will:
+
+1. **Check the Size and Contents** of a Particular Spectrum
+   - Spectrum titled **'1587'**.
+   - From the sample **"20092020_CovidMild_P294_P_2"**.
+   - Feature ID: **`1982`**.
+   
+2. **Read the Spectrum from `Denoised_spectra` Folder**: 
+
+`denoised_spectrum <- read_mzML("Denoised_spectra/20092020_CovidMild_P294_P_2.mzML")`
+
+
+***Number of peaks before denoising***
+```{r eg}
+#20092020_CovidMild_P294_P_2.mzML_scan_1587
+backend = Spectra::MsBackendMzR()
+sps <- Spectra::Spectra("~/Desktop/test_package_dures/test_1/Denoised_spectra/20092020_CovidMild_P294_P_2.mzML", source = backend)
+print(peaksData(sps_top_tic_2[[1]][3])[[1]])
+```
+
+***Number of peaks after intra-spectrum grouping and labelling individual peaks***
+
+```{r test 5}
+print(l4[[1]][3])
+```
+
+***Number of peaks remaining after applying fixed intensity threshold***
+
+```{r test 6}
+print(peaksData(sps)[[1]])
+```
+
+### Summary of Results
+
+After applying all **five steps** of the package, only **9 fragments** remained.
+
+The **mzML files** containing the cleaned MS/MS spectra are saved in the folder `Denoised_spectra`.
+
+These files can now be used for further analysis, such as **metabolite annotation**.
