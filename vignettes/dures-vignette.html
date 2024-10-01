@@ -413,43 +413,57 @@ contain a folder named <code>mzml_files/</code> and a file named
 <h2>Install the package</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;BiosystemEngineeringLab-IITB/dures&quot;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co">#&gt; Using GitHub PAT from the git credential store.</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co">#&gt; Skipping install of &#39;dures&#39; from a github remote, the SHA1 (262f2a46) has not changed since last install.</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co">#&gt;   Use `force = TRUE` to force installation</span></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">library</span>(dures)</span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fu">library</span>(Spectra)</span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt; Loading required package: S4Vectors</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt; Loading required package: stats4</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt; Loading required package: BiocGenerics</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;BiocGenerics&#39;</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:stats&#39;:</span></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt;     IQR, mad, sd, var, xtabs</span></span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co">#&gt; Downloading GitHub repo BiosystemEngineeringLab-IITB/dures@HEAD</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co">#&gt; Skipping 2 packages not available: Spectra, S4Vectors</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#&gt; ── R CMD build ─────────────────────────────────────────────────────────────────</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co">#&gt;      checking for file ‘/tmp/Rtmp10EnC3/remotes37d46c67dedabc/BiosystemEngineeringLab-IITB-dures-45aa898/DESCRIPTION’ ...  ✔  checking for file ‘/tmp/Rtmp10EnC3/remotes37d46c67dedabc/BiosystemEngineeringLab-IITB-dures-45aa898/DESCRIPTION’</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt;   ─  preparing ‘dures’:</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt;    checking      checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt;   ─  excluding invalid files</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt;      Subdirectory &#39;R&#39; contains invalid file names:</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt;      ‘Misc’</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt;   ─  checking for LF line-endings in source and make files and shell scripts</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt;   ─  checking for empty or unneeded directories</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt;   ─  building ‘dures_0.0.0.1.tar.gz’</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt;      </span></span>
 <span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt;     anyDuplicated, aperm, append, as.data.frame, basename, cbind,</span></span>
-<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt;     colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,</span></span>
-<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt;     get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,</span></span>
-<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co">#&gt;     match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,</span></span>
-<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co">#&gt;     Position, rank, rbind, Reduce, rownames, sapply, setdiff, table,</span></span>
-<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="co">#&gt;     tapply, union, unique, unsplit, which.max, which.min</span></span>
-<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;S4Vectors&#39;</span></span>
-<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:utils&#39;:</span></span>
-<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a><span class="co">#&gt;     findMatches</span></span>
-<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></span>
-<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a><span class="co">#&gt;     expand.grid, I, unname</span></span>
-<span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a><span class="co">#&gt; Loading required package: BiocParallel</span></span>
-<span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a><span class="co">#&gt; Loading required package: ProtGenerics</span></span>
-<span id="cb2-33"><a href="#cb2-33" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-34"><a href="#cb2-34" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;ProtGenerics&#39;</span></span>
-<span id="cb2-35"><a href="#cb2-35" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:stats&#39;:</span></span>
-<span id="cb2-36"><a href="#cb2-36" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-37"><a href="#cb2-37" tabindex="-1"></a><span class="co">#&gt;     smooth</span></span>
-<span id="cb2-38"><a href="#cb2-38" tabindex="-1"></a><span class="fu">library</span>(mzR)</span>
-<span id="cb2-39"><a href="#cb2-39" tabindex="-1"></a><span class="co">#&gt; Loading required package: Rcpp</span></span></code></pre></div>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt; Installing package into &#39;/home/shayantan/R/x86_64-pc-linux-gnu-library/4.4&#39;</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt; (as &#39;lib&#39; is unspecified)</span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="fu">library</span>(dures)</span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="fu">library</span>(Spectra)</span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co">#&gt; Loading required package: S4Vectors</span></span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="co">#&gt; Loading required package: stats4</span></span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a><span class="co">#&gt; Loading required package: BiocGenerics</span></span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;BiocGenerics&#39;</span></span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:stats&#39;:</span></span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a><span class="co">#&gt;     IQR, mad, sd, var, xtabs</span></span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a><span class="co">#&gt;     anyDuplicated, aperm, append, as.data.frame, basename, cbind,</span></span>
+<span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a><span class="co">#&gt;     colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,</span></span>
+<span id="cb2-33"><a href="#cb2-33" tabindex="-1"></a><span class="co">#&gt;     get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,</span></span>
+<span id="cb2-34"><a href="#cb2-34" tabindex="-1"></a><span class="co">#&gt;     match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,</span></span>
+<span id="cb2-35"><a href="#cb2-35" tabindex="-1"></a><span class="co">#&gt;     Position, rank, rbind, Reduce, rownames, sapply, setdiff, table,</span></span>
+<span id="cb2-36"><a href="#cb2-36" tabindex="-1"></a><span class="co">#&gt;     tapply, union, unique, unsplit, which.max, which.min</span></span>
+<span id="cb2-37"><a href="#cb2-37" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-38"><a href="#cb2-38" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;S4Vectors&#39;</span></span>
+<span id="cb2-39"><a href="#cb2-39" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:utils&#39;:</span></span>
+<span id="cb2-40"><a href="#cb2-40" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-41"><a href="#cb2-41" tabindex="-1"></a><span class="co">#&gt;     findMatches</span></span>
+<span id="cb2-42"><a href="#cb2-42" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></span>
+<span id="cb2-43"><a href="#cb2-43" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-44"><a href="#cb2-44" tabindex="-1"></a><span class="co">#&gt;     expand.grid, I, unname</span></span>
+<span id="cb2-45"><a href="#cb2-45" tabindex="-1"></a><span class="co">#&gt; Loading required package: BiocParallel</span></span>
+<span id="cb2-46"><a href="#cb2-46" tabindex="-1"></a><span class="co">#&gt; Loading required package: ProtGenerics</span></span>
+<span id="cb2-47"><a href="#cb2-47" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-48"><a href="#cb2-48" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;ProtGenerics&#39;</span></span>
+<span id="cb2-49"><a href="#cb2-49" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:stats&#39;:</span></span>
+<span id="cb2-50"><a href="#cb2-50" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-51"><a href="#cb2-51" tabindex="-1"></a><span class="co">#&gt;     smooth</span></span>
+<span id="cb2-52"><a href="#cb2-52" tabindex="-1"></a><span class="fu">library</span>(mzR)</span>
+<span id="cb2-53"><a href="#cb2-53" tabindex="-1"></a><span class="co">#&gt; Loading required package: Rcpp</span></span></code></pre></div>
 </div>
 <div id="first-test-example" class="section level2">
 <h2>First Test Example</h2>
@@ -538,10 +552,10 @@ feature</strong>.</p>
 <span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="co">#&gt; 20092020_CovidMild_P294_P_2.mzML</span></span>
 <span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a><span class="co">#&gt;  ... 21 more files</span></span>
 <span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="co">#&gt; Processing:</span></span>
-<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="co">#&gt;  Filter: select MS level(s) 2 [Tue Oct  1 16:17:54 2024]</span></span>
-<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="co">#&gt;  Filter: select retention time [540..552.6] on MS level(s) 2 [Tue Oct  1 16:25:01 2024]</span></span>
-<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [304.151146511561, 304.154188038233] [Tue Oct  1 16:25:01 2024]</span></span>
-<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a><span class="co">#&gt;  ...85 more processings. Use &#39;processingLog&#39; to list all.</span></span></code></pre></div>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="co">#&gt;  Filter: select MS level(s) 2 [Tue Oct  1 17:58:25 2024]</span></span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="co">#&gt;  Filter: select retention time [540..552.6] on MS level(s) 2 [Tue Oct  1 17:59:08 2024]</span></span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [304.151146511561, 304.154188038233] [Tue Oct  1 17:59:08 2024]</span></span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a><span class="co">#&gt;  ...60 more processings. Use &#39;processingLog&#39; to list all.</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;name of third feature</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co">#&gt; name of third feature</span></span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">names</span>(l1<span class="sc">$</span>spectra_ms2_only)[<span class="dv">3</span>] <span class="co">#name of the first feature</span></span>
@@ -570,10 +584,10 @@ feature</strong>.</p>
 <span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a><span class="co">#&gt; 15092020_CovidNeg_P264_P_2.mzML</span></span>
 <span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a><span class="co">#&gt;  ... 13 more files</span></span>
 <span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a><span class="co">#&gt; Processing:</span></span>
-<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a><span class="co">#&gt;  Filter: select MS level(s) 2 [Tue Oct  1 16:18:45 2024]</span></span>
-<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a><span class="co">#&gt;  Filter: select retention time [342.6..458.4] on MS level(s) 2 [Tue Oct  1 16:25:03 2024]</span></span>
-<span id="cb5-31"><a href="#cb5-31" tabindex="-1"></a><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [340.166594782258, 340.169996465214] [Tue Oct  1 16:25:03 2024]</span></span>
-<span id="cb5-32"><a href="#cb5-32" tabindex="-1"></a><span class="co">#&gt;  ...81 more processings. Use &#39;processingLog&#39; to list all.</span></span></code></pre></div>
+<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a><span class="co">#&gt;  Filter: select MS level(s) 2 [Tue Oct  1 17:58:27 2024]</span></span>
+<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a><span class="co">#&gt;  Filter: select retention time [342.6..458.4] on MS level(s) 2 [Tue Oct  1 17:59:10 2024]</span></span>
+<span id="cb5-31"><a href="#cb5-31" tabindex="-1"></a><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [340.166594782258, 340.169996465214] [Tue Oct  1 17:59:10 2024]</span></span>
+<span id="cb5-32"><a href="#cb5-32" tabindex="-1"></a><span class="co">#&gt;  ...60 more processings. Use &#39;processingLog&#39; to list all.</span></span></code></pre></div>
 <p>From the output, we can see that the first two MS2 features
 (<code>1982</code> and <code>872</code>) have <strong>83</strong> and
 <strong>43</strong> MS/MS spectra, respectively, from different samples
@@ -790,10 +804,10 @@ top x% TIC cutoff:</p>
 <span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a><span class="co">#&gt; 20092020_CovidMild_P294_P_2.mzML</span></span>
 <span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a><span class="co">#&gt;  ... 19 more files</span></span>
 <span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a><span class="co">#&gt; Processing:</span></span>
-<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a><span class="co">#&gt;  Filter: select MS level(s) 2 [Tue Oct  1 16:17:54 2024]</span></span>
-<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a><span class="co">#&gt;  Filter: select retention time [540..552.6] on MS level(s) 2 [Tue Oct  1 16:25:01 2024]</span></span>
-<span id="cb10-30"><a href="#cb10-30" tabindex="-1"></a><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [304.151146511561, 304.154188038233] [Tue Oct  1 16:25:01 2024]</span></span>
-<span id="cb10-31"><a href="#cb10-31" tabindex="-1"></a><span class="co">#&gt;  ...85 more processings. Use &#39;processingLog&#39; to list all.</span></span>
+<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a><span class="co">#&gt;  Filter: select MS level(s) 2 [Tue Oct  1 17:58:25 2024]</span></span>
+<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a><span class="co">#&gt;  Filter: select retention time [540..552.6] on MS level(s) 2 [Tue Oct  1 17:59:08 2024]</span></span>
+<span id="cb10-30"><a href="#cb10-30" tabindex="-1"></a><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [304.151146511561, 304.154188038233] [Tue Oct  1 17:59:08 2024]</span></span>
+<span id="cb10-31"><a href="#cb10-31" tabindex="-1"></a><span class="co">#&gt;  ...60 more processings. Use &#39;processingLog&#39; to list all.</span></span>
 <span id="cb10-32"><a href="#cb10-32" tabindex="-1"></a><span class="fu">print</span>(l2<span class="sc">$</span>sps_top_tic_2[[<span class="dv">3</span>]]) <span class="co"># From 43 before to 34 spectra remain after top x% TIC</span></span>
 <span id="cb10-33"><a href="#cb10-33" tabindex="-1"></a><span class="co">#&gt; MSn data (Spectra) with 34 spectra in a MsBackendMzR backend:</span></span>
 <span id="cb10-34"><a href="#cb10-34" tabindex="-1"></a><span class="co">#&gt;       msLevel     rtime scanIndex</span></span>
@@ -817,10 +831,10 @@ top x% TIC cutoff:</p>
 <span id="cb10-52"><a href="#cb10-52" tabindex="-1"></a><span class="co">#&gt; 15092020_CovidNeg_P264_P_2.mzML</span></span>
 <span id="cb10-53"><a href="#cb10-53" tabindex="-1"></a><span class="co">#&gt;  ... 12 more files</span></span>
 <span id="cb10-54"><a href="#cb10-54" tabindex="-1"></a><span class="co">#&gt; Processing:</span></span>
-<span id="cb10-55"><a href="#cb10-55" tabindex="-1"></a><span class="co">#&gt;  Filter: select MS level(s) 2 [Tue Oct  1 16:18:45 2024]</span></span>
-<span id="cb10-56"><a href="#cb10-56" tabindex="-1"></a><span class="co">#&gt;  Filter: select retention time [342.6..458.4] on MS level(s) 2 [Tue Oct  1 16:25:03 2024]</span></span>
-<span id="cb10-57"><a href="#cb10-57" tabindex="-1"></a><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [340.166594782258, 340.169996465214] [Tue Oct  1 16:25:03 2024]</span></span>
-<span id="cb10-58"><a href="#cb10-58" tabindex="-1"></a><span class="co">#&gt;  ...81 more processings. Use &#39;processingLog&#39; to list all.</span></span></code></pre></div>
+<span id="cb10-55"><a href="#cb10-55" tabindex="-1"></a><span class="co">#&gt;  Filter: select MS level(s) 2 [Tue Oct  1 17:58:27 2024]</span></span>
+<span id="cb10-56"><a href="#cb10-56" tabindex="-1"></a><span class="co">#&gt;  Filter: select retention time [342.6..458.4] on MS level(s) 2 [Tue Oct  1 17:59:10 2024]</span></span>
+<span id="cb10-57"><a href="#cb10-57" tabindex="-1"></a><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [340.166594782258, 340.169996465214] [Tue Oct  1 17:59:10 2024]</span></span>
+<span id="cb10-58"><a href="#cb10-58" tabindex="-1"></a><span class="co">#&gt;  ...60 more processings. Use &#39;processingLog&#39; to list all.</span></span></code></pre></div>
 </div>
 </div>
 <div id="exploring-the-spectra-sizes" class="section level3">
@@ -940,8 +954,9 @@ the intra-spectrum grouping process.</p>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dim</span>(spectrum_size_after_grouping)[<span class="dv">1</span>])</span>
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="co">#&gt; [1] 22</span></span></code></pre></div>
 </div>
-<div id="metabolite-id-analysis" class="section level3">
-<h3>Metabolite ID Analysis</h3>
+<div id="another-example-to-demonstrate-the-effect-of-intra-spectrum-grouping" class="section level3">
+<h3>Another example to demonstrate the effect of intra-spectrum
+grouping</h3>
 <p>Similar observations were made for the metabolite ID <code>872</code>
 using the spectrum file:</p>
 <p><strong><code>13092020_CovidMild_P282_P_2.mzML_scan_1120</code></strong></p>
@@ -997,6 +1012,264 @@ principle as the <strong>intra-spectrum aggregate</strong>.</li>
 </ul>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>l3 <span class="ot">=</span> <span class="fu">call_aggregate</span>(l2<span class="sc">$</span>sps_top_tic_2, <span class="fl">0.05</span>, folder_path)</span>
 <span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Creating aggregate spectra for 17 features. This is an expensive operation. Please wait..&quot;</span></span></code></pre></div>
+</div>
+<div id="examining-the-output-of-l3" class="section level3">
+<h3>Examining the Output of <code>l3</code></h3>
+<p>The output of <code>l3</code> contains the following components:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Aggregate Spectra</strong>:<br />
+Represented as a <strong>Spectra object</strong>.</p></li>
+<li><p><strong>Dataframe of Aggregate Spectra</strong>:<br />
+This dataframe includes:</p>
+<ul>
+<li><strong>Mean m/z</strong>: The average m/z value of the
+spectra.</li>
+<li><strong>Mean Intensity</strong>: The average intensity of the
+spectra.</li>
+<li><strong>Frequency</strong>: The frequency of occurrence for each
+fragment.</li>
+<li><strong>Number of Fragments</strong>: Before and after
+<strong>inter- and intra-spectra grouping</strong>.</li>
+</ul></li>
+</ol>
+</div>
+<div id="example-feature-1982" class="section level3">
+<h3>Example: Feature <code>1982</code></h3>
+<p>Let’s consider the first feature with <strong>feature ID
+<code>1982</code></strong> as an example to examine the output more
+closely.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(l3[[<span class="dv">1</span>]]<span class="sc">$</span>Df))</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="co">#&gt;   MZ_group Mean_MZ Mean_Intensity  Frequency</span></span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="co">#&gt; 1   100.09  100.09       1728.578 0.01515152</span></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="co">#&gt; 2   100.56  100.56       1661.237 0.01515152</span></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a><span class="co">#&gt; 3   101.62  101.62       1569.523 0.01515152</span></span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a><span class="co">#&gt; 4   102.01  102.01       1658.995 0.01515152</span></span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a><span class="co">#&gt; 5   102.09  102.09       1791.035 0.01515152</span></span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a><span class="co">#&gt; 6   102.16  102.16       1581.980 0.01515152</span></span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dim</span>(l3[[<span class="dv">1</span>]]<span class="sc">$</span>Df)[<span class="dv">1</span>])</span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a><span class="co">#&gt; [1] 498</span></span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a>l3[[<span class="dv">1</span>]]<span class="sc">$</span>Mean <span class="co">#will return one consensus spectrum</span></span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a><span class="co">#&gt; MSn data (Spectra) with 1 spectra in a MsBackendMemory backend:</span></span>
+<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a><span class="co">#&gt;     msLevel     rtime scanIndex</span></span>
+<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a><span class="co">#&gt;   &lt;integer&gt; &lt;numeric&gt; &lt;integer&gt;</span></span>
+<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a><span class="co">#&gt; 1         2        NA        NA</span></span>
+<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a><span class="co">#&gt;  ... 18 more variables/columns.</span></span></code></pre></div>
+<p>The consensus spectrum built using top 80% TIC spectra for feature
+<code>1982</code> has 498 fragments. Every fragment contain the
+recurrence frequencies. Let’s see some of the top recurrent
+fragments.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>l <span class="ot">=</span> l3[[<span class="dv">1</span>]]<span class="sc">$</span>Df</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(l[<span class="fu">order</span>(l<span class="sc">$</span>Frequency, <span class="at">decreasing =</span> <span class="cn">TRUE</span>),],<span class="dv">10</span>))</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="co">#&gt;     MZ_group  Mean_MZ Mean_Intensity Frequency</span></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="co">#&gt; 259   302.14 302.1403      18709.572 1.0000000</span></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a><span class="co">#&gt; 262   303.15 303.1502      13944.536 1.0000000</span></span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a><span class="co">#&gt; 387    69.07  69.0700       4433.040 0.8636364</span></span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a><span class="co">#&gt; 30    111.12 111.1196       6553.274 0.8484848</span></span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a><span class="co">#&gt; 103   149.02 149.0204       4537.965 0.8484848</span></span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a><span class="co">#&gt; 264   304.15 304.1519     298435.349 0.8181818</span></span>
+<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a><span class="co">#&gt; 250   287.13 287.1246      17780.629 0.7272727</span></span>
+<span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a><span class="co">#&gt; 443    80.95  80.9500       3306.953 0.5757576</span></span>
+<span id="cb18-12"><a href="#cb18-12" tabindex="-1"></a><span class="co">#&gt; 241   271.26 271.2605       3241.426 0.5606061</span></span>
+<span id="cb18-13"><a href="#cb18-13" tabindex="-1"></a><span class="co">#&gt; 267   305.16 305.1600      50335.577 0.5454545</span></span></code></pre></div>
+</div>
+<div id="step-4-labelling-individual-spectra-for-every-feature" class="section level3">
+<h3>Step 4: Labelling individual spectra for every feature</h3>
+</div>
+<div id="step-4-labeling-fragments-of-top-tic-spectra" class="section level3">
+<h3>Step 4: Labeling Fragments of Top TIC Spectra</h3>
+<p>Using the <strong>recurrence frequencies</strong> calculated in
+<strong>Step 3</strong>, we will now label the fragments of every
+<strong>top TIC spectra</strong> for a given feature.</p>
+<p>The output from this step is:</p>
+<ul>
+<li>A <strong>list</strong> containing all spectra for a given
+feature.</li>
+<li>The corresponding <strong>fragment frequencies</strong> for each
+labeled fragment.</li>
+</ul>
+<p>This labeling process provides insights into how often each fragment
+appears across all spectra, allowing for better analysis of fragment
+patterns within the <strong>top TIC</strong> data.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>l4 <span class="ot">=</span> <span class="fu">label_individual_spectrum</span>(l3, folder_path, <span class="fl">0.05</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="co">#&gt; [1] 119.14</span></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Fragment of this scan couldn&#39;t be labelled&quot;</span></span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a><span class="co">#&gt; [1] 68.9</span></span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Fragment of this scan couldn&#39;t be labelled&quot;</span></span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a><span class="co">#&gt; [1] 148.96</span></span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Fragment of this scan couldn&#39;t be labelled&quot;</span></span></code></pre></div>
+</div>
+<div id="inspecting-feature-1982" class="section level3">
+<h3>Inspecting Feature <code>1982</code></h3>
+<p>We will now inspect the <strong>first feature</strong>
+(<code>1982</code>) and check the corresponding <strong>spectra</strong>
+and their <strong>fragment frequencies</strong>.</p>
+<ul>
+<li><p>The <strong>number of spectra per feature</strong> will be the
+same as in <strong>Step 2</strong>, where we retained only the
+<strong>top x% TIC spectra</strong>.</p></li>
+<li><p>Let’s also look at the specific feature named
+<code>20092020_CovidMild_P294_P_2.mzML_scan_1587</code>, as in
+<strong>Step 2</strong>.</p></li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">length</span>(l4[[<span class="dv">1</span>]]))</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="co">#&gt; [1] 66</span></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">names</span>(l4[[<span class="dv">1</span>]][<span class="dv">3</span>]))</span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;20092020_CovidMild_P294_P_2.mzML_scan_1587.txt&quot;</span></span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a><span class="fu">print</span>(l4[[<span class="dv">1</span>]][<span class="dv">3</span>])</span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a><span class="co">#&gt; $`20092020_CovidMild_P294_P_2.mzML_scan_1587.txt`</span></span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a><span class="co">#&gt;       Fragment_ID     MZ  Intensity       Freq</span></span>
+<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a><span class="co">#&gt; 1    frag_1_65.34  65.34   1602.947 0.01515152</span></span>
+<span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a><span class="co">#&gt; 2  frag_10_111.12 111.12   8021.581 0.84848485</span></span>
+<span id="cb20-10"><a href="#cb20-10" tabindex="-1"></a><span class="co">#&gt; 3  frag_11_142.95 142.95   1762.806 0.09090909</span></span>
+<span id="cb20-11"><a href="#cb20-11" tabindex="-1"></a><span class="co">#&gt; 4  frag_12_149.02 149.02   2321.636 0.84848485</span></span>
+<span id="cb20-12"><a href="#cb20-12" tabindex="-1"></a><span class="co">#&gt; 5  frag_13_191.87 191.87   1696.314 0.01515152</span></span>
+<span id="cb20-13"><a href="#cb20-13" tabindex="-1"></a><span class="co">#&gt; 6  frag_14_198.53 198.53   1989.178 0.01515152</span></span>
+<span id="cb20-14"><a href="#cb20-14" tabindex="-1"></a><span class="co">#&gt; 7  frag_15_211.77 211.77   1822.364 0.01515152</span></span>
+<span id="cb20-15"><a href="#cb20-15" tabindex="-1"></a><span class="co">#&gt; 8  frag_16_245.56 245.56   1736.632 0.01515152</span></span>
+<span id="cb20-16"><a href="#cb20-16" tabindex="-1"></a><span class="co">#&gt; 9  frag_17_269.65 269.65   1780.373 0.03030303</span></span>
+<span id="cb20-17"><a href="#cb20-17" tabindex="-1"></a><span class="co">#&gt; 10 frag_18_287.12 287.12   9176.967 0.72727273</span></span>
+<span id="cb20-18"><a href="#cb20-18" tabindex="-1"></a><span class="co">#&gt; 11 frag_19_302.14 302.14  16704.994 1.00000000</span></span>
+<span id="cb20-19"><a href="#cb20-19" tabindex="-1"></a><span class="co">#&gt; 12   frag_2_65.49  65.49   1526.960 0.01515152</span></span>
+<span id="cb20-20"><a href="#cb20-20" tabindex="-1"></a><span class="co">#&gt; 13 frag_20_303.15 303.15  10119.790 1.00000000</span></span>
+<span id="cb20-21"><a href="#cb20-21" tabindex="-1"></a><span class="co">#&gt; 14 frag_21_304.13 304.13 140958.525 0.81818182</span></span>
+<span id="cb20-22"><a href="#cb20-22" tabindex="-1"></a><span class="co">#&gt; 15 frag_22_305.15 305.15  24287.016 0.54545455</span></span>
+<span id="cb20-23"><a href="#cb20-23" tabindex="-1"></a><span class="co">#&gt; 16   frag_3_69.07  69.07   7379.045 0.86363636</span></span>
+<span id="cb20-24"><a href="#cb20-24" tabindex="-1"></a><span class="co">#&gt; 17   frag_4_70.91  70.91   1553.910 0.03030303</span></span>
+<span id="cb20-25"><a href="#cb20-25" tabindex="-1"></a><span class="co">#&gt; 18   frag_5_71.39  71.39   1397.961 0.04545455</span></span>
+<span id="cb20-26"><a href="#cb20-26" tabindex="-1"></a><span class="co">#&gt; 19   frag_6_72.42  72.42   1555.703 0.06060606</span></span>
+<span id="cb20-27"><a href="#cb20-27" tabindex="-1"></a><span class="co">#&gt; 20   frag_7_74.26  74.26   1537.170 0.01515152</span></span>
+<span id="cb20-28"><a href="#cb20-28" tabindex="-1"></a><span class="co">#&gt; 21   frag_8_78.65  78.65   2069.286 0.01515152</span></span>
+<span id="cb20-29"><a href="#cb20-29" tabindex="-1"></a><span class="co">#&gt; 22   frag_9_80.95  80.95   1904.306 0.57575758</span></span></code></pre></div>
+</div>
+<div id="overview-of-fragment-recurrence" class="section level3">
+<h3>Overview of Fragment Recurrence</h3>
+<p>We can observe <strong>22 fragments</strong> from the spectrum and
+their corresponding <strong>frequency of recurrence</strong>.</p>
+</div>
+<div id="next-steps" class="section level3">
+<h3>Next Steps</h3>
+<p>In the next step, we will:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Apply a Fixed Frequency Cutoff</strong>:
+<ul>
+<li>Denoise the data by retaining only those fragments that meet the
+cutoff criteria.</li>
+</ul></li>
+<li><strong>Aggregate All MS/MS Spectra</strong>:
+<ul>
+<li>Combine all the spectra from the different samples.</li>
+</ul></li>
+<li><strong>Export the Results</strong>:
+<ul>
+<li>Print the aggregated MS/MS spectra to a file for further
+analysis.</li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>l5 <span class="ot">=</span> <span class="fu">generate_denoised_spectra</span>(l4, folder_path, <span class="at">ion_mode =</span> <span class="st">&quot;pos&quot;</span>) </span></code></pre></div>
+</div>
+<div id="output-overview" class="section level3">
+<h3>Output Overview</h3>
+<p>The output consists of <strong>mzML format</strong> files with only
+<strong>denoised MS/MS features</strong>. The output from
+<code>l5</code> contains:</p>
+<ul>
+<li>mzML files saved in a folder named
+<strong><code>Denoised_spectra</code></strong>.</li>
+</ul>
+</div>
+<div id="checking-specific-spectrum-output" class="section level3">
+<h3>Checking Specific Spectrum Output</h3>
+<p>We will:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Check the Size and Contents</strong> of a Particular
+Spectrum
+<ul>
+<li>Spectrum titled <strong>‘1587’</strong>.</li>
+<li>From the sample <strong>“20092020_CovidMild_P294_P_2”</strong>.</li>
+<li>Feature ID: <strong><code>1982</code></strong>.</li>
+</ul></li>
+<li><strong>Read the Spectrum from <code>Denoised_spectra</code>
+Folder</strong>:</li>
+</ol>
+<p><code>denoised_spectrum &lt;- read_mzML(&quot;Denoised_spectra/20092020_CovidMild_P294_P_2.mzML&quot;)</code></p>
+<p><strong><em>Number of peaks before denoising</em></strong></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="co">#20092020_CovidMild_P294_P_2.mzML_scan_1587</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>backend <span class="ot">=</span> Spectra<span class="sc">::</span><span class="fu">MsBackendMzR</span>()</span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>sps <span class="ot">&lt;-</span> Spectra<span class="sc">::</span><span class="fu">Spectra</span>(<span class="st">&quot;~/Desktop/test_package_dures/test_1/Denoised_spectra/20092020_CovidMild_P294_P_2.mzML&quot;</span>, <span class="at">source =</span> backend)</span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">peaksData</span>(l2<span class="sc">$</span>sps_top_tic_2[[<span class="dv">1</span>]][<span class="dv">3</span>])[[<span class="dv">1</span>]])</span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a><span class="co">#&gt;              mz  intensity</span></span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a><span class="co">#&gt;  [1,]  65.33508   1602.947</span></span>
+<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a><span class="co">#&gt;  [2,]  65.49177   1526.960</span></span>
+<span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a><span class="co">#&gt;  [3,]  69.06964   7379.045</span></span>
+<span id="cb22-9"><a href="#cb22-9" tabindex="-1"></a><span class="co">#&gt;  [4,]  70.91068   1553.910</span></span>
+<span id="cb22-10"><a href="#cb22-10" tabindex="-1"></a><span class="co">#&gt;  [5,]  71.39061   1397.961</span></span>
+<span id="cb22-11"><a href="#cb22-11" tabindex="-1"></a><span class="co">#&gt;  [6,]  72.41550   1555.703</span></span>
+<span id="cb22-12"><a href="#cb22-12" tabindex="-1"></a><span class="co">#&gt;  [7,]  74.25852   1537.170</span></span>
+<span id="cb22-13"><a href="#cb22-13" tabindex="-1"></a><span class="co">#&gt;  [8,]  78.65019   2069.286</span></span>
+<span id="cb22-14"><a href="#cb22-14" tabindex="-1"></a><span class="co">#&gt;  [9,]  80.94781   1904.306</span></span>
+<span id="cb22-15"><a href="#cb22-15" tabindex="-1"></a><span class="co">#&gt; [10,] 111.11650   8021.581</span></span>
+<span id="cb22-16"><a href="#cb22-16" tabindex="-1"></a><span class="co">#&gt; [11,] 142.94762   1762.806</span></span>
+<span id="cb22-17"><a href="#cb22-17" tabindex="-1"></a><span class="co">#&gt; [12,] 149.02347   2321.636</span></span>
+<span id="cb22-18"><a href="#cb22-18" tabindex="-1"></a><span class="co">#&gt; [13,] 191.87257   1696.314</span></span>
+<span id="cb22-19"><a href="#cb22-19" tabindex="-1"></a><span class="co">#&gt; [14,] 198.53033   1989.178</span></span>
+<span id="cb22-20"><a href="#cb22-20" tabindex="-1"></a><span class="co">#&gt; [15,] 211.77391   1822.364</span></span>
+<span id="cb22-21"><a href="#cb22-21" tabindex="-1"></a><span class="co">#&gt; [16,] 245.55685   1736.632</span></span>
+<span id="cb22-22"><a href="#cb22-22" tabindex="-1"></a><span class="co">#&gt; [17,] 269.64896   1780.373</span></span>
+<span id="cb22-23"><a href="#cb22-23" tabindex="-1"></a><span class="co">#&gt; [18,] 287.12476   9176.967</span></span>
+<span id="cb22-24"><a href="#cb22-24" tabindex="-1"></a><span class="co">#&gt; [19,] 302.14398  16704.994</span></span>
+<span id="cb22-25"><a href="#cb22-25" tabindex="-1"></a><span class="co">#&gt; [20,] 303.14651  10119.790</span></span>
+<span id="cb22-26"><a href="#cb22-26" tabindex="-1"></a><span class="co">#&gt; [21,] 304.11557   3318.275</span></span>
+<span id="cb22-27"><a href="#cb22-27" tabindex="-1"></a><span class="co">#&gt; [22,] 304.15106 137640.250</span></span>
+<span id="cb22-28"><a href="#cb22-28" tabindex="-1"></a><span class="co">#&gt; [23,] 305.15442  24287.016</span></span></code></pre></div>
+<p><strong><em>Number of peaks after intra-spectrum grouping and
+labelling individual peaks</em></strong></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">print</span>(l4[[<span class="dv">1</span>]][<span class="dv">3</span>])</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="co">#&gt; $`20092020_CovidMild_P294_P_2.mzML_scan_1587.txt`</span></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a><span class="co">#&gt;       Fragment_ID     MZ  Intensity       Freq</span></span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a><span class="co">#&gt; 1    frag_1_65.34  65.34   1602.947 0.01515152</span></span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a><span class="co">#&gt; 2  frag_10_111.12 111.12   8021.581 0.84848485</span></span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a><span class="co">#&gt; 3  frag_11_142.95 142.95   1762.806 0.09090909</span></span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a><span class="co">#&gt; 4  frag_12_149.02 149.02   2321.636 0.84848485</span></span>
+<span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a><span class="co">#&gt; 5  frag_13_191.87 191.87   1696.314 0.01515152</span></span>
+<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a><span class="co">#&gt; 6  frag_14_198.53 198.53   1989.178 0.01515152</span></span>
+<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a><span class="co">#&gt; 7  frag_15_211.77 211.77   1822.364 0.01515152</span></span>
+<span id="cb23-11"><a href="#cb23-11" tabindex="-1"></a><span class="co">#&gt; 8  frag_16_245.56 245.56   1736.632 0.01515152</span></span>
+<span id="cb23-12"><a href="#cb23-12" tabindex="-1"></a><span class="co">#&gt; 9  frag_17_269.65 269.65   1780.373 0.03030303</span></span>
+<span id="cb23-13"><a href="#cb23-13" tabindex="-1"></a><span class="co">#&gt; 10 frag_18_287.12 287.12   9176.967 0.72727273</span></span>
+<span id="cb23-14"><a href="#cb23-14" tabindex="-1"></a><span class="co">#&gt; 11 frag_19_302.14 302.14  16704.994 1.00000000</span></span>
+<span id="cb23-15"><a href="#cb23-15" tabindex="-1"></a><span class="co">#&gt; 12   frag_2_65.49  65.49   1526.960 0.01515152</span></span>
+<span id="cb23-16"><a href="#cb23-16" tabindex="-1"></a><span class="co">#&gt; 13 frag_20_303.15 303.15  10119.790 1.00000000</span></span>
+<span id="cb23-17"><a href="#cb23-17" tabindex="-1"></a><span class="co">#&gt; 14 frag_21_304.13 304.13 140958.525 0.81818182</span></span>
+<span id="cb23-18"><a href="#cb23-18" tabindex="-1"></a><span class="co">#&gt; 15 frag_22_305.15 305.15  24287.016 0.54545455</span></span>
+<span id="cb23-19"><a href="#cb23-19" tabindex="-1"></a><span class="co">#&gt; 16   frag_3_69.07  69.07   7379.045 0.86363636</span></span>
+<span id="cb23-20"><a href="#cb23-20" tabindex="-1"></a><span class="co">#&gt; 17   frag_4_70.91  70.91   1553.910 0.03030303</span></span>
+<span id="cb23-21"><a href="#cb23-21" tabindex="-1"></a><span class="co">#&gt; 18   frag_5_71.39  71.39   1397.961 0.04545455</span></span>
+<span id="cb23-22"><a href="#cb23-22" tabindex="-1"></a><span class="co">#&gt; 19   frag_6_72.42  72.42   1555.703 0.06060606</span></span>
+<span id="cb23-23"><a href="#cb23-23" tabindex="-1"></a><span class="co">#&gt; 20   frag_7_74.26  74.26   1537.170 0.01515152</span></span>
+<span id="cb23-24"><a href="#cb23-24" tabindex="-1"></a><span class="co">#&gt; 21   frag_8_78.65  78.65   2069.286 0.01515152</span></span>
+<span id="cb23-25"><a href="#cb23-25" tabindex="-1"></a><span class="co">#&gt; 22   frag_9_80.95  80.95   1904.306 0.57575758</span></span></code></pre></div>
+<p><strong><em>Number of peaks remaining after applying fixed intensity
+threshold</em></strong></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">peaksData</span>(sps)[[<span class="dv">1</span>]])</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="co">#&gt;           mz  intensity</span></span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a><span class="co">#&gt;  [1,]  69.07   7379.045</span></span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a><span class="co">#&gt;  [2,]  80.95   1904.306</span></span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a><span class="co">#&gt;  [3,] 111.12   8021.581</span></span>
+<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a><span class="co">#&gt;  [4,] 149.02   2321.636</span></span>
+<span id="cb24-7"><a href="#cb24-7" tabindex="-1"></a><span class="co">#&gt;  [5,] 287.12   9176.967</span></span>
+<span id="cb24-8"><a href="#cb24-8" tabindex="-1"></a><span class="co">#&gt;  [6,] 302.14  16704.994</span></span>
+<span id="cb24-9"><a href="#cb24-9" tabindex="-1"></a><span class="co">#&gt;  [7,] 303.15  10119.790</span></span>
+<span id="cb24-10"><a href="#cb24-10" tabindex="-1"></a><span class="co">#&gt;  [8,] 304.13 140958.525</span></span>
+<span id="cb24-11"><a href="#cb24-11" tabindex="-1"></a><span class="co">#&gt;  [9,] 305.15  24287.016</span></span></code></pre></div>
+</div>
+<div id="summary-of-results" class="section level3">
+<h3>Summary of Results</h3>
+<p>After applying all <strong>five steps</strong> of the package, only
+<strong>9 fragments</strong> remained.</p>
+<p>The <strong>mzML files</strong> containing the cleaned MS/MS spectra
+are saved in the folder <code>Denoised_spectra</code>.</p>
+<p>These files can now be used for further analysis, such as
+<strong>metabolite annotation</strong>.</p>
 </div>
 </div>
 

@@ -411,7 +411,7 @@ We will:
 #20092020_CovidMild_P294_P_2.mzML_scan_1587
 backend = Spectra::MsBackendMzR()
 sps <- Spectra::Spectra("~/Desktop/test_package_dures/test_1/Denoised_spectra/20092020_CovidMild_P294_P_2.mzML", source = backend)
-print(peaksData(sps_top_tic_2[[1]][3])[[1]])
+print(peaksData(l2$sps_top_tic_2[[1]][3])[[1]])
 ```
 
 ***Number of peaks after intra-spectrum grouping and labelling individual peaks***

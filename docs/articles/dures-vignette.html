@@ -72,7 +72,7 @@
                         <h4 data-toc-skip class="author">Shayantan
 Banerjee</h4>
             
-            <h4 data-toc-skip class="date">2024-09-25</h4>
+            <h4 data-toc-skip class="date">2024-10-01</h4>
       
       
       <div class="hidden name"><code>dures-vignette.Rmd</code></div>
@@ -163,7 +163,7 @@ contain a folder named <code>mzml_files/</code> and a file named
 <span><span class="co">#&gt; Downloading GitHub repo BiosystemEngineeringLab-IITB/dures@HEAD</span></span>
 <span><span class="co">#&gt; Skipping 2 packages not available: Spectra, S4Vectors</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="color: #00BBBB;">R CMD build</span> <span style="color: #00BBBB;">─────────────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co">#&gt; * checking for file ‘/tmp/RtmpkQToD8/remotes2fd9f73f5bb48f/BiosystemEngineeringLab-IITB-dures-716c5ed/DESCRIPTION’ ... OK</span></span>
+<span><span class="co">#&gt; * checking for file ‘/tmp/RtmplN880i/remotes37de0c60d10440/BiosystemEngineeringLab-IITB-dures-45aa898/DESCRIPTION’ ... OK</span></span>
 <span><span class="co">#&gt; * preparing ‘dures’:</span></span>
 <span><span class="co">#&gt; * checking DESCRIPTION meta-information ... OK</span></span>
 <span><span class="co">#&gt; * excluding invalid files</span></span>
@@ -172,13 +172,69 @@ contain a folder named <code>mzml_files/</code> and a file named
 <span><span class="co">#&gt; * checking for LF line-endings in source and make files and shell scripts</span></span>
 <span><span class="co">#&gt; * checking for empty or unneeded directories</span></span>
 <span><span class="co">#&gt; * building ‘dures_0.0.0.1.tar.gz’</span></span>
-<span><span class="co">#&gt; Installing package into '/tmp/RtmpNuNyuS/temp_libpath26a0495b18576b'</span></span>
+<span><span class="co">#&gt; Installing package into '/tmp/RtmpNuNyuS/temp_libpath26a0495898081e'</span></span>
 <span><span class="co">#&gt; (as 'lib' is unspecified)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">dures</span><span class="op">)</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">dures</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/RforMassSpectrometry/Spectra" class="external-link">Spectra</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: S4Vectors</span></span>
+<span><span class="co">#&gt; Loading required package: stats4</span></span>
+<span><span class="co">#&gt; Loading required package: BiocGenerics</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'BiocGenerics'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     IQR, mad, sd, var, xtabs</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     anyDuplicated, aperm, append, as.data.frame, basename, cbind,</span></span>
+<span><span class="co">#&gt;     colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,</span></span>
+<span><span class="co">#&gt;     get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,</span></span>
+<span><span class="co">#&gt;     match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,</span></span>
+<span><span class="co">#&gt;     Position, rank, rbind, Reduce, rownames, sapply, setdiff, table,</span></span>
+<span><span class="co">#&gt;     tapply, union, unique, unsplit, which.max, which.min</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'S4Vectors'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:utils':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     findMatches</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     expand.grid, I, unname</span></span>
+<span><span class="co">#&gt; Loading required package: BiocParallel</span></span>
+<span><span class="co">#&gt; Loading required package: ProtGenerics</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'ProtGenerics'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     smooth</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/sneumann/mzR/" class="external-link">mzR</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: Rcpp</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="first-test-example">First Test Example<a class="anchor" aria-label="anchor" href="#first-test-example"></a>
 </h2>
+</div>
+<div class="section level2">
+<h2 id="test-dataset">Test Dataset<a class="anchor" aria-label="anchor" href="#test-dataset"></a>
+</h2>
+<p>The test dataset can be downloaded from the data deposited at <a href="https://zenodo.org/records/13778168" class="external-link">Zenodo</a> (folder name:
+<code>test_1/</code>).</p>
+<div class="section level3">
+<h3 id="workflow-overview">Workflow Overview<a class="anchor" aria-label="anchor" href="#workflow-overview"></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li><p><strong>Reading mzML Files</strong><br>
+The first step of the workflow involves reading mzML files and
+extracting MS/MS spectra within the specified <em>m/z</em> and
+<em>RT</em> tolerance.</p></li>
+<li><p><strong>Extracting and Concatenating Spectra</strong><br>
+The extracted spectra are then concatenated for all replicate spectra
+belonging to a given feature.</p></li>
+<li><p><strong>Filtering Features</strong><br>
+Features that do not have any MS/MS spectra extracted, based on the
+specified <em>RT</em> and <em>m/z</em> tolerance, are removed from the
+list.</p></li>
+</ol>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Define the path to the test_1 folder (replace with the actual path on your system)</span></span>
 <span><span class="va">folder_path</span> <span class="op">&lt;-</span> <span class="st">"~/Desktop/test_package_dures/test_1/"</span></span>
@@ -198,6 +254,859 @@ contain a folder named <code>mzml_files/</code> and a file named
 <span><span class="co">#&gt;  ✓ Spectra has been extracted from the mzml files</span></span>
 <span><span class="co">#&gt; Concatenating and checking if MS2 data is available for a given feature</span></span>
 <span><span class="co">#&gt; MS2 spectra couldn't be extracted from a total of 33 features out of 50 features. They are as follows:3573,8433,7591,7791,5791,3366,2686,2589,8985,4897,6044,5333,7452,8134,5539,4848,5938,390,6713,7836,8643,8270,4318,8992,7629,7098,4060,1069,2144,7427,719,6001,654</span></span></code></pre></div>
+<p><code>l1</code> is a list containing two elements:</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong><code>stats_file_ms2_only</code></strong>: This element
+contains a dataframe with MS/MS feature information, including:
+<ul>
+<li>
+<strong>ID</strong>: Feature identifier</li>
+<li>
+<strong>mz</strong>: Mass-to-charge ratio</li>
+<li>
+<strong>RT</strong>: Retention time</li>
+<li>
+<strong>mz_up</strong>: Upper mass-to-charge limit</li>
+<li>
+<strong>mz_down</strong>: Lower mass-to-charge limit</li>
+<li>
+<strong>RT_tolerance</strong>: Retention time tolerance for each
+sample</li>
+</ul>
+</li>
+<li>
+<strong><code>spectra_ms2_only</code></strong>: This element
+contains a <code>Spectra</code> object with the replicate spectra
+concatenated for each feature.</li>
+</ol>
+<p>Now, let us examine the concatenated spectra for the <strong>first
+feature</strong>.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"name of first feature\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; name of first feature</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">l1</span><span class="op">$</span><span class="va">spectra_ms2_only</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="co">#name of the first feature</span></span>
+<span><span class="co">#&gt; [1] "1982"</span></span>
+<span><span class="va">l1</span><span class="op">$</span><span class="va">spectra_ms2_only</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="co">#&gt; $aggregate</span></span>
+<span><span class="co">#&gt; MSn data (Spectra) with 83 spectra in a MsBackendMzR backend:</span></span>
+<span><span class="co">#&gt;       msLevel     rtime scanIndex</span></span>
+<span><span class="co">#&gt;     &lt;integer&gt; &lt;numeric&gt; &lt;integer&gt;</span></span>
+<span><span class="co">#&gt; 1           2   537.186      2273</span></span>
+<span><span class="co">#&gt; 2           2   550.417      2329</span></span>
+<span><span class="co">#&gt; 3           2   550.714      2341</span></span>
+<span><span class="co">#&gt; 4           2   550.860      2381</span></span>
+<span><span class="co">#&gt; 5           2   538.265      2316</span></span>
+<span><span class="co">#&gt; ...       ...       ...       ...</span></span>
+<span><span class="co">#&gt; 79          2   559.214      2346</span></span>
+<span><span class="co">#&gt; 80          2   509.692      2131</span></span>
+<span><span class="co">#&gt; 81          2   535.495      2241</span></span>
+<span><span class="co">#&gt; 82          2   550.934      2307</span></span>
+<span><span class="co">#&gt; 83          2   559.334      2343</span></span>
+<span><span class="co">#&gt;  ... 33 more variables/columns.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; file(s):</span></span>
+<span><span class="co">#&gt; 20092020_CovidMild_P291_P_2.mzML</span></span>
+<span><span class="co">#&gt; 20092020_CovidMild_P293_P_2.mzML</span></span>
+<span><span class="co">#&gt; 20092020_CovidMild_P294_P_2.mzML</span></span>
+<span><span class="co">#&gt;  ... 21 more files</span></span>
+<span><span class="co">#&gt; Processing:</span></span>
+<span><span class="co">#&gt;  Filter: select MS level(s) 2 [Tue Oct  1 18:04:22 2024]</span></span>
+<span><span class="co">#&gt;  Filter: select retention time [540..552.6] on MS level(s) 2 [Tue Oct  1 18:08:58 2024]</span></span>
+<span><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [304.151146511561, 304.154188038233] [Tue Oct  1 18:08:58 2024]</span></span>
+<span><span class="co">#&gt;  ...82 more processings. Use 'processingLog' to list all.</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"name of third feature\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; name of third feature</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">l1</span><span class="op">$</span><span class="va">spectra_ms2_only</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="co">#name of the first feature</span></span>
+<span><span class="co">#&gt; [1] "872"</span></span>
+<span><span class="va">l1</span><span class="op">$</span><span class="va">spectra_ms2_only</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="co">#&gt; $aggregate</span></span>
+<span><span class="co">#&gt; MSn data (Spectra) with 43 spectra in a MsBackendMzR backend:</span></span>
+<span><span class="co">#&gt;       msLevel     rtime scanIndex</span></span>
+<span><span class="co">#&gt;     &lt;integer&gt; &lt;numeric&gt; &lt;integer&gt;</span></span>
+<span><span class="co">#&gt; 1           2   398.844      1692</span></span>
+<span><span class="co">#&gt; 2           2   405.047      1719</span></span>
+<span><span class="co">#&gt; 3           2   411.288      1746</span></span>
+<span><span class="co">#&gt; 4           2   439.691      1869</span></span>
+<span><span class="co">#&gt; 5           2   396.188      1638</span></span>
+<span><span class="co">#&gt; ...       ...       ...       ...</span></span>
+<span><span class="co">#&gt; 39          2   387.564      1644</span></span>
+<span><span class="co">#&gt; 40          2   394.543      1674</span></span>
+<span><span class="co">#&gt; 41          2   401.467      1704</span></span>
+<span><span class="co">#&gt; 42          2   391.840      1646</span></span>
+<span><span class="co">#&gt; 43          2   398.905      1677</span></span>
+<span><span class="co">#&gt;  ... 33 more variables/columns.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; file(s):</span></span>
+<span><span class="co">#&gt; 13092020_CovidMild_P282_P_2.mzML</span></span>
+<span><span class="co">#&gt; 13092020_CovidNeg_P251_P_2.mzML</span></span>
+<span><span class="co">#&gt; 15092020_CovidNeg_P264_P_2.mzML</span></span>
+<span><span class="co">#&gt;  ... 13 more files</span></span>
+<span><span class="co">#&gt; Processing:</span></span>
+<span><span class="co">#&gt;  Filter: select MS level(s) 2 [Tue Oct  1 18:04:33 2024]</span></span>
+<span><span class="co">#&gt;  Filter: select retention time [342.6..458.4] on MS level(s) 2 [Tue Oct  1 18:09:00 2024]</span></span>
+<span><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [340.166594782258, 340.169996465214] [Tue Oct  1 18:09:00 2024]</span></span>
+<span><span class="co">#&gt;  ...79 more processings. Use 'processingLog' to list all.</span></span></code></pre></div>
+<p>From the output, we can see that the first two MS2 features
+(<code>1982</code> and <code>872</code>) have <strong>83</strong> and
+<strong>43</strong> MS/MS spectra, respectively, from different samples
+listed in the <code>file(s)</code> section of the output.</p>
+<p>We can quickly take a look at the peak information of the first two
+out of the 83 raw MS/MS spectra using the <code><a href="https://rdrr.io/pkg/ProtGenerics/man/peaksData.html" class="external-link">peaksData()</a></code>
+command. Please ensure that the <strong>Spectra</strong> package is
+loaded in your workspace.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/ProtGenerics/man/peaksData.html" class="external-link">peaksData</a></span><span class="op">(</span><span class="va">l1</span><span class="op">$</span><span class="va">spectra_ms2_only</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">aggregate</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co">#first replicate spectrum</span></span>
+<span><span class="co">#&gt;              mz intensity</span></span>
+<span><span class="co">#&gt;  [1,]  56.62591  1398.994</span></span>
+<span><span class="co">#&gt;  [2,]  61.70669  1563.148</span></span>
+<span><span class="co">#&gt;  [3,]  69.06987  2403.306</span></span>
+<span><span class="co">#&gt;  [4,]  80.94779  2957.908</span></span>
+<span><span class="co">#&gt;  [5,]  90.17707  1495.930</span></span>
+<span><span class="co">#&gt;  [6,]  90.97642  2062.323</span></span>
+<span><span class="co">#&gt;  [7,] 111.11679  3500.123</span></span>
+<span><span class="co">#&gt;  [8,] 123.69322  1712.633</span></span>
+<span><span class="co">#&gt;  [9,] 128.95128  1969.603</span></span>
+<span><span class="co">#&gt; [10,] 149.02324  6637.654</span></span>
+<span><span class="co">#&gt; [11,] 209.34242  1902.265</span></span>
+<span><span class="co">#&gt; [12,] 271.26392  2179.285</span></span>
+<span><span class="co">#&gt; [13,] 287.12466  3014.271</span></span>
+<span><span class="co">#&gt; [14,] 302.14420 14044.655</span></span>
+<span><span class="co">#&gt; [15,] 303.14642  9559.155</span></span>
+<span><span class="co">#&gt; [16,] 304.15155 80583.820</span></span>
+<span><span class="co">#&gt; [17,] 305.15701 18333.570</span></span>
+<span><span class="co">#&gt; [18,] 306.15860  2001.433</span></span>
+<span><span class="co">#&gt; [19,] 309.90533  1810.639</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ProtGenerics/man/peaksData.html" class="external-link">peaksData</a></span><span class="op">(</span><span class="va">l1</span><span class="op">$</span><span class="va">spectra_ms2_only</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">aggregate</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co">#second replicate spectrum</span></span>
+<span><span class="co">#&gt;              mz  intensity</span></span>
+<span><span class="co">#&gt;  [1,]  64.97746   2334.644</span></span>
+<span><span class="co">#&gt;  [2,]  70.86658   1600.439</span></span>
+<span><span class="co">#&gt;  [3,]  73.04664 283119.719</span></span>
+<span><span class="co">#&gt;  [4,]  73.04977   4274.566</span></span>
+<span><span class="co">#&gt;  [5,]  73.05517   2189.874</span></span>
+<span><span class="co">#&gt;  [6,]  75.02614   2252.960</span></span>
+<span><span class="co">#&gt;  [7,]  80.94758   9040.647</span></span>
+<span><span class="co">#&gt;  [8,]  88.76517   1889.500</span></span>
+<span><span class="co">#&gt;  [9,]  90.97643   9791.112</span></span>
+<span><span class="co">#&gt; [10,]  91.05714 101528.047</span></span>
+<span><span class="co">#&gt; [11,]  95.65068   2012.465</span></span>
+<span><span class="co">#&gt; [12,]  99.86663   2106.963</span></span>
+<span><span class="co">#&gt; [13,] 101.05959   3213.487</span></span>
+<span><span class="co">#&gt; [14,] 105.07273   2342.439</span></span>
+<span><span class="co">#&gt; [15,] 118.26179   1881.818</span></span>
+<span><span class="co">#&gt; [16,] 129.05463   4200.514</span></span>
+<span><span class="co">#&gt; [17,] 133.10352   3548.106</span></span>
+<span><span class="co">#&gt; [18,] 137.21086   2683.585</span></span>
+<span><span class="co">#&gt; [19,] 149.04442  14426.463</span></span>
+<span><span class="co">#&gt; [20,] 151.02374   4063.270</span></span>
+<span><span class="co">#&gt; [21,] 167.05486   2045.860</span></span>
+<span><span class="co">#&gt; [22,] 186.91089   2489.655</span></span>
+<span><span class="co">#&gt; [23,] 225.04289   2339.576</span></span>
+<span><span class="co">#&gt; [24,] 248.98613   2300.182</span></span>
+<span><span class="co">#&gt; [25,] 250.96677  15898.744</span></span>
+<span><span class="co">#&gt; [26,] 264.98755  11152.391</span></span>
+<span><span class="co">#&gt; [27,] 265.01938   7949.042</span></span>
+<span><span class="co">#&gt; [28,] 266.99835  64797.559</span></span>
+<span><span class="co">#&gt; [29,] 268.97803  40596.406</span></span>
+<span><span class="co">#&gt; [30,] 281.04953  20611.699</span></span>
+<span><span class="co">#&gt; [31,] 283.02771   3002.659</span></span>
+<span><span class="co">#&gt; [32,] 285.00858 146532.812</span></span>
+<span><span class="co">#&gt; [33,] 299.02802   3681.571</span></span>
+<span><span class="co">#&gt; [34,] 299.06119  23176.666</span></span>
+<span><span class="co">#&gt; [35,] 301.14011  21899.592</span></span>
+<span><span class="co">#&gt; [36,] 302.14310   4379.548</span></span>
+<span><span class="co">#&gt; [37,] 311.74365   2323.039</span></span>
+<span><span class="co">#&gt; [38,] 324.00204  14713.819</span></span>
+<span><span class="co">#&gt; [39,] 337.15784   2799.964</span></span>
+<span><span class="co">#&gt; [40,] 345.06598   9165.536</span></span>
+<span><span class="co">#&gt; [41,] 355.06891 229762.078</span></span>
+<span><span class="co">#&gt; [42,] 367.99084   3141.924</span></span>
+<span><span class="co">#&gt; [43,] 369.20236 154449.109</span></span>
+<span><span class="co">#&gt; [44,] 370.20615  37703.914</span></span>
+<span><span class="co">#&gt; [45,] 371.10062  36392.355</span></span>
+<span><span class="co">#&gt; [46,] 373.07739   3257.491</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="tracking-individual-spectrum">Tracking Individual Spectrum<a class="anchor" aria-label="anchor" href="#tracking-individual-spectrum"></a>
+</h3>
+<p>It is also worth noting that we keep track of each individual
+spectrum with respect to the sample from which it is derived. Below, we
+demonstrate this with the identities of the <strong>first 10 replicate
+spectra</strong>:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">l1</span><span class="op">$</span><span class="va">spectra_ms2_only</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">aggregate</span><span class="op">$</span><span class="va">spectrumId</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span> <span class="co">#will be a vector of length 83</span></span>
+<span><span class="co">#&gt;  [1] "20092020_CovidMild_P291_P_2.mzML_scan_1504"  </span></span>
+<span><span class="co">#&gt;  [2] "20092020_CovidMild_P291_P_2.mzML_scan_1541"  </span></span>
+<span><span class="co">#&gt;  [3] "20092020_CovidMild_P293_P_2.mzML_scan_1552"  </span></span>
+<span><span class="co">#&gt;  [4] "20092020_CovidMild_P294_P_2.mzML_scan_1587"  </span></span>
+<span><span class="co">#&gt;  [5] "20092020_CovidNeg_P356_P_2.mzML_scan_1542"   </span></span>
+<span><span class="co">#&gt;  [6] "20092020_CovidNeg_P356_P_2.mzML_scan_1578"   </span></span>
+<span><span class="co">#&gt;  [7] "20092020_CovidSevere_P287_P_2.mzML_scan_1485"</span></span>
+<span><span class="co">#&gt;  [8] "20092020_CovidSevere_P287_P_2.mzML_scan_1522"</span></span>
+<span><span class="co">#&gt;  [9] "20092020_CovidSevere_P288_P_2.mzML_scan_1502"</span></span>
+<span><span class="co">#&gt; [10] "20092020_CovidSevere_P288_P_2.mzML_scan_1536"</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="demonstration-of-spectrum-analysis">Demonstration of Spectrum Analysis<a class="anchor" aria-label="anchor" href="#demonstration-of-spectrum-analysis"></a>
+</h3>
+<p>For demonstration purposes, we will consider the <strong>first
+spectrum</strong> from the list, named:</p>
+<blockquote>
+<p><strong><code>20092020_CovidMild_P291_P_2.mzML_scan_1504</code></strong></p>
+</blockquote>
+<p>This spectrum is derived from the sample:</p>
+<blockquote>
+<p><strong><code>20092020_CovidMild_P291_P_2.mzML</code></strong></p>
+</blockquote>
+<p>As seen in the previous code block, this spectrum contains <strong>19
+fragments</strong>.</p>
+<p>Similarly, the <strong>second spectrum</strong>:</p>
+<blockquote>
+<p><strong><code>20092020_CovidMild_P291_P_2.mzML_scan_1541</code></strong></p>
+</blockquote>
+<p>contains <strong>46 fragments</strong>.</p>
+<p>At the end of this demonstration, we will see how many fragments
+remain in these two spectra after applying a <strong>fixed frequency
+cutoff</strong> to illustrate the effect of
+<strong>denoising</strong>.</p>
+<hr>
+</div>
+<div class="section level3">
+<h3 id="step-2-extracting-top-x-tic-spectra-and-grouping-fragments">Step 2: Extracting Top x% TIC Spectra and Grouping Fragments<a class="anchor" aria-label="anchor" href="#step-2-extracting-top-x-tic-spectra-and-grouping-fragments"></a>
+</h3>
+<p>In the second step, we will use <code>l1</code> from the previous
+step as input to:</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Extract the top x% TIC spectra</strong>, and</li>
+<li>
+<strong>Group fragments</strong> within a specified <strong>mass
+tolerance</strong>.</li>
+</ol>
+<p>The user can modify the following parameters: - <strong>Top x% TIC
+value</strong>: Default is <strong>80%</strong> (i.e.,
+<strong>0.8</strong>). - <strong>Mass tolerance</strong>: Default is
+<strong>0.05 Da</strong>.</p>
+<hr>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">l2</span> <span class="op">=</span> <span class="fu"><a href="../reference/extract_raw_spectra.html">extract_raw_spectra</a></span><span class="op">(</span>folder_path <span class="op">=</span> <span class="va">folder_path</span>, <span class="va">l1</span>, <span class="fl">0.05</span>, <span class="fl">0.8</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%Processing: 1982 </span></span>
+<span><span class="co">#&gt;   |                                                                              |====                                                                  |   6%Processing: 2395 </span></span>
+<span><span class="co">#&gt;   |                                                                              |========                                                              |  12%Processing: 872 </span></span>
+<span><span class="co">#&gt;   |                                                                              |============                                                          |  18%Processing: 2040 </span></span>
+<span><span class="co">#&gt;   |                                                                              |================                                                      |  24%Processing: 2672 </span></span>
+<span><span class="co">#&gt;   |                                                                              |=====================                                                 |  29%Processing: 1926 </span></span>
+<span><span class="co">#&gt;   |                                                                              |=========================                                             |  35%Processing: 5664 </span></span>
+<span><span class="co">#&gt;   |                                                                              |=============================                                         |  41%Processing: 7942 </span></span>
+<span><span class="co">#&gt;   |                                                                              |=================================                                     |  47%Processing: 1549 </span></span>
+<span><span class="co">#&gt;   |                                                                              |=====================================                                 |  53%Processing: 2084 </span></span>
+<span><span class="co">#&gt;   |                                                                              |=========================================                             |  59%Processing: 1218 </span></span>
+<span><span class="co">#&gt;   |                                                                              |=============================================                         |  65%Processing: 1091 </span></span>
+<span><span class="co">#&gt;   |                                                                              |=================================================                     |  71%Processing: 2539 </span></span>
+<span><span class="co">#&gt;   |                                                                              |======================================================                |  76%Processing: 7650 </span></span>
+<span><span class="co">#&gt;   |                                                                              |==========================================================            |  82%Processing: 6371 </span></span>
+<span><span class="co">#&gt;   |                                                                              |==============================================================        |  88%Processing: 1233 </span></span>
+<span><span class="co">#&gt;   |                                                                              |==================================================================    |  94%Processing: 3886 </span></span>
+<span><span class="co">#&gt;   |                                                                              |======================================================================| 100%</span></span></code></pre></div>
+<p>The following code checks to ensure that the object
+<code>sps_top80_tic_2</code> is available in the local environment. This
+is not required while running the package</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Check if 'sps_top80_tic_2' exists before assigning</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/exists.html" class="external-link">exists</a></span><span class="op">(</span><span class="st">"sps_top80_tic_2"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop</a></span><span class="op">(</span><span class="st">"Object 'sps_top80_tic_2' not found in the environment."</span><span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/assign.html" class="external-link">assign</a></span><span class="op">(</span><span class="st">"sps_top80_tic_2"</span>, <span class="va">sps_top80_tic_2</span>, envir <span class="op">=</span> <span class="va">.dures_env</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">#&gt; Error in eval(expr, envir, enclos): Object 'sps_top80_tic_2' not found in the environment.</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="step-2-output-overview">Step 2 Output Overview<a class="anchor" aria-label="anchor" href="#step-2-output-overview"></a>
+</h3>
+<p>For the same number of MS/MS features present in <code>l1</code>, the
+output from the second step (<code>l2</code>) contains three
+components:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Top x% TIC Spectra</strong>:<br>
+Stored as <code>sps_top_tic_2</code> in <strong>Spectra</strong>
+format.</p></li>
+<li><p><strong>Dataframe</strong> (<code>df</code>):<br>
+Contains the number of spectra <strong>before</strong> and
+<strong>after</strong> applying the top x% TIC cutoff.</p></li>
+<li><p><strong>Vector of Features without Extracted
+Spectra</strong>:<br>
+Contains the feature IDs for which no spectra could be
+extracted.</p></li>
+</ol>
+</div>
+<div class="section level3">
+<h3 id="exploring-the-data">Exploring the Data<a class="anchor" aria-label="anchor" href="#exploring-the-data"></a>
+</h3>
+<div class="section level4">
+<h4 id="viewing-specific-rows-of-dataframe-df">1. Viewing Specific Rows of Dataframe <code>df</code><a class="anchor" aria-label="anchor" href="#viewing-specific-rows-of-dataframe-df"></a>
+</h4>
+<p>Let’s look at the <strong>first</strong> and <strong>third
+rows</strong> of <code>df</code>and the number of spectra after applying
+top x% TIC cutoff:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">l2</span><span class="op">$</span><span class="va">df</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span>,<span class="op">]</span></span>
+<span><span class="co">#&gt;   Feature_ID Num_spectra_before_top_x%TIC Num_spectra_after_top_x%TIC</span></span>
+<span><span class="co">#&gt; 1       1982                           83                          66</span></span>
+<span><span class="co">#&gt; 3        872                           43                          34</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">l2</span><span class="op">$</span><span class="va">sps_top_tic_2</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="co"># From 83 before to 66 spectra after after top x% TIC</span></span>
+<span><span class="co">#&gt; MSn data (Spectra) with 66 spectra in a MsBackendMzR backend:</span></span>
+<span><span class="co">#&gt;       msLevel     rtime scanIndex</span></span>
+<span><span class="co">#&gt;     &lt;integer&gt; &lt;numeric&gt; &lt;integer&gt;</span></span>
+<span><span class="co">#&gt; 1           2   550.417      2329</span></span>
+<span><span class="co">#&gt; 2           2   550.714      2341</span></span>
+<span><span class="co">#&gt; 3           2   550.860      2381</span></span>
+<span><span class="co">#&gt; 4           2   538.265      2316</span></span>
+<span><span class="co">#&gt; 5           2   550.855      2370</span></span>
+<span><span class="co">#&gt; ...       ...       ...       ...</span></span>
+<span><span class="co">#&gt; 62          2   535.370      2245</span></span>
+<span><span class="co">#&gt; 63          2   550.640      2310</span></span>
+<span><span class="co">#&gt; 64          2   509.692      2131</span></span>
+<span><span class="co">#&gt; 65          2   535.495      2241</span></span>
+<span><span class="co">#&gt; 66          2   550.934      2307</span></span>
+<span><span class="co">#&gt;  ... 33 more variables/columns.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; file(s):</span></span>
+<span><span class="co">#&gt; 20092020_CovidMild_P291_P_2.mzML</span></span>
+<span><span class="co">#&gt; 20092020_CovidMild_P293_P_2.mzML</span></span>
+<span><span class="co">#&gt; 20092020_CovidMild_P294_P_2.mzML</span></span>
+<span><span class="co">#&gt;  ... 19 more files</span></span>
+<span><span class="co">#&gt; Processing:</span></span>
+<span><span class="co">#&gt;  Filter: select MS level(s) 2 [Tue Oct  1 18:04:22 2024]</span></span>
+<span><span class="co">#&gt;  Filter: select retention time [540..552.6] on MS level(s) 2 [Tue Oct  1 18:08:58 2024]</span></span>
+<span><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [304.151146511561, 304.154188038233] [Tue Oct  1 18:08:58 2024]</span></span>
+<span><span class="co">#&gt;  ...82 more processings. Use 'processingLog' to list all.</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">l2</span><span class="op">$</span><span class="va">sps_top_tic_2</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="co"># From 43 before to 34 spectra remain after top x% TIC</span></span>
+<span><span class="co">#&gt; MSn data (Spectra) with 34 spectra in a MsBackendMzR backend:</span></span>
+<span><span class="co">#&gt;       msLevel     rtime scanIndex</span></span>
+<span><span class="co">#&gt;     &lt;integer&gt; &lt;numeric&gt; &lt;integer&gt;</span></span>
+<span><span class="co">#&gt; 1           2   398.844      1692</span></span>
+<span><span class="co">#&gt; 2           2   405.047      1719</span></span>
+<span><span class="co">#&gt; 3           2   439.691      1869</span></span>
+<span><span class="co">#&gt; 4           2   396.188      1638</span></span>
+<span><span class="co">#&gt; 5           2   402.992      1667</span></span>
+<span><span class="co">#&gt; ...       ...       ...       ...</span></span>
+<span><span class="co">#&gt; 30          2   393.187      1598</span></span>
+<span><span class="co">#&gt; 31          2   399.449      1626</span></span>
+<span><span class="co">#&gt; 32          2   380.650      1614</span></span>
+<span><span class="co">#&gt; 33          2   401.467      1704</span></span>
+<span><span class="co">#&gt; 34          2   398.905      1677</span></span>
+<span><span class="co">#&gt;  ... 33 more variables/columns.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; file(s):</span></span>
+<span><span class="co">#&gt; 13092020_CovidMild_P282_P_2.mzML</span></span>
+<span><span class="co">#&gt; 13092020_CovidNeg_P251_P_2.mzML</span></span>
+<span><span class="co">#&gt; 15092020_CovidNeg_P264_P_2.mzML</span></span>
+<span><span class="co">#&gt;  ... 12 more files</span></span>
+<span><span class="co">#&gt; Processing:</span></span>
+<span><span class="co">#&gt;  Filter: select MS level(s) 2 [Tue Oct  1 18:04:33 2024]</span></span>
+<span><span class="co">#&gt;  Filter: select retention time [342.6..458.4] on MS level(s) 2 [Tue Oct  1 18:09:00 2024]</span></span>
+<span><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [340.166594782258, 340.169996465214] [Tue Oct  1 18:09:00 2024]</span></span>
+<span><span class="co">#&gt;  ...79 more processings. Use 'processingLog' to list all.</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="exploring-the-spectra-sizes">Exploring the Spectra Sizes<a class="anchor" aria-label="anchor" href="#exploring-the-spectra-sizes"></a>
+</h3>
+<p>We will examine the <strong>size</strong> of the
+<strong>first</strong> and <strong>third spectra</strong> belonging to
+feature IDs <code>1982</code> and <code>872</code>, respectively.</p>
+<div class="section level4">
+<h4 id="intra-spectrum-grouping">Intra-Spectrum Grouping<a class="anchor" aria-label="anchor" href="#intra-spectrum-grouping"></a>
+</h4>
+<ul>
+<li>
+<p>We performed <strong>intra-spectrum grouping</strong>, meaning
+that fragments within a default tolerance of <strong>0.05 Da</strong> of
+one another were merged:</p>
+<ul>
+<li>
+<strong>Mean of m/z</strong> values.</li>
+<li>
+<strong>Sum of intensities</strong>.</li>
+</ul>
+</li>
+<li><p>The resulting spectra are stored in the folder
+<code>MS2_scans_before_denoising</code>.</p></li>
+<li><p>Due to intra-spectrum grouping, we can clearly see a
+<strong>reduction in the number of peaks</strong>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section level3">
+<h3 id="ensuring-consistency-before-comparison">Ensuring Consistency Before Comparison<a class="anchor" aria-label="anchor" href="#ensuring-consistency-before-comparison"></a>
+</h3>
+<p>Before comparing the spectra <strong>before and after Step 2</strong>
+of the analysis, we need to check their <strong>identity</strong> to
+ensure we are comparing the <strong>same spectra</strong>.</p>
+<hr>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">l1</span><span class="op">$</span><span class="va">spectra_ms2_only</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">aggregate</span><span class="op">$</span><span class="va">spectrumId</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span><span class="op">)</span> <span class="co">#spectra identities before step 2</span></span>
+<span><span class="co">#&gt;  [1] "20092020_CovidMild_P291_P_2.mzML_scan_1504"  </span></span>
+<span><span class="co">#&gt;  [2] "20092020_CovidMild_P291_P_2.mzML_scan_1541"  </span></span>
+<span><span class="co">#&gt;  [3] "20092020_CovidMild_P293_P_2.mzML_scan_1552"  </span></span>
+<span><span class="co">#&gt;  [4] "20092020_CovidMild_P294_P_2.mzML_scan_1587"  </span></span>
+<span><span class="co">#&gt;  [5] "20092020_CovidNeg_P356_P_2.mzML_scan_1542"   </span></span>
+<span><span class="co">#&gt;  [6] "20092020_CovidNeg_P356_P_2.mzML_scan_1578"   </span></span>
+<span><span class="co">#&gt;  [7] "20092020_CovidSevere_P287_P_2.mzML_scan_1485"</span></span>
+<span><span class="co">#&gt;  [8] "20092020_CovidSevere_P287_P_2.mzML_scan_1522"</span></span>
+<span><span class="co">#&gt;  [9] "20092020_CovidSevere_P288_P_2.mzML_scan_1502"</span></span>
+<span><span class="co">#&gt; [10] "20092020_CovidSevere_P288_P_2.mzML_scan_1536"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">l2</span><span class="op">$</span><span class="va">sps_top_tic_2</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">spectrumId</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span><span class="op">)</span> <span class="co">#spectra identitied after x% TIC cutoff implementation in step 2</span></span>
+<span><span class="co">#&gt;  [1] "20092020_CovidMild_P291_P_2.mzML_scan_1541"  </span></span>
+<span><span class="co">#&gt;  [2] "20092020_CovidMild_P293_P_2.mzML_scan_1552"  </span></span>
+<span><span class="co">#&gt;  [3] "20092020_CovidMild_P294_P_2.mzML_scan_1587"  </span></span>
+<span><span class="co">#&gt;  [4] "20092020_CovidNeg_P356_P_2.mzML_scan_1542"   </span></span>
+<span><span class="co">#&gt;  [5] "20092020_CovidNeg_P356_P_2.mzML_scan_1578"   </span></span>
+<span><span class="co">#&gt;  [6] "20092020_CovidSevere_P287_P_2.mzML_scan_1522"</span></span>
+<span><span class="co">#&gt;  [7] "20092020_CovidSevere_P288_P_2.mzML_scan_1536"</span></span>
+<span><span class="co">#&gt;  [8] "20092020_QCPool_Set1_P_2.mzML_scan_1495"     </span></span>
+<span><span class="co">#&gt;  [9] "20092020_QCPool_Set4_P_2.mzML_scan_1406"     </span></span>
+<span><span class="co">#&gt; [10] "20092020_QCPool_Set4_P_2.mzML_scan_1433"</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="interpretation-of-step-2-output">Interpretation of Step 2 Output<a class="anchor" aria-label="anchor" href="#interpretation-of-step-2-output"></a>
+</h3>
+<p>It is clear from this output that some spectra have been eliminated
+due to low TIC.</p>
+<ul>
+<li>
+<strong>Example</strong>:<br>
+The spectrum titled
+<code>20092020_CovidMild_P291_P_2.mzML_scan_1504</code> <strong>did not
+exist</strong> after applying the top 80% TIC cutoff.</li>
+</ul>
+<div class="section level4">
+<h4 id="exploring-feature-1982">Exploring Feature 1982<a class="anchor" aria-label="anchor" href="#exploring-feature-1982"></a>
+</h4>
+<ul>
+<li><p>For the <strong>first feature</strong>, <code>1982</code>, we
+will consider the spectrum titled
+<code>20092020_CovidMild_P294_P_2.mzML_scan_1587</code> (which is the
+<strong>third on the list</strong> above).</p></li>
+<li><p>Let’s look at the <strong>number of fragments before Step
+2</strong>:</p></li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/ProtGenerics/man/peaksData.html" class="external-link">peaksData</a></span><span class="op">(</span><span class="va">l2</span><span class="op">$</span><span class="va">sps_top_tic_2</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="co">#&gt;              mz  intensity</span></span>
+<span><span class="co">#&gt;  [1,]  65.33508   1602.947</span></span>
+<span><span class="co">#&gt;  [2,]  65.49177   1526.960</span></span>
+<span><span class="co">#&gt;  [3,]  69.06964   7379.045</span></span>
+<span><span class="co">#&gt;  [4,]  70.91068   1553.910</span></span>
+<span><span class="co">#&gt;  [5,]  71.39061   1397.961</span></span>
+<span><span class="co">#&gt;  [6,]  72.41550   1555.703</span></span>
+<span><span class="co">#&gt;  [7,]  74.25852   1537.170</span></span>
+<span><span class="co">#&gt;  [8,]  78.65019   2069.286</span></span>
+<span><span class="co">#&gt;  [9,]  80.94781   1904.306</span></span>
+<span><span class="co">#&gt; [10,] 111.11650   8021.581</span></span>
+<span><span class="co">#&gt; [11,] 142.94762   1762.806</span></span>
+<span><span class="co">#&gt; [12,] 149.02347   2321.636</span></span>
+<span><span class="co">#&gt; [13,] 191.87257   1696.314</span></span>
+<span><span class="co">#&gt; [14,] 198.53033   1989.178</span></span>
+<span><span class="co">#&gt; [15,] 211.77391   1822.364</span></span>
+<span><span class="co">#&gt; [16,] 245.55685   1736.632</span></span>
+<span><span class="co">#&gt; [17,] 269.64896   1780.373</span></span>
+<span><span class="co">#&gt; [18,] 287.12476   9176.967</span></span>
+<span><span class="co">#&gt; [19,] 302.14398  16704.994</span></span>
+<span><span class="co">#&gt; [20,] 303.14651  10119.790</span></span>
+<span><span class="co">#&gt; [21,] 304.11557   3318.275</span></span>
+<span><span class="co">#&gt; [22,] 304.15106 137640.250</span></span>
+<span><span class="co">#&gt; [23,] 305.15442  24287.016</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="intra-spectrum-grouping-overview">Intra-Spectrum Grouping Overview<a class="anchor" aria-label="anchor" href="#intra-spectrum-grouping-overview"></a>
+</h3>
+<p>There are <strong>23 fragments</strong> before intra-spectrum
+grouping. Now, if we look at the same spectrum from the folder
+<code>MS2_scans_before_denoising</code>:</p>
+<ul>
+<li>
+<strong>Subfolder Name</strong>: <code>1982</code>
+</li>
+<li>
+<strong>Text File Name</strong>:
+<code>20092020_CovidMild_P294_P_2.mzML_scan_1587.txt</code>
+</li>
+</ul>
+<p>After intra-spectrum grouping, there are <strong>22
+fragments</strong>.</p>
+<p>The fragments with m/z values <strong>304.11557</strong> and
+<strong>304.15106</strong> were combined into a single fragment after
+the intra-spectrum grouping process.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">spectrum_size_after_grouping</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="st">"~/Desktop/test_package_dures/test_1/MS2_scans_before_denoising/1982/20092020_CovidMild_P294_P_2.mzML_scan_1587.txt"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">spectrum_size_after_grouping</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 22</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="another-example-to-demonstrate-the-effect-of-intra-spectrum-grouping">Another example to demonstrate the effect of intra-spectrum
+grouping<a class="anchor" aria-label="anchor" href="#another-example-to-demonstrate-the-effect-of-intra-spectrum-grouping"></a>
+</h3>
+<p>Similar observations were made for the metabolite ID <code>872</code>
+using the spectrum file:</p>
+<p><strong><code>13092020_CovidMild_P282_P_2.mzML_scan_1120</code></strong></p>
+<p>The analysis included:</p>
+<ul>
+<li>
+<strong>Original Number of Fragments</strong>:
+<ul>
+<li>Before grouping: <code>98</code> fragments.</li>
+</ul>
+</li>
+<li>
+<strong>Corresponding Entry Location</strong>:
+<ul>
+<li>The original fragments can be found in the folder:
+<code>MS2_scans_before_denoising</code>.</li>
+</ul>
+</li>
+<li>
+<strong>Fragments After Grouping</strong>:
+<ul>
+<li>After grouping, the number of fragments reduced to
+<code>81</code>.</li>
+</ul>
+</li>
+</ul>
+<p>This significant reduction from <strong>98</strong> to
+<strong>81</strong> fragments demonstrates the effectiveness of the
+grouping process.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ProtGenerics/man/peaksData.html" class="external-link">peaksData</a></span><span class="op">(</span><span class="va">l2</span><span class="op">$</span><span class="va">sps_top_tic_2</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;            mz intensity</span></span>
+<span><span class="co">#&gt; [1,] 51.92796  1548.977</span></span>
+<span><span class="co">#&gt; [2,] 52.72948  1570.877</span></span>
+<span><span class="co">#&gt; [3,] 67.04167  3786.554</span></span>
+<span><span class="co">#&gt; [4,] 68.03385  2335.577</span></span>
+<span><span class="co">#&gt; [5,] 68.04328 11609.644</span></span>
+<span><span class="co">#&gt; [6,] 68.04562  5354.869</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ProtGenerics/man/peaksData.html" class="external-link">peaksData</a></span><span class="op">(</span><span class="va">l2</span><span class="op">$</span><span class="va">sps_top_tic_2</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 98</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">spectrum_size_after_grouping</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="st">"~/Desktop/test_package_dures/test_1/MS2_scans_before_denoising/872/13092020_CovidMild_P282_P_2.mzML_scan_1120.txt"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">spectrum_size_after_grouping</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 81</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="step-3-consensus-spectrum-generation">Step 3: Consensus Spectrum Generation<a class="anchor" aria-label="anchor" href="#step-3-consensus-spectrum-generation"></a>
+</h3>
+<p>In the <strong>third step</strong>, a <strong>consensus
+spectrum</strong> is generated using the <strong>top 80% TIC
+spectra</strong>, and the corresponding <strong>fragment
+frequencies</strong> are calculated.</p>
+<ul>
+<li>The <strong>consensus spectrum</strong>, also known as the
+<strong>inter-spectrum aggregate</strong>, is built using the same
+principle as the <strong>intra-spectrum aggregate</strong>.</li>
+<li>The output from this step includes:
+<ol style="list-style-type: decimal">
+<li>A <strong>single spectrum per feature</strong>.</li>
+<li>The <strong>peak frequencies</strong> for each feature.</li>
+</ol>
+</li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">l3</span> <span class="op">=</span> <span class="fu"><a href="../reference/call_aggregate.html">call_aggregate</a></span><span class="op">(</span><span class="va">l2</span><span class="op">$</span><span class="va">sps_top_tic_2</span>, <span class="fl">0.05</span>, <span class="va">folder_path</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Creating aggregate spectra for 17 features. This is an expensive operation. Please wait.."</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="examining-the-output-of-l3">Examining the Output of <code>l3</code><a class="anchor" aria-label="anchor" href="#examining-the-output-of-l3"></a>
+</h3>
+<p>The output of <code>l3</code> contains the following components:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Aggregate Spectra</strong>:<br>
+Represented as a <strong>Spectra object</strong>.</p></li>
+<li>
+<p><strong>Dataframe of Aggregate Spectra</strong>:<br>
+This dataframe includes:</p>
+<ul>
+<li>
+<strong>Mean m/z</strong>: The average m/z value of the
+spectra.</li>
+<li>
+<strong>Mean Intensity</strong>: The average intensity of the
+spectra.</li>
+<li>
+<strong>Frequency</strong>: The frequency of occurrence for each
+fragment.</li>
+<li>
+<strong>Number of Fragments</strong>: Before and after
+<strong>inter- and intra-spectra grouping</strong>.</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section level3">
+<h3 id="example-feature-1982">Example: Feature <code>1982</code><a class="anchor" aria-label="anchor" href="#example-feature-1982"></a>
+</h3>
+<p>Let’s consider the first feature with <strong>feature ID
+<code>1982</code></strong> as an example to examine the output more
+closely.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">l3</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">Df</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   MZ_group Mean_MZ Mean_Intensity  Frequency</span></span>
+<span><span class="co">#&gt; 1   100.09  100.09       1728.578 0.01515152</span></span>
+<span><span class="co">#&gt; 2   100.56  100.56       1661.237 0.01515152</span></span>
+<span><span class="co">#&gt; 3   101.62  101.62       1569.523 0.01515152</span></span>
+<span><span class="co">#&gt; 4   102.01  102.01       1658.995 0.01515152</span></span>
+<span><span class="co">#&gt; 5   102.09  102.09       1791.035 0.01515152</span></span>
+<span><span class="co">#&gt; 6   102.16  102.16       1581.980 0.01515152</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">l3</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">Df</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 498</span></span>
+<span><span class="va">l3</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">Mean</span> <span class="co">#will return one consensus spectrum</span></span>
+<span><span class="co">#&gt; MSn data (Spectra) with 1 spectra in a MsBackendMemory backend:</span></span>
+<span><span class="co">#&gt;     msLevel     rtime scanIndex</span></span>
+<span><span class="co">#&gt;   &lt;integer&gt; &lt;numeric&gt; &lt;integer&gt;</span></span>
+<span><span class="co">#&gt; 1         2        NA        NA</span></span>
+<span><span class="co">#&gt;  ... 18 more variables/columns.</span></span></code></pre></div>
+<p>The consensus spectrum built using top 80% TIC spectra for feature
+<code>1982</code> has 498 fragments. Every fragment contain the
+recurrence frequencies. Let’s see some of the top recurrent
+fragments.</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">l</span> <span class="op">=</span> <span class="va">l3</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">Df</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">l</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">l</span><span class="op">$</span><span class="va">Frequency</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,<span class="op">]</span>,<span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;     MZ_group  Mean_MZ Mean_Intensity Frequency</span></span>
+<span><span class="co">#&gt; 259   302.14 302.1403      18709.572 1.0000000</span></span>
+<span><span class="co">#&gt; 262   303.15 303.1502      13944.536 1.0000000</span></span>
+<span><span class="co">#&gt; 387    69.07  69.0700       4433.040 0.8636364</span></span>
+<span><span class="co">#&gt; 30    111.12 111.1196       6553.274 0.8484848</span></span>
+<span><span class="co">#&gt; 103   149.02 149.0204       4537.965 0.8484848</span></span>
+<span><span class="co">#&gt; 264   304.15 304.1519     298435.349 0.8181818</span></span>
+<span><span class="co">#&gt; 250   287.13 287.1246      17780.629 0.7272727</span></span>
+<span><span class="co">#&gt; 443    80.95  80.9500       3306.953 0.5757576</span></span>
+<span><span class="co">#&gt; 241   271.26 271.2605       3241.426 0.5606061</span></span>
+<span><span class="co">#&gt; 267   305.16 305.1600      50335.577 0.5454545</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="step-4-labelling-individual-spectra-for-every-feature">Step 4: Labelling individual spectra for every feature<a class="anchor" aria-label="anchor" href="#step-4-labelling-individual-spectra-for-every-feature"></a>
+</h3>
+</div>
+<div class="section level3">
+<h3 id="step-4-labeling-fragments-of-top-tic-spectra">Step 4: Labeling Fragments of Top TIC Spectra<a class="anchor" aria-label="anchor" href="#step-4-labeling-fragments-of-top-tic-spectra"></a>
+</h3>
+<p>Using the <strong>recurrence frequencies</strong> calculated in
+<strong>Step 3</strong>, we will now label the fragments of every
+<strong>top TIC spectra</strong> for a given feature.</p>
+<p>The output from this step is:</p>
+<ul>
+<li>A <strong>list</strong> containing all spectra for a given
+feature.</li>
+<li>The corresponding <strong>fragment frequencies</strong> for each
+labeled fragment.</li>
+</ul>
+<p>This labeling process provides insights into how often each fragment
+appears across all spectra, allowing for better analysis of fragment
+patterns within the <strong>top TIC</strong> data.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">l4</span> <span class="op">=</span> <span class="fu"><a href="../reference/label_individual_spectrum.html">label_individual_spectrum</a></span><span class="op">(</span><span class="va">l3</span>, <span class="va">folder_path</span>, <span class="fl">0.05</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 119.14</span></span>
+<span><span class="co">#&gt; [1] "Fragment of this scan couldn't be labelled"</span></span>
+<span><span class="co">#&gt; [1] 68.9</span></span>
+<span><span class="co">#&gt; [1] "Fragment of this scan couldn't be labelled"</span></span>
+<span><span class="co">#&gt; [1] 148.96</span></span>
+<span><span class="co">#&gt; [1] "Fragment of this scan couldn't be labelled"</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="inspecting-feature-1982">Inspecting Feature <code>1982</code><a class="anchor" aria-label="anchor" href="#inspecting-feature-1982"></a>
+</h3>
+<p>We will now inspect the <strong>first feature</strong>
+(<code>1982</code>) and check the corresponding <strong>spectra</strong>
+and their <strong>fragment frequencies</strong>.</p>
+<ul>
+<li><p>The <strong>number of spectra per feature</strong> will be the
+same as in <strong>Step 2</strong>, where we retained only the
+<strong>top x% TIC spectra</strong>.</p></li>
+<li><p>Let’s also look at the specific feature named
+<code>20092020_CovidMild_P294_P_2.mzML_scan_1587</code>, as in
+<strong>Step 2</strong>.</p></li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">l4</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 66</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">l4</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "20092020_CovidMild_P294_P_2.mzML_scan_1587.txt"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">l4</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $`20092020_CovidMild_P294_P_2.mzML_scan_1587.txt`</span></span>
+<span><span class="co">#&gt;       Fragment_ID     MZ  Intensity       Freq</span></span>
+<span><span class="co">#&gt; 1    frag_1_65.34  65.34   1602.947 0.01515152</span></span>
+<span><span class="co">#&gt; 2  frag_10_111.12 111.12   8021.581 0.84848485</span></span>
+<span><span class="co">#&gt; 3  frag_11_142.95 142.95   1762.806 0.09090909</span></span>
+<span><span class="co">#&gt; 4  frag_12_149.02 149.02   2321.636 0.84848485</span></span>
+<span><span class="co">#&gt; 5  frag_13_191.87 191.87   1696.314 0.01515152</span></span>
+<span><span class="co">#&gt; 6  frag_14_198.53 198.53   1989.178 0.01515152</span></span>
+<span><span class="co">#&gt; 7  frag_15_211.77 211.77   1822.364 0.01515152</span></span>
+<span><span class="co">#&gt; 8  frag_16_245.56 245.56   1736.632 0.01515152</span></span>
+<span><span class="co">#&gt; 9  frag_17_269.65 269.65   1780.373 0.03030303</span></span>
+<span><span class="co">#&gt; 10 frag_18_287.12 287.12   9176.967 0.72727273</span></span>
+<span><span class="co">#&gt; 11 frag_19_302.14 302.14  16704.994 1.00000000</span></span>
+<span><span class="co">#&gt; 12   frag_2_65.49  65.49   1526.960 0.01515152</span></span>
+<span><span class="co">#&gt; 13 frag_20_303.15 303.15  10119.790 1.00000000</span></span>
+<span><span class="co">#&gt; 14 frag_21_304.13 304.13 140958.525 0.81818182</span></span>
+<span><span class="co">#&gt; 15 frag_22_305.15 305.15  24287.016 0.54545455</span></span>
+<span><span class="co">#&gt; 16   frag_3_69.07  69.07   7379.045 0.86363636</span></span>
+<span><span class="co">#&gt; 17   frag_4_70.91  70.91   1553.910 0.03030303</span></span>
+<span><span class="co">#&gt; 18   frag_5_71.39  71.39   1397.961 0.04545455</span></span>
+<span><span class="co">#&gt; 19   frag_6_72.42  72.42   1555.703 0.06060606</span></span>
+<span><span class="co">#&gt; 20   frag_7_74.26  74.26   1537.170 0.01515152</span></span>
+<span><span class="co">#&gt; 21   frag_8_78.65  78.65   2069.286 0.01515152</span></span>
+<span><span class="co">#&gt; 22   frag_9_80.95  80.95   1904.306 0.57575758</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="overview-of-fragment-recurrence">Overview of Fragment Recurrence<a class="anchor" aria-label="anchor" href="#overview-of-fragment-recurrence"></a>
+</h3>
+<p>We can observe <strong>22 fragments</strong> from the spectrum and
+their corresponding <strong>frequency of recurrence</strong>.</p>
+</div>
+<div class="section level3">
+<h3 id="next-steps">Next Steps<a class="anchor" aria-label="anchor" href="#next-steps"></a>
+</h3>
+<p>In the next step, we will:</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Apply a Fixed Frequency Cutoff</strong>:
+<ul>
+<li>Denoise the data by retaining only those fragments that meet the
+cutoff criteria.</li>
+</ul>
+</li>
+<li>
+<strong>Aggregate All MS/MS Spectra</strong>:
+<ul>
+<li>Combine all the spectra from the different samples.</li>
+</ul>
+</li>
+<li>
+<strong>Export the Results</strong>:
+<ul>
+<li>Print the aggregated MS/MS spectra to a file for further
+analysis.</li>
+</ul>
+</li>
+</ol>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">l5</span> <span class="op">=</span> <span class="fu"><a href="../reference/generate_denoised_spectra.html">generate_denoised_spectra</a></span><span class="op">(</span><span class="va">l4</span>, <span class="va">folder_path</span>, ion_mode <span class="op">=</span> <span class="st">"pos"</span><span class="op">)</span> </span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="output-overview">Output Overview<a class="anchor" aria-label="anchor" href="#output-overview"></a>
+</h3>
+<p>The output consists of <strong>mzML format</strong> files with only
+<strong>denoised MS/MS features</strong>. The output from
+<code>l5</code> contains:</p>
+<ul>
+<li>mzML files saved in a folder named
+<strong><code>Denoised_spectra</code></strong>.</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="checking-specific-spectrum-output">Checking Specific Spectrum Output<a class="anchor" aria-label="anchor" href="#checking-specific-spectrum-output"></a>
+</h3>
+<p>We will:</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Check the Size and Contents</strong> of a Particular
+Spectrum
+<ul>
+<li>Spectrum titled <strong>‘1587’</strong>.</li>
+<li>From the sample <strong>“20092020_CovidMild_P294_P_2”</strong>.</li>
+<li>Feature ID: <strong><code>1982</code></strong>.</li>
+</ul>
+</li>
+<li>
+<strong>Read the Spectrum from <code>Denoised_spectra</code>
+Folder</strong>:</li>
+</ol>
+<p><code>denoised_spectrum &lt;- read_mzML("Denoised_spectra/20092020_CovidMild_P294_P_2.mzML")</code></p>
+<p><strong><em>Number of peaks before denoising</em></strong></p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#20092020_CovidMild_P294_P_2.mzML_scan_1587</span></span>
+<span><span class="va">backend</span> <span class="op">=</span> <span class="fu">Spectra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Spectra/man/MsBackend.html" class="external-link">MsBackendMzR</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">sps</span> <span class="op">&lt;-</span> <span class="fu">Spectra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Spectra/man/Spectra.html" class="external-link">Spectra</a></span><span class="op">(</span><span class="st">"~/Desktop/test_package_dures/test_1/Denoised_spectra/20092020_CovidMild_P294_P_2.mzML"</span>, source <span class="op">=</span> <span class="va">backend</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ProtGenerics/man/peaksData.html" class="external-link">peaksData</a></span><span class="op">(</span><span class="va">l2</span><span class="op">$</span><span class="va">sps_top_tic_2</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt;              mz  intensity</span></span>
+<span><span class="co">#&gt;  [1,]  65.33508   1602.947</span></span>
+<span><span class="co">#&gt;  [2,]  65.49177   1526.960</span></span>
+<span><span class="co">#&gt;  [3,]  69.06964   7379.045</span></span>
+<span><span class="co">#&gt;  [4,]  70.91068   1553.910</span></span>
+<span><span class="co">#&gt;  [5,]  71.39061   1397.961</span></span>
+<span><span class="co">#&gt;  [6,]  72.41550   1555.703</span></span>
+<span><span class="co">#&gt;  [7,]  74.25852   1537.170</span></span>
+<span><span class="co">#&gt;  [8,]  78.65019   2069.286</span></span>
+<span><span class="co">#&gt;  [9,]  80.94781   1904.306</span></span>
+<span><span class="co">#&gt; [10,] 111.11650   8021.581</span></span>
+<span><span class="co">#&gt; [11,] 142.94762   1762.806</span></span>
+<span><span class="co">#&gt; [12,] 149.02347   2321.636</span></span>
+<span><span class="co">#&gt; [13,] 191.87257   1696.314</span></span>
+<span><span class="co">#&gt; [14,] 198.53033   1989.178</span></span>
+<span><span class="co">#&gt; [15,] 211.77391   1822.364</span></span>
+<span><span class="co">#&gt; [16,] 245.55685   1736.632</span></span>
+<span><span class="co">#&gt; [17,] 269.64896   1780.373</span></span>
+<span><span class="co">#&gt; [18,] 287.12476   9176.967</span></span>
+<span><span class="co">#&gt; [19,] 302.14398  16704.994</span></span>
+<span><span class="co">#&gt; [20,] 303.14651  10119.790</span></span>
+<span><span class="co">#&gt; [21,] 304.11557   3318.275</span></span>
+<span><span class="co">#&gt; [22,] 304.15106 137640.250</span></span>
+<span><span class="co">#&gt; [23,] 305.15442  24287.016</span></span></code></pre></div>
+<p><strong><em>Number of peaks after intra-spectrum grouping and
+labelling individual peaks</em></strong></p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">l4</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $`20092020_CovidMild_P294_P_2.mzML_scan_1587.txt`</span></span>
+<span><span class="co">#&gt;       Fragment_ID     MZ  Intensity       Freq</span></span>
+<span><span class="co">#&gt; 1    frag_1_65.34  65.34   1602.947 0.01515152</span></span>
+<span><span class="co">#&gt; 2  frag_10_111.12 111.12   8021.581 0.84848485</span></span>
+<span><span class="co">#&gt; 3  frag_11_142.95 142.95   1762.806 0.09090909</span></span>
+<span><span class="co">#&gt; 4  frag_12_149.02 149.02   2321.636 0.84848485</span></span>
+<span><span class="co">#&gt; 5  frag_13_191.87 191.87   1696.314 0.01515152</span></span>
+<span><span class="co">#&gt; 6  frag_14_198.53 198.53   1989.178 0.01515152</span></span>
+<span><span class="co">#&gt; 7  frag_15_211.77 211.77   1822.364 0.01515152</span></span>
+<span><span class="co">#&gt; 8  frag_16_245.56 245.56   1736.632 0.01515152</span></span>
+<span><span class="co">#&gt; 9  frag_17_269.65 269.65   1780.373 0.03030303</span></span>
+<span><span class="co">#&gt; 10 frag_18_287.12 287.12   9176.967 0.72727273</span></span>
+<span><span class="co">#&gt; 11 frag_19_302.14 302.14  16704.994 1.00000000</span></span>
+<span><span class="co">#&gt; 12   frag_2_65.49  65.49   1526.960 0.01515152</span></span>
+<span><span class="co">#&gt; 13 frag_20_303.15 303.15  10119.790 1.00000000</span></span>
+<span><span class="co">#&gt; 14 frag_21_304.13 304.13 140958.525 0.81818182</span></span>
+<span><span class="co">#&gt; 15 frag_22_305.15 305.15  24287.016 0.54545455</span></span>
+<span><span class="co">#&gt; 16   frag_3_69.07  69.07   7379.045 0.86363636</span></span>
+<span><span class="co">#&gt; 17   frag_4_70.91  70.91   1553.910 0.03030303</span></span>
+<span><span class="co">#&gt; 18   frag_5_71.39  71.39   1397.961 0.04545455</span></span>
+<span><span class="co">#&gt; 19   frag_6_72.42  72.42   1555.703 0.06060606</span></span>
+<span><span class="co">#&gt; 20   frag_7_74.26  74.26   1537.170 0.01515152</span></span>
+<span><span class="co">#&gt; 21   frag_8_78.65  78.65   2069.286 0.01515152</span></span>
+<span><span class="co">#&gt; 22   frag_9_80.95  80.95   1904.306 0.57575758</span></span></code></pre></div>
+<p><strong><em>Number of peaks remaining after applying fixed intensity
+threshold</em></strong></p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ProtGenerics/man/peaksData.html" class="external-link">peaksData</a></span><span class="op">(</span><span class="va">sps</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt;           mz  intensity</span></span>
+<span><span class="co">#&gt;  [1,]  69.07   7379.045</span></span>
+<span><span class="co">#&gt;  [2,]  80.95   1904.306</span></span>
+<span><span class="co">#&gt;  [3,] 111.12   8021.581</span></span>
+<span><span class="co">#&gt;  [4,] 149.02   2321.636</span></span>
+<span><span class="co">#&gt;  [5,] 287.12   9176.967</span></span>
+<span><span class="co">#&gt;  [6,] 302.14  16704.994</span></span>
+<span><span class="co">#&gt;  [7,] 303.15  10119.790</span></span>
+<span><span class="co">#&gt;  [8,] 304.13 140958.525</span></span>
+<span><span class="co">#&gt;  [9,] 305.15  24287.016</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="summary-of-results">Summary of Results<a class="anchor" aria-label="anchor" href="#summary-of-results"></a>
+</h3>
+<p>After applying all <strong>five steps</strong> of the package, only
+<strong>9 fragments</strong> remained.</p>
+<p>The <strong>mzML files</strong> containing the cleaned MS/MS spectra
+are saved in the folder <code>Denoised_spectra</code>.</p>
+<p>These files can now be used for further analysis, such as
+<strong>metabolite annotation</strong>.</p>
+</div>
 </div>
   </div>
 
