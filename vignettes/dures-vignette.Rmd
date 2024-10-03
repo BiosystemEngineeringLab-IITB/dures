@@ -177,7 +177,7 @@ if (!exists("sps_top80_tic_2")) {
   assign("sps_top80_tic_2", sps_top80_tic_2, envir = .dures_env)
 }
 ```
-### Step 2 Output Overview
+#### Step 2 Output Overview
 
 For the same number of MS/MS features present in `l1`, the output from the second step (`l2`) contains three components:
 
@@ -333,8 +333,6 @@ print(head(l[order(l$Frequency, decreasing = TRUE),],10))
 ```
 
 ### Step 4: Labelling individual spectra for every feature
-
-### Step 4: Labeling Fragments of Top TIC Spectra
 
 Using the **recurrence frequencies** calculated in **Step 3**, we will now label the fragments of every **top TIC spectra** for a given feature.
 
