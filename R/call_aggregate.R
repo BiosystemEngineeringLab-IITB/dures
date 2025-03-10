@@ -9,7 +9,7 @@
 #' @examples
 #' # Example usage of the function
 #' folder_path = "/home/shayantan/Desktop/test_package_dures/test_2/"
-#' sp <- preprocess(folder_path, 5, 0.01)
+#' sp <- preprocess(folder_path, 5, 0.01) #tolerance of 0.01 Da
 #' l <- sp[[1]]
 #' sp1 <- extract_raw_spectra(folder_path, l, 0.05, 0.8)
 #' spectra_list <- sp1[[1]]
