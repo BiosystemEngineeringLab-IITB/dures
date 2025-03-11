@@ -17,6 +17,7 @@ Suggests:
   BiocManager,
   knitr,
   markdown
+LazyData: true
 Encoding: UTF-8
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
