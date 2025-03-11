@@ -1,5 +1,17 @@
+#' prepare_reference
+#'
+#' Stores the reference spectra as a txt file for further matching with current experimental spectra and returns the reference spectra as a Spectra object. This neednot be run independently. This is a companion function to precursor_matching.R
+#'
+#' @param index index
+#' @param name feature ID
+#' @param  lib positive or negative library
+#' @param path folder_path to store the spectra as txt files
+#' @return reference spectra in Spectra format
+#' @examples
+#' # Example usage of the function
+#' prepare_reference(ind, n, lib, p)
+#' @export
 
-# Prepare individual references
 prepare_reference <- function(index, name, lib, path) {
   # Extract spectra data
   ref <- data.frame(
