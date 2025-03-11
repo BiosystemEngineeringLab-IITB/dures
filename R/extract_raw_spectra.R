@@ -64,6 +64,6 @@ extract_raw_spectra <- function(folder_path, list_of_spectra_files, intrascan_gr
   close(pb)
   # Return results as a list
   names(sps_top80_tic_2) <- df[,1]
-  assign("sps_top_tic_2",sps_top80_tic_2, envir = .dures_env)
+  assign("sps_top80_tic_2",sps_top80_tic_2, envir = .dures_env)
   return(list(sps_top_tic_2 = sps_top80_tic_2, df = df, num_feats_no_spectra  = spec_null))
 }
