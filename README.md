@@ -46,7 +46,7 @@ l5 = generate_denoised_spectra(l4, folder_path, ion_mode = "pos")
 
 ## Package Workflow
 
-![Workflow Diagram](images/Denoising_workflow_tuning_testing_combined.drawio.pdf)
+![Workflow Diagram](images/Denoising_workflow_tuning_testing_combined.drawio-1.png)
 =======
 
 ## Citation
