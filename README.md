@@ -45,7 +45,7 @@ l5 = generate_denoised_spectra(l4, folder_path, ion_mode = "pos")
 ```
 
 ## Package Workflow
-![Workflow Diagram](https://raw.githubusercontent.com/banerjeeshayantan/test_read_the_docs_tut/main/dures_workflow.png)
+![Workflow Diagram](images/Denoising_workflow_tuning_testing_combined.drawio.pdf)
 
 ## Citation
 Banerjee, Shayantan, Prajval Nakrani, Aviral Singh, and Pramod Wangikar. "DuReS: An R package for denoising experimental tandem mass spectrometry-based metabolomics data." [bioRxiv](https://www.biorxiv.org/content/10.1101/2024.09.16.613198v1) (2024): 2024-09.
