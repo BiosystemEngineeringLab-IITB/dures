@@ -1,4 +1,17 @@
-# Reference preparation function
+#' reference_preparation_for_matching
+#'
+#' Prepares the reference library for matching with current experimental spectra. This neednot be run independently. This is a companion function to precursor_matching.R
+#'
+#' @param j index
+#' @param annotation_file stats file with ID, mz, RT etc
+#' @param  lib positive or negative library
+#' @param path folder_path to store the spectra as txt files
+#' @return reference spectra in Spectra format
+#' @examples
+#' # Example usage of the function
+#' reference_preparation_for_matching(j, l1$stats_file_ms2_only, lib, p)
+#' @export
+
 reference_preparation_for_matching <- function(j, annotation_file, lib, path) {
   # Extract relevant information
   name <- annotation_file$ID[j]
