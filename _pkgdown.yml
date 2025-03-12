@@ -1,3 +1,5 @@
+template:
+  bootstrap: 5
 
 authors:
   - name: "Shayantan Banerjee"
@@ -27,4 +29,20 @@ navbar:
       href: https://github.com/BiosystemEngineeringLab-IITB/dures
 
 reference:
-  - title: "Function Description"  # Customize the title here
+  - title: "Main Functions"
+    contents:
+      - call_aggregate
+      - concatenate_spectra
+      - concat_ms2_spec_from_stats_file
+      - derive_aggregate_spectra
+      - extract_features_from_scans_raw_data
+      - extract_raw_spectra
+      - generate_denoised_spectra
+      - intrascan_grouping
+      - label_individual_spectrum
+      - precursor_matching
+      - prepare_reference
+      - preprocess
+      - read_files
+      - reference_preparation_for_matching
+      - tune_parameters

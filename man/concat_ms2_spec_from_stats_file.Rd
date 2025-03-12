@@ -7,14 +7,14 @@
 concat_ms2_spec_from_stats_file(j, stats_file, fl)
 }
 \arguments{
-\item{j:}{jth feature from the stats file}
+\item{j}{jth feature from the stats file.}
 
-\item{stats_file:}{edited stats file with RT_min and RT_max prefixes added to every sample}
+\item{stats_file}{edited stats file with RT_min and RT_max prefixes added to every sample.}
 
-\item{fl:}{list of sample names}
+\item{fl}{list of sample names.}
 }
 \value{
-a list with all spectra concatenated for a particular feature
+A list with all spectra concatenated for a particular feature
 }
 \description{
 Helper function for concatenate_spectra(). Need not be called separately. Gets auto-invoked once we call concatenate_spectra()

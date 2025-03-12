@@ -12,16 +12,16 @@ extract_raw_spectra(
 )
 }
 \arguments{
-\item{folder_path:}{same folder path used in preprocess(). The extracted fragment-grouped spectra in .txt format will be stored here}
+\item{folder_path}{same folder path used in preprocess(). The extracted fragment-grouped spectra in .txt format will be stored here}
 
-\item{list_of_spectra_files:}{output from preprocess()}
+\item{list_of_spectra_files}{output from preprocess()}
 
-\item{intrascan_grouping_tolerance:}{if fragments are found within this mass tolerance (in Da), they will be grouped into a single fragment by taking average mz value and sum of intensities. Default value is 0.05 Da.}
+\item{intrascan_grouping_tolerance}{if fragments are found within this mass tolerance (in Da), they will be grouped into a single fragment by taking average mz value and sum of intensities. Default value is 0.05 Da.}
 
-\item{top_percent_tic:}{this parameter will tell the user that only top x\% TIC spectra will be extracted and stored in the folder in .txt format. Default value is 0.8 (or 80\%)}
+\item{top_percent_tic}{this parameter will tell the user that only top x\% TIC spectra will be extracted and stored in the folder in .txt format. Default value is 0.8 (or 80\%)}
 }
 \value{
-a list containing all top x\% TIC scans in spectra format, a dataframe showing the number of spectra remaining before and after applying the top x\% cutoff, and a vector containing features with no fragments
+A list containing all top x\% TIC scans in spectra format, a dataframe showing the number of spectra remaining before and after applying the top x\% cutoff, and a vector containing features with no fragments
 }
 \description{
 Extracts MS2 spectra for every feature, groups fragments within a given mass tolerance and store only the top x\% TIC spectra for further analysis. It is required to run preprocess() before running this.

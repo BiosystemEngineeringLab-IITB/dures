@@ -7,15 +7,15 @@
 extract_features_from_scans_raw_data(sps_j, name, f_path, cutoff, tol)
 }
 \arguments{
-\item{sps_j:}{a list of concatenated MS2 spectra for a given feature}
+\item{sps_j}{a list of concatenated MS2 spectra for a given feature.}
 
-\item{name:}{name of feature (ID)}
+\item{name}{name of feature (ID).}
 
-\item{f_path:}{path to the a folder with the same name as the feature ID is created inside the folder titled MS2_scans_before_denoising}
+\item{f_path}{path to the a folder with the same name as the feature ID is created inside the folder titled MS2_scans_before_denoising.}
 
-\item{cutoff:}{top x\% TIC cutoff}
+\item{cutoff}{top x\% TIC cutoff.}
 
-\item{tol:}{mass tolerance for grouping}
+\item{tol}{mass tolerance for grouping.}
 }
 \value{
 A list containing the top x\% TIC and number of scans before and after TIC filtering

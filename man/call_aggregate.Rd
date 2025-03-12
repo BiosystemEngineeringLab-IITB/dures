@@ -7,24 +7,25 @@
 call_aggregate(spectra_list, mz_tol, folder_path)
 }
 \arguments{
-\item{spectra_list:}{list of spectra objects for all features, each containing top x\% TIC spectra concatenated}
+\item{spectra_list}{List of spectra objects for all features, each containing top x\\% TIC spectra concatenated.}
 
-\item{mz_tol:}{mass tolerance (in Da) required when grouping fragments across multiple spectra for a given feature}
+\item{mz_tol}{Mass tolerance (in Da) required when grouping fragments across multiple spectra for a given feature.}
 
-\item{folder_path:}{the path to the folder where you want to store the data reduction dataframe}
+\item{folder_path}{The path to the folder where you want to store the data reduction dataframe.}
 }
 \value{
-a list containing the aggregate spectra object and a dataframe of the aggregate spectra for all features
+A list containing the aggregate spectra object and a dataframe of the aggregate spectra for all features.
 }
 \description{
-Helper code to run derive_aggregate_spectra
+Helper code to run derive_aggregate_spectra.
 }
 \examples{
 # Example usage of the function
-folder_path = "/home/shayantan/Desktop/test_package_dures/test_2/"
-sp <- preprocess(folder_path, 5, 0.01) #tolerance of 0.01 Da
+folder_path <- "path/to/folder"
+sp <- preprocess(folder_path, 5, 0.01) # Tolerance of 0.01 Da.
 l <- sp[[1]]
 sp1 <- extract_raw_spectra(folder_path, l, 0.05, 0.8)
 spectra_list <- sp1[[1]]
 call_aggregate(spectra_list, 0.05, folder_path)
+
 }
