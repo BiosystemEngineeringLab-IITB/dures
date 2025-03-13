@@ -7,15 +7,22 @@
 concatenate_spectra(output_list_from_preprocess_function)
 }
 \arguments{
-\item{output_list_from_preprocess_function:}{contain list generated from the preprocess()}
+\item{output_list_from_preprocess_function}{A list generated from the preprocess function.}
 }
 \value{
-A list containing the MS2 spectra extracted from the mzml files using the predefined tolerances and a vector of features for which MS2 spectra couldn't be extracted
+A list containing the MS2 spectra extracted from the mzML files using the predefined tolerances
+and a vector of features for which MS2 spectra couldn't be extracted.
 }
 \description{
-Reads a list generated from the preprocess() and extracts MS2 spectra within the given mz and RT range. Also returns a list of features for which MS2 spectra couldn't be extracted
+This function extracts MS2 spectra from a list produced by the preprocess function.
+}
+\details{
+Reads a list generated from the preprocess function and extracts MS2 spectra within the given mz and RT range.
+Also returns a list of features for which MS2 spectra couldn't be extracted.
 }
 \examples{
 # Example usage of the function
-concatenate_spectra(output_list_from_preprocess_function)
+l1 = preprocess(folder_path = "D:/test_2/", tol_mz = 5, tol_rt = 0.1)  # Replace with actual data
+concatenate_spectra(l1)
+
 }

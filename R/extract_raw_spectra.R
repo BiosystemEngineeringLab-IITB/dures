@@ -3,11 +3,11 @@
 #' Extracts MS2 spectra for every feature, groups fragments within a given mass tolerance and store only the top x% TIC spectra for further analysis. It is required to run preprocess() before running this.
 #' @importFrom  utils setTxtProgressBar
 #' @importFrom  utils txtProgressBar
-#' @param folder_path: same folder path used in preprocess(). The extracted fragment-grouped spectra in .txt format will be stored here
-#' @param list_of_spectra_files: output from preprocess()
-#' @param intrascan_grouping_tolerance: if fragments are found within this mass tolerance (in Da), they will be grouped into a single fragment by taking average mz value and sum of intensities. Default value is 0.05 Da.
-#' @param top_percent_tic: this parameter will tell the user that only top x% TIC spectra will be extracted and stored in the folder in .txt format. Default value is 0.8 (or 80%)
-#' @return a list containing all top x% TIC scans in spectra format, a dataframe showing the number of spectra remaining before and after applying the top x% cutoff, and a vector containing features with no fragments
+#' @param folder_path same folder path used in preprocess(). The extracted fragment-grouped spectra in .txt format will be stored here
+#' @param list_of_spectra_files output from preprocess()
+#' @param intrascan_grouping_tolerance if fragments are found within this mass tolerance (in Da), they will be grouped into a single fragment by taking average mz value and sum of intensities. Default value is 0.05 Da.
+#' @param top_percent_tic this parameter will tell the user that only top x% TIC spectra will be extracted and stored in the folder in .txt format. Default value is 0.8 (or 80%)
+#' @return A list containing all top x% TIC scans in spectra format, a dataframe showing the number of spectra remaining before and after applying the top x% cutoff, and a vector containing features with no fragments
 #' @examples
 #' # Example usage of the function
 #' extract_raw_spectra(folder_path, l, 0.05, 0.7)
