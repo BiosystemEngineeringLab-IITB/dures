@@ -4,20 +4,24 @@
 #' @param l4 Contain the final set of features which matched with the reference at the MS1 level
 #' @param tolerance fragment ion tolerance at the MS/MS level, defaults to 0.05 Da
 #' @param folder_path folder containing the input directory (mzml) feature list files where the results of the matching will be stored.
-#' @return A dataframe with matching metrics and both experimental and reference spectrum identifiers
+#' @param ionization_mode positive or negative modes
+#' @return A dataframe with matching metrics, annotations and both experimental and reference spectrum identifiers. Features with matching score zero remain unannotated
 #' @examples
 #' # Example usage of the function
-#' fragment_matching_before_denoising(folder_path, l4, tolerance = 0.05)
+#' fragment_matching_before_denoising(folder_path, l4, tolerance = 0.05, "positive")
 #' @export
 
 
-fragment_matching_before_denoising <- function(folder_path, l4, tolerance){
-  output_dir <- paste0(folder_path, "/", "Before_denoising_matches/")
-  dir.create(output_dir)
-  ref_dir <- paste0(folder_path, "/", "Reference/")
-  scan_dir <- paste0(folder_path, "/", "MS2_scans_before_denoising/")
+fragment_matching_before_denoising <- function(folder_path, l4, tolerance, ionization_mode){
+
+  output_dir <- file.path(folder_path, "Before_denoising_matches")
+  dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
+
+  ref_dir <- file.path(folder_path, "Reference")
+  scan_dir <- file.path(folder_path, "MS2_scans_before_denoising")
 
   an <- l4
+
   # Iterate through all metabolites
   for (k in seq_len(nrow(an))) {
     metabolite <- an$ID[k]
@@ -27,11 +31,9 @@ fragment_matching_before_denoising <- function(folder_path, l4, tolerance){
     scan_path <- file.path(scan_dir, metabolite)
     ref_path <- file.path(ref_dir, metabolite)
 
-    # Read scans
     scans <- lapply(list.files(scan_path, pattern = "\\.txt$", full.names = TRUE), data.table::fread)
     scan_names <- gsub("\\.txt$", "", list.files(scan_path, pattern = "\\.txt$"))
 
-    # Read references
     refs <- lapply(list.files(ref_path, pattern = "\\.txt$", full.names = TRUE), data.table::fread)
     ref_names <- list.files(ref_path, pattern = "\\.txt$")
 
@@ -42,12 +44,16 @@ fragment_matching_before_denoising <- function(folder_path, l4, tolerance){
       for (j in seq_along(scans)) {
         file <- scans[[j]]
         sl <- paste(scan_names[j], ref_names[i], sep = "_")
-        colnames(file) = c("fragments", "intensity")
+        colnames(file) <- c("fragments", "intensity")
 
         sps_df <- calculate_SS_dataframe_no_thresholding(refs[[i]], file, tolerance = tolerance)
         sps_df <- sps_df %>%
           dplyr::mutate(
             Total_Library_fragments = nrow(refs[[i]]),
+            Feature_ID = metabolite,
+            Scan_Number = sub(".*(scan_.*)$", "\\1", scan_names[j]),
+            Library_name = sub("^[0-9]+\\.[0-9]+_(.*?)_splash.*$", "\\1", ref_names[i]),
+            Splash_key = sub(".*(splash.*)$", "\\1", ref_names[i]),
             ID = sl,
             mz = mz
           ) %>%
@@ -61,17 +67,82 @@ fragment_matching_before_denoising <- function(folder_path, l4, tolerance){
     final_df <- dplyr::bind_rows(dfs) %>%
       dplyr::arrange(desc(Modified_Dot_Product))
 
-    final_df$Matched_Ref_Fragments = NULL
-    final_df$Matched_Exp_Fragments = NULL
+    final_df$Matched_Ref_Fragments <- NULL
+    final_df$Matched_Exp_Fragments <- NULL
 
-
-    fwrite(final_df, file.path(output_dir, paste0(metabolite, ".csv")))
+    data.table::fwrite(final_df, file.path(output_dir, paste0(metabolite, ".csv")))
   }
 
+  ids <- an$ID
 
+  # Ensure process_file is called correctly with IDs as argument
+  top_matches_list <- lapply(seq_along(ids), function(i) process_file(i, output_dir, ids))
+
+  # Remove NULL entries
+  top_matches_list <- Filter(Negate(is.null), top_matches_list)
+
+  if(length(top_matches_list) == 0) {
+    stop("No valid matching results found; check input files or paths.")
+  }
+
+  # Combine using dplyr
+  Top_raw_scan_level_matches_before_denoising <- dplyr::bind_rows(top_matches_list)
+
+  # Verify object explicitly
+  if (!is.data.frame(Top_raw_scan_level_matches_before_denoising)) {
+    stop("Combined object is not a valid data.frame. Check your input files.")
+  }
+
+  # Ensure 'ID' column exists
+  if (!"ID" %in% colnames(Top_raw_scan_level_matches_before_denoising)) {
+    stop("Column 'ID' missing. Check process_file function.")
+  }
+
+  # Add Feature_ID and mz safely
+  #Top_raw_scan_level_matches_before_denoising$Feature_ID <- ids[match(Top_raw_scan_level_matches_before_denoising$ID, paste0(ids, ".csv"))]
+  #Top_raw_scan_level_matches_before_denoising$mz <- an$mz[match(Top_raw_scan_level_matches_before_denoising$Feature_ID, an$ID)]
+
+  # Remove NA Matching_Score rows safely
+  Top_raw_scan_level_matches_before_denoising <- Top_raw_scan_level_matches_before_denoising[!is.na(Top_raw_scan_level_matches_before_denoising$Matching_Score), ]
+
+  # Select appropriate library based on ionization mode
+  lib <- if (ionization_mode == "positive") .GlobalEnv$.positive_lib else .GlobalEnv$.negative_lib
+
+  # Initialize Metabolite_Name with NA
+  Top_raw_scan_level_matches_before_denoising$Metabolite_Name <- NA_character_
+
+  # Identify rows with Matching_Score > 0
+  positive_score_idx <- which(Top_raw_scan_level_matches_before_denoising$Matching_Score > 0)
+
+  # Remove .txt extension from Splash_key
+  Top_raw_scan_level_matches_before_denoising$Splash_key <- sub("\\.txt$", "", Top_raw_scan_level_matches_before_denoising$Splash_key)
+
+  # Map metabolite names for positive Matching_Score rows
+  matched_names <- lib$name[match(
+    Top_raw_scan_level_matches_before_denoising$Splash_key[positive_score_idx],
+    lib$splash_keys
+  )]
+
+  # Assign these matched names back to the appropriate rows
+  Top_raw_scan_level_matches_before_denoising$Metabolite_Name[positive_score_idx] <- matched_names
+
+  return(Top_raw_scan_level_matches_before_denoising)
 
 }
 
+
+# Function to process each file
+process_file <- function(i, output_dir, ids) {
+  file_path <- file.path(output_dir, paste0(ids[i], ".csv"))
+  if (file.exists(file_path)) {
+    f <- data.table::fread(file_path)
+    setorder(f, -Matching_Score)  # Sort by Similarity_Score in descending order
+    return(f[1, ])  # Return the first row
+  } else {
+    warning(paste("File not found:", file_path))
+    return(NULL)
+  }
+}
 
 # Function to get the nearest index
 getNearestIdx <- function(array, value) {
