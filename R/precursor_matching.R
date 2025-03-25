@@ -1,6 +1,6 @@
 #' precursor_matching
 #'
-#' Matches precursor m/z with library within a given tolerance (As outlined in tol_mz param in preprocess()) and generates a library of reference spectra that can be used for further matching. Also groups fragments in the reference spectra that are close-by within a given tolerance tol
+#' Matches precursor m/z with library within a given tolerance (As outlined in tol_mz param in preprocess()) and generates a library of reference spectra that can be used for MS/MS-level fragment matching. Also groups fragments in the reference spectra that are close-by within a given tolerance tol
 #'
 #' @param l1 output from the preprocess()
 #' @param folder_path folder containing the required input directory (mzml) and feature list file in .txt format.
@@ -104,12 +104,12 @@ precursor_matching <- function(l1, folder_path, ionization_mode, tol = 0.01) {
 
       # Perform intrascan grouping
       scan <- scan %>%
-        arrange(fragments) %>%
+        dplyr::arrange(fragments) %>%
         mutate(group = cumsum(c(1, diff(fragments) > tol)))
 
       agg_df <- scan %>%
-        group_by(group) %>%
-        summarize(fragments = mean(fragments), intensity = sum(intensity), .groups = "drop")
+        dplyr::group_by(group) %>%
+        dplyr::summarize(fragments = mean(fragments), intensity = sum(intensity), .groups = "drop")
 
       # Save new grouped scan data (overwrite the original file)
       new_scan <- data.frame(fragments = agg_df$fragments, intensity = agg_df$intensity)

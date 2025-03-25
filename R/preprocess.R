@@ -30,6 +30,8 @@ preprocess <- function(folder_path, tol_mz = 5, tol_rt = 0.1667) {
   #update sps_aggregate
   #null_entries <- sapply(sps_aggregate$sps_aggregate_all_mets, is.null)
   sps_aggregate_ms2_triggered = Filter(Negate(is.null), sps_aggregate$sps_aggregate_all_mets)
+  stats_file_ms2_triggered$ID <- as.character(stats_file_ms2_triggered$ID)
+
 
   return(list(spectra_ms2_only = sps_aggregate_ms2_triggered, stats_file_ms2_only = stats_file_ms2_triggered))
  }
