@@ -29,7 +29,7 @@ prepare_reference <- function(index, name, lib, path) {
     mass = list(ref$mz),
     inten = list(ref$intensity)
   )
-  sps_ref <- Spectra(spd_ref)
+  sps_ref <- Spectra::Spectra(spd_ref)
 
   # Save the spectra data
   sps_ref_df <- data.frame(
