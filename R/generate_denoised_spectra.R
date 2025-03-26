@@ -23,17 +23,17 @@ generate_denoised_spectra <- function(aggregate_list, folder_path, custom_thresh
 
   mz = list(); inten = list()
 
-  for(j in 1:length(freq_df)){
-    idx = which(names(sps_top_tic_2) %in% names(freq_df)[j])
-    if(length(sps_top_tic_2[[idx]]) <= 25){
-      threshold = (3/length(sps_top_tic_2[[idx]]))
-    } else if(length(sps_top_tic_2[[idx]]) >= 416){
-      threshold = (50/length(sps_top_tic_2[[idx]]))
-    } else if(length(custom_threshold)!=0) {
-      threshold = custom_threshold
-    }else{
-      threshold = 0.12
-    }
+   for(j in 1:length(freq_df)){
+     idx = which(names(sps_top_tic_2) %in% names(freq_df)[j])
+  #   if(length(sps_top_tic_2[[idx]]) <= 25){
+  #     threshold = (3/length(sps_top_tic_2[[idx]]))
+  #   } else if(length(sps_top_tic_2[[idx]]) >= 416){
+  #     threshold = (50/length(sps_top_tic_2[[idx]]))
+  #   } else if(length(custom_threshold)!=0) {
+  #     threshold = custom_threshold
+  #   }else{
+  #     threshold = 0.12
+  #   }
     #for feature number j, I have m scans belonging to n samples
     name_samples = unlist(lapply(names(freq_df[[j]]), function(x) strsplit(x,"_scan")[[1]][1]))
     name_scans = unlist(lapply(names(freq_df[[j]]), function(x) strsplit(x,"_scan_")[[1]][2]))
@@ -43,7 +43,7 @@ generate_denoised_spectra <- function(aggregate_list, folder_path, custom_thresh
     for(k in 1:length(freq_df[[j]])){
       f = freq_df[[j]][[k]]
       colnames(f)[2:4] = c("Mean_MZ", "Mean_Intensity", "Frequency")
-      f_cutoff = subset(f, f$Frequency >= threshold)
+      f_cutoff = subset(f, f$Frequency >= custom_threshold)
       f_cutoff = f_cutoff[order(f_cutoff$Mean_MZ, decreasing = F),]
       #name_exp= paste(path, name, sep="")
       #sps_df = data.frame(fragments = f_cutoff$Mean_MZ, intensity = f_cutoff$Mean_Intensity)
@@ -77,7 +77,7 @@ generate_denoised_spectra <- function(aggregate_list, folder_path, custom_thresh
     sps <- Spectra::Spectra(spd)
     sps$spectrumId = names(mz)[grep(samp, names(mz))]
 
-    fl = paste(path, samp, sep="")
+    fl = paste(path, "/", samp, sep="")
     export(sps, MsBackendMzR(), file = fl)
 
   }
