@@ -12,7 +12,10 @@ Imports:
   magrittr,
   utils,
   stats,
+  rPref,
   S4Vectors,
+  ggplot2,
+  DEoptim,
   Spectra
 Suggests:
   BiocManager,

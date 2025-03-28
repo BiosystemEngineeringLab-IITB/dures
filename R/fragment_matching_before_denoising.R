@@ -131,7 +131,7 @@ fragment_matching_before_denoising <- function(folder_path, l4, tolerance, ioniz
 }
 
 
-# Function to process each file
+# Function to process each file and return the top match in terms of matching score
 process_file <- function(i, output_dir, ids) {
   file_path <- file.path(output_dir, paste0(ids[i], ".csv"))
   if (file.exists(file_path)) {
