@@ -7,11 +7,15 @@ Description: Denoising tandem mass spectrometry data.
 License: MIT + file LICENSE
 Imports:
   dplyr,
+  data.table,
   pbapply,
   magrittr,
   utils,
   stats,
+  rPref,
   S4Vectors,
+  ggplot2,
+  DEoptim,
   Spectra
 Suggests:
   BiocManager,

@@ -16,3 +16,15 @@ remotes::install_github("username/privaterepo")
 .rs.restartR()
 remove.packages("dures", lib="~/R/x86_64-pc-linux-gnu-library/4.3")
 devtools::install_github("banerjeeshayantan/dures", ref = "main", force = TRUE)
+
+
+#sequence of commands to run
+l1 = preprocess(folder_path = folder_path, tol_mz = 5, tol_rt = 0.1)
+l2 = extract_raw_spectra(folder_path = folder_path, l1, 0.05, 0.8)
+l3 = call_aggregate(l2$sps_top_tic_2, 0.05, folder_path)
+l4 = label_individual_spectrum(l3, folder_path, 0.05)
+l5 = precursor_matching(l1, folder_path = folder_path, "positive", 0.05)
+l6 = fragment_matching_before_denoising(folder_path, l5, 0.05, "positive")
+l7 <- tuning_module(folder_path, l4, l5, l6, 0.05)
+l8 = generate_denoised_spectra(l4, folder_path, 0.6, ion_mode = "pos")
+

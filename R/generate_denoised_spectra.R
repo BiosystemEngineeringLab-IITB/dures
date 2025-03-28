@@ -14,10 +14,14 @@
 #' generate_denoised_spectra(l3, folder_path, NULL)
 #' @export
 generate_denoised_spectra <- function(aggregate_list, folder_path, custom_threshold = NULL, ion_mode = "pos"){
-  if (!dir.exists(file.path(folder_path, "Denoised_spectra"))) {
-    dir.create(file.path(folder_path, "Denoised_spectra/"))
+  if (!dir.exists(file.path(folder_path, "Denoised_spectra_mzML"))) {
+    dir.create(file.path(folder_path, "Denoised_spectra_mzML/"))
   }
-  path = file.path(folder_path, "Denoised_spectra/")
+  if (!dir.exists(file.path(folder_path, "Denoised_spectra_txt"))) {
+    dir.create(file.path(folder_path, "Denoised_spectra_txt/"))
+  }
+  path_mzML = file.path(folder_path, "Denoised_spectra_mzML/")
+  path_txt = file.path(folder_path, "Denoised_spectra_txt/")
   sps_top_tic_2 <- get_sps_top_tic_2(); nm_s = list()
   freq_df = aggregate_list
 
@@ -25,16 +29,16 @@ generate_denoised_spectra <- function(aggregate_list, folder_path, custom_thresh
 
   for(j in 1:length(freq_df)){
     idx = which(names(sps_top_tic_2) %in% names(freq_df)[j])
-    if(length(sps_top_tic_2[[idx]]) <= 25){
-      threshold = (3/length(sps_top_tic_2[[idx]]))
-    } else if(length(sps_top_tic_2[[idx]]) >= 416){
-      threshold = (50/length(sps_top_tic_2[[idx]]))
-    } else if(length(custom_threshold)!=0) {
-      threshold = custom_threshold
-    }else{
-      threshold = 0.12
-    }
-    #for feature number j, I have m scans belonging to n samples
+    #   if(length(sps_top_tic_2[[idx]]) <= 25){
+    #     threshold = (3/length(sps_top_tic_2[[idx]]))
+    #   } else if(length(sps_top_tic_2[[idx]]) >= 416){
+    #     threshold = (50/length(sps_top_tic_2[[idx]]))
+    #   } else if(length(custom_threshold)!=0) {
+    #     threshold = custom_threshold
+    #   }else{
+    #     threshold = 0.12
+    #   }
+      #for feature number j, I have m scans belonging to n samples
     name_samples = unlist(lapply(names(freq_df[[j]]), function(x) strsplit(x,"_scan")[[1]][1]))
     name_scans = unlist(lapply(names(freq_df[[j]]), function(x) strsplit(x,"_scan_")[[1]][2]))
     nm_s[[j]] = name_samples
@@ -43,7 +47,7 @@ generate_denoised_spectra <- function(aggregate_list, folder_path, custom_thresh
     for(k in 1:length(freq_df[[j]])){
       f = freq_df[[j]][[k]]
       colnames(f)[2:4] = c("Mean_MZ", "Mean_Intensity", "Frequency")
-      f_cutoff = subset(f, f$Frequency >= threshold)
+      f_cutoff = subset(f, f$Frequency >= custom_threshold)
       f_cutoff = f_cutoff[order(f_cutoff$Mean_MZ, decreasing = F),]
       #name_exp= paste(path, name, sep="")
       #sps_df = data.frame(fragments = f_cutoff$Mean_MZ, intensity = f_cutoff$Mean_Intensity)
@@ -52,9 +56,15 @@ generate_denoised_spectra <- function(aggregate_list, folder_path, custom_thresh
       #inten[[paste(as.character(k), "_", names(freq_df)[j],"_",name_samples[k],sep="")]] = f_cutoff$Mean_Intensity
       mz[[paste(names(freq_df)[j],"_",name_samples[k],"_scan_", name_scans[k], sep="")]] = f_cutoff$Mean_MZ
       inten[[paste(names(freq_df)[j],"_",name_samples[k],"_scan_", name_scans[k], sep="")]] = f_cutoff$Mean_Intensity
-
-
+      sps_df = data.frame(fragments = f_cutoff$Mean_MZ, intensity = f_cutoff$Mean_Intensity)
+      dir_path = paste(path_txt, "/", names(freq_df)[j],"/", sep="")
+      if (!dir.exists(dir_path)) {
+        dir.create(dir_path)
       }
+      write.table(sps_df, paste(dir_path, paste(names(freq_df)[j],"_",name_samples[k],"_scan_", name_scans[k], sep=""), sep=""), sep="\t", col.names = T, row.names = F, quote = F)
+
+
+    }
   }
 
   for(w in 1:length(unique(unlist(nm_s)))){
@@ -76,57 +86,11 @@ generate_denoised_spectra <- function(aggregate_list, folder_path, custom_thresh
     spd$intensity <- INTEN
     sps <- Spectra::Spectra(spd)
     sps$spectrumId = names(mz)[grep(samp, names(mz))]
-
-    fl = paste(path, samp, sep="")
+    fl = paste(path_mzML, "/", samp, sep="")
     export(sps, MsBackendMzR(), file = fl)
 
   }
 
 
   }
-
-    # if(length(freq_df[[j]]) >=3){
-    #   idx = which(names(sps_top_tic_2) %in% names(freq_df)[j])
-    #   if(length(sps_top_tic_2[[idx]]) <= 25){
-    #     threshold = (3/length(sps_top_tic_2[[idx]]))
-    #   } else if(length(sps_top_tic_2[[idx]]) >= 416){
-    #     threshold = (50/length(sps_top_tic_2[[idx]]))
-      # } else else{
-      #   threshold = 0.12
-      # }
-
-    #for every feature calculate the optimal threshold
-
-    #print(length(sps_top_tic_2[[idx]]))
-
-  # #try to create the one folder with just the MS2 spectra inside original samples in mzml format.
-  # #for now no need to incorporate the MS1 spectra. Just the MS2 spectra and that too only for those samples which have MS2 in them
-  # for(j in 1:length(freq_df)){
-  #   if (!dir.exists(file.path(paste(folder_path,names(freq_df)[j],"/",sep="")))) {
-  #     dir.create(file.path(paste(folder_path,"Denoised_spectra/",names(freq_df)[j],"/",sep="")))
-  #     path = file.path(paste(folder_path,"Denoised_spectra/", names(freq_df)[j],"/",sep=""))
-  #   }
-  #   idx = which(names(sps_top_tic_2) %in% names(freq_df)[j])
-  #   #print(length(sps_top_tic_2[[idx]]))
-  #   if(length(sps_top_tic_2[[idx]]) <= 25){
-  #     threshold = (3/length(sps_top_tic_2[[idx]]))
-  #   } else if(length(sps_top_tic_2[[idx]]) >= 416){
-  #     threshold = (50/length(sps_top_tic_2[[idx]]))
-  #   } else if(length(custom_threshold)!=0) {
-  #     threshold = custom_threshold
-  #   }else{
-  #     threshold = 0.12
-  #   }
-  #   #file_names = paste(names(freq_df)[[j]], names(freq_df[[j]]), sep="/")
-  #   file_names = names(freq_df[[j]]);sps_tic_20_all_freq = list(); mz = list(); inten = list()
-  #
-  #
-  #   for(k in 1:length(freq_df[[j]])){
-  #     f = freq_df[[j]][[k]]
-  #     sps_tic_20_all_freq = tune_parameters(f, threshold, file_names[k], path)
-  #     mz[[k]] = sps_tic_20_all_freq[[1]]
-  #     inten[[k]] = sps_tic_20_all_freq[[2]]
-  #   }
-
-
 
