@@ -19,7 +19,7 @@ precursor_matching(l1, folder_path, ionization_mode, tol = 0.01)
 A dataframe with only those precursors, their mz, RT, etc, which had a corresponding match with the reference library
 }
 \description{
-Matches precursor m/z with library within a given tolerance (As outlined in tol_mz param in preprocess()) and generates a library of reference spectra that can be used for further matching. Also groups fragments in the reference spectra that are close-by within a given tolerance tol
+Matches precursor m/z with library within a given tolerance (As outlined in tol_mz param in preprocess()) and generates a library of reference spectra that can be used for MS/MS-level fragment matching. Also groups fragments in the reference spectra that are close-by within a given tolerance tol
 }
 \examples{
 # Example usage of the function
