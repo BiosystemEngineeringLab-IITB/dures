@@ -136,7 +136,7 @@ process_file <- function(i, output_dir, ids) {
   file_path <- file.path(output_dir, paste0(ids[i], ".csv"))
   if (file.exists(file_path)) {
     f <- data.table::fread(file_path)
-    setorder(f, -Matching_Score)  # Sort by Similarity_Score in descending order
+    data.table::setorder(f, -Matching_Score)  # Sort by Similarity_Score in descending order
     return(f[1, ])  # Return the first row
   } else {
     warning(paste("File not found:", file_path))
