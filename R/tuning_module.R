@@ -260,10 +260,13 @@ tuning_module <- function(folder_path, l4, l5, l6, tolerance){
 
   close(pb)
 
+  colnames(freq)[1:7] = paste0(colnames(freq)[1:7], "_after_denoising")
+
+  colnames(l6)[1:7] = paste0(colnames(l6)[1:7], "_before_denoising")
 
   final_freq <- merge(l6, freq,  by="Feature_ID")
 
-  #final_freq$percentage_increase_in_SS = 100 * (final_freq$Matching_Score.y - final_freq$Matching_Score.x)/final_freq$
+  final_freq$percentage_increase_in_SS = 100 * (final_freq$Matching_Score_after_denoising - final_freq$Matching_Score_before_denoising)/final_freq$Matching_Score_before_denoising
 
   cat("summary statistics of optimal frequencies..\n")
 
