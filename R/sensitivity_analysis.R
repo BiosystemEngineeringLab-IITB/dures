@@ -8,7 +8,6 @@
 #' # Example usage of the function
 #' sensitivity_analysis(folder_path, l7)
 #' @export
-
 sensitivity_analysis <- function(l7, folder_path){
 
   cat("Checking if significant improvement in matching score was observed after denoising for atleast one feature...\n")
