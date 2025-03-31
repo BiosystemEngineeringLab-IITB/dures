@@ -9,8 +9,6 @@
 #' # Example usage of the function
 #' fragment_matching_before_denoising(folder_path, l4, tolerance = 0.05, "positive")
 #' @export
-
-
 tuning_module <- function(folder_path, l4, l5, l6, tolerance){
 
   freq_df_1 = list()
