@@ -2,7 +2,7 @@
 #'
 #' Helper function to run derive_aggregate_spectra.
 #'
-#' @param spectra_list A list of spectra objects for all features, each containing the top x% TIC spectra concatenated.
+#' @param spectra_list A list of spectra objects for all features, each containing the top x\\% TIC spectra concatenated.
 #' @param mz_tol Mass tolerance (in Da) required when grouping fragments across multiple spectra for a given feature.
 #' @param folder_path Path to the folder where the data reduction dataframe will be stored.
 #'

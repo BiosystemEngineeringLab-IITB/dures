@@ -7,7 +7,7 @@
 call_aggregate(spectra_list, mz_tol, folder_path)
 }
 \arguments{
-\item{spectra_list}{A list of spectra objects for all features, each containing the top x\% TIC spectra concatenated.}
+\item{spectra_list}{A list of spectra objects for all features, each containing the top x\\\% TIC spectra concatenated.}
 
 \item{mz_tol}{Mass tolerance (in Da) required when grouping fragments across multiple spectra for a given feature.}
 
