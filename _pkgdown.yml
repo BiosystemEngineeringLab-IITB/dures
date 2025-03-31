@@ -32,6 +32,9 @@ reference:
   - title: "Main Functions"
     contents:
       - call_aggregate
+      - fragment_matching_before_denoising
+      - sensitivity_analysis
+      - tuning_module
       - concatenate_spectra
       - concat_ms2_spec_from_stats_file
       - derive_aggregate_spectra
