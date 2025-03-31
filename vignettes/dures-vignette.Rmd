@@ -79,7 +79,7 @@ The test dataset can be downloaded from the data deposited at [Zenodo](https://z
 
 ```{r, execute first step of the workflow}
 # Define the path to the test_1 folder (replace with the actual path on your system)
-folder_path <- "D:/test_1/"
+folder_path <- "/data1/sbanerjee/test_2//"
 
 # Check if the directory exists
 if (!dir.exists(folder_path)) {
