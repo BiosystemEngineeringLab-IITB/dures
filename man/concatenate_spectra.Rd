@@ -4,7 +4,7 @@
 \alias{concatenate_spectra}
 \title{concatenate_spectra}
 \usage{
-concatenate_spectra(output_list_from_preprocess_function)
+concatenate_spectra(output_list_from_preprocess_function, spectral_files)
 }
 \arguments{
 \item{output_list_from_preprocess_function}{A list generated from the preprocess function.}

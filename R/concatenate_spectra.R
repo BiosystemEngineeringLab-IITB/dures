@@ -18,7 +18,7 @@
 #' @export
 
 
-concatenate_spectra <- function(output_list_from_preprocess_function) {
+concatenate_spectra <- function(output_list_from_preprocess_function, spectral_files) {
   output_list = output_list_from_preprocess_function
   stats_file <- output_list[[2]]
   id_no_ms2 <- c()
@@ -56,3 +56,4 @@ concatenate_spectra <- function(output_list_from_preprocess_function) {
 
   return(list(sps_aggregate_all_mets = sps_aggregate_all_mets, ids_with_no_ms2 = id_no_ms2))
 }
+
