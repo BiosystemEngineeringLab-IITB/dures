@@ -1,0 +1,66 @@
+properly uninstall and reinstall a fresh version of your GitHub package (like your dures package) in R, here's a clean, step-by-step process that ensures:
+
+✅ No old compiled artifacts
+✅ No stale .rdb files
+✅ No hidden namespace conflicts
+✅ Fully fresh GitHub clone
+
+✅ Step-by-Step: Clean Uninstall + Reinstall of GitHub Package
+🔹 Step 1: Remove the installed package completely
+r
+Copy
+Edit
+remove.packages("dures")
+🔍 Optional: Confirm it’s removed
+r
+Copy
+Edit
+"dures" %in% rownames(installed.packages())  # should return FALSE
+🔹 Step 2: Delete any leftover files manually (optional but recommended)
+Check and remove from .libPaths():
+
+bash
+Copy
+Edit
+rm -rf ~/R/x86_64-pc-linux-gnu-library/4.x/dures
+Replace 4.x with your actual R version (.libPaths() will show it).
+
+🔹 Step 3: Restart your R session
+In RStudio:
+
+Session > Restart R
+
+Or run in the Console:
+
+r
+Copy
+Edit
+.rs.restartR()
+🔹 Step 4: Reinstall the latest version from GitHub
+r
+Copy
+Edit
+# Use remotes or devtools
+install.packages("remotes")  # if not already installed
+
+remotes::install_github("BiosystemEngineeringLab-IITB/dures")
+✅ This pulls the latest committed version from GitHub (including .rds files tracked by Git LFS, as long as they were committed properly).
+
+🔹 Step 5: Verify the correct version is loaded
+r
+Copy
+Edit
+library(dures)
+packageVersion("dures")
+🧠 Pro Tips
+If you're using Git LFS, make sure to clone + git lfs pull before install.
+
+If you're developing the package and testing frequently, use:
+
+r
+Copy
+Edit
+devtools::load_all("path/to/dures")
+instead of reinstalling every time.
+
+Let me know if you'd like a shell+R script that automates this full process for future testing setups.
