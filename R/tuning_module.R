@@ -9,6 +9,17 @@
 #' # Example usage of the function
 #' fragment_matching_before_denoising(folder_path, l4, tolerance = 0.05, "positive")
 #' @export
+#' tuning module
+#'
+#' Matches experimental and reference spectra using a predefined MS/MS fragment tolerance
+#' @param l5 Contain the final set of features which matched with the reference at the MS1 level, output of precursor_matching.R
+#' @param tolerance fragment ion tolerance at the MS/MS level, defaults to 0.05 Da
+#' @param folder_path folder containing the input directory (mzml) feature list files where the results of the matching will be stored.
+#' @return A dataframe with matching metrics, annotations and both experimental and reference spectrum identifiers. Features with matching score zero remain unannotated
+#' @examples
+#' # Example usage of the function
+#' fragment_matching_before_denoising(folder_path, l4, tolerance = 0.05, "positive")
+#' @export
 tuning_module <- function(folder_path, l4, l5, l6, tolerance){
 
   freq_df_1 = list()
@@ -162,17 +173,29 @@ tuning_module <- function(folder_path, l4, l5, l6, tolerance){
 
   # Optimization Function to Minimize Signal Loss
   optimize_weights <- function(weights, df) {
+    if (is.null(df) || nrow(df) == 0) return(Inf)
+
+    weights <- weights / sum(weights + 1e-6)
+
     weight_similarity <- weights[1]
     weight_noise <- weights[2]
     weight_signal <- weights[3]
+
+    # Defensive check again
+    if (nrow(df) == 0) return(Inf)
 
     df$Optimized_Score <- (weight_similarity * df$Similarity_Score) +
       (weight_noise * df$Noise_reduction) -
       (weight_signal * df$Signal_reduction)
 
-    selected_features <- df[which.max(df$Optimized_Score), ]
-    return(mean(selected_features$Signal_reduction))
+    if (nrow(df) == 0 || all(is.na(df$Optimized_Score))) return(Inf)
+
+    selected_feature <- df[which.max(df$Optimized_Score), ]
+
+    return(mean(selected_feature$Signal_reduction))
   }
+
+
 
   # Define bounds for optimization (Weights must sum to 1)
   weight_constraints <- function(weights) {
@@ -182,26 +205,50 @@ tuning_module <- function(folder_path, l4, l5, l6, tolerance){
   # Progress bar setup
   pb <- txtProgressBar(min = 0, max = length(l6$ID), style = 3)
 
-  # Loop through all features
+  # Initialize data frames to store results
+  freq <- data.frame()
+  id <- list()
+  k <- 1
   for (i in seq_along(l6$ID)) {
+    #print(i)
     setTxtProgressBar(pb, i)
     met <- l6$Feature_ID[i]
 
-    # Read the CSV file containing post-denoising solutions
+    # Read CSV file
     test <- read.csv(file.path(folder_path, "After_denoising_matches", paste0(met, ".csv")))
     test$X <- NULL
+    colnames(test)[1] = "Similarity_Score"
+
     test$Noise_reduction <- 100 - test$Noise_reduction
 
+    # Skip if NA in key columns
     if (any(is.na(test$Signal_reduction)) || any(is.na(test$Noise_reduction))) {
+      message(sprintf("Skipping %s due to invalid data", met))
       id[[k]] <- met
       k <- k + 1
       next
     }
 
+    # Get Pareto front
     sky1 <- rPref::psel(test, rPref::low(Signal_reduction) * rPref::low(Noise_reduction))
+    message(sprintf("[%s] sky1 rows: %d", met, nrow(sky1)))
+
     sky1$metabolite <- met
 
-    if (nrow(sky1) >= 3) {
+    # Skip if sky1 is empty or invalid
+    if (is.null(sky1) || nrow(sky1) == 0 || all(is.na(sky1$Similarity_Score)) ||
+        all(is.na(sky1$Noise_reduction)) || all(is.na(sky1$Signal_reduction))) {
+      message(sprintf("Skipping %s due to invalid data", met))
+      id[[k]] <- met
+      k <- k + 1
+      next
+    }
+
+    final_solution <- NULL
+    method_used <- NULL
+
+    # Try knee-point if enough variability and points
+    if (nrow(sky1) > 3 && length(unique(sky1$Signal_reduction)) > 1) {
       sky1_sorted <- sky1[!duplicated(sky1$Signal_reduction), ]
       sky1_sorted <- sky1_sorted[order(sky1_sorted$Signal_reduction), ]
 
@@ -213,37 +260,72 @@ tuning_module <- function(folder_path, l4, l5, l6, tolerance){
         dy <- diff(y)
         dx[dx == 0] <- 1e-6
 
-        first_derivative <- dy / dx
-        d2x <- diff(x[-length(x)])
-        d2x[d2x == 0] <- 1e-6
+        if (length(dx) >= 2) {
+          first_derivative <- dy / dx
+          d2x <- diff(x[-length(x)])
+          d2x[d2x == 0] <- 1e-6
+          second_derivative <- diff(first_derivative) / d2x
 
-        second_derivative <- diff(first_derivative) / d2x
-
-        if (all(is.finite(second_derivative))) {
-          knee_index <- which.max(abs(second_derivative)) + 1
-          final_solution <- sky1_sorted[knee_index, ]
-        } else {
-          final_solution <- sky1_sorted[which.min(sky1_sorted$Signal_reduction), ]
+          if (all(is.finite(second_derivative)) && length(second_derivative) > 0) {
+            knee_index <- which.max(abs(second_derivative)) + 1
+            final_solution <- sky1_sorted[knee_index, ]
+            method_used <- "knee-point"
+          }
         }
-      } else {
-        final_solution <- sky1_sorted[which.min(sky1_sorted$Signal_reduction), ]
       }
-    } else {
-      opt_result <- DEoptim::DEoptim(optimize_weights, lower = c(0, 0, 0), upper = c(1, 1, 1),
-                                     control = list(itermax = 100), df = sky1)
-      best_weights <- opt_result$optim$bestmem
-
-      sky1$Weighted_Score <- (best_weights[1] * sky1$Similarity_Score) +
-        (best_weights[2] * sky1$Noise_reduction) -
-        (best_weights[3] * sky1$Signal_reduction)
-
-      final_solution <- sky1[which.max(sky1$Weighted_Score), ]
     }
 
+    # Fallback if knee-point not applied or failed
+    if (is.null(final_solution)) {
+      if (nrow(sky1) <= 3) {
+        final_solution <- sky1[which.min(sky1$Signal_reduction), ]
+        method_used <- "lowest-signal"
+      } else {
+        # Final check before DEoptim
+        if (nrow(sky1) == 0 || all(is.na(sky1$Similarity_Score)) ||
+            all(is.na(sky1$Noise_reduction)) || all(is.na(sky1$Signal_reduction))) {
+          message(sprintf("Skipping %s due to invalid data", met))
+          id[[k]] <- met
+          k <- k + 1
+          next
+        }
+
+        opt_result <- DEoptim::DEoptim(optimize_weights,
+                                       lower = c(0, 0, 0),
+                                       upper = c(1, 1, 1),
+                                       control = list(itermax = 100),
+                                       df = sky1)
+
+        best_weights <- opt_result$optim$bestmem
+
+        if (length(best_weights) == 3 && nrow(sky1) > 0) {
+          sky1$Weighted_Score <- (best_weights[1] * sky1$Similarity_Score) +
+            (best_weights[2] * sky1$Noise_reduction) -
+            (best_weights[3] * sky1$Signal_reduction)
+
+          final_solution <- sky1[which.max(sky1$Weighted_Score), ]
+          method_used <- "DEoptim"
+        } else {
+          message(sprintf("Skipping %s due to invalid data", met))
+          id[[k]] <- met
+          k <- k + 1
+          next
+        }
+      }
+    }
+
+    # Store result
+    final_solution$method_used <- method_used
+    final_solution$Weighted_Score <- NULL
     freq <- rbind(freq, final_solution)
 
+    # sky1$method_used <- "TEST"
+    # freq <- rbind(freq, sky1[1, ])
+
     # Save Pareto front
-    write.csv(sky1, file.path(folder_path, "pareto_results", "csv", paste0(met, ".csv")), quote = FALSE)
+    write.csv(sky1,
+              file.path(folder_path, "pareto_results", "csv", paste0(met, ".csv")),
+              quote = FALSE)
 
     # Save plot
     g <- ggplot(test, aes(x = Signal_reduction, y = Noise_reduction, label = freq)) +
@@ -256,6 +338,10 @@ tuning_module <- function(folder_path, l4, l5, l6, tolerance){
     ggsave(file.path(folder_path, "pareto_results", "pdf", paste0(met, ".pdf")), plot = g)
   }
 
+
+
+
+
   close(pb)
 
   colnames(freq)[1:7] = paste0(colnames(freq)[1:7], "_after_denoising")
@@ -264,14 +350,21 @@ tuning_module <- function(folder_path, l4, l5, l6, tolerance){
 
   final_freq <- merge(l6, freq,  by="Feature_ID")
 
-  final_freq$percentage_increase_in_SS = 100 * (final_freq$Matching_Score_after_denoising - final_freq$Matching_Score_before_denoising)/final_freq$Matching_Score_before_denoising
+  final_freq$percentage_increase_in_SS = 100 * (final_freq$Similarity_Score_after_denoising - final_freq$Matching_Score_before_denoising)/final_freq$Matching_Score_before_denoising
+
+  final_freq_positive_change = final_freq[which(final_freq$percentage_increase_in_SS >= 0),]
 
   cat("summary statistics of optimal frequencies..\n")
 
-  print(summary(final_freq$freq))
+  print(summary(final_freq_positive_change$freq))
 
+  colnames(final_freq_positive_change)[which(colnames(final_freq_positive_change) %in% "Similarity_Score_after_denoising")] = c("Matching_Score_after_denoising")
 
-  return(final_freq)
+  #also removing negative signal reduction features
+
+  final_freq_positive_change = final_freq_positive_change[which(final_freq_positive_change$Signal_reduction > 0), ]
+
+  return(final_freq_positive_change)
 
 }
 

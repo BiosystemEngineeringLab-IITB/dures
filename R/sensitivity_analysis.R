@@ -25,7 +25,7 @@ sensitivity_analysis <- function(l7, folder_path){
   for(i in 1:length(combined_freq_selected$Feature_ID)){
     met = combined_freq_selected$Feature_ID[i]
     dat = read.csv(paste(path,"/", met, ".csv", sep=""))
-    dat$before_denoising_score = combined_freq_selected$Similarity_Score.x[i]
+    dat$before_denoising_score = combined_freq_selected$Matching_Score_before_denoising[i]
     dat_extra_cols = rbind(dat_extra_cols, dat)
   }
 
@@ -93,27 +93,33 @@ sensitivity_analysis <- function(l7, folder_path){
   #stable_range_mnr <- find_stable_range(median_mnr, max_median_mnr_freq, feature_counts, p_values_mnr)
   stable_range_nf <- find_stable_range(median_nf, max_median_nf_freq, feature_counts, p_value_nf, feature_count_threshold)
 
-  g1 = # Create the plot
-    ggplot(median_similarity, aes(x = freq, y = Median_matching_score)) +
+  max_y <- max(median_similarity$Median_matching_score)
+  buffer_y <- max_y * 0.05  # 5% padding above max
+
+  g1 <- ggplot(median_similarity, aes(x = freq, y = Median_matching_score)) +
     geom_line(color = "blue") +
     geom_point() +
     geom_vline(xintercept = max_median_similarity_freq, linetype = "dashed", color = "red") +
     scale_x_continuous(breaks = seq(min(median_similarity$freq), max(median_similarity$freq), by = 0.1)) +
     annotate("rect", xmin = stable_range_similarity[1], xmax = stable_range_similarity[2], ymin = -Inf, ymax = Inf, alpha = 0.2, fill = "lightgreen") +
-    annotate("text", x = mean(stable_range_similarity), y = max(median_similarity$Median_matching_score),
+    annotate("text",
+             x = mean(stable_range_similarity),
+             y = max_y + buffer_y,
              label = paste0("Stable Range: [", round(stable_range_similarity[1], 2), ", ", round(stable_range_similarity[2], 2), "]"),
-             size = 5, hjust = 0.5, vjust = -1, color = "black", fontface = "bold") +
+             size = 4.5, hjust = 0.5, vjust = 0, color = "black", fontface = "bold") +
     labs(
       title = "Sensitivity Analysis of Similarity Score",
       x = "Recurrence Frequency",
       y = "Median Similarity Score"
     ) +
+    coord_cartesian(ylim = c(min(median_similarity$Median_matching_score), max_y + buffer_y * 2)) +  # add room above
     theme(
       axis.title.x = element_text(size = 14),
       axis.title.y = element_text(size = 14),
       axis.text.x = element_text(angle = 45, hjust = 1, size = 14),
       axis.text.y = element_text(size = 14)
     )
+
 
   # First, create the dataframe explicitly
   significant_points <- median_nf %>%
@@ -123,7 +129,7 @@ sensitivity_analysis <- function(l7, folder_path){
     geom_line(color = "blue") +
     geom_point() +
     geom_vline(xintercept = max_median_nf_freq, linetype = "dashed", color = "red") +
-    annotate("rect", xmin = stable_range_nf[1], xmax = stable_range_nf[2],
+    annotate("rect", xmin = stable_range_similarity[1], xmax = stable_range_similarity[2],
              ymin = -Inf, ymax = Inf, alpha = 0.2, fill = "lightgreen") +
 
     # Add significance stars only if significant points exist

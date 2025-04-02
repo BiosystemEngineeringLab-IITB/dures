@@ -63,4 +63,20 @@ Edit
 devtools::load_all("path/to/dures")
 instead of reinstalling every time.
 
-Let me know if you'd like a shell+R script that automates this full process for future testing setups.
+
+l1 = preprocess(folder_path = folder_path, tol_mz = 25, tol_rt = 0.1667)
+# l1_new = list()
+# l1_new$stats_file_ms2_only = l1$stats_file_ms2_only[1:1000,]
+# l1_new$spectra_ms2_only = l1$spectra_ms2_only[1:1000]
+l2 = extract_raw_spectra(folder_path = folder_path, l1, 0.05, 0.8)
+l3 = call_aggregate(l2$sps_top_tic_2, 0.05, folder_path)
+l4 = label_individual_spectrum(l3, folder_path, 0.05)
+
+
+setwd("/home/shayantan/metabolomics/MTBLS606/dures/")         # adjust this to your actual path
+devtools::install()
+
+l5 = precursor_matching(l1, folder_path = folder_path, "negative", 0.05)
+l6 = fragment_matching_before_denoising(folder_path, l5, 0.05, "negative")
+l7 = tuning_module(folder_path, l4, l5, l6, 0.05)
+l8 = sensitivity_analysis(l7, folder_path)
