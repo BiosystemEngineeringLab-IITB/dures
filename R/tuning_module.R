@@ -355,7 +355,7 @@ tuning_module <- function(folder_path, l4, l5, l6, tolerance = 0.05){
 
   final_freq_positive_change = final_freq_positive_change[which(final_freq_positive_change$Signal_reduction > 0), ]
 
-  return(final_freq_positive_change)
+  return(final_freq)
 
 }
 

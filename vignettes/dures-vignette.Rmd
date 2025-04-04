@@ -11,14 +11,37 @@ vignette: >
 
 ```{r setup, include = FALSE}
 options(repos = c(CRAN = "https://cloud.r-project.org/"))
-
+#this code block will
+# Clean your folder_path every time the vignette is run
+# 
+# Prevent file conflicts and stale output errors
+# 
+# Ensure reproducibility for every re-render
 # Suppress title check if necessary
 options(rmarkdown.html_vignette.check_title = FALSE)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+# === Custom folder cleanup ===
+
+# Define the base folder path
+folder_path <- "/data1/sbanerjee/test_1/"  # Update this to your actual working path to the test data 
+
+# Files and folders to keep
+keep_files <- c("feature_list.txt", "Sample-and-feature-wise-RT-tolerance.txt", "mzml_files")
+
+# List all contents in folder_path
+all_contents <- list.files(folder_path, full.names = TRUE)
+
+# Delete everything except essentials
+to_delete <- all_contents[!basename(all_contents) %in% keep_files]
+unlink(to_delete, recursive = TRUE, force = TRUE)
+
+message("✅ Cleaned folder_path — kept only required files/folders.")
 ```
+
 
 The **Denoising Using Replicate Spectra (DuReS)** package requires the following input parameters:
 

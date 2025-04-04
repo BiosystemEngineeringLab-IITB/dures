@@ -11,14 +11,37 @@ vignette: >
 
 ```{r setup, include = FALSE}
 options(repos = c(CRAN = "https://cloud.r-project.org/"))
-
+#this code block will
+# Clean your folder_path every time the vignette is run
+# 
+# Prevent file conflicts and stale output errors
+# 
+# Ensure reproducibility for every re-render
 # Suppress title check if necessary
 options(rmarkdown.html_vignette.check_title = FALSE)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+# === Custom folder cleanup ===
+
+# Define the base folder path
+folder_path <- "/data1/sbanerjee/test_data_MTBLS606/"  # Update this to your actual working path to the test data 
+
+# Files and folders to keep
+keep_files <- c("feature_list.txt", "Sample-and-feature-wise-RT-tolerance.txt", "mzml_files")
+
+# List all contents in folder_path
+all_contents <- list.files(folder_path, full.names = TRUE)
+
+# Delete everything except essentials
+to_delete <- all_contents[!basename(all_contents) %in% keep_files]
+unlink(to_delete, recursive = TRUE, force = TRUE)
+
+message("✅ Cleaned folder_path — kept only required files/folders.")
 ```
+
 
 
 ## Test Dataset for tuning
@@ -402,9 +425,10 @@ This function performs a **sensitivity analysis** to evaluate how different frag
 
 ---
 
-```{r, sensitivity_analysis}
+```{r sensitivity-plots, fig.width=10, fig.height=8, message=FALSE, warning=FALSE}
 l8 <- sensitivity_analysis(l7, folder_path = folder_path)
 ```
+
 > **Note:**  
 > Owing to the **small number of features** selected for this vignette, the sensitivity curves presented here may not be highly informative. Specifically, the `l7` dataset contains **only one feature** that showed an improvement in matching score after denoising. As a result, this **single datapoint** was used for further analysis.
 > 

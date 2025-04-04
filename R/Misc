@@ -29,3 +29,6 @@ l7 = tuning_module(folder_path, l4, l5, l6, 0.05)
 l8 = sensitivity_analysis(l7, folder_path)
 l9 = generate_denoised_spectra(l4, folder_path, 0.6, ion_mode = "neg")
 
+
+rmarkdown::render("vignettes/dures-vignette-tuning.Rmd")
+
