@@ -22,22 +22,44 @@ precursor_matching <- function(l1, folder_path, ionization_mode, tol = 0.01) {
     dir.create(path, recursive = TRUE)
   }
 
-  # Load the library only once and store it globally
+  # Load the reference library only once from the user-provided folder_path
   if (!exists(".positive_lib", envir = .GlobalEnv) && ionization_mode == "positive") {
-    file_path_pos_lib <- system.file("extdata", "library_positive.rds", package = "dures")
-    .GlobalEnv$.positive_lib <- readRDS(file_path_pos_lib)
-    cat("Loaded positive mode library from file\n")
+    file_path_pos_lib <- file.path(folder_path, "library_positive.rds")
+
+    if (!file.exists(file_path_pos_lib)) {
+      stop("Positive mode library not found in folder_path. Please place 'library_positive.rds' in:\n", folder_path)
+    }
+
+    .GlobalEnv$.positive_lib <- tryCatch({
+      readRDS(file_path_pos_lib)
+    }, error = function(e) {
+      stop("Failed to read library_positive.rds: ", e$message)
+    })
+
+    cat("Loaded positive mode library from file: ", file_path_pos_lib, "\n")
   }
 
   if (!exists(".negative_lib", envir = .GlobalEnv) && ionization_mode == "negative") {
-    file_path_neg_lib <- system.file("extdata", "library_negative.rds", package = "dures")
-    .GlobalEnv$.negative_lib <- readRDS(file_path_neg_lib)
-    cat("Loaded negative mode library from file\n")
+    file_path_neg_lib <- file.path(folder_path, "library_negative.rds")
+
+    if (!file.exists(file_path_neg_lib)) {
+      stop("Negative mode library not found in folder_path. Please place 'library_negative.rds' in:\n", folder_path)
+    }
+
+    .GlobalEnv$.negative_lib <- tryCatch({
+      readRDS(file_path_neg_lib)
+    }, error = function(e) {
+      stop("Failed to read library_negative.rds: ", e$message)
+    })
+
+    cat("Loaded negative mode library from file: ", file_path_neg_lib, "\n")
   }
 
   # Use the preloaded library
   lib <- if (ionization_mode == "positive") .GlobalEnv$.positive_lib else .GlobalEnv$.negative_lib
+
   cat("Matching precursor with library in", ionization_mode, "mode\n")
+
 
   # Process each entry
   for (j in seq_len(nrow(l1$stats_file_ms2_only))) {

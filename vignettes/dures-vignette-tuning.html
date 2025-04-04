@@ -12,7 +12,7 @@
 
 <meta name="author" content="Shayantan Banerjee" />
 
-<meta name="date" content="2025-04-04" />
+<meta name="date" content="2025-04-05" />
 
 <title>Demonstration of the tuning module of the package</title>
 
@@ -341,47 +341,44 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h1 class="title toc-ignore">Demonstration of the tuning module of the
 package</h1>
 <h4 class="author">Shayantan Banerjee</h4>
-<h4 class="date">2025-04-04</h4>
+<h4 class="date">2025-04-05</h4>
 
 
 
-<pre><code>
-
-## Test Dataset for tuning
-
-The test dataset used in this vignette is hosted at [https://zenodo.org/records/15132924](https://zenodo.org/records/15132924). Users need to download the file and unzip the folder contents on their local system.
-
-- The `test_data_MTBLS606` folder contains a folder named `mzml_files/` and two files: `Sample-and-feature-wise-RT-tolerance.txt` and `feature_list.txt`. The `feature_list.txt` file has three columns: &quot;ID&quot;, &quot;mz&quot;, and &quot;RT&quot;. The additional file `Sample-and-feature-wise-RT-tolerance.txt` contains the sample-wise RT tolerances for all features. The number of rows in both files is the same, while the `Sample-and-feature-wise-RT-tolerance.txt` file has twice as many columns as `feature_list.txt`, with `RT_min_` and `RT_max_` appended to every sample name.
-  
-## Install the dependencies
-A simple and automated way to install and load all the dependencies is to run the following function
-
-``` r
-install_and_load_dures_dependencies()</code></pre>
+<div id="test-dataset-for-tuning" class="section level2">
+<h2>Test Dataset for tuning</h2>
+<p>The test dataset used in this vignette is hosted at <a href="https://zenodo.org/records/15132924">https://zenodo.org/records/15132924</a>.
+Users need to download the file and unzip the folder contents on their
+local system.</p>
+<ul>
+<li>The <code>test_data_MTBLS606</code> folder contains a folder named
+<code>mzml_files/</code> and two files:
+<code>Sample-and-feature-wise-RT-tolerance.txt</code> and
+<code>feature_list.txt</code>. The <code>feature_list.txt</code> file
+has three columns: “ID”, “mz”, and “RT”. The additional file
+<code>Sample-and-feature-wise-RT-tolerance.txt</code> contains the
+sample-wise RT tolerances for all features. The number of rows in both
+files is the same, while the
+<code>Sample-and-feature-wise-RT-tolerance.txt</code> file has twice as
+many columns as <code>feature_list.txt</code>, with <code>RT_min_</code>
+and <code>RT_max_</code> appended to every sample name.</li>
+</ul>
+</div>
+<div id="install-the-dependencies" class="section level2">
+<h2>Install the dependencies</h2>
+<p>A simple and automated way to install and load all the dependencies
+is to run the following function</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">install_and_load_dures_dependencies</span>()</span></code></pre></div>
 <p>This should be followed by installing the actual package using
 devtools as shown below</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;devtools&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>}</span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;BiosystemEngineeringLab-IITB/dures&quot;</span>, <span class="at">auth_token =</span> <span class="cn">NULL</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#&gt; Downloading GitHub repo BiosystemEngineeringLab-IITB/dures@HEAD</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co">#&gt; Skipping 2 packages not available: Spectra, S4Vectors</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt; ── R CMD build ─────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt;      checking for file ‘/tmp/RtmpD6OQBl/remotes3b40143dc47a51/BiosystemEngineeringLab-IITB-dures-4ba9627/DESCRIPTION’ ...  ✔  checking for file ‘/tmp/RtmpD6OQBl/remotes3b40143dc47a51/BiosystemEngineeringLab-IITB-dures-4ba9627/DESCRIPTION’ (380ms)</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt;   ─  preparing ‘dures’:</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt;    checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information</span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt;   ─  excluding invalid files</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt;      Subdirectory &#39;R&#39; contains invalid file names:</span></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt;      ‘Misc’</span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt;   ─  checking for LF line-endings in source and make files and shell scripts</span></span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt;   ─  checking for empty or unneeded directories</span></span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt;      Omitted ‘LazyData’ from DESCRIPTION</span></span>
-<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt;   ─  building ‘dures_0.0.0.1.tar.gz’</span></span>
-<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt;      </span></span>
-<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co">#&gt; Installing package into &#39;/home/sbanerjee/R/x86_64-pc-linux-gnu-library/4.4&#39;</span></span>
-<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co">#&gt; (as &#39;lib&#39; is unspecified)</span></span>
-<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="fu">library</span>(dures)</span></code></pre></div>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#&gt; Skipping install of &#39;dures&#39; from a github remote, the SHA1 (e39d7a89) has not changed since last install.</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co">#&gt;   Use `force = TRUE` to force installation</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="fu">library</span>(dures)</span></code></pre></div>
+</div>
 <div id="first-test-example" class="section level2">
 <h2>First Test Example</h2>
 </div>

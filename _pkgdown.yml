@@ -13,6 +13,13 @@ pkgdown:
   title: "dures"
   description: "Denoising tandem mass spectrometry data through replicate spectra analysis"
 
+home:
+  title: "DuReS"
+  links:
+    - text: "Get Started with DuReS"
+      href: articles/dures-vignette.html
+    - text: "Tune Parameters"
+      href: articles/dures-vignette-tuning.html
 navbar:
   title: "DuReS"
   left:
@@ -20,19 +27,33 @@ navbar:
       href: index.html
     - text: "Function Description"
       href: reference/index.html
-    - text: "Vignette"
-      href: articles/index.html
+    - text: "Vignettes"
+      menu:
+        - text: "Overview"
+          href: articles/dures-vignette.html
+        - text: "Parameter Tuning"
+          href: articles/dures-vignette-tuning.html
     - text: "News"
       href: news/index.html
   right:
     - icon: fa-github
+      aria-label: "GitHub"
       href: https://github.com/BiosystemEngineeringLab-IITB/dures
+
+articles:
+  - title: "Overview"
+    contents:
+      - dures-vignette
+  - title: "Parameter Tuning"
+    contents:
+      - dures-vignette-tuning
 
 reference:
   - title: "Main Functions"
     contents:
       - call_aggregate
       - fragment_matching_before_denoising
+      - install_and_load_dures_dependencies
       - sensitivity_analysis
       - tuning_module
       - concatenate_spectra
