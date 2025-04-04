@@ -149,6 +149,53 @@ In the **third step**, a **consensus spectrum** is generated using the **top 80%
 ```{r third step - most expensive}
 l3 = call_aggregate(l2$sps_top_tic_2, 0.05, folder_path)
 ```
+### Optional step: Install Git LFS to access curated libraries
+
+The curated reference spectral libraries (`library_positive.rds` and `library_negative.rds`) used for MS/MS matching are tracked using **Git Large File Storage (LFS)** due to their size.
+
+#### 🔧 Step-by-Step Instructions
+
+1. **Install Git LFS (if not already installed)**
+
+   - **Windows/macOS**:  
+     Download from [https://git-lfs.github.com](https://git-lfs.github.com)
+
+   - **Linux (Debian/Ubuntu)**:  
+     ```bash
+     sudo apt install git-lfs
+     ```
+
+2. **Initialize Git LFS in your local repo**
+   ```bash
+   git lfs install
+   ```
+
+3. **Clone the repository (if you haven’t already)**  
+   ```bash
+   git clone https://github.com/BiosystemEngineeringLab-IITB/dures.git
+   cd dures
+   ```
+
+4. **Pull the large files managed by Git LFS**
+   ```bash
+   git lfs pull
+   ```
+
+5. After pulling, you will find:
+   - `library_positive.rds`
+   - `library_negative.rds`
+
+   These files are now accessible and can be directly loaded in R using:
+   ```r
+   library_positive <- readRDS("path/to/library_positive.rds")
+   library_negative <- readRDS("path/to/library_negative.rds")
+   ```
+
+> **Note:** These libraries are essential for precursor and fragment-level matching in the `dures` workflow.
+
+
+
+
 ### Step 4: Labelling individual spectra for every feature
 
 Using the **recurrence frequencies** calculated in **Step 3**, we will now label the fragments of every **top TIC spectra** for a given feature.
@@ -164,3 +211,277 @@ This labeling process provides insights into how often each fragment appears acr
 ```{r label_spec}
 l4 = label_individual_spectrum(l3, folder_path, 0.05)
 ```
+### Step 5: Matching Precursor m/z with Reference Library
+
+In this step, we match the **precursor *m/z*** values of the selected 50 features against a **curated reference library** (included in the package) using a user-defined tolerance.
+
+Based on the specified **ionization mode**, a corresponding set of reference spectra is generated. Additionally, **fragments in the reference spectra** that fall within the specified *m/z* tolerance (`tol`) are grouped together to support more robust **MS/MS-level fragment matching**.
+
+> **Note:**  
+> - We are using `l1_subset` (not `l1`) for this analysis.  
+> - This step requires the object generated in **Step 2**, namely `sps_top80_tic_2`.  
+>   Ensure that **Step 2 has been executed** prior to running this section.
+
+```{r, reference generation}
+l5 = precursor_matching(l1_subset, folder_path = folder_path, "negative", 0.05)
+```
+After this step, a folder named `Reference` will be created inside your specified `folder_path`.  
+This folder contains the processed reference spectra that will be used for downstream MS/MS-level matching.
+
+A message will also be displayed listing all precursor ions that **did not match** with any reference spectra within the given tolerance.
+
+Upon inspecting the object l5, you will notice that it is just a modified version of the stats file with only those precursors which yielded a library match. 
+
+```{r inspecting l5}
+print(paste0("Number of features removing after this step: ", dim(l5)[1], " out of the original ", dim(l1_subset$stats_file_ms2_only)[1]))
+```
+
+### Step 6: Fragment matching before denoising
+
+Since we are currently tuning parameters on the available MS/MS spectra, we begin by matching each spectrum with entries from the `Reference` library. For each spectrum, we identify and record the **reference spectrum entry** that yields the **best match** before denoising.
+
+This step is essential for tracking how well a spectrum matches a known reference in its raw form. After applying denoising using the same experimental spectrum, we will re-match it with **the same reference spectrum** to evaluate changes in similarity scores.
+
+This before/after comparison allows us to quantify the effect of denoising using objective metrics such as similarity score, dot product, or fragment match rate. 
+The input to the next function includes:
+
+- The dataframe `l5`
+- The MS/MS fragment ion tolerance (`tol`)
+- The ionization mode (e.g., `"positive"` or `"negative"`)
+
+In this step, **all available MS/MS spectra** corresponding to each precursor in `l5` are matched against **all available library spectra** from the reference database. For each spectrum, the **best-matching reference spectrum** is recorded based on a chosen similarity metric.
+
+> ⚠️ **Note:**  
+> This step is **computationally intensive**, as it performs exhaustive pairwise matching between experimental and reference spectra.
+
+
+```{r, fragment_match_before_denoising}
+l6 = fragment_matching_before_denoising(folder_path, l5, 0.05, "negative")
+```
+
+The corresponding results are stored in the folder `Before_denoising_matches`. Let us inspect this. You can change this to an ID of your choice. 
+
+```{r view before denoising results}
+id = "ID_868"
+file = read.csv(paste0(folder_path, "Before_denoising_matches/", id, ".csv"))
+# Display the first few rows and columns (e.g., first 5 rows and 5 columns)
+head(file[, 1:5])
+# Generate summary statistics for all numeric columns
+summary(file)
+```
+### Description of Columns in the Matching Results (`ID_868.csv`)
+
+The table below summarizes the meaning and role of each column in the MS/MS spectral matching results:
+
+| **Column Name**                  | **Description**                                                                 |
+|----------------------------------|---------------------------------------------------------------------------------|
+| `Matching_Score`                 | Overall similarity score between the experimental and reference spectra.       |
+| `Modified_Dot_Product`          | A variant of the dot product that adjusts for fragment intensity distribution. |
+| `Number_of_Matching_Fragments`  | Number of fragment ions that matched between experimental and reference spectra.|
+| `Forward_Dot_Product`           | Dot product calculated with the experimental spectrum as the reference frame.  |
+| `Reverse_Dot_Product`           | Dot product calculated with the library spectrum as the reference frame.       |
+| `Total_Experimental_fragments`  | Total number of fragment ions in the experimental spectrum.                    |
+| `Total_Library_fragments`       | Total number of fragment ions in the reference library spectrum.               |
+| `Feature_ID`                    | Identifier for the experimental feature or precursor ion.                      |
+| `Scan_Number`                   | Identifier for the individual scan associated with the spectrum.               |
+| `Library_name`                  | Name or accession of the matched library entry.                                |
+| `Splash_key`                    | Unique SPLASH identifier for the library spectrum (if available).              |
+| `ID`                            | Internal identifier combining feature ID and scan information.                 |
+| `mz`                            | Precursor *m/z* value for the matched spectrum.                                |
+
+These columns are essential for evaluating the quality of spectral matches both before and after denoising. Metrics like `Matching_Score`, `Dot_Products`, and `Number_of_Matching_Fragments` can be compared to assess improvement in spectral quality post-denoising.
+
+### Step 7: Deriving the optinal recurrence frequency cutoff `tuning_module()`
+
+This function performs **frequency-based tuning** of MS/MS spectra denoising parameters for a curated set of precursor features. It evaluates multiple frequency thresholds to identify optimal denoising cutoffs using a Pareto optimization framework.
+
+---
+
+##### **Inputs**
+
+- `folder_path`: Path to the working directory containing input and output folders.
+- `l4`: Output from `label_individual_spectrum()` — a list of MS/MS spectra annotated with fragment frequencies.
+- `l5`: Data frame of features matched at the MS1 level (output from `precursor_matching.R`).
+- `l6`: Matching results *before denoising*.
+- `tolerance`: MS/MS fragment ion tolerance in Daltons (default: `0.05`).
+
+---
+
+##### **What the Function Does**
+
+- Iterates over each matched feature and retrieves its associated annotated MS/MS spectra.
+- Applies denoising at multiple frequency thresholds (`0.00` to `1.00` in steps of `0.01`) to generate subspectra.
+- Stores these thresholded spectra in the folder: `Denoised_spectra_for_tuning/`.
+
+- For each feature:
+  - Matches all thresholded spectra against the best-matching reference spectrum (identified before denoising).
+  - Computes similarity scores using dot product-based metrics and stores results in `After_denoising_matches/`.
+
+- Calculates:
+  - **Signal reduction**: Loss in matching fragments post-denoising.
+  - **Noise reduction**: Reduction in unmatched fragments (interpreted as noise).
+  - **FMR (Fragment Match Rate)**: Ratio of matching to total fragments before and after denoising.
+
+- Applies **Pareto front analysis** to identify optimal trade-offs between signal retention and noise reduction.
+  - If applicable, also uses **knee-point detection** and **differential evolution optimization (DEoptim)** as backup strategies.
+
+- Stores results as:
+  - CSV files of all evaluated matches (`pareto_results/csv/`)
+  - Pareto front plots for each feature (`pareto_results/pdf/`)
+  - Final optimal scores in a merged summary table.
+
+- Calculates:
+  - The percentage increase in similarity scores (after vs. before denoising)
+  - Filters features with improved scores and positive signal retention for downstream evaluation.
+
+---
+
+##### **Output**
+
+Returns a filtered data frame containing:
+- Optimal frequency threshold (`freq`)
+- Matching score before and after denoising
+- Signal and noise reduction metrics
+- Fragment match rates (FMR)
+- Similarity scores
+- Final selected features based on Pareto optimization
+
+---
+
+
+```{r tuning_module}
+l7 = tuning_module(folder_path, l4, l5, l6, 0.05)
+```
+
+### Step 8: How stable are the derived recurrence frequencies? `sensitivity_analysis()`
+
+This function performs a **sensitivity analysis** to evaluate how different fragment frequency thresholds impact spectral matching quality. It compares matching metrics before and after denoising across recurrence frequencies and identifies the most stable range for parameter selection.
+
+---
+
+#### **Inputs**
+
+- `l7`: A data frame containing matching scores and metadata before and after denoising (output of `tuning_module()`).
+- `folder_path`: Directory where the sensitivity analysis output files will be saved.
+
+---
+
+#### **What the Function Does**
+
+- Filters the set of features that show **improvement in matching score** after denoising. If none show improvement, it uses the entire feature set.
+- Loads denoised match results (`After_denoising_matches/`) for each selected feature and appends matching scores and metadata.
+- Computes **scaling factors** to account for the frequency distribution of features, and applies these to adjust:
+  - `Matching_Score` (scaled)
+  - `Noise fragments` (scaled)
+- For each recurrence frequency, calculates:
+  - **Median scaled matching score**
+  - **Median number of noise fragments**
+  - **Percent noise reduction** relative to baseline (frequency = 0)
+- Performs **Wilcoxon rank-sum tests** to assess significance of metric changes at each frequency compared to the optimal frequency.
+- Identifies a **stable frequency range** where:
+  - Metric performance remains optimal
+  - Feature count is sufficiently high (≥ 80% of max observed)
+  - No significant drop in performance (based on p-values)
+
+---
+
+#### **Output**
+
+- Two summary plots:
+  1. **Similarity Score Sensitivity**  
+     Shows how median matching score varies across frequencies with the stable range highlighted.
+  2. **Noise Fragment Sensitivity**  
+     Shows changes in noise fragments with statistically significant reductions marked with `*`.
+
+- These plots are saved as:
+  - `Sensitivity_Analysis_Matching_Score.pdf`
+  - `Sensitivity_Analysis_Noise_Fragments.pdf`
+
+- **Output Location:**  
+  Both plots are saved in the specified `folder_path`.
+
+---
+
+```{r, sensitivity_analysis}
+l8 <- sensitivity_analysis(l7, folder_path = folder_path)
+```
+> **Note:**  
+> Owing to the **small number of features** selected for this vignette, the sensitivity curves presented here may not be highly informative. Specifically, the `l7` dataset contains **only one feature** that showed an improvement in matching score after denoising. As a result, this **single datapoint** was used for further analysis.
+> 
+> For more representative sensitivity plots generated using full experimental datasets (as used in the manuscript), please refer to the examples available at the following Google Drive link:  
+> [**Sensitivity Curve Examples (Google Drive)**](https://drive.google.com/file/d/1eDWAx6eBN5bjyD_8ZQ3jTn4J78b_cT3K/view?usp=sharing)
+
+Users can now proceed to the next step using either of the following:
+
+- The **optimal frequency threshold** identified from the summary statistics in **Step 7: Tuning Module**  
+  (which was `0.29` in our example), **or**
+- A **custom frequency threshold** selected based on the sensitivity analysis results.
+
+This threshold will be used to denoise the experimental spectra before the final round of matching and downstream analysis.
+
+### Step 9: Generating denoised spectra and storing them as mzML/mzXML files `generate_denoised_spectra()`
+
+This function performs **frequency-based denoising** of MS/MS spectra and exports the filtered spectra into `.txt` and `.mzML` formats for downstream processing.
+
+---
+
+#### **Inputs**
+
+- `aggregate_list`: Output from `label_individual_spectrum()` — a list of replicate MS/MS spectra with fragment-level frequency annotations.
+- `folder_path`: Path to the working directory where denoised spectra will be saved.
+- `custom_threshold`: *(Optional)* Frequency threshold to identify signal fragments (default = `0.1`).  
+  Only fragments with frequency **≥ `custom_threshold`** will be retained in the denoised spectra.
+- `ion_mode`: Ionization mode; `"pos"` for **positive mode** *(default)* or `"neg"` for negative mode.
+
+---
+
+#### **What the Function Does**
+
+- Iterates through each feature and its replicate MS/MS spectra.
+- Applies a user-defined frequency threshold (default = `0.1`) to retain **signal fragments**.
+- For each replicate scan:
+  - Filters and sorts the retained fragments by *m/z*.
+  - Saves the cleaned spectrum to a `.txt` file in:
+    ```
+    <folder_path>/Denoised_spectra_txt/<Feature_ID>/<Feature_Scan>.txt
+    ```
+
+- Then for each **sample**:
+  - Combines the denoised replicate spectra into a single `Spectra` object.
+  - Exports the sample-level spectrum to an `.mzML` file using the `MsBackendMzR` backend.
+  - Files are saved in:
+    ```
+    <folder_path>/Denoised_spectra_mzML/
+    ```
+
+---
+
+#### **Output**
+
+- `.txt` files for each replicate spectrum.
+- `.mzML` files for each sample combining all denoised scans.
+- Output folder structure:
+  - `Denoised_spectra_txt/`
+  - `Denoised_spectra_mzML/`
+
+---
+
+#### **Example Usage**
+
+```r
+generate_denoised_spectra(
+  aggregate_list = l3,
+  folder_path = "path/to/project/",
+  custom_threshold = 0.1,
+  ion_mode = "pos"
+)
+```
+
+> **Tip:** You may change `custom_threshold` based on the optimal value obtained from tuning or sensitivity analysis (e.g., `0.29`). Again this step requires sps_top80_tic_2 and step 2 must be run before this step. 
+
+```{r last step}
+l9 = generate_denoised_spectra(l4, folder_path, 0.29, ion_mode = "neg")
+```
+
+With the execution of `generate_denoised_spectra()`, the denoising workflow is complete. The output includes both `.txt` and `.mzML` formats of the filtered MS/MS spectra, organized by feature and sample. These denoised spectra are now ready for downstream tasks such as spectral library matching, biomarker discovery, or machine learning-based classification. By leveraging fragment recurrence frequencies across replicates, this approach helps retain high-confidence signal peaks while effectively minimizing noise, thereby improving the interpretability and quality of MS/MS-based metabolomic analyses.
+

@@ -7,7 +7,7 @@
 generate_denoised_spectra(
   aggregate_list,
   folder_path,
-  custom_threshold = NULL,
+  custom_threshold = 0.1,
   ion_mode = "pos"
 )
 }

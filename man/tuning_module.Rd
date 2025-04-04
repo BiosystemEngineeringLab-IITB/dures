@@ -4,12 +4,16 @@
 \alias{tuning_module}
 \title{tuning module}
 \usage{
-tuning_module(folder_path, l4, l5, l6, tolerance)
+tuning_module(folder_path, l4, l5, l6, tolerance = 0.05)
 }
 \arguments{
 \item{folder_path}{folder containing the input directory (mzml) feature list files where the results of the matching will be stored.}
 
+\item{l4}{Contain results of the function label_individual_spectrum.R}
+
 \item{l5}{Contain the final set of features which matched with the reference at the MS1 level, output of precursor_matching.R}
+
+\item{l6}{Contain the before denoising matching results}
 
 \item{tolerance}{fragment ion tolerance at the MS/MS level, defaults to 0.05 Da}
 }
@@ -17,7 +21,7 @@ tuning_module(folder_path, l4, l5, l6, tolerance)
 A dataframe with matching metrics, annotations and both experimental and reference spectrum identifiers. Features with matching score zero remain unannotated
 }
 \description{
-Matches experimental and reference spectra using a predefined MS/MS fragment tolerance
+Determines the optimal frequency cutoff for the selected set of features using a variety of techniques
 }
 \examples{
 # Example usage of the function

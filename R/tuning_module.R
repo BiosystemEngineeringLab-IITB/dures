@@ -1,7 +1,9 @@
 #' tuning module
 #'
-#' Matches experimental and reference spectra using a predefined MS/MS fragment tolerance
+#' Determines the optimal frequency cutoff for the selected set of features using a variety of techniques
 #' @param l5 Contain the final set of features which matched with the reference at the MS1 level, output of precursor_matching.R
+#' @param l4 Contain results of the function label_individual_spectrum.R
+#' @param l6 Contain the before denoising matching results
 #' @param tolerance fragment ion tolerance at the MS/MS level, defaults to 0.05 Da
 #' @param folder_path folder containing the input directory (mzml) feature list files where the results of the matching will be stored.
 #' @return A dataframe with matching metrics, annotations and both experimental and reference spectrum identifiers. Features with matching score zero remain unannotated
@@ -9,7 +11,7 @@
 #' # Example usage of the function
 #' fragment_matching_before_denoising(folder_path, l4, tolerance = 0.05, "positive")
 #' @export
-tuning_module <- function(folder_path, l4, l5, l6, tolerance){
+tuning_module <- function(folder_path, l4, l5, l6, tolerance = 0.05){
 
   freq_df_1 = list()
   for(i in 1:dim(l6)[1]){
@@ -282,7 +284,7 @@ tuning_module <- function(folder_path, l4, l5, l6, tolerance){
         opt_result <- DEoptim::DEoptim(optimize_weights,
                                        lower = c(0, 0, 0),
                                        upper = c(1, 1, 1),
-                                       control = list(itermax = 100),
+                                       control = list(itermax = 100,trace = FALSE),
                                        df = sky1)
 
         best_weights <- opt_result$optim$bestmem

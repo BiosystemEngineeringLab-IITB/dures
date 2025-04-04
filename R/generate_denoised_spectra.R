@@ -13,7 +13,7 @@
 #' # Example usage of the function
 #' generate_denoised_spectra(l3, folder_path, NULL)
 #' @export
-generate_denoised_spectra <- function(aggregate_list, folder_path, custom_threshold = NULL, ion_mode = "pos"){
+generate_denoised_spectra <- function(aggregate_list, folder_path, custom_threshold = 0.1, ion_mode = "pos"){
   if (!dir.exists(file.path(folder_path, "Denoised_spectra_mzML"))) {
     dir.create(file.path(folder_path, "Denoised_spectra_mzML/"))
   }
