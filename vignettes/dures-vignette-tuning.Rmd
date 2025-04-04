@@ -32,19 +32,18 @@ A simple and automated way to install and load all the dependencies is to run th
 ```{r initial-setup, eval=FALSE}
 install_and_load_dures_dependencies()
 ```
-```
+This should be followed by installing the actual package using devtools as shown below
 
-
-## Install the package
 ```{r initial-setup-contd, eval=TRUE}
 if (!requireNamespace("devtools", quietly = TRUE)) {
   install.packages("devtools", quiet = TRUE)
 }
-devtools::install_github("BiosystemEngineeringLab-IITB/dures")
+devtools::install_github("BiosystemEngineeringLab-IITB/dures", auth_token = NULL)
 library(dures)
+```
+
 ## First Test Example
 ## Test Dataset
-```
 
 The test dataset can be downloaded from the data deposited at [https://zenodo.org/records/15132924](https://zenodo.org/records/15132924) (folder name: `test_data_MTBLS606/`).
 
@@ -74,3 +73,94 @@ l1 <- preprocess(folder_path = folder_path, tol_mz = 25, tol_rt = 0.1)
 
 More details on what the list `l1` contain, is provided in the other vignette titled: "Demonstration of the package dures"
 
+```{r, execute intermediate step of workflow}
+
+print(paste0("Length of stats file after removing features from which MS2 spectra couldn't be extracted: ", as.character(dim(l1$stats_file_ms2_only)[1])))
+```
+For purposes of this vignette, we will consider a random subset of 50 features from this list of 141 MS2 features. The following step can be skipped while runnning the code on an actual experimental dataset.
+
+```{r, Subsetting the feature list to reduce computation}
+# Set seed for reproducibility
+set.seed(123)
+
+# Step 1: Get all IDs from the dataframe
+all_ids <- l1$stats_file_ms2_only$ID
+
+# Step 2: Sample 50 IDs
+selected_ids <- sample(all_ids, 50)
+
+# Step 3: Subset dataframe and reorder by selected_ids
+subset_stats <- l1$stats_file_ms2_only[l1$stats_file_ms2_only$ID %in% selected_ids, ]
+subset_stats <- subset_stats[match(selected_ids, subset_stats$ID), ]
+
+# Step 4: Subset and reorder spectra list to match the same order
+subset_spectra <- l1$spectra_ms2_only[selected_ids]  # list is named by ID
+
+# Step 5: Store both in a new list
+l1_subset <- list(
+  stats_file_ms2_only = subset_stats,
+  spectra_ms2_only = subset_spectra
+)
+```
+
+From now on, we will use `l1_subset` for all subsequent analysis. The user may stick to `l1` to continue with the original set of MS2 features
+
+### Step 2: Extracting Top x% TIC Spectra and Grouping Fragments
+
+In the second step, we will use `l1` from the previous step as input to:
+
+1. **Extract the top x% TIC spectra**, and
+2. **Group fragments** within a specified **mass tolerance**.
+
+The user can modify the following parameters:
+- **Top x% TIC value**: Default is **80%** (i.e., **0.8**).
+- **Mass tolerance**: Default is **0.05 Da**.
+
+---
+
+
+```{r second step}
+l2 = extract_raw_spectra(folder_path = folder_path, l1_subset, 0.05, 0.8)
+```
+
+The following code checks to ensure that the object `sps_top80_tic_2` is available in the local environment. This is not required while running the package
+
+```{r check_and_assign, echo=TRUE, error=TRUE}
+# Check if 'sps_top80_tic_2' exists before assigning
+if (!exists("sps_top80_tic_2", envir = .dures_env)) {
+  stop("Object 'sps_top80_tic_2' not found in .dures_env.")
+} else {
+  assign("sps_top80_tic_2", get("sps_top80_tic_2", envir = .dures_env), envir = .dures_env)
+}
+
+```
+
+Please refer to the vignette titled "Demonstration of the package dures" to know more about the structure of `l2`
+
+### Step 3: Consensus Spectrum Generation
+
+In the **third step**, a **consensus spectrum** is generated using the **top 80% TIC spectra**, and the corresponding **fragment frequencies** are calculated.
+
+- The **consensus spectrum**, also known as the **inter-spectrum aggregate**, is built using the same principle as the **intra-spectrum aggregate**.
+- The output from this step includes:
+  1. A **single spectrum per feature**.
+  2. The **peak frequencies** for each feature.
+
+```{r third step - most expensive}
+l3 = call_aggregate(l2$sps_top_tic_2, 0.05, folder_path)
+```
+### Step 4: Labelling individual spectra for every feature
+
+Using the **recurrence frequencies** calculated in **Step 3**, we will now label the fragments of every **top TIC spectra** for a given feature.
+
+The output from this step is:
+
+- A **list** containing all spectra for a given feature.
+- The corresponding **fragment frequencies** for each labeled fragment.
+
+This labeling process provides insights into how often each fragment appears across all spectra, allowing for better analysis of fragment patterns within the **top TIC** data. This can be an expensive operation, especially if there are a lor of fragments per feature.
+
+
+```{r label_spec}
+l4 = label_individual_spectrum(l3, folder_path, 0.05)
+```

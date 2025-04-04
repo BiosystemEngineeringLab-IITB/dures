@@ -12,8 +12,12 @@
 #' @export
 
 label_individual_spectrum <- function(aggregate_list, folder_path, mz_tol){
-  df_sps_mean_agg_df = aggregate_list; freq_df = list(); l = c()
-  for(i in 1:length(aggregate_list)){
+  df_sps_mean_agg_df = aggregate_list; freq_df = list(); l = c(); mz_unlab = c()
+
+  n_metabolites <- length(aggregate_list)
+  pb <- txtProgressBar(min = 0, max = n_metabolites, style = 3)
+
+  for(i in 1:n_metabolites){
     metabolite = names(aggregate_list)[i]
     path = paste(folder_path, "MS2_scans_before_denoising/",metabolite,sep="")
     for(j in 1:length(list.files(path))){
@@ -78,8 +82,8 @@ label_individual_spectrum <- function(aggregate_list, folder_path, mz_tol){
                        "Frequency"]
         if(length(f) == 0)
         {
-          print(mz)
-          print("Fragment of this scan couldn't be labelled")
+          mz_unlab = c(mz_unlab, paste0(metabolite, "_", scan_number, "_fragment_mz_", mz))
+          #print("Fragment of this scan couldn't be labelled")
           agg_df$Freq[k] = NA
           n1 = paste(metabolite, scan_number, mz, sep = "_")
           l = c(l, n1)
@@ -95,7 +99,13 @@ label_individual_spectrum <- function(aggregate_list, folder_path, mz_tol){
       freq_df[[metabolite]][[scan_number]] = agg_df
 
     }
+    setTxtProgressBar(pb, i)
   }
+  close(pb)
+  print(paste0("A total of ", as.character(length(mz_unlab)), " fragments couldn't be labeled with frequencies. Ths list can be found in the text file titled `List_of_unlabeled_fragments` in the folder_path"))
+  d = as.data.frame(mz_unlab)
+  colnames(d) = "Metabolite_ScanNumber_FragmentMZ"
+  write.table(d, paste0(folder_path, "List_of_unlabeled_fragments.txt"), col.names = TRUE, row.names = FALSE, sep="\t", quote = FALSE)
   return(freq_df)
 
 }
