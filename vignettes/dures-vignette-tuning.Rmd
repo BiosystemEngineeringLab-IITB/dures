@@ -1,0 +1,76 @@
+---
+title: "Demonstration of the tuning module of the package"
+author: "Shayantan Banerjee"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Demonstration of the tuning module of the package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+options(repos = c(CRAN = "https://cloud.r-project.org/"))
+
+# Suppress title check if necessary
+options(rmarkdown.html_vignette.check_title = FALSE)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Test Dataset for tuning
+
+The test dataset used in this vignette is hosted at [https://zenodo.org/records/15132924](https://zenodo.org/records/15132924). Users need to download the file and unzip the folder contents on their local system.
+
+- The `test_data_MTBLS606` folder contains a folder named `mzml_files/` and two files: `Sample-and-feature-wise-RT-tolerance.txt` and `feature_list.txt`. The `feature_list.txt` file has three columns: "ID", "mz", and "RT". The additional file `Sample-and-feature-wise-RT-tolerance.txt` contains the sample-wise RT tolerances for all features. The number of rows in both files is the same, while the `Sample-and-feature-wise-RT-tolerance.txt` file has twice as many columns as `feature_list.txt`, with `RT_min_` and `RT_max_` appended to every sample name.
+  
+## Install the dependencies
+A simple and automated way to install and load all the dependencies is to run the following function
+```{r initial-setup, eval=FALSE}
+install_and_load_dures_dependencies()
+```
+```
+
+
+## Install the package
+```{r initial-setup-contd, eval=TRUE}
+if (!requireNamespace("devtools", quietly = TRUE)) {
+  install.packages("devtools", quiet = TRUE)
+}
+devtools::install_github("BiosystemEngineeringLab-IITB/dures")
+library(dures)
+## First Test Example
+## Test Dataset
+```
+
+The test dataset can be downloaded from the data deposited at [https://zenodo.org/records/15132924](https://zenodo.org/records/15132924) (folder name: `test_data_MTBLS606/`).
+
+### Workflow Overview
+
+1. **Reading mzML Files**  
+   The first step of the workflow involves reading mzML files and extracting MS/MS spectra within the specified *m/z* and *RT* tolerance.
+
+2. **Extracting and Concatenating Spectra**  
+   The extracted spectra are then concatenated for all replicate spectra belonging to a given feature.
+
+3. **Filtering Features**  
+   Features that do not have any MS/MS spectra extracted, based on the specified *RT* and *m/z* tolerance, are removed from the list.
+
+```{r, execute first step of the workflow}
+# Define the path to the  folder (replace with the actual path on your system)
+folder_path <- "/data1/sbanerjee/test_data_MTBLS606/"
+
+# Check if the directory exists
+if (!dir.exists(folder_path)) {
+  stop("The directory test_1 does not exist. Please modify the path to the actual location of the test_1 folder")
+}
+
+l1 <- preprocess(folder_path = folder_path, tol_mz = 25, tol_rt = 0.1)
+```
+
+
+More details on what the list `l1` contain, is provided in the other vignette titled: "Demonstration of the package dures"
+
