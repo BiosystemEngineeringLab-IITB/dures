@@ -10,6 +10,8 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
+invisible(lapply(c("dplyr", "readr", "data.table", "pbapply", "magrittr", "utils", "stats", "rPref", "ggplot2", "DEoptim", "patchwork", "S4Vectors", "Spectra", "BiocManager", "knitr", "markdown"), require, character.only = TRUE))
+
 options(repos = c(CRAN = "https://cloud.r-project.org/"))
 #this code block will
 # Clean your folder_path every time the vignette is run
@@ -30,7 +32,7 @@ knitr::opts_chunk$set(
 folder_path <- "/data1/sbanerjee/test_data_MTBLS606/"  # Update this to your actual working path to the test data 
 
 # Files and folders to keep
-keep_files <- c("feature_list.txt", "Sample-and-feature-wise-RT-tolerance.txt", "mzml_files")
+keep_files <- c("feature_list.txt", "Sample-and-feature-wise-RT-tolerance.txt", "mzml_files", "library_negative.rds")
 
 # List all contents in folder_path
 all_contents <- list.files(folder_path, full.names = TRUE)
@@ -285,7 +287,7 @@ l6 = fragment_matching_before_denoising(folder_path, l5, 0.05, "negative")
 The corresponding results are stored in the folder `Before_denoising_matches`. Let us inspect this. You can change this to an ID of your choice. 
 
 ```{r view before denoising results}
-id = "ID_868"
+id = l6$Feature_ID[1]
 file = read.csv(paste0(folder_path, "Before_denoising_matches/", id, ".csv"))
 # Display the first few rows and columns (e.g., first 5 rows and 5 columns)
 head(file[, 1:5])
