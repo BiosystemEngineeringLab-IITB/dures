@@ -44,9 +44,46 @@ l4 = label_individual_spectrum(l3, folder_path, 0.05)
 l5 = generate_denoised_spectra(l4, folder_path, ion_mode = "pos") 
 ```
 
+## Tuning the optimal recurrence frequency parameter
+
+DuReS provides users with the ability to determine the optimal frequency cutoff for denoising MS/MS spectra. A detailed walkthrough is available through an example analysis using an open-source experimental tandem mass spectrometry dataset [here](https://biosystemengineeringlab-iitb.github.io/dures/articles/dures-vignette-tuning.html).
+
+## Metabolite annotation
+
+**DuReS** includes a curated reference library built from *11 publicly available MS/MS datasets*, comprising:
+
+- **1,259,372 unique spectra**  
+- **356,330 unique compounds**  
+- Coverage across both **positive** and **negative** ionization modes  
+- Redundant entries removed using **SPLASH keys** (see Supporting Information, Section 3 of the main manuscript)
+
+The processed positive and the negative library spectra is available here. Users may choose to install GIT LFS for using the files in an automated manner (see vigentte titled [Parameter Tuning](https://biosystemengineeringlab-iitb.github.io/dures/articles/dures-vignette-tuning.html) or may directly upload the files from this [link](https://drive.google.com/drive/folders/1CIlmggvodtsPSUyxY1mL_M1UazSOHvGN?usp=sharing) to the package directory /inst/extdata/.
+
+Experimental and denoised spectra are matched against this reference library using the following scoring function:
+
+```
+Matching Score = 5 × [Modified Dot Product × 100 + 20 × log₂(max(NMF, 1))]
+```
+
+Where:  
+- **Modified Dot Product** measures spectral similarity  
+- **NMF** = Number of Matching Fragments
+
+In addition to the Matching Score, DuReS reports:
+- **Forward and Reverse Dot Products**
+- **Fragment Matching Ratio (FMR)**
+- Number of matched fragments
+- Reference compound identifiers
+
+To ensure high-confidence annotations:
+- Matches with fewer than **2 fragments** or **dot products < 0.25** are filtered out  
+- Annotations must occur in **≥30%** of replicate spectra
+
+All parameters are fully **tunable**, and the spectral matching algorithm is **integrated into DuReS**.
+
 ## Package Workflow
 
-![Workflow Diagram](images/Denoising_workflow_tuning_testing_combined.drawio-1.png)
+![Workflow Diagram](https://github.com/BiosystemEngineeringLab-IITB/dures/blob/main/images/Denoising_workflow_tuning_testing_combined.drawio-1.png)
 =======
 
 ## Citation

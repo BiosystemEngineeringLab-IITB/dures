@@ -103,13 +103,44 @@
 <span><span class="va">l5</span> <span class="op">=</span> <span class="fu"><a href="reference/generate_denoised_spectra.html">generate_denoised_spectra</a></span><span class="op">(</span><span class="va">l4</span>, <span class="va">folder_path</span>, ion_mode <span class="op">=</span> <span class="st">"pos"</span><span class="op">)</span> </span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="tuning-the-optimal-recurrence-frequency-parameter">Tuning the optimal recurrence frequency parameter<a class="anchor" aria-label="anchor" href="#tuning-the-optimal-recurrence-frequency-parameter"></a>
+</h2>
+<p>DuReS provides users with the ability to determine the optimal frequency cutoff for denoising MS/MS spectra. A detailed walkthrough is available through an example analysis using an open-source experimental tandem mass spectrometry dataset <a href="https://biosystemengineeringlab-iitb.github.io/dures/articles/dures-vignette-tuning.html" class="external-link">here</a>.</p>
+</div>
+<div class="section level2">
+<h2 id="metabolite-annotation">Metabolite annotation<a class="anchor" aria-label="anchor" href="#metabolite-annotation"></a>
+</h2>
+<p><strong>DuReS</strong> includes a curated reference library built from <em>11 publicly available MS/MS datasets</em>, comprising:</p>
+<ul>
+<li>
+<strong>1,259,372 unique spectra</strong><br>
+</li>
+<li>
+<strong>356,330 unique compounds</strong><br>
+</li>
+<li>Coverage across both <strong>positive</strong> and <strong>negative</strong> ionization modes<br>
+</li>
+<li>Redundant entries removed using <strong>SPLASH keys</strong> (see Supporting Information, Section 3 of the main manuscript)</li>
+</ul>
+<p>The processed positive and the negative library spectra is available here. Users may choose to install GIT LFS for using the files in an automated manner (see vigentte titled <a href="https://biosystemengineeringlab-iitb.github.io/dures/articles/dures-vignette-tuning.html" class="external-link">Parameter Tuning</a> or may directly upload the files from this <a href="https://drive.google.com/drive/folders/1CIlmggvodtsPSUyxY1mL_M1UazSOHvGN?usp=sharing" class="external-link">link</a> to the package directory /inst/extdata/.</p>
+<p>Experimental and denoised spectra are matched against this reference library using the following scoring function:</p>
+<pre><code>Matching Score = 5 × [Modified Dot Product × 100 + 20 × log₂(max(NMF, 1))]</code></pre>
+<p>Where:<br>
+- <strong>Modified Dot Product</strong> measures spectral similarity<br>
+- <strong>NMF</strong> = Number of Matching Fragments</p>
+<p>In addition to the Matching Score, DuReS reports: - <strong>Forward and Reverse Dot Products</strong> - <strong>Fragment Matching Ratio (FMR)</strong> - Number of matched fragments - Reference compound identifiers</p>
+<p>To ensure high-confidence annotations: - Matches with fewer than <strong>2 fragments</strong> or <strong>dot products &lt; 0.25</strong> are filtered out<br>
+- Annotations must occur in <strong>≥30%</strong> of replicate spectra</p>
+<p>All parameters are fully <strong>tunable</strong>, and the spectral matching algorithm is <strong>integrated into DuReS</strong>.</p>
+</div>
+<div class="section level2">
 <h2 id="package-workflow">Package Workflow<a class="anchor" aria-label="anchor" href="#package-workflow"></a>
 </h2>
 </div>
 </div>
 <div class="section level1">
 <h1 id="workflow-diagram">
-<img src="images/Denoising_workflow_tuning_testing_combined.drawio-1.png" alt="Workflow Diagram"><a class="anchor" aria-label="anchor" href="#workflow-diagram"></a>
+<img src="https://github.com/BiosystemEngineeringLab-IITB/dures/blob/main/images/Denoising_workflow_tuning_testing_combined.drawio-1.png" alt="Workflow Diagram"><a class="anchor" aria-label="anchor" href="#workflow-diagram"></a>
 </h1>
 <div class="section level2">
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
