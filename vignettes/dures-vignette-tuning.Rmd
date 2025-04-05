@@ -112,7 +112,7 @@ set.seed(123)
 all_ids <- l1$stats_file_ms2_only$ID
 
 # Step 2: Sample 50 IDs
-selected_ids <- sample(all_ids, 2)
+selected_ids <- sample(all_ids, 50)
 
 # Step 3: Subset dataframe and reorder by selected_ids
 subset_stats <- l1$stats_file_ms2_only[l1$stats_file_ms2_only$ID %in% selected_ids, ]

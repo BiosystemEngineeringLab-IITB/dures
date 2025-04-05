@@ -1,63 +1,31 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/articles/dures-vignette.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/call_aggregate.html</loc>
-  </url>
-  <url>
-    <loc>/reference/concat_ms2_spec_from_stats_file.html</loc>
-  </url>
-  <url>
-    <loc>/reference/concatenate_spectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/derive_aggregate_spectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/extract_features_from_scans_raw_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/extract_raw_spectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/generate_denoised_spectra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/intrascan_grouping.html</loc>
-  </url>
-  <url>
-    <loc>/reference/label_individual_spectrum.html</loc>
-  </url>
-  <url>
-    <loc>/reference/preprocess.html</loc>
-  </url>
-  <url>
-    <loc>/reference/read_files.html</loc>
-  </url>
-  <url>
-    <loc>/reference/tune_parameters.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/LICENSE.html</loc></url>
+<url><loc>/articles/dures-vignette-tuning.html</loc></url>
+<url><loc>/articles/dures-vignette.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/reference/call_aggregate.html</loc></url>
+<url><loc>/reference/concat_ms2_spec_from_stats_file.html</loc></url>
+<url><loc>/reference/concatenate_spectra.html</loc></url>
+<url><loc>/reference/derive_aggregate_spectra.html</loc></url>
+<url><loc>/reference/extract_features_from_scans_raw_data.html</loc></url>
+<url><loc>/reference/extract_raw_spectra.html</loc></url>
+<url><loc>/reference/fragment_matching_before_denoising.html</loc></url>
+<url><loc>/reference/generate_denoised_spectra.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/install_and_load_dures_dependencies.html</loc></url>
+<url><loc>/reference/intrascan_grouping.html</loc></url>
+<url><loc>/reference/label_individual_spectrum.html</loc></url>
+<url><loc>/reference/precursor_matching.html</loc></url>
+<url><loc>/reference/prepare_reference.html</loc></url>
+<url><loc>/reference/preprocess.html</loc></url>
+<url><loc>/reference/read_files.html</loc></url>
+<url><loc>/reference/reference_preparation_for_matching.html</loc></url>
+<url><loc>/reference/sensitivity_analysis.html</loc></url>
+<url><loc>/reference/tune_parameters.html</loc></url>
+<url><loc>/reference/tuning_module.html</loc></url>
 </urlset>
+

@@ -4,79 +4,65 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Demonstration of the package dures • dures</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Demonstration of the package dures">
-<meta property="og:description" content="dures">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Demonstration of the package dures">
 </head>
-<body data-spy="scroll" data-target="#toc">
-    
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">dures</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.1</span>
-      </span>
-    </div>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/dures-vignette.html">Demonstration of the package dures</a>
-    </li>
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
+    <a class="navbar-brand me-2" href="../index.html">dures</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.1</small>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Function Description</a></li>
+<li class="active nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-vignettes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Vignettes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-vignettes">
+<li><a class="dropdown-item" href="../articles/dures-vignette.html">Overview</a></li>
+    <li><a class="dropdown-item" href="../articles/dures-vignette-tuning.html">Parameter Tuning</a></li>
   </ul>
 </li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">News</a></li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="navbar-nav">
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/BiosystemEngineeringLab-IITB/dures" aria-label="GitHub"><span class="fa fa-github"></span></a></li>
+      </ul>
 </div>
-<!--/.nav-collapse -->
+
+
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
+</nav><div class="container template-article">
 
-      
 
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Demonstration of the package dures</h1>
+
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+
+      <h1>Demonstration of the package dures</h1>
                         <h4 data-toc-skip class="author">Shayantan
 Banerjee</h4>
             
-            <h4 data-toc-skip class="date">2024-10-03</h4>
+            <h4 data-toc-skip class="date">2025-04-05</h4>
       
-      
-      <div class="hidden name"><code>dures-vignette.Rmd</code></div>
 
+      <div class="d-none name"><code>dures-vignette.Rmd</code></div>
     </div>
 
     
@@ -159,21 +145,8 @@ contain a folder named <code>mzml_files/</code> and a file named
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"BiosystemEngineeringLab-IITB/dures"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Using GitHub PAT from the git credential store.</span></span>
-<span><span class="co">#&gt; Downloading GitHub repo BiosystemEngineeringLab-IITB/dures@HEAD</span></span>
-<span><span class="co">#&gt; Skipping 2 packages not available: Spectra, S4Vectors</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="color: #00BBBB;">R CMD build</span> <span style="color: #00BBBB;">─────────────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co">#&gt; * checking for file ‘/tmp/RtmpNZq8qH/remotes3a347d604d716f/BiosystemEngineeringLab-IITB-dures-3aca9c1/DESCRIPTION’ ... OK</span></span>
-<span><span class="co">#&gt; * preparing ‘dures’:</span></span>
-<span><span class="co">#&gt; * checking DESCRIPTION meta-information ... OK</span></span>
-<span><span class="co">#&gt; * excluding invalid files</span></span>
-<span><span class="co">#&gt; Subdirectory 'R' contains invalid file names:</span></span>
-<span><span class="co">#&gt;   ‘Misc’</span></span>
-<span><span class="co">#&gt; * checking for LF line-endings in source and make files and shell scripts</span></span>
-<span><span class="co">#&gt; * checking for empty or unneeded directories</span></span>
-<span><span class="co">#&gt; * building ‘dures_0.0.0.1.tar.gz’</span></span>
-<span><span class="co">#&gt; Installing package into '/tmp/RtmpNuNyuS/temp_libpath26a049bf5e9a5'</span></span>
-<span><span class="co">#&gt; (as 'lib' is unspecified)</span></span>
+<span><span class="co">#&gt; Skipping install of 'dures' from a github remote, the SHA1 (bfa45ad3) has not changed since last install.</span></span>
+<span><span class="co">#&gt;   Use `force = TRUE` to force installation</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">dures</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/RforMassSpectrometry/Spectra" class="external-link">Spectra</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: S4Vectors</span></span>
@@ -190,8 +163,8 @@ contain a folder named <code>mzml_files/</code> and a file named
 <span><span class="co">#&gt;     colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,</span></span>
 <span><span class="co">#&gt;     get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,</span></span>
 <span><span class="co">#&gt;     match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,</span></span>
-<span><span class="co">#&gt;     Position, rank, rbind, Reduce, rownames, sapply, setdiff, table,</span></span>
-<span><span class="co">#&gt;     tapply, union, unique, unsplit, which.max, which.min</span></span>
+<span><span class="co">#&gt;     Position, rank, rbind, Reduce, rownames, sapply, saveRDS, setdiff,</span></span>
+<span><span class="co">#&gt;     table, tapply, union, unique, unsplit, which.max, which.min</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'S4Vectors'</span></span>
 <span><span class="co">#&gt; The following object is masked from 'package:utils':</span></span>
@@ -237,21 +210,24 @@ list.</p></li>
 </ol>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Define the path to the test_1 folder (replace with the actual path on your system)</span></span>
-<span><span class="va">folder_path</span> <span class="op">&lt;-</span> <span class="st">"~/Desktop/test_package_dures/test_1/"</span></span>
+<span><span class="va">folder_path</span> <span class="op">&lt;-</span> <span class="st">"/data1/sbanerjee/test_1//"</span></span>
+<span></span>
 <span><span class="co"># Check if the directory exists</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.exists</a></span><span class="op">(</span><span class="va">folder_path</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop</a></span><span class="op">(</span><span class="st">"The directory 'test_1' does not exist. Please modify the path to the actual location of the 'test_1' folder."</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop</a></span><span class="op">(</span><span class="st">"The directory test_1 does not exist. Please modify the path to the actual location of the test_1 folder"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="va">l1</span> <span class="op">=</span> <span class="fu"><a href="../reference/preprocess.html">preprocess</a></span><span class="op">(</span>folder_path <span class="op">=</span> <span class="va">folder_path</span>, tol_mz <span class="op">=</span> <span class="fl">5</span>, tol_rt <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">l1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/preprocess.html">preprocess</a></span><span class="op">(</span>folder_path <span class="op">=</span> <span class="va">folder_path</span>, tol_mz <span class="op">=</span> <span class="fl">5</span>, tol_rt <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; *******************Sanity check for input files***********************</span></span>
 <span><span class="co">#&gt; ✓ Feature list file found!</span></span>
 <span><span class="co">#&gt; ✓ Feature list file has the correct columns</span></span>
 <span><span class="co">#&gt; ✓ mzml folder exists</span></span>
 <span><span class="co">#&gt; ✓ RT tolerance file exists! Using custom tolerance</span></span>
-<span><span class="co">#&gt; ✓ Input file is in correct format</span></span>
-<span><span class="co">#&gt; Reading mzml files</span></span>
+<span><span class="co">#&gt; ✓ RT tolerance file format is valid</span></span>
+<span><span class="co">#&gt; Reading spectra files...</span></span>
 <span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |                                                                      |   1%  |                                                                              |=                                                                     |   1%  |                                                                              |=                                                                     |   2%  |                                                                              |==                                                                    |   3%  |                                                                              |===                                                                   |   4%  |                                                                              |===                                                                   |   5%  |                                                                              |====                                                                  |   6%  |                                                                              |=====                                                                 |   7%  |                                                                              |=====                                                                 |   8%  |                                                                              |======                                                                |   8%  |                                                                              |======                                                                |   9%  |                                                                              |=======                                                               |  10%  |                                                                              |========                                                              |  11%  |                                                                              |========                                                              |  12%  |                                                                              |=========                                                             |  12%  |                                                                              |=========                                                             |  13%  |                                                                              |==========                                                            |  14%  |                                                                              |==========                                                            |  15%  |                                                                              |===========                                                           |  15%  |                                                                              |===========                                                           |  16%  |                                                                              |============                                                          |  17%  |                                                                              |=============                                                         |  18%  |                                                                              |=============                                                         |  19%  |                                                                              |==============                                                        |  19%  |                                                                              |==============                                                        |  20%  |                                                                              |===============                                                       |  21%  |                                                                              |===============                                                       |  22%  |                                                                              |================                                                      |  22%  |                                                                              |================                                                      |  23%  |                                                                              |=================                                                     |  24%  |                                                                              |==================                                                    |  25%  |                                                                              |==================                                                    |  26%  |                                                                              |===================                                                   |  27%  |                                                                              |===================                                                   |  28%  |                                                                              |====================                                                  |  28%  |                                                                              |====================                                                  |  29%  |                                                                              |=====================                                                 |  30%  |                                                                              |=====================                                                 |  31%  |                                                                              |======================                                                |  31%  |                                                                              |======================                                                |  32%  |                                                                              |=======================                                               |  33%  |                                                                              |========================                                              |  34%  |                                                                              |========================                                              |  35%  |                                                                              |=========================                                             |  35%  |                                                                              |=========================                                             |  36%  |                                                                              |==========================                                            |  37%  |                                                                              |==========================                                            |  38%  |                                                                              |===========================                                           |  38%  |                                                                              |===========================                                           |  39%  |                                                                              |============================                                          |  40%  |                                                                              |=============================                                         |  41%  |                                                                              |=============================                                         |  42%  |                                                                              |==============================                                        |  42%  |                                                                              |==============================                                        |  43%  |                                                                              |===============================                                       |  44%  |                                                                              |================================                                      |  45%  |                                                                              |================================                                      |  46%  |                                                                              |=================================                                     |  47%  |                                                                              |==================================                                    |  48%  |                                                                              |==================================                                    |  49%  |                                                                              |===================================                                   |  49%  |                                                                              |===================================                                   |  50%  |                                                                              |===================================                                   |  51%  |                                                                              |====================================                                  |  51%  |                                                                              |====================================                                  |  52%  |                                                                              |=====================================                                 |  53%  |                                                                              |======================================                                |  54%  |                                                                              |======================================                                |  55%  |                                                                              |=======================================                               |  56%  |                                                                              |========================================                              |  57%  |                                                                              |========================================                              |  58%  |                                                                              |=========================================                             |  58%  |                                                                              |=========================================                             |  59%  |                                                                              |==========================================                            |  60%  |                                                                              |===========================================                           |  61%  |                                                                              |===========================================                           |  62%  |                                                                              |============================================                          |  62%  |                                                                              |============================================                          |  63%  |                                                                              |=============================================                         |  64%  |                                                                              |=============================================                         |  65%  |                                                                              |==============================================                        |  65%  |                                                                              |==============================================                        |  66%  |                                                                              |===============================================                       |  67%  |                                                                              |================================================                      |  68%  |                                                                              |================================================                      |  69%  |                                                                              |=================================================                     |  69%  |                                                                              |=================================================                     |  70%  |                                                                              |==================================================                    |  71%  |                                                                              |==================================================                    |  72%  |                                                                              |===================================================                   |  72%  |                                                                              |===================================================                   |  73%  |                                                                              |====================================================                  |  74%  |                                                                              |====================================================                  |  75%  |                                                                              |=====================================================                 |  76%  |                                                                              |======================================================                |  77%  |                                                                              |======================================================                |  78%  |                                                                              |=======================================================               |  78%  |                                                                              |=======================================================               |  79%  |                                                                              |========================================================              |  80%  |                                                                              |========================================================              |  81%  |                                                                              |=========================================================             |  81%  |                                                                              |=========================================================             |  82%  |                                                                              |==========================================================            |  83%  |                                                                              |===========================================================           |  84%  |                                                                              |===========================================================           |  85%  |                                                                              |============================================================          |  85%  |                                                                              |============================================================          |  86%  |                                                                              |=============================================================         |  87%  |                                                                              |=============================================================         |  88%  |                                                                              |==============================================================        |  88%  |                                                                              |==============================================================        |  89%  |                                                                              |===============================================================       |  90%  |                                                                              |================================================================      |  91%  |                                                                              |================================================================      |  92%  |                                                                              |=================================================================     |  92%  |                                                                              |=================================================================     |  93%  |                                                                              |==================================================================    |  94%  |                                                                              |===================================================================   |  95%  |                                                                              |===================================================================   |  96%  |                                                                              |====================================================================  |  97%  |                                                                              |===================================================================== |  98%  |                                                                              |===================================================================== |  99%  |                                                                              |======================================================================|  99%  |                                                                              |======================================================================| 100%</span></span>
-<span><span class="co">#&gt;  ✓ Spectra has been extracted from the mzml files</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ✓ Spectra have been extracted from the MS2 files</span></span>
 <span><span class="co">#&gt; Concatenating and checking if MS2 data is available for a given feature</span></span>
 <span><span class="co">#&gt; MS2 spectra couldn't be extracted from a total of 33 features out of 50 features. They are as follows:3573,8433,7591,7791,5791,3366,2686,2589,8985,4897,6044,5333,7452,8134,5539,4848,5938,390,6713,7836,8643,8270,4318,8992,7629,7098,4060,1069,2144,7427,719,6001,654</span></span></code></pre></div>
 <p><code>l1</code> is a list containing two elements:</p>
@@ -311,10 +287,10 @@ feature</strong>.</p>
 <span><span class="co">#&gt; 20092020_CovidMild_P294_P_2.mzML</span></span>
 <span><span class="co">#&gt;  ... 21 more files</span></span>
 <span><span class="co">#&gt; Processing:</span></span>
-<span><span class="co">#&gt;  Filter: select MS level(s) 2 [Thu Oct  3 16:16:22 2024]</span></span>
-<span><span class="co">#&gt;  Filter: select retention time [540..552.6] on MS level(s) 2 [Thu Oct  3 16:20:43 2024]</span></span>
-<span><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [304.151146511561, 304.154188038233] [Thu Oct  3 16:20:43 2024]</span></span>
-<span><span class="co">#&gt;  ...83 more processings. Use 'processingLog' to list all.</span></span></code></pre></div>
+<span><span class="co">#&gt;  Filter: select MS level(s) 2 [Sat Apr  5 12:52:21 2025]</span></span>
+<span><span class="co">#&gt;  Filter: select retention time [496.2..569.4] on MS level(s) 2 [Sat Apr  5 12:53:20 2025]</span></span>
+<span><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [304.151146511561, 304.154188038233] [Sat Apr  5 12:53:20 2025]</span></span>
+<span><span class="co">#&gt;  ...36 more processings. Use 'processingLog' to list all.</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"name of third feature\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; name of third feature</span></span>
@@ -344,10 +320,10 @@ feature</strong>.</p>
 <span><span class="co">#&gt; 15092020_CovidNeg_P264_P_2.mzML</span></span>
 <span><span class="co">#&gt;  ... 13 more files</span></span>
 <span><span class="co">#&gt; Processing:</span></span>
-<span><span class="co">#&gt;  Filter: select MS level(s) 2 [Thu Oct  3 16:16:41 2024]</span></span>
-<span><span class="co">#&gt;  Filter: select retention time [342.6..458.4] on MS level(s) 2 [Thu Oct  3 16:20:45 2024]</span></span>
-<span><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [340.166594782258, 340.169996465214] [Thu Oct  3 16:20:45 2024]</span></span>
-<span><span class="co">#&gt;  ...82 more processings. Use 'processingLog' to list all.</span></span></code></pre></div>
+<span><span class="co">#&gt;  Filter: select MS level(s) 2 [Sat Apr  5 12:52:04 2025]</span></span>
+<span><span class="co">#&gt;  Filter: select retention time [342.6..458.4] on MS level(s) 2 [Sat Apr  5 12:53:22 2025]</span></span>
+<span><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [340.166594782258, 340.169996465214] [Sat Apr  5 12:53:22 2025]</span></span>
+<span><span class="co">#&gt;  ...30 more processings. Use 'processingLog' to list all.</span></span></code></pre></div>
 <p>From the output, we can see that the first two MS2 features
 (<code>1982</code> and <code>872</code>) have <strong>83</strong> and
 <strong>43</strong> MS/MS spectra, respectively, from different samples
@@ -514,12 +490,12 @@ value</strong>: Default is <strong>80%</strong> (i.e.,
 is not required while running the package</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Check if 'sps_top80_tic_2' exists before assigning</span></span>
-<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/exists.html" class="external-link">exists</a></span><span class="op">(</span><span class="st">"sps_top80_tic_2"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop</a></span><span class="op">(</span><span class="st">"Object 'sps_top80_tic_2' not found in the environment."</span><span class="op">)</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/exists.html" class="external-link">exists</a></span><span class="op">(</span><span class="st">"sps_top80_tic_2"</span>, envir <span class="op">=</span> <span class="va">.dures_env</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop</a></span><span class="op">(</span><span class="st">"Object 'sps_top80_tic_2' not found in .dures_env."</span><span class="op">)</span></span>
 <span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/assign.html" class="external-link">assign</a></span><span class="op">(</span><span class="st">"sps_top80_tic_2"</span>, <span class="va">sps_top80_tic_2</span>, envir <span class="op">=</span> <span class="va">.dures_env</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/assign.html" class="external-link">assign</a></span><span class="op">(</span><span class="st">"sps_top80_tic_2"</span>, <span class="fu"><a href="https://rdrr.io/r/base/get.html" class="external-link">get</a></span><span class="op">(</span><span class="st">"sps_top80_tic_2"</span>, envir <span class="op">=</span> <span class="va">.dures_env</span><span class="op">)</span>, envir <span class="op">=</span> <span class="va">.dures_env</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="co">#&gt; Error in eval(expr, envir, enclos): Object 'sps_top80_tic_2' not found in the environment.</span></span></code></pre></div>
+<span><span class="co">#&gt; Error: object '.dures_env' not found</span></span></code></pre></div>
 <div class="section level4">
 <h4 id="step-2-output-overview">Step 2 Output Overview<a class="anchor" aria-label="anchor" href="#step-2-output-overview"></a>
 </h4>
@@ -577,10 +553,10 @@ top x% TIC cutoff:</p>
 <span><span class="co">#&gt; 20092020_CovidMild_P294_P_2.mzML</span></span>
 <span><span class="co">#&gt;  ... 19 more files</span></span>
 <span><span class="co">#&gt; Processing:</span></span>
-<span><span class="co">#&gt;  Filter: select MS level(s) 2 [Thu Oct  3 16:16:22 2024]</span></span>
-<span><span class="co">#&gt;  Filter: select retention time [540..552.6] on MS level(s) 2 [Thu Oct  3 16:20:43 2024]</span></span>
-<span><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [304.151146511561, 304.154188038233] [Thu Oct  3 16:20:43 2024]</span></span>
-<span><span class="co">#&gt;  ...83 more processings. Use 'processingLog' to list all.</span></span>
+<span><span class="co">#&gt;  Filter: select MS level(s) 2 [Sat Apr  5 12:52:21 2025]</span></span>
+<span><span class="co">#&gt;  Filter: select retention time [496.2..569.4] on MS level(s) 2 [Sat Apr  5 12:53:20 2025]</span></span>
+<span><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [304.151146511561, 304.154188038233] [Sat Apr  5 12:53:20 2025]</span></span>
+<span><span class="co">#&gt;  ...36 more processings. Use 'processingLog' to list all.</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">l2</span><span class="op">$</span><span class="va">sps_top_tic_2</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="co"># From 43 before to 34 spectra remain after top x% TIC</span></span>
 <span><span class="co">#&gt; MSn data (Spectra) with 34 spectra in a MsBackendMzR backend:</span></span>
 <span><span class="co">#&gt;       msLevel     rtime scanIndex</span></span>
@@ -604,10 +580,10 @@ top x% TIC cutoff:</p>
 <span><span class="co">#&gt; 15092020_CovidNeg_P264_P_2.mzML</span></span>
 <span><span class="co">#&gt;  ... 12 more files</span></span>
 <span><span class="co">#&gt; Processing:</span></span>
-<span><span class="co">#&gt;  Filter: select MS level(s) 2 [Thu Oct  3 16:16:41 2024]</span></span>
-<span><span class="co">#&gt;  Filter: select retention time [342.6..458.4] on MS level(s) 2 [Thu Oct  3 16:20:45 2024]</span></span>
-<span><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [340.166594782258, 340.169996465214] [Thu Oct  3 16:20:45 2024]</span></span>
-<span><span class="co">#&gt;  ...82 more processings. Use 'processingLog' to list all.</span></span></code></pre></div>
+<span><span class="co">#&gt;  Filter: select MS level(s) 2 [Sat Apr  5 12:52:04 2025]</span></span>
+<span><span class="co">#&gt;  Filter: select retention time [342.6..458.4] on MS level(s) 2 [Sat Apr  5 12:53:22 2025]</span></span>
+<span><span class="co">#&gt;  Filter: select spectra with a precursor m/z within [340.166594782258, 340.169996465214] [Sat Apr  5 12:53:22 2025]</span></span>
+<span><span class="co">#&gt;  ...30 more processings. Use 'processingLog' to list all.</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
@@ -741,7 +717,7 @@ fragments</strong>.</p>
 <strong>304.15106</strong> were combined into a single fragment after
 the intra-spectrum grouping process.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">spectrum_size_after_grouping</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="st">"~/Desktop/test_package_dures/test_1/MS2_scans_before_denoising/1982/20092020_CovidMild_P294_P_2.mzML_scan_1587.txt"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">spectrum_size_after_grouping</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="st">"/data1/sbanerjee/test_1/MS2_scans_before_denoising/1982/20092020_CovidMild_P294_P_2.mzML_scan_1587.txt"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">spectrum_size_after_grouping</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 22</span></span></code></pre></div>
 </div>
@@ -790,7 +766,7 @@ grouping process.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ProtGenerics/man/peaksData.html" class="external-link">peaksData</a></span><span class="op">(</span><span class="va">l2</span><span class="op">$</span><span class="va">sps_top_tic_2</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 98</span></span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">spectrum_size_after_grouping</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="st">"~/Desktop/test_package_dures/test_1/MS2_scans_before_denoising/872/13092020_CovidMild_P282_P_2.mzML_scan_1120.txt"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">spectrum_size_after_grouping</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="st">"/data1/sbanerjee/test_1//MS2_scans_before_denoising/872/13092020_CovidMild_P282_P_2.mzML_scan_1120.txt"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">spectrum_size_after_grouping</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 81</span></span></code></pre></div>
 </div>
@@ -903,12 +879,8 @@ appears across all spectra, allowing for better analysis of fragment
 patterns within the <strong>top TIC</strong> data.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">l4</span> <span class="op">=</span> <span class="fu"><a href="../reference/label_individual_spectrum.html">label_individual_spectrum</a></span><span class="op">(</span><span class="va">l3</span>, <span class="va">folder_path</span>, <span class="fl">0.05</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 119.14</span></span>
-<span><span class="co">#&gt; [1] "Fragment of this scan couldn't be labelled"</span></span>
-<span><span class="co">#&gt; [1] 68.9</span></span>
-<span><span class="co">#&gt; [1] "Fragment of this scan couldn't be labelled"</span></span>
-<span><span class="co">#&gt; [1] 148.96</span></span>
-<span><span class="co">#&gt; [1] "Fragment of this scan couldn't be labelled"</span></span></code></pre></div>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%</span></span>
+<span><span class="co">#&gt; [1] "A total of 3 fragments couldn't be labeled with frequencies. Ths list can be found in the text file titled `List_of_unlabeled_fragments` in the folder_path"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="inspecting-feature-1982">Inspecting Feature <code>1982</code><a class="anchor" aria-label="anchor" href="#inspecting-feature-1982"></a>
@@ -988,7 +960,7 @@ analysis.</li>
 </li>
 </ol>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">l5</span> <span class="op">=</span> <span class="fu"><a href="../reference/generate_denoised_spectra.html">generate_denoised_spectra</a></span><span class="op">(</span><span class="va">l4</span>, <span class="va">folder_path</span>, ion_mode <span class="op">=</span> <span class="st">"pos"</span><span class="op">)</span> </span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">l5</span> <span class="op">=</span> <span class="fu"><a href="../reference/generate_denoised_spectra.html">generate_denoised_spectra</a></span><span class="op">(</span><span class="va">l4</span>, <span class="va">folder_path</span>, <span class="fl">0.12</span>, ion_mode <span class="op">=</span> <span class="st">"pos"</span><span class="op">)</span> </span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="output-overview">Output Overview<a class="anchor" aria-label="anchor" href="#output-overview"></a>
@@ -1024,7 +996,7 @@ Folder</strong>:</li>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#20092020_CovidMild_P294_P_2.mzML_scan_1587</span></span>
 <span><span class="va">backend</span> <span class="op">=</span> <span class="fu">Spectra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Spectra/man/MsBackend.html" class="external-link">MsBackendMzR</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">sps</span> <span class="op">&lt;-</span> <span class="fu">Spectra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Spectra/man/Spectra.html" class="external-link">Spectra</a></span><span class="op">(</span><span class="st">"~/Desktop/test_package_dures/test_1/Denoised_spectra/20092020_CovidMild_P294_P_2.mzML"</span>, source <span class="op">=</span> <span class="va">backend</span><span class="op">)</span></span>
+<span><span class="va">sps</span> <span class="op">&lt;-</span> <span class="fu">Spectra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Spectra/man/Spectra.html" class="external-link">Spectra</a></span><span class="op">(</span><span class="st">"/data1/sbanerjee/test_1/Denoised_spectra_mzML/20092020_CovidMild_P294_P_2.mzML"</span>, source <span class="op">=</span> <span class="va">backend</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ProtGenerics/man/peaksData.html" class="external-link">peaksData</a></span><span class="op">(</span><span class="va">l2</span><span class="op">$</span><span class="va">sps_top_tic_2</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt;              mz  intensity</span></span>
 <span><span class="co">#&gt;  [1,]  65.33508   1602.947</span></span>
@@ -1104,35 +1076,26 @@ are saved in the folder <code>Denoised_spectra</code>.</p>
 <strong>metabolite annotation</strong>.</p>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
-
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p></p>
-<p>Developed by Shayantan Banerjee.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p>Developed by Shayantan Banerjee.</p>
 </div>
 
-<div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
-  
 
 
-  
+
 
   </body>
 </html>
