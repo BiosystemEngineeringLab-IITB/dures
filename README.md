@@ -91,4 +91,7 @@ All parameters are fully **tunable**, and the spectral matching algorithm is **i
 =======
 
 ## Citation
-Banerjee, Shayantan, Prajval Nakrani, Aviral Singh, and Pramod Wangikar. "DuReS: An R package for denoising experimental tandem mass spectrometry-based metabolomics data." [bioRxiv](https://www.biorxiv.org/content/10.1101/2024.09.16.613198v1) (2024): 2024-09.
+DuReS: An R Package for Denoising Experimental Tandem Mass Spectra and Metabolite Annotation
+Shayantan Banerjee, Prajval Nakrani, Aviral Singh, and Pramod P. Wangikar
+Analytical Chemistry Article ASAP
+DOI: 10.1021/acs.analchem.5c01726
