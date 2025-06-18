@@ -93,5 +93,5 @@ All parameters are fully **tunable**, and the spectral matching algorithm is **i
 ## Citation
 [DuReS: An R Package for Denoising Experimental Tandem Mass Spectra and Metabolite Annotation](https://pubs.acs.org/doi/10.1021/acs.analchem.5c01726)
 Shayantan Banerjee, Prajval Nakrani, Aviral Singh, and Pramod P. Wangikar
-Analytical Chemistry Article ASAP
+Analytical Chemistry 2025 97 (23), 11986-11992
 DOI: 10.1021/acs.analchem.5c01726
